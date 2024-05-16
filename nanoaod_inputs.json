@@ -1,0 +1,13 @@
+{
+    "ttbar": {
+        "nominal": {
+            "nevts_total": 120000,
+            "files": [
+                {
+                    "path": "root://cmsxrootd.fnal.gov//store/mc/RunIIAutumn18NanoAOD/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/102X_upgrade2018_realistic_v15-v1/120000/08359797-037D-AD42-A433-978BEEE70173.root",
+                    "nevts": 120000
+                }
+            ]
+        }
+    }
+}
