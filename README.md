@@ -11,7 +11,7 @@ To run the analyzer:
 ```
 python3 analyzer.py
 ```
-This will create a directory called `histograms` and output a root file containing histograms.
+This will create a directory called `histograms` and an output a root file containing histograms.
 ## Framework
 The analyzer and framework are loosely based on the following analysis:
 
