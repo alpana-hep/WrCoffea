@@ -11,7 +11,7 @@ To run the analyzer:
 ```
 python3 analyzer.py
 ```
-This will create a directory called `histograms` and an output root file containing histograms.
+This will process a nanoAOD file of $t\bar{t}$ events and output a root file containing histograms.
 ## Framework
 The analyzer and framework are loosely based on the following analysis:
 
