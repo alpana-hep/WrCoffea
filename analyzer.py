@@ -15,6 +15,9 @@ import hist.dask as hda
 import dask
 NanoAODSchema.warn_missing_crossrefs = False
 
+# input files per process, set to e.g. 10 (smaller number = faster)
+N_FILES_MAX_PER_SAMPLE = 1
+
 class WrAnalysis(processor.ProcessorABC):
     def __init__(self):
         #Initialize histograms
@@ -34,7 +37,7 @@ class WrAnalysis(processor.ProcessorABC):
 
     def process(self, events):
 
-
+        # create copies of histogram objects
         hist_dict = copy.deepcopy(self.hist_dict)
 
         elecs = events.Electron
@@ -122,7 +125,11 @@ class WrAnalysis(processor.ProcessorABC):
 
 t0 = time.monotonic()
 
-fileset = construct_fileset()
+fileset = construct_fileset(N_FILES_MAX_PER_SAMPLE)
+
+print(f"processes in fileset: {list(fileset.keys())}")
+print(f"\nexample of information in fileset:\n{{\n  'files': [{fileset['ttbar__nominal']['files'][0]}, ...],")
+print(f"  'metadata': {fileset['ttbar__nominal']['metadata']}\n}}")
 
 fname = fileset['ttbar__nominal']['files'][0]
 events = NanoEventsFactory.from_root(
