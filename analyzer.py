@@ -1,32 +1,37 @@
+import time
+
 import awkward as ak
+from coffea import processor
 from coffea.nanoevents import NanoEventsFactory, NanoAODSchema
 from coffea.analysis_tools import PackedSelection
-from coffea import processor
 import copy
+import hist
+import hist.dask as hda
+import dask
 import numpy as np
 import uproot
-import hist
-import time
+
 from utils.file_output import save_histograms
 from utils.file_input import construct_fileset
 from utils.histos import config
 from utils.compute_variables import get_variables
-import hist.dask as hda
-import dask
+
 NanoAODSchema.warn_missing_crossrefs = False
 
-# input files per process, set to e.g. 10 (smaller number = faster)
+# input files per process, still only works for 1
 N_FILES_MAX_PER_SAMPLE = 1
 
 class WrAnalysis(processor.ProcessorABC):
     def __init__(self):
-        #Initialize histograms
+        
+        # initialize dictionary of hists for all analysis regions
         self.hist_dict = {}
         for mll in ["60mll150", "150mll400", "mll400"]:
             self.hist_dict[mll] = {}
             for flavor in ["eejj", "mumujj", "emujj"]:
                 self.hist_dict[mll][flavor] = {}
                 for i in range(len(config["histos"]["HISTO_NAMES"])):
+                    #Need to look at hist documentation to improve this
                     self.hist_dict[mll][flavor][config["histos"]["HISTO_NAMES"][i]] =(
                         hda.Hist.new.Reg(bins=config["histos"]["N_BINS"][i],
                                           start=config["histos"]["BIN_LOW"][i],
@@ -91,7 +96,7 @@ class WrAnalysis(processor.ProcessorABC):
          
         mll = (passing_leptons[:, 0] + passing_leptons[:, 1]).mass
 
-        #Define analysis regions
+        #Define conditions for analysis regions
         selections = PackedSelection(dtype='uint64')
         selections.add_multiple(
             {
@@ -112,8 +117,10 @@ class WrAnalysis(processor.ProcessorABC):
              selected_leptons = passing_leptons[mll_selection & flavor_selection]
              selected_jets = passing_jets[mll_selection & flavor_selection]
              print(f"Filling histograms for events with dilepton mass {mll} and flavor {flavor}.")
-             variables = get_variables(selected_leptons, selected_jets) #This step takes forever (converting the dask arrays using .compute()).
+             # Creates a list of dask arrays of all kinematic variables
+             variables = get_variables(selected_leptons, selected_jets) 
              for i, variable in enumerate(variables):
+                # Fill histograms
                 hist_dict[mll][flavor][config["histos"]["HISTO_NAMES"][i]].fill(variable)
 
         print("\nFinished processing events and filling histograms.\n")
