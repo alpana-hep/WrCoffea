@@ -5,14 +5,14 @@ from coffea import processor
 import copy
 import numpy as np
 import uproot
-from hist import Hist
+import hist
 import time
-
 from utils.file_output import save_histograms
 from utils.file_input import construct_fileset
 from utils.histos import config
 from utils.compute_variables import get_variables
-
+import hist.dask as hda
+import dask
 NanoAODSchema.warn_missing_crossrefs = False
 
 class WrAnalysis(processor.ProcessorABC):
@@ -25,7 +25,7 @@ class WrAnalysis(processor.ProcessorABC):
                 self.hist_dict[mll][flavor] = {}
                 for i in range(len(config["histos"]["HISTO_NAMES"])):
                     self.hist_dict[mll][flavor][config["histos"]["HISTO_NAMES"][i]] =(
-                        Hist.new.Reg(bins=config["histos"]["N_BINS"][i],
+                        hda.Hist.new.Reg(bins=config["histos"]["N_BINS"][i],
                                           start=config["histos"]["BIN_LOW"][i],
                                           stop=config["histos"]["BIN_HIGH"][i],
                                           label=config["histos"]["HISTO_LABELS"][i])
@@ -42,7 +42,7 @@ class WrAnalysis(processor.ProcessorABC):
         jets = events.Jet
         
         num_events = ak.num(elecs,axis=0).compute()
-        print(f"\nProcessing {num_events} events")
+        print(f"\nProcessing {num_events} events.")
 
         # Mask jets and leptons with their individual requirements
         good_elecs = elecs[(elecs.pt > 53) & (np.abs(elecs.eta) < 2.4) & (elecs.cutBased_HEEP)]
@@ -84,7 +84,7 @@ class WrAnalysis(processor.ProcessorABC):
 
         num_selected = ak.num(passing_elecs,axis=0).compute()
 
-        print(f"\n{num_selected} events passed the selection ({num_selected/num_events*100:.2f}% efficiency)")
+        print(f"{num_selected} events passed the selection ({num_selected/num_events*100:.2f}% efficiency).\n")
          
         mll = (passing_leptons[:, 0] + passing_leptons[:, 1]).mass
 
@@ -108,15 +108,17 @@ class WrAnalysis(processor.ProcessorABC):
              flavor_selection = selections.all(flavor)
              selected_leptons = passing_leptons[mll_selection & flavor_selection]
              selected_jets = passing_jets[mll_selection & flavor_selection]
-             print(f"\nCalculating kinematic variables and filling histograms for events with dilepton mass {mll} and flavor {flavor}")
+             print(f"Filling histograms for events with dilepton mass {mll} and flavor {flavor}.")
              variables = get_variables(selected_leptons, selected_jets) #This step takes forever (converting the dask arrays using .compute()).
              for i, variable in enumerate(variables):
-                 hist_dict[mll][flavor][config["histos"]["HISTO_NAMES"][i]].fill(variable)
+                hist_dict[mll][flavor][config["histos"]["HISTO_NAMES"][i]].fill(variable)
+
+        print("\nFinished processing events and filling histograms.\n")
 
         return hist_dict
 
     def postprocess(self, accumulator):
-        return accumulator
+        pass
 
 t0 = time.monotonic()
 
@@ -132,8 +134,11 @@ events = NanoEventsFactory.from_root(
 p = WrAnalysis()
 out = p.process(events)
 
-print("\nSaving histograms")
-save_histograms(out, "example_histos.root")
+print("Computing histograms...")
+(computed,)=dask.compute(out)
+print("Histograms computed.\n")
+
+save_histograms(computed, "example_histos.root")
 
 exec_time = time.monotonic() - t0
 print(f"\nExecution took {exec_time:.2f} seconds")
