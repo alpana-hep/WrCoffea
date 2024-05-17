@@ -10,3 +10,4 @@ def save_histograms(hist_dict, filename):
             for flavor in hist_dict[mll].keys():
                 for histogram_name, histogram_data in hist_dict[mll][flavor].items():
                     f[f"{mll}/{flavor}/{histogram_name}"] = histogram_data
+    print(f"Histograms saved to {histograms_directory}/{filename}")
