@@ -9,17 +9,24 @@ import hist
 import hist.dask as hda
 import dask
 import numpy as np
-import uproot
+from distributed import Client
 
 from utils.file_output import save_histograms
 from utils.file_input import construct_fileset
 from utils.histos import config
 from utils.compute_variables import get_variables
-
+from coffea.dataset_tools import (
+    apply_to_fileset,
+    max_chunks,
+    preprocess,
+)
 NanoAODSchema.warn_missing_crossrefs = False
 
-# input files per process, still only works for 1
-N_FILES_MAX_PER_SAMPLE = 1
+# input files per process, -1 to process all
+# 64M ttbar events takes about 45 minutes
+N_FILES_MAX_PER_SAMPLE = -1
+
+#client = Client()
 
 class WrAnalysis(processor.ProcessorABC):
     def __init__(self):
@@ -40,11 +47,11 @@ class WrAnalysis(processor.ProcessorABC):
                             .Weight()
                     )
 
-    def process(self, events):
-
+    def process(self, events): #Processes a single NanoEvents chunk
+   
         # create copies of histogram objects
         hist_dict = copy.deepcopy(self.hist_dict)
-
+        dataset = events.metadata['dataset']
         elecs = events.Electron
         muons = events.Muon
         jets = events.Jet
@@ -125,34 +132,36 @@ class WrAnalysis(processor.ProcessorABC):
 
         print("\nFinished processing events and filling histograms.\n")
 
-        return hist_dict
+        return hist_dict #Should return a filled accumulator object
 
     def postprocess(self, accumulator):
-        pass
+        return accumulator
+
 
 t0 = time.monotonic()
 
 fileset = construct_fileset(N_FILES_MAX_PER_SAMPLE)
 
-print(f"processes in fileset: {list(fileset.keys())}")
-print(f"\nexample of information in fileset:\n{{\n  'files': [{fileset['ttbar__nominal']['files'][0]}, ...],")
-print(f"  'metadata': {fileset['ttbar__nominal']['metadata']}\n}}")
+dataset_runnable, dataset_updated = preprocess(
+    fileset,
+    align_clusters=False,
+    step_size=100_000,
+    files_per_batch=1,
+    skip_bad_files=True,
+    save_form=False,
+)
 
-fname = fileset['ttbar__nominal']['files'][0]
-events = NanoEventsFactory.from_root(
-    {fname: "Events"},
+to_compute=apply_to_fileset(
+    WrAnalysis(),
+    max_chunks(dataset_runnable, 300),
     schemaclass=NanoAODSchema,
-    metadata={"dataset": "ttbar"},
-    ).events()
-
-p = WrAnalysis()
-out = p.process(events)
+    )
 
 print("Computing histograms...")
-(computed,)=dask.compute(out)
+(out,) = dask.compute(to_compute)
 print("Histograms computed.\n")
 
-save_histograms(computed, "example_histos.root")
+save_histograms(out, "example_histos.root")
 
 exec_time = time.monotonic() - t0
 print(f"\nExecution took {exec_time:.2f} seconds")
