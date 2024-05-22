@@ -1,25 +1,28 @@
 import json
 
 def construct_fileset(n_files_max_per_sample):
+
+    # x-secs are in pb (page 9 of the AN)
+    xsec_info = {
+        "ttbar": 88.29,
+    }
+
     # Read the JSON file
     with open('nanoaod_inputs.json', 'r') as file:
-        data = json.load(file)
+        file_info = json.load(file)
     
-    # Initialize the resulting dictionary
-    file_info = {
-        'ttbar': {
-            "files": {}
-        }
-    }
-    
-    # Process the data to fill the file_info dictionary
-    if n_files_max_per_sample != -1:
-        files_to_process = data['ttbar']['nominal']['files'][:n_files_max_per_sample]
-    else:
-        files_to_process = data['ttbar']['nominal']['files']
+    # process into "fileset" summarizing all info
+    fileset = {}
+    for process in file_info.keys():
+        for variation in file_info[process].keys():
+            file_list = file_info[process][variation]["files"]
+            if n_files_max_per_sample != -1:
+                file_list = file_list[:n_files_max_per_sample]
 
-    for file_entry in files_to_process:
-        path = file_entry['path']
-        file_info['ttbar']['files'][path] = "Events"
-    
-    return file_info
+            file_paths = {f["path"]: "Events" for f in file_list}
+
+            nevts_total = sum([f["nevts"] for f in file_list])
+            metadata = {"process": process, "variation": variation, "nevts": nevts_total, "xsec": xsec_info[process]}
+            fileset.update({f"{process}__{variation}": {"files": file_paths, "metadata": metadata}})
+
+    return fileset

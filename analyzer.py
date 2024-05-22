@@ -1,6 +1,7 @@
 import time
 
 import awkward as ak
+import warnings
 from coffea import processor
 from coffea.nanoevents import NanoEventsFactory, NanoAODSchema
 from coffea.analysis_tools import PackedSelection
@@ -9,6 +10,7 @@ import hist
 import hist.dask as hda
 import dask
 import numpy as np
+import warnings
 from distributed import Client
 
 from utils.file_output import save_histograms
@@ -22,9 +24,13 @@ from coffea.dataset_tools import (
 )
 NanoAODSchema.warn_missing_crossrefs = False
 
+warnings.filterwarnings(
+    "ignore",
+    module="coffea.*"
+)
 # input files per process, -1 to process all
 # 64M ttbar events takes about 45 minutes
-N_FILES_MAX_PER_SAMPLE = -1
+N_FILES_MAX_PER_SAMPLE = 1
 
 #client = Client()
 
@@ -51,13 +57,21 @@ class WrAnalysis(processor.ProcessorABC):
    
         # create copies of histogram objects
         hist_dict = copy.deepcopy(self.hist_dict)
-        dataset = events.metadata['dataset']
+
+        process = events.metadata["process"]  # "ttbar" etc.
+        variation = events.metadata["variation"]  # "nominal" etc.
+
+        # normalization for MC
+        x_sec = events.metadata["xsec"]
+        nevts_total = events.metadata["nevts"]
+        lumi = 5974 # /pb for 2018
+        xsec_weight = x_sec * lumi / nevts_total
+
         elecs = events.Electron
         muons = events.Muon
         jets = events.Jet
         
-        num_events = ak.num(elecs,axis=0).compute()
-        print(f"\nProcessing {num_events} events.")
+        print(f"Processing {nevts_total} events.")
 
         # Mask jets and leptons with their individual requirements
         good_elecs = elecs[(elecs.pt > 53) & (np.abs(elecs.eta) < 2.4) & (elecs.cutBased_HEEP)]
@@ -99,7 +113,7 @@ class WrAnalysis(processor.ProcessorABC):
 
         num_selected = ak.num(passing_elecs,axis=0).compute()
 
-        print(f"{num_selected} events passed the selection ({num_selected/num_events*100:.2f}% efficiency).\n")
+        print(f"{num_selected} events passed the selection ({num_selected/nevts_total*100:.2f}% efficiency).\n")
          
         mll = (passing_leptons[:, 0] + passing_leptons[:, 1]).mass
 
@@ -132,35 +146,32 @@ class WrAnalysis(processor.ProcessorABC):
 
         print("\nFinished processing events and filling histograms.\n")
 
-        return hist_dict #Should return a filled accumulator object
+        output = {"nevents": {events.metadata["dataset"]: len(events)}, "hist_dict": hist_dict}
+        return output
 
     def postprocess(self, accumulator):
         return accumulator
 
+print("\nStarting analyzer...\n")
 
 t0 = time.monotonic()
 
 fileset = construct_fileset(N_FILES_MAX_PER_SAMPLE)
 
-dataset_runnable, dataset_updated = preprocess(
-    fileset,
-    align_clusters=False,
-    step_size=100_000,
-    files_per_batch=1,
-    skip_bad_files=True,
-    save_form=False,
-)
+filemeta, _=preprocess(fileset, step_size=100_000, skip_bad_files=True)
 
 to_compute=apply_to_fileset(
     WrAnalysis(),
-    max_chunks(dataset_runnable, 300),
+    max_chunks(filemeta, 300),
     schemaclass=NanoAODSchema,
     )
 
-print("Computing histograms...")
-(out,) = dask.compute(to_compute)
-print("Histograms computed.\n")
+all_histograms = to_compute['ttbar__nominal']['hist_dict']
 
+print("Computing histograms...")
+(out,) = dask.compute(all_histograms)
+
+print("Histograms computed.\n")
 save_histograms(out, "example_histos.root")
 
 exec_time = time.monotonic() - t0
