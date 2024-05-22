@@ -1,28 +1,18 @@
+import logging
 import time
+import warnings
 
 import awkward as ak
-import warnings
 from coffea import processor
 from coffea.nanoevents import NanoEventsFactory, NanoAODSchema
 from coffea.analysis_tools import PackedSelection
+from coffea.dataset_tools import apply_to_fileset, max_chunks, preprocess
 import copy
-import hist
 import hist.dask as hda
 import dask
 import numpy as np
-import warnings
-from distributed import Client
 
-from utils.file_output import save_histograms
-from utils.file_input import construct_fileset
-from utils.histos import config
-from utils.compute_variables import get_variables
-from coffea.dataset_tools import (
-    apply_to_fileset,
-    max_chunks,
-    preprocess,
-)
-NanoAODSchema.warn_missing_crossrefs = False
+import utils # contains code for bookkeeping and cosmetics, as well as some boilerplate
 
 warnings.filterwarnings(
     "ignore",
@@ -31,8 +21,6 @@ warnings.filterwarnings(
 # input files per process, -1 to process all
 # 64M ttbar events takes about 45 minutes
 N_FILES_MAX_PER_SAMPLE = 1
-
-#client = Client()
 
 class WrAnalysis(processor.ProcessorABC):
     def __init__(self):
@@ -43,13 +31,13 @@ class WrAnalysis(processor.ProcessorABC):
             self.hist_dict[mll] = {}
             for flavor in ["eejj", "mumujj", "emujj"]:
                 self.hist_dict[mll][flavor] = {}
-                for i in range(len(config["histos"]["HISTO_NAMES"])):
+                for i in range(len(utils.config["histos"]["HISTO_NAMES"])):
                     #Need to look at hist documentation to improve this
-                    self.hist_dict[mll][flavor][config["histos"]["HISTO_NAMES"][i]] =(
-                        hda.Hist.new.Reg(bins=config["histos"]["N_BINS"][i],
-                                          start=config["histos"]["BIN_LOW"][i],
-                                          stop=config["histos"]["BIN_HIGH"][i],
-                                          label=config["histos"]["HISTO_LABELS"][i])
+                    self.hist_dict[mll][flavor][utils.config["histos"]["HISTO_NAMES"][i]] =(
+                        hda.Hist.new.Reg(bins=utils.config["histos"]["N_BINS"][i],
+                                          start=utils.config["histos"]["BIN_LOW"][i],
+                                          stop=utils.config["histos"]["BIN_HIGH"][i],
+                                          label=utils.config["histos"]["HISTO_LABELS"][i])
                             .Weight()
                     )
 
@@ -113,7 +101,7 @@ class WrAnalysis(processor.ProcessorABC):
 
         num_selected = ak.num(passing_elecs,axis=0).compute()
 
-        print(f"{num_selected} events passed the selection ({num_selected/nevts_total*100:.2f}% efficiency).\n")
+        print(f"{num_selected} events passed the selection ({num_selected/nevts_total*100:.2f}% efficiency).")
          
         mll = (passing_leptons[:, 0] + passing_leptons[:, 1]).mass
 
@@ -137,14 +125,13 @@ class WrAnalysis(processor.ProcessorABC):
              flavor_selection = selections.all(flavor)
              selected_leptons = passing_leptons[mll_selection & flavor_selection]
              selected_jets = passing_jets[mll_selection & flavor_selection]
-             print(f"Filling histograms for events with dilepton mass {mll} and flavor {flavor}.")
              # Creates a list of dask arrays of all kinematic variables
-             variables = get_variables(selected_leptons, selected_jets) 
+             variables = utils.compute_variables.get_variables(selected_leptons, selected_jets) 
              for i, variable in enumerate(variables):
                 # Fill histograms
-                hist_dict[mll][flavor][config["histos"]["HISTO_NAMES"][i]].fill(variable)
+                hist_dict[mll][flavor][utils.config["histos"]["HISTO_NAMES"][i]].fill(variable)
 
-        print("\nFinished processing events and filling histograms.\n")
+        print("Finished processing events and filling histograms.\n")
 
         output = {"nevents": {events.metadata["dataset"]: len(events)}, "hist_dict": hist_dict}
         return output
@@ -156,7 +143,16 @@ print("\nStarting analyzer...\n")
 
 t0 = time.monotonic()
 
-fileset = construct_fileset(N_FILES_MAX_PER_SAMPLE)
+fileset = utils.file_input.construct_fileset(N_FILES_MAX_PER_SAMPLE)
+
+#print(f"Fileset: {fileset}\n") for debugging
+
+print(f"Processes in fileset: {list(fileset.keys())}")
+file_name, file_branch = next(iter(fileset['ttbar__nominal']['files'].items()))
+print(f"\nExample of information in fileset:\n{{\n  'files': {file_name}, ...,")
+print(f"  'metadata': {fileset['ttbar__nominal']['metadata']}\n}}\n")
+
+NanoAODSchema.warn_missing_crossrefs = False # silences warnings about branches we will not use here
 
 filemeta, _=preprocess(fileset, step_size=100_000, skip_bad_files=True)
 
@@ -172,7 +168,7 @@ print("Computing histograms...")
 (out,) = dask.compute(all_histograms)
 
 print("Histograms computed.\n")
-save_histograms(out, "example_histos.root")
+utils.file_output.save_histograms(out, "example_histos.root")
 
 exec_time = time.monotonic() - t0
 print(f"\nExecution took {exec_time:.2f} seconds")
