@@ -3,18 +3,11 @@ import time
 import warnings
 
 import awkward as ak
-from coffea import processor
-from coffea.nanoevents import NanoEventsFactory, NanoAODSchema
-from coffea.analysis_tools import PackedSelection
-from coffea.dataset_tools import apply_to_fileset, max_chunks, preprocess
-
-#from Objects import createObjects
-#from Selection import createSelection
-#from makeHistograms import eventHistos
-import copy
-import hist.dask as hda
 import dask
-import numpy as np
+
+from coffea import processor
+from coffea.nanoevents import NanoAODSchema
+from coffea.dataset_tools import apply_to_fileset, max_chunks, preprocess
 
 import utils # contains code for bookkeeping and cosmetics, as well as some boilerplate
 
@@ -22,9 +15,8 @@ warnings.filterwarnings(
     "ignore",
     module="coffea.*"
 )
-# input files per process, -1 to process all
-# 64M ttbar events takes about 45 minutes
-N_FILES_MAX_PER_SAMPLE = -1
+
+N_FILES_MAX_PER_SAMPLE = 1 # -1 to process all (64M ttbar events takes about 70 minutes)
 
 class WrAnalysis(processor.ProcessorABC):
     def __init__(self):
@@ -64,36 +56,40 @@ class WrAnalysis(processor.ProcessorABC):
     def postprocess(self, accumulator):
         return accumulator
 
-print("\nStarting analyzer...\n")
+def main():
+    print("\nStarting analyzer...\n")
 
-t0 = time.monotonic()
+    t0 = time.monotonic()
 
-fileset = utils.file_input.construct_fileset(N_FILES_MAX_PER_SAMPLE)
+    fileset = utils.file_input.construct_fileset(N_FILES_MAX_PER_SAMPLE)
 
-#print(f"Fileset: {fileset}\n") for debugging
+    # print(f"Fileset: {fileset}\n") for debugging
 
-print(f"Processes in fileset: {list(fileset.keys())}")
-file_name, file_branch = next(iter(fileset['ttbar__nominal']['files'].items()))
-print(f"\nExample of information in fileset:\n{{\n  'files': {file_name}, ...,")
-print(f"  'metadata': {fileset['ttbar__nominal']['metadata']}\n}}\n")
+    print(f"Processes in fileset: {list(fileset.keys())}")
+    file_name, file_branch = next(iter(fileset['ttbar__nominal']['files'].items()))
+    print(f"\nExample of information in fileset:\n{{\n  'files': {file_name}, ...,")
+    print(f"  'metadata': {fileset['ttbar__nominal']['metadata']}\n}}\n")
 
-NanoAODSchema.warn_missing_crossrefs = False # silences warnings about branches we will not use here
+    NanoAODSchema.warn_missing_crossrefs = False  # silences warnings about branches we will not use here
 
-filemeta, _=preprocess(fileset, step_size=100_000, skip_bad_files=True)
+    filemeta, _ = preprocess(fileset, step_size=100_000, skip_bad_files=True)
 
-to_compute=apply_to_fileset(
-    WrAnalysis(),
-    max_chunks(filemeta, 300),
-    schemaclass=NanoAODSchema,
+    to_compute = apply_to_fileset(
+        WrAnalysis(),
+        max_chunks(filemeta, 300),
+        schemaclass=NanoAODSchema,
     )
 
-all_histograms = to_compute['ttbar__nominal']['hist_dict']
+    all_histograms = to_compute['ttbar__nominal']['hist_dict']
 
-print("Computing histograms...")
-(out,) = dask.compute(all_histograms)
+    print("Computing histograms...")
+    (out,) = dask.compute(all_histograms)
 
-print("Histograms computed.\n")
-utils.file_output.save_histograms(out, "example_histos_v2.root")
+    print("Histograms computed.\n")
+    utils.file_output.save_histograms(out, "example_histos.root")
 
-exec_time = time.monotonic() - t0
-print(f"\nExecution took {exec_time:.2f} seconds")
+    exec_time = time.monotonic() - t0
+    print(f"\nExecution took {exec_time:.2f} seconds")
+
+if __name__ == "__main__":
+    main()
