@@ -7,6 +7,10 @@ from coffea import processor
 from coffea.nanoevents import NanoEventsFactory, NanoAODSchema
 from coffea.analysis_tools import PackedSelection
 from coffea.dataset_tools import apply_to_fileset, max_chunks, preprocess
+
+#from Objects import createObjects
+#from Selection import createSelection
+#from makeHistograms import eventHistos
 import copy
 import hist.dask as hda
 import dask
@@ -20,120 +24,41 @@ warnings.filterwarnings(
 )
 # input files per process, -1 to process all
 # 64M ttbar events takes about 45 minutes
-N_FILES_MAX_PER_SAMPLE = 1
+N_FILES_MAX_PER_SAMPLE = -1
 
 class WrAnalysis(processor.ProcessorABC):
     def __init__(self):
-        
-        # initialize dictionary of hists for all analysis regions
-        self.hist_dict = {}
-        for mll in ["60mll150", "150mll400", "mll400"]:
-            self.hist_dict[mll] = {}
-            for flavor in ["eejj", "mumujj", "emujj"]:
-                self.hist_dict[mll][flavor] = {}
-                for i in range(len(utils.config["histos"]["HISTO_NAMES"])):
-                    #Need to look at hist documentation to improve this
-                    self.hist_dict[mll][flavor][utils.config["histos"]["HISTO_NAMES"][i]] =(
-                        hda.Hist.new.Reg(bins=utils.config["histos"]["N_BINS"][i],
-                                          start=utils.config["histos"]["BIN_LOW"][i],
-                                          stop=utils.config["histos"]["BIN_HIGH"][i],
-                                          label=utils.config["histos"]["HISTO_LABELS"][i])
-                            .Weight()
-                    )
+        self.myHists = utils.makeHistograms.eventHistos()        
 
     def process(self, events): #Processes a single NanoEvents chunk
-   
-        # create copies of histogram objects
-        hist_dict = copy.deepcopy(self.hist_dict)
-
-        process = events.metadata["process"]  # "ttbar" etc.
-        variation = events.metadata["variation"]  # "nominal" etc.
-
-        # normalization for MC
-        x_sec = events.metadata["xsec"]
-        nevts_total = events.metadata["nevts"]
-        lumi = 5974 # /pb for 2018
-        xsec_weight = x_sec * lumi / nevts_total
-
-        elecs = events.Electron
-        muons = events.Muon
-        jets = events.Jet
         
+        nevts_total = events.metadata["nevts"]
         print(f"Processing {nevts_total} events.")
 
-        # Mask jets and leptons with their individual requirements
-        good_elecs = elecs[(elecs.pt > 53) & (np.abs(elecs.eta) < 2.4) & (elecs.cutBased_HEEP)]
-        good_muons = muons[(muons.pt > 53) & (np.abs(muons.eta) < 2.4) & (muons.tightId) & (muons.highPtId == 2) & (muons.pfRelIso04_all < 0.1)]
-        good_jets = jets[(jets.pt > 40) & (np.abs(jets.eta) < 2.4) & (jets.isTightLeptonVeto)]
+        events = utils.Objects.createObjects(events)
+        selections = utils.Selection.createSelection(events)
 
-        #Require 2 leptons, at least 2 jets, and the pT of the leading lepton > 60
-        event_reqs = ((ak.num(good_elecs) + ak.num(good_muons)) == 2) & (ak.num(good_jets)>=2) & ((ak.any(good_elecs.pt > 60, axis=1)) | (ak.any(good_muons.pt > 60, axis=1)))
-        event_elecs = good_elecs[event_reqs]
-        event_muons = good_muons[event_reqs]
-        event_jets = good_jets[event_reqs]
+        resolved_selections = selections.all('exactly2l', 'atleast2j', 'leadleppt60', "mlljj>800", "dr>0.4")
+        resolved_events = events[resolved_selections]
 
-        #Create array of leptons, and order by pT
-        leptons = ak.with_name(ak.concatenate((event_elecs, event_muons), axis=1), 'PtEtaPhiMCandidate')
-        leptons = leptons[ak.argsort(leptons.pt, axis=1, ascending=False)]
-
-        #Require mlljj > 800
-        mlljj_req = (leptons[:, 0] + leptons[:, 1] + event_jets[:, 0] + event_jets[:, 1]).mass > 800
-        event_elecs = event_elecs[mlljj_req]
-        event_muons = event_muons[mlljj_req]
-        event_jets = event_jets[mlljj_req]
-        leptons = leptons[mlljj_req]
-
-        #Find min dr value between both jets and both leptons (out of the 4 dr values)
-        dr_jl_min = ak.min(event_jets[:,:2].nearest(leptons).delta_r(event_jets[:,:2]), axis=1)
-
-        #Find dr between the leading jet and subleading jet in each event
-        dr_j1j2 = event_jets[:,0].delta_r(event_jets[:,1])
-
-        #Find dr between the leading lepton and subleading lepton in each event
-        dr_l1l2 = leptons[:,0].delta_r(leptons[:,1])
-
-        #Require that dr > 0.4 between all objects in each event
-        dr_reqs = (dr_jl_min  > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4)
-        passing_elecs = event_elecs[dr_reqs]
-        passing_muons = event_muons[dr_reqs]
-        passing_jets = event_jets[dr_reqs]
-        passing_leptons = leptons[dr_reqs]
-
-        num_selected = ak.num(passing_elecs,axis=0).compute()
-
+        num_selected = ak.num(resolved_events.good_elecs, axis=0).compute()
+        
         print(f"{num_selected} events passed the selection ({num_selected/nevts_total*100:.2f}% efficiency).")
-         
-        mll = (passing_leptons[:, 0] + passing_leptons[:, 1]).mass
 
-        #Define conditions for analysis regions
-        selections = PackedSelection(dtype='uint64')
-        selections.add_multiple(
-            {
-                "60mll150": (mll > 60) & (mll < 150),
-                "150mll400": (mll > 150) & (mll < 400),
-                "mll400": (mll > 400),
-                "eejj": (ak.num(passing_elecs) == 2) & (ak.num(passing_muons) == 0),
-                "mumujj": (ak.num(passing_elecs) == 0) & (ak.num(passing_muons) == 2),
-                "emujj": (ak.num(passing_elecs) == 1) & (ak.num(passing_muons) == 1),
-            }
-        )
-
-        #Calculate kinematic variables and fill histograms
+        hists = {}
         for mll in ["60mll150", "150mll400", "mll400"]:
+           hists[mll] = {}
            mll_selection = selections.all(mll)
            for flavor in ["eejj", "mumujj", "emujj"]:
+             hists[mll][flavor] = {}
              flavor_selection = selections.all(flavor)
-             selected_leptons = passing_leptons[mll_selection & flavor_selection]
-             selected_jets = passing_jets[mll_selection & flavor_selection]
-             # Creates a list of dask arrays of all kinematic variables
-             variables = utils.compute_variables.get_variables(selected_leptons, selected_jets) 
-             for i, variable in enumerate(variables):
-                # Fill histograms
-                hist_dict[mll][flavor][utils.config["histos"]["HISTO_NAMES"][i]].fill(variable)
+             selected_events = events[resolved_selections & mll_selection & flavor_selection]
+             hists[mll][flavor] = self.myHists.FillHists(selected_events)
 
         print("Finished processing events and filling histograms.\n")
+       
+        output = {"nevents": {events.metadata["dataset"]: len(events)}, "hist_dict": hists}
 
-        output = {"nevents": {events.metadata["dataset"]: len(events)}, "hist_dict": hist_dict}
         return output
 
     def postprocess(self, accumulator):
@@ -168,7 +93,7 @@ print("Computing histograms...")
 (out,) = dask.compute(all_histograms)
 
 print("Histograms computed.\n")
-utils.file_output.save_histograms(out, "example_histos.root")
+utils.file_output.save_histograms(out, "example_histos_v2.root")
 
 exec_time = time.monotonic() - t0
 print(f"\nExecution took {exec_time:.2f} seconds")
