@@ -1,9 +1,9 @@
 import logging
 import time
 import warnings
-
+import argparse
+import uproot
 import awkward as ak
-import dask
 
 from coffea import processor
 from coffea.nanoevents import NanoAODSchema
@@ -16,59 +16,62 @@ warnings.filterwarnings(
     module="coffea.*"
 )
 
-N_FILES_MAX_PER_SAMPLE = 1 # -1 to process all (64M ttbar events takes about 70 minutes)
-
 class WrAnalysis(processor.ProcessorABC):
     def __init__(self):
-        self.myHists = utils.makeHistograms.eventHistos()        
+        self.eejj_60mll150 = utils.makeHistograms.eventHistos(['eejj', '60mll150'])
+        self.mumujj_60mll150 = utils.makeHistograms.eventHistos(['mumujj', '60mll150'])
+        self.emujj_60mll150 = utils.makeHistograms.eventHistos(['emujj', '60mll150'])
+
+        self.eejj_150mll400 = utils.makeHistograms.eventHistos(['eejj','150mll400'])
+        self.mumujj_150mll400 = utils.makeHistograms.eventHistos(['mumujj','150mll400'])
+        self.emujj_150mll400 = utils.makeHistograms.eventHistos(['emujj','150mll400'])
+
+        self.eejj_400mll = utils.makeHistograms.eventHistos(['eejj','400mll'])
+        self.mumujj_400mll = utils.makeHistograms.eventHistos(['mumujj','400mll'])
+        self.emujj_400mll = utils.makeHistograms.eventHistos(['emujj','400mll'])
+
+        self.hists = {
+            "eejj_60mll150": self.eejj_60mll150,
+            "mumujj_60mll150": self.mumujj_60mll150,
+            "emujj_60mll150": self.emujj_60mll150,
+            "eejj_150mll400": self.eejj_150mll400,
+            "mumujj_150mll400": self.mumujj_150mll400,
+            "emujj_150mll400": self.emujj_150mll400,
+            "eejj_400mll": self.eejj_400mll,
+            "mumujj_400mll": self.mumujj_400mll,
+            "emujj_400mll": self.emujj_400mll
+        }
 
     def process(self, events): #Processes a single NanoEvents chunk
-        
-        nevts_total = events.metadata["nevts"]
-        print(f"Processing {nevts_total} events.")
+
+        nevts = events.metadata["nevts"]
+        print(f"Processing {nevts} events.")
 
         events = utils.Objects.createObjects(events)
         selections = utils.Selection.createSelection(events)
 
         resolved_selections = selections.all('exactly2l', 'atleast2j', 'leadleppt60', "mlljj>800", "dr>0.4")
-        resolved_events = events[resolved_selections]
 
-        num_selected = ak.num(resolved_events.good_elecs, axis=0).compute()
-        
-        print(f"{num_selected} events passed the selection ({num_selected/nevts_total*100:.2f}% efficiency).")
+        for hist_name, hist_obj in self.hists.items():
+            hist_obj.FillHists(events[resolved_selections & selections.all(*hist_obj.cuts)])
 
-        hists = {}
-        for mll in ["60mll150", "150mll400", "mll400"]:
-           hists[mll] = {}
-           mll_selection = selections.all(mll)
-           for flavor in ["eejj", "mumujj", "emujj"]:
-             hists[mll][flavor] = {}
-             flavor_selection = selections.all(flavor)
-             selected_events = events[resolved_selections & mll_selection & flavor_selection]
-             hists[mll][flavor] = self.myHists.FillHists(selected_events)
-
-        print("Finished processing events and filling histograms.\n")
-       
-        output = {"nevents": {events.metadata["dataset"]: len(events)}, "hist_dict": hists}
-
-        return output
+        return {"nevents": {events.metadata["dataset"]: len(events)}, "hist_dict": self.hists}
 
     def postprocess(self, accumulator):
         return accumulator
 
-def main():
+def main(N_FILES_MAX_PER_SAMPLE, output_file):
+
     print("\nStarting analyzer...\n")
 
     t0 = time.monotonic()
 
     fileset = utils.file_input.construct_fileset(N_FILES_MAX_PER_SAMPLE)
 
-    # print(f"Fileset: {fileset}\n") for debugging
-
     print(f"Processes in fileset: {list(fileset.keys())}")
-    file_name, file_branch = next(iter(fileset['ttbar__nominal']['files'].items()))
+    file_name, file_branch = next(iter(fileset['2018UL__TTTo2L2Nu']['files'].items()))
     print(f"\nExample of information in fileset:\n{{\n  'files': {file_name}, ...,")
-    print(f"  'metadata': {fileset['ttbar__nominal']['metadata']}\n}}\n")
+    print(f"  'metadata': {fileset['2018UL__TTTo2L2Nu']['metadata']}\n}}\n")
 
     NanoAODSchema.warn_missing_crossrefs = False  # silences warnings about branches we will not use here
 
@@ -80,16 +83,19 @@ def main():
         schemaclass=NanoAODSchema,
     )
 
-    all_histograms = to_compute['ttbar__nominal']['hist_dict']
+    print("Finished processing events and filling histograms.\n")
 
-    print("Computing histograms...")
-    (out,) = dask.compute(all_histograms)
+    all_histograms = to_compute['2018UL__TTTo2L2Nu']['hist_dict']
 
-    print("Histograms computed.\n")
-    utils.file_output.save_histograms(out, "example_histos.root")
+    utils.file_output.save_histograms(all_histograms, output_file)
 
     exec_time = time.monotonic() - t0
-    print(f"\nExecution took {exec_time:.2f} seconds")
+    print(f"Execution took {exec_time:.2f} seconds")
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Run the analyzer and save histograms to a specified ROOT file.")
+    parser.add_argument("--nFiles", type=int, default=1, help="Number of files to analyze (-1 for all).")
+    parser.add_argument("--outputFile", type=str, default="example_hists.root", help="Name of the output ROOT histogram file.")
+    args = parser.parse_args()
+
+    main(args.nFiles, args.outputFile)

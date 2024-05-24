@@ -30,7 +30,7 @@ def createSelection(events):
     selection.add("emujj", ((ak.num(good_elecs) == 1) & (ak.num(good_muons) == 1)))
     selection.add("60mll150", ((mll > 60) & (mll < 150)))
     selection.add("150mll400", ((mll > 150) & (mll < 400)))
-    selection.add("mll400", (mll > 400))
+    selection.add("400mll", (mll > 400))
 
     return selection
 
