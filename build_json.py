@@ -37,8 +37,8 @@ def parse_txt_file(input_file):
             total_nevts += nevts
             files_data.append({'path': filepath_with_prefix, 'nevts': nevts})
         
-        data['ttbar'] = {
-            'nominal': {
+        data['2018UL'] = {
+            'TTTo2L2Nu': {
                 'nevts_total': total_nevts,
                 'files': files_data
             }
@@ -50,7 +50,7 @@ def write_json_file(data, output_file):
         json.dump(data, f, indent=4)
 
 if __name__ == "__main__":
-    input_file = "datasets/ttbar/ttbar_2018.txt"
+    input_file = "datasets/TTTo2L2Nu2018.txt"
     output_file = "nanoaod_inputs.json"
     data = parse_txt_file(input_file)
     write_json_file(data, output_file)
