@@ -30,7 +30,7 @@ def main(N_FILES_MAX_PER_SAMPLE, output_file):
     #Preprocess files (get steps sizes etc)
     filemeta, _ = preprocess(
             fileset=fileset, 
-            step_size=1_000,
+            step_size=100_000,
             align_clusters=True,
             recalculate_steps=False, 
             files_per_batch = 1, 
@@ -43,7 +43,7 @@ def main(N_FILES_MAX_PER_SAMPLE, output_file):
     #Process files
     to_compute = apply_to_fileset(
         data_manipulation=WrAnalysis(),
-        fileset=max_chunks(filemeta,1),
+        fileset=max_chunks(filemeta,300),
         schemaclass=NanoAODSchema,
         uproot_options = {"timeout": 10000},
     )

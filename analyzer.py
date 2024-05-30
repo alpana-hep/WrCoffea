@@ -1,6 +1,5 @@
 from coffea import processor
 import warnings
-import utils
 import modules
 
 warnings.filterwarnings("ignore",module="coffea.*")
