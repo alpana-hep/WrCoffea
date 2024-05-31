@@ -21,8 +21,9 @@ class WrAnalysis(processor.ProcessorABC):
 
     def process(self, events): 
 
-        nevts = events.metadata["nevts"]
-        print(f"Processing {nevts} events.")
+        dataset = events.metadata["dataset"]
+        mc = events.metadata["mc_campaign"]
+        print(f"Analyzing {len(events)} {mc}_{dataset} events.")
 
         events = modules.objects.createObjects(events)
         selections = modules.selection.createSelection(events)
@@ -36,7 +37,7 @@ class WrAnalysis(processor.ProcessorABC):
 
         modules.mass.createMasses(self.hists, resolved_events)
 
-        return {"nevents": {events.metadata["dataset"]: len(events)}, "hist_dict": self.hists}
+        return {"mc":mc, "process":events.metadata["process"], "hist_dict":self.hists}
 
     def postprocess(self, accumulator):
         return accumulator
