@@ -25,7 +25,5 @@ To run the analyzer, a sample set must be given as an argument. Currently, only 
 
 There is an additional optional flag `--output_masses` that outputs a root file with branches of the 3-object invariant mass ($m_{ljj}$) and 4-object invariant mass ($m_{lljj}$). To analyze over all files in each dataset, simply omit the `--max_files` flag. To run the analyzer without computing any output files, omit both `--output_hists` and `--output_masses`.
 
-In the near future there are plans to scale out the framework to use distributed computing resources needed to analyze all MC samples.
-
 ## Future Work
 In the near future there are plans to scale out the framework to use distributed computing resources needed to analyze all 2018 UL MC samples and files.
