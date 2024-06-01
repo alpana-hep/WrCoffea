@@ -15,9 +15,10 @@ class WrAnalysis(processor.ProcessorABC):
                 hist_key = f"{flavor}_{mll}"
                 self.hists[hist_key] = modules.makeHistograms.eventHistos([flavor, mll])
 
-        self.hists["mlljj_vals"] = None
-        self.hists["mljj_leadLep_vals"] = None
-        self.hists["mljj_subleadLep_vals"] = None
+        self.mass = {}
+        self.mass["mlljj_tuple"] = None
+        self.mass["mljj_leadLep_tuple"] = None
+        self.mass["mljj_subleadLep_tuple"] = None
 
     def process(self, events): 
 
@@ -35,9 +36,9 @@ class WrAnalysis(processor.ProcessorABC):
             if "vals" not in hist_name:
                 hist_obj.FillHists(events[resolved_selections & selections.all(*hist_obj.cuts)])
 
-        modules.mass.createMasses(self.hists, resolved_events)
+        modules.mass.createMasses(self.mass, resolved_events)
 
-        return {"mc":mc, "process":events.metadata["process"], "hist_dict":self.hists}
+        return {"mc":mc, "process":events.metadata["process"], "hist_dict":self.hists, "mass_dict":self.mass}
 
     def postprocess(self, accumulator):
         return accumulator

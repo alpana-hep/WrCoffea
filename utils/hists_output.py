@@ -3,14 +3,13 @@ import os
 import dask
 from dask.diagnostics import ProgressBar
 
-def save_histograms(all_histograms, filename):
-    output_dir = "root_outputs"
+def save_histograms(all_histograms):
+    output_dir = "root_outputs/hists/"
     os.makedirs(output_dir, exist_ok=True)
-    output_file = os.path.join(output_dir, filename)
+    output_file = os.path.join(output_dir, f"example_hists.root")
 
-    with uproot.recreate(f"{filename}") as root_file:
+    with uproot.recreate(output_file) as root_file:
         hists = []
-        mass_tuples = []
         for sample, sample_info in all_histograms.items():
             mc = sample_info['mc']
             process = sample_info['process']
@@ -22,7 +21,7 @@ def save_histograms(all_histograms, filename):
                     for hist_name, hist_data in hist_obj.__dict__.items():
                         if "cuts" not in hist_name:
                             hists.append((directory_path + hist_name, hist_data))
-
+        print(hists)
         print("\nComputing histograms...")
         with ProgressBar():
             (histograms,)= dask.compute(hists)
@@ -30,4 +29,4 @@ def save_histograms(all_histograms, filename):
         for path, hist in histograms:
             root_file[path] = hist
             
-    print(f"Histograms saved to {output_file}.\n")
+    print(f"Histograms saved to {output_file}.")
