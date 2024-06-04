@@ -12,6 +12,9 @@ from dask.distributed import Client, LocalCluster
 from dask.diagnostics import ProgressBar
 import uproot
 import json
+import coffea
+print("coffea:", coffea.__version__)
+print("dask:", dask.__version__)
 
 NanoAODSchema.warn_missing_crossrefs = False  # silences warnings about branches we will not use here
 
@@ -27,7 +30,7 @@ def main(sample, hist_out, masses, files_max):
     #Preprocess files
     dataset_runnable, dataset_updated = preprocess(
             fileset=fileset, 
-            step_size=100_000,
+            step_size=50_000,
             align_clusters=False,
             recalculate_steps=False, 
             files_per_batch = 1, 
@@ -40,7 +43,7 @@ def main(sample, hist_out, masses, files_max):
     #Process files
     to_compute = apply_to_fileset(
         data_manipulation=WrAnalysis(),
-        fileset=max_chunks(dataset_runnable,300),
+        fileset=max_chunks(dataset_runnable,2),
         schemaclass=NanoAODSchema,
     )
 #    print(f"\nto_compute: {to_compute}")
@@ -49,7 +52,7 @@ def main(sample, hist_out, masses, files_max):
         utils.hists_output.save_histograms(to_compute, hist_out)
     if masses:
         utils.masses_output.save_tuples(to_compute)
-    if not hists and not masses:
+    if not hist_out and not masses:
         print("\nNot saving any histograms or tuples.")
 
     exec_time = time.monotonic() - t0
