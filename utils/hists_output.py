@@ -17,7 +17,7 @@ def save_histograms(all_histograms, hists_name):
             for region, hist_obj in hist_dict.items():
                 if "vals" not in region:
                     dataset, channel, mll_range = region.split('_')
-                    directory_path = f"{mc}/{process}/{channel}/{mll_range}/"
+                    directory_path = f"{mc}/{process}/{sample}/{channel}/{mll_range}/"
                     for hist_name, hist_data in hist_obj.__dict__.items():
                         if "cuts" not in hist_name:
                             hists.append((directory_path + hist_name, hist_data))

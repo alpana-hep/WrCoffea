@@ -26,8 +26,8 @@ class WrAnalysis(processor.ProcessorABC):
         mass = ['60mll150', '150mll400', '400mll']
         hists = {f"{process}_{flavor}_{mll}": modules.makeHistograms.eventHistos([flavor, mll]) for flavor in channel for mll in mass}
 
-        num_selected = ak.num(resolved_events.leptons,axis=0).compute()
-        print(f"{num_selected} events passed the selection ({num_selected/len(events)*100:.2f}% efficiency).\n")
+#        num_selected = ak.num(resolved_events.leptons,axis=0).compute()
+#        print(f"{num_selected} events passed the selection ({num_selected/len(events)*100:.2f}% efficiency).\n")
 
         for hist_name, hist_obj in hists.items():
             if "vals" not in hist_name:
