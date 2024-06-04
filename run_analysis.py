@@ -10,12 +10,12 @@ from analyzer import WrAnalysis
 import dask
 from dask.distributed import Client, LocalCluster
 from dask.diagnostics import ProgressBar
-
+import uproot
 import json
 
 NanoAODSchema.warn_missing_crossrefs = False  # silences warnings about branches we will not use here
 
-def main(sample, hists, masses, files_max):
+def main(sample, hist_out, masses, files_max):
 
     print("Starting analyzer...\n")
     t0 = time.monotonic()
@@ -28,13 +28,12 @@ def main(sample, hists, masses, files_max):
     dataset_runnable, dataset_updated = preprocess(
             fileset=fileset, 
             step_size=100_000,
-            align_clusters=True,
-            recalculate_steps=True, 
+            align_clusters=False,
+            recalculate_steps=False, 
             files_per_batch = 1, 
             skip_bad_files=True,
-            save_form=True,
+            save_form=False,
             scheduler=None,
-            uproot_options={"timeout": 10000},
             step_size_safety_factor = 0.5)
 #    print(f"dataset_runnable: {dataset_runnable}\n")
 
@@ -43,11 +42,11 @@ def main(sample, hists, masses, files_max):
         data_manipulation=WrAnalysis(),
         fileset=max_chunks(dataset_runnable,300),
         schemaclass=NanoAODSchema,
-        uproot_options = {"timeout": 10000})
+    )
 #    print(f"\nto_compute: {to_compute}")
 
-    if hists:
-        utils.hists_output.save_histograms(to_compute)
+    if hist_out:
+        utils.hists_output.save_histograms(to_compute, hist_out)
     if masses:
         utils.masses_output.save_tuples(to_compute)
     if not hists and not masses:

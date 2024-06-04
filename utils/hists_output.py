@@ -3,10 +3,10 @@ import os
 import dask
 from dask.diagnostics import ProgressBar
 
-def save_histograms(all_histograms):
+def save_histograms(all_histograms, hists_name):
     output_dir = "root_outputs/hists/"
     os.makedirs(output_dir, exist_ok=True)
-    output_file = os.path.join(output_dir, f"example_hists.root")
+    output_file = os.path.join(output_dir, f"{hists_name}")
 
     with uproot.recreate(output_file) as root_file:
         hists = []
@@ -16,12 +16,12 @@ def save_histograms(all_histograms):
             hist_dict = sample_info['hist_dict']
             for region, hist_obj in hist_dict.items():
                 if "vals" not in region:
-                    channel, mll_range = region.split('_')
+                    dataset, channel, mll_range = region.split('_')
                     directory_path = f"{mc}/{process}/{channel}/{mll_range}/"
                     for hist_name, hist_data in hist_obj.__dict__.items():
                         if "cuts" not in hist_name:
                             hists.append((directory_path + hist_name, hist_data))
-        print(hists)
+
         print("\nComputing histograms...")
         with ProgressBar():
             (histograms,)= dask.compute(hists)
