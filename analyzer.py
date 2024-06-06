@@ -11,10 +11,10 @@ class WrAnalysis(processor.ProcessorABC):
 
     def process(self, events): 
 
-        dataset = events.metadata["dataset"]
         mc = events.metadata["mc_campaign"]
         process = events.metadata["process"]
-        print(f"Analyzing {len(events)} {mc}_{dataset} events.")
+        dataset = events.metadata["dataset"]
+        print(f"Analyzing {len(events)} {dataset} events.")
 
         events = modules.objects.createObjects(events)
         selections = modules.selection.createSelection(events)
@@ -36,7 +36,7 @@ class WrAnalysis(processor.ProcessorABC):
         masses = {key: None for key in ["mlljj_tuple", "mljj_leadLep_tuple", "mljj_subleadLep_tuple"]}
         modules.mass.createMasses(masses, resolved_events)
 
-        return {"mc":mc, "process":events.metadata["process"], "hist_dict":hists, "mass_dict":masses}
+        return {"mc": mc, "process": process, "dataset": dataset, "hist_dict":hists, "mass_dict":masses}
 
     def postprocess(self, accumulator):
         return accumulator

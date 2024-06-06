@@ -3,14 +3,17 @@ import os
 import dask
 from dask.diagnostics import ProgressBar
 import numpy as np
-def save_tuples(all_tuples):
+
+def save_tuples(all_tuples, out_mass):
     output_dir = "root_outputs/masses/"
     os.makedirs(output_dir, exist_ok=True)
-    output_file = os.path.join(output_dir, f"example_masses.root")
+    output_file = os.path.join(output_dir, f"{out_mass}")
 
     with uproot.recreate(output_file) as root_file:
         mass_tuples = []
         for process, data in all_tuples.items():
+            print("process:", process)
+            print("data:", data)
             for mass_name, mtuple in data["mass_dict"].items():
                 mass_tuples.append((mass_name,mtuple))
 
@@ -27,7 +30,8 @@ def save_tuples(all_tuples):
         for process, data in all_tuples.items():
             mc = data['mc']
             process = data['process']
-            directory_path = f"{mc}/{process}"
+            dataset = data['dataset']
+            directory_path = f"{mc}/{process}/{dataset}"
             ttree_path = f"{directory_path}/mass_tuples"
             branch_types = {}
             branch_types = {name: np.array(values).dtype for name, values in branch_data.items()}
