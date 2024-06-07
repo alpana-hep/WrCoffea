@@ -2,6 +2,7 @@ from coffea import processor
 import warnings
 import modules
 import awkward as ak
+from coffea.analysis_tools import Weights
 
 warnings.filterwarnings("ignore",module="coffea.*")
 
@@ -15,6 +16,11 @@ class WrAnalysis(processor.ProcessorABC):
         process = events.metadata["process"]
         dataset = events.metadata["dataset"]
         print(f"Analyzing {len(events)} {dataset} events.")
+
+#        print("events.genWeight:", events.genWeight.compute())
+#        print("ak.sum(events.genWeight):", ak.sum(events.genWeight).compute())
+        weights = Weights(size=None, storeIndividual=True)
+        weights.add('genweight', events.genWeight)
 
         events = modules.objects.createObjects(events)
         selections = modules.selection.createSelection(events)
@@ -30,8 +36,8 @@ class WrAnalysis(processor.ProcessorABC):
 #        print(f"{num_selected} events passed the selection ({num_selected/len(events)*100:.2f}% efficiency).\n")
 
         for hist_name, hist_obj in hists.items():
-            if "vals" not in hist_name:
-                hist_obj.FillHists(events[resolved_selections & selections.all(*hist_obj.cuts)])
+            cut = resolved_selections & selections.all(*hist_obj.cuts)
+            hist_obj.FillHists(events[cut], weights.weight()[cut])
 
         masses = {key: None for key in ["mlljj_tuple", "mljj_leadLep_tuple", "mljj_subleadLep_tuple"]}
         modules.mass.createMasses(masses, resolved_events)
