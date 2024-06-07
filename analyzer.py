@@ -2,6 +2,7 @@ from coffea import processor
 import warnings
 import modules
 import awkward as ak
+from coffea.analysis_tools import Weights
 
 warnings.filterwarnings("ignore",module="coffea.*")
 
@@ -11,10 +12,16 @@ class WrAnalysis(processor.ProcessorABC):
 
     def process(self, events): 
 
-        dataset = events.metadata["dataset"]
-        mc = events.metadata["mc_campaign"]
+        mc_campaign = events.metadata["mc_campaign"]
+        lumi = events.metadata["lumi"]
         process = events.metadata["process"]
-        print(f"Analyzing {len(events)} {mc}_{dataset} events.")
+        dataset = events.metadata["dataset"]
+        x_sec = events.metadata["xsec"]
+
+        print(f"Analyzing {len(events)} {dataset} events.")
+
+        weights = Weights(size=None, storeIndividual=True)
+        weights.add('eventWeight', events.genWeight/abs(events.genWeight))
 
         events = modules.objects.createObjects(events)
         selections = modules.selection.createSelection(events)
@@ -26,17 +33,14 @@ class WrAnalysis(processor.ProcessorABC):
         mass = ['60mll150', '150mll400', '400mll']
         hists = {f"{process}_{flavor}_{mll}": modules.makeHistograms.eventHistos([flavor, mll]) for flavor in channel for mll in mass}
 
-#        num_selected = ak.num(resolved_events.leptons,axis=0).compute()
-#        print(f"{num_selected} events passed the selection ({num_selected/len(events)*100:.2f}% efficiency).\n")
-
         for hist_name, hist_obj in hists.items():
-            if "vals" not in hist_name:
-                hist_obj.FillHists(events[resolved_selections & selections.all(*hist_obj.cuts)])
+            cut = resolved_selections & selections.all(*hist_obj.cuts)
+            hist_obj.FillHists(events[cut], weights.weight()[cut])
 
         masses = {key: None for key in ["mlljj_tuple", "mljj_leadLep_tuple", "mljj_subleadLep_tuple"]}
         modules.mass.createMasses(masses, resolved_events)
 
-        return {"mc":mc, "process":events.metadata["process"], "hist_dict":hists, "mass_dict":masses}
+        return {"mc": mc_campaign, "process": process, "dataset": dataset, "hist_dict":hists, "mass_dict":masses}
 
     def postprocess(self, accumulator):
         return accumulator

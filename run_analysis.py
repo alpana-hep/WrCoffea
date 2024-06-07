@@ -7,18 +7,12 @@ from coffea.dataset_tools import apply_to_fileset, max_chunks, preprocess, max_f
 import utils
 from analyzer import WrAnalysis
 
-import dask
 from dask.distributed import Client, LocalCluster
-from dask.diagnostics import ProgressBar
-import uproot
 import json
-import coffea
-print("coffea:", coffea.__version__)
-print("dask:", dask.__version__)
 
 NanoAODSchema.warn_missing_crossrefs = False  # silences warnings about branches we will not use here
 
-def main(sample, hist_out, masses, files_max):
+def main(sample, hist_out, masses_out, files_max):
 
     print("Starting analyzer...\n")
     t0 = time.monotonic()
@@ -30,9 +24,9 @@ def main(sample, hist_out, masses, files_max):
     #Preprocess files
     dataset_runnable, dataset_updated = preprocess(
             fileset=fileset, 
-            step_size=50_000,
+            step_size=10_000,
             align_clusters=False,
-            recalculate_steps=False, 
+            recalculate_steps=True, 
             files_per_batch = 1, 
             skip_bad_files=True,
             save_form=False,
@@ -43,23 +37,23 @@ def main(sample, hist_out, masses, files_max):
     #Process files
     to_compute = apply_to_fileset(
         data_manipulation=WrAnalysis(),
-        fileset=max_chunks(dataset_runnable,2),
+        fileset=max_chunks(dataset_runnable,1),
         schemaclass=NanoAODSchema,
     )
 #    print(f"\nto_compute: {to_compute}")
 
     if hist_out:
         utils.hists_output.save_histograms(to_compute, hist_out)
-    if masses:
-        utils.masses_output.save_tuples(to_compute)
-    if not hist_out and not masses:
+    if masses_out:
+        utils.masses_output.save_tuples(to_compute, masses_out)
+    if not hist_out and not masses_out:
         print("\nNot saving any histograms or tuples.")
 
     exec_time = time.monotonic() - t0
     print(f"\nExecution took {exec_time/60:.2f} minutes")
 
 def load_output_json(sample):
-    json_file_path = f'datasets/filesets/{sample}.json'
+    json_file_path = f'datasets/{sample}.json'
     with open(json_file_path, 'r') as file:
         data = json.load(file)
     return data
