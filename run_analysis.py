@@ -2,7 +2,7 @@ import argparse
 import time
 
 from coffea.nanoevents import NanoAODSchema
-from coffea.dataset_tools import apply_to_fileset, max_chunks, preprocess, max_files
+from coffea.dataset_tools import apply_to_fileset, max_chunks, preprocess, max_files, filter_files
 
 import utils
 from analyzer import WrAnalysis
@@ -12,14 +12,12 @@ import json
 
 NanoAODSchema.warn_missing_crossrefs = False  # silences warnings about branches we will not use here
 
-def main(sample, hist_out, masses_out, files_max):
+def main(sample, process, hist_out, masses_out, files_max):
 
     print("Starting analyzer...\n")
     t0 = time.monotonic()
 
-    #Construct the fileset to pass to preprocess
-    fileset = max_files(load_output_json(sample), files_max)
-#    print(f"fileset: {fileset}\n")
+    fileset = max_files(filter_by_process(load_output_json(sample), process), files_max)
 
     #Preprocess files
     dataset_runnable, dataset_updated = preprocess(
@@ -58,11 +56,22 @@ def load_output_json(sample):
         data = json.load(file)
     return data
 
+def filter_by_process(fileset, desired_process):
+    if desired_process == "allMC":
+        return fileset
+    else:
+        filtered_fileset = {}
+        for dataset, data in fileset.items():
+            if data['metadata']['process'] == desired_process:
+                filtered_fileset[dataset] = data
+        return filtered_fileset
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run the analyzer and save histograms to a specified ROOT file.")
     parser.add_argument("sample", type=str, choices=["UL18_bkg", "UL17_bkg", "UL16_bkg"], help="Sample to analyze.")
+    parser.add_argument("process", type=str, choices=["DYJets", "tt+tW", "WJets", "Diboson", "Triboson", "ttX", "SingleTop", "allMC"], help="Process to analyze.")
     parser.add_argument("--output_hists", type=str, help="Get a root file of histograms.")
     parser.add_argument("--output_masses", type=str, help="Get a root file of mass tuples.")
     parser.add_argument("--max_files", type=int, default=None, help="Number of files to analyze.")
     args = parser.parse_args()
-    main(args.sample, args.output_hists, args.output_masses, args.max_files,)
+    main(args.sample, args.process, args.output_hists, args.output_masses, args.max_files,)
