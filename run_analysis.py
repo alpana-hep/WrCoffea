@@ -1,15 +1,10 @@
 import argparse
 import time
-
-from coffea.nanoevents import NanoAODSchema
-from coffea.dataset_tools import apply_to_fileset, max_chunks, preprocess, max_files, filter_files
-
-import utils
-from analyzer import WrAnalysis
-
-from dask.distributed import Client, LocalCluster
 import json
-import dask
+import utils
+from coffea.nanoevents import NanoAODSchema
+from coffea.dataset_tools import apply_to_fileset, max_chunks, preprocess, max_files
+from analyzer import WrAnalysis
 NanoAODSchema.warn_missing_crossrefs = False  # silences warnings about branches we will not use here
 
 def main(sample, process, hist_out, masses_out, files_max):
@@ -19,7 +14,6 @@ def main(sample, process, hist_out, masses_out, files_max):
 
     fileset = max_files(filter_by_process(load_output_json(sample), process), files_max)
 
-    #Preprocess files
     dataset_runnable, dataset_updated = preprocess(
             fileset=fileset, 
             step_size=10_000,
@@ -30,9 +24,7 @@ def main(sample, process, hist_out, masses_out, files_max):
             save_form=False,
             scheduler=None,
             step_size_safety_factor = 0.5)
-#    print(f"dataset_runnable: {dataset_runnable}\n")
 
-    #Process files
     to_compute = apply_to_fileset(
         data_manipulation=WrAnalysis(),
         fileset=max_chunks(dataset_runnable,1),
