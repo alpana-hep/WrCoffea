@@ -1,9 +1,7 @@
 from coffea import processor
 import warnings
 import modules
-import awkward as ak
 from coffea.analysis_tools import Weights
-
 warnings.filterwarnings("ignore",module="coffea.*")
 
 class WrAnalysis(processor.ProcessorABC):
@@ -29,18 +27,16 @@ class WrAnalysis(processor.ProcessorABC):
         resolved_selections = selections.all('exactly2l', 'atleast2j', 'leadleppt60', "mlljj>800", "dr>0.4")
         resolved_events=events[resolved_selections]
 
-        channel = ['eejj', 'mumujj', 'emujj']
+        flavor = ['eejj', 'mumujj', 'emujj']
         mass = ['60mll150', '150mll400', '400mll']
-        hists = {f"{process}_{flavor}_{mll}": modules.makeHistograms.eventHistos([flavor, mll]) for flavor in channel for mll in mass}
 
-        for hist_name, hist_obj in hists.items():
-            cut = resolved_selections & selections.all(*hist_obj.cuts)
-            hist_obj.FillHists(events[cut], weights.weight()[cut])
+        hists = modules.histograms.create_histograms()
+        hist_dict = modules.histograms.fill_histograms(hists, events, selections, resolved_selections, process, flavor, mass)
 
         masses = {key: None for key in ["mlljj_tuple", "mljj_leadLep_tuple", "mljj_subleadLep_tuple"]}
         modules.mass.createMasses(masses, resolved_events)
 
-        return {"mc": mc_campaign, "process": process, "dataset": dataset, "hist_dict":hists, "mass_dict":masses}
+        return {"mc": mc_campaign, "process": process, "dataset": dataset, "hists": hist_dict, "mass_dict":masses}
 
     def postprocess(self, accumulator):
         return accumulator
