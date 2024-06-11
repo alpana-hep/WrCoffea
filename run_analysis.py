@@ -9,7 +9,7 @@ from analyzer import WrAnalysis
 
 from dask.distributed import Client, LocalCluster
 import json
-
+import dask
 NanoAODSchema.warn_missing_crossrefs = False  # silences warnings about branches we will not use here
 
 def main(sample, process, hist_out, masses_out, files_max):
@@ -38,7 +38,6 @@ def main(sample, process, hist_out, masses_out, files_max):
         fileset=max_chunks(dataset_runnable,1),
         schemaclass=NanoAODSchema,
     )
-#    print(f"\nto_compute: {to_compute}")
 
     if hist_out:
         utils.hists_output.save_histograms(to_compute, hist_out)
@@ -70,8 +69,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run the analyzer and save histograms to a specified ROOT file.")
     parser.add_argument("sample", type=str, choices=["UL18_bkg", "UL17_bkg", "UL16_bkg"], help="Sample to analyze.")
     parser.add_argument("process", type=str, choices=["DYJets", "tt+tW", "WJets", "Diboson", "Triboson", "ttX", "SingleTop", "allMC"], help="Process to analyze.")
-    parser.add_argument("--output_hists", type=str, help="Get a root file of histograms.")
-    parser.add_argument("--output_masses", type=str, help="Get a root file of mass tuples.")
+    parser.add_argument("--hists", type=str, help="Get a root file of histograms.")
+    parser.add_argument("--masses", type=str, help="Get a root file of mass tuples.")
     parser.add_argument("--max_files", type=int, default=None, help="Number of files to analyze.")
     args = parser.parse_args()
-    main(args.sample, args.process, args.output_hists, args.output_masses, args.max_files,)
+    main(args.sample, args.process, args.hists, args.masses, args.max_files,)
