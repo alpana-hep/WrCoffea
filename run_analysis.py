@@ -6,6 +6,7 @@ from coffea.nanoevents import NanoAODSchema
 from coffea.dataset_tools import apply_to_fileset, max_chunks, preprocess, max_files
 from analyzer import WrAnalysis
 NanoAODSchema.warn_missing_crossrefs = False  # silences warnings about branches we will not use here
+from dask.distributed import Client, LocalCluster
 
 def main(sample, process, hist_out, masses_out, files_max):
 
@@ -65,4 +66,10 @@ if __name__ == "__main__":
     parser.add_argument("--masses", type=str, help="Get a root file of mass tuples.")
     parser.add_argument("--max_files", type=int, default=None, help="Number of files to analyze.")
     args = parser.parse_args()
+
+    cluster = LocalCluster(n_workers=None, threads_per_worker=None, processes=None)
+    client = Client(cluster)
+
+    print(f"\nDashboard link is {cluster.dashboard_link}\n")
+
     main(args.sample, args.process, args.hists, args.masses, args.max_files,)
