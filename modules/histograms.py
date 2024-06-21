@@ -47,10 +47,11 @@ def create_histograms():
     
     return hist_dict
 
-def fill_histograms(hist_dict, events, selections, resolved_selections, process, flavor, mass):
+def fill_histograms(hist_dict, events, selections, resolved_selections, process, flavor, mass, weights=None):
     for flav in flavor:
         for m in mass:
             cut = resolved_selections & selections.all(flav, m)
+#            hist_dict["pt_leadlep_h"].fill(pt_leadlep=events[cut].leptons[:, 0].pt, process=process, channel=flav, mll=m, weight=weights.weight()[cut])
             hist_dict["pt_leadlep_h"].fill(pt_leadlep=events[cut].leptons[:, 0].pt, process=process, channel=flav, mll=m)
             hist_dict["pt_subleadlep_h"].fill(pt_subleadlep=events[cut].leptons[:, 1].pt, process=process, channel=flav, mll=m)
             hist_dict["pt_leadjet_h"].fill(pt_leadjet=events[cut].good_jets[:, 0].pt, process=process, channel=flav, mll=m)

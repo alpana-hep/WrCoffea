@@ -42,15 +42,20 @@ ul18_datasets = {
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Construct fileset from list of datasets.')
-    parser.add_argument('sample', choices=['UL18_bkg', 'UL17_bkg', 'UL16_bkg'], help='Choose the sample to analyze.')
+    parser.add_argument('sample', choices=['2018', '2017', '2016'], help='Choose the year to query.')
     args = parser.parse_args()
 
     ddc = DataDiscoveryCLI()
     ddc.do_allowlist_sites(["T2_DE_DESY", "T2_US_Wisconsin", "T2_US_Nebraska"])
 
-    if args.sample == 'UL18_bkg':
+    if args.sample == '2018':
         ddc.load_dataset_definition(ul18_datasets,query_results_strategy="all",replicas_strategy="round-robin")
     else:
         print(f"{args.sample} is not a valid dataset")
 
-    ddc.do_save(f"{args.sample}.json")
+#    ddc.do_save(f"{args.sample}.json")
+
+    fileset_total = ddc.do_preprocess(output_file=f'{args.sample}_ULbkg',
+                  step_size=100000,  #chunk size for files splitting
+                  align_to_clusters=False,
+                  scheduler_url=None)

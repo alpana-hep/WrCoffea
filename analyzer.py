@@ -3,7 +3,8 @@ import warnings
 import modules
 from coffea.analysis_tools import Weights
 warnings.filterwarnings("ignore",module="coffea.*")
-
+import numpy as np
+import awkward as ak
 class WrAnalysis(processor.ProcessorABC):
     def __init__(self):
         pass
@@ -18,8 +19,13 @@ class WrAnalysis(processor.ProcessorABC):
 
         print(f"Analyzing {len(events)} {dataset} events.")
 
-        weights = Weights(size=None, storeIndividual=True)
-        weights.add('eventWeight', events.genWeight/abs(events.genWeight))
+#        eventWeight = events.genWeight/abs(events.genWeight)
+#        sumw = ak.sum(eventWeight, axis=0)
+#        x_sec = ak.Array(len(events)*[x_sec])
+#        my_weights = eventWeight*x_sec/sumw
+
+#        weights = Weights(size=None, storeIndividual=True)
+#        weights.add('myweights', my_weights)
 
         events = modules.objects.createObjects(events)
         selections = modules.selection.createSelection(events)
@@ -33,10 +39,10 @@ class WrAnalysis(processor.ProcessorABC):
         hists = modules.histograms.create_histograms()
         hist_dict = modules.histograms.fill_histograms(hists, events, selections, resolved_selections, process, flavor, mass)
 
-        masses = {key: None for key in ["mlljj_tuple", "mljj_leadLep_tuple", "mljj_subleadLep_tuple"]}
+        masses = {key: None for key in ["mlljj", "mljj_leadLep", "mljj_subleadLep"]}
         modules.mass.createMasses(masses, resolved_events)
 
-        return {"mc": mc_campaign, "process": process, "dataset": dataset, "hists": hist_dict, "mass_dict":masses}
+        return {"mc": mc_campaign, "process": process, "dataset": dataset, "hists": hist_dict, "mass_tuples":masses}
 
     def postprocess(self, accumulator):
         return accumulator
