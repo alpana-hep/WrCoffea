@@ -5,13 +5,12 @@ from dask.diagnostics import ProgressBar
 import hist
 from hist import Hist
 
-def save_histograms(all_histograms, hists_name):
+def save_histograms(all_histograms, hists_name, client):
     output_dir = "root_outputs/hists/"
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, f"{hists_name}")
 
-    histograms = compute_hists(all_histograms)
-    summed_hist = sum_hists(histograms)
+    summed_hist = sum_hists(all_histograms)
     my_split_hists = split_hists(summed_hist)
 
     with uproot.recreate(output_file) as root_file:
@@ -21,12 +20,6 @@ def save_histograms(all_histograms, hists_name):
             root_file[path] = hist
 
     print(f"Histograms saved to {output_file}.")
-
-def compute_hists(histos):
-    print("\nComputing histograms...")
-    with ProgressBar():
-        (histograms,)= dask.compute(histos)
-    return histograms
 
 def sum_hists(my_hists):
     summed_hists = create_histos()

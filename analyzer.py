@@ -19,13 +19,13 @@ class WrAnalysis(processor.ProcessorABC):
 
         print(f"Analyzing {len(events)} {dataset} events.")
 
-        eventWeight = events.genWeight/abs(events.genWeight)
-        sumw = ak.sum(eventWeight, axis=0)
-        x_sec = ak.Array(len(events)*[x_sec])
-        my_weights = eventWeight*x_sec/sumw
+#        eventWeight = events.genWeight/abs(events.genWeight)
+#        sumw = ak.sum(eventWeight, axis=0)
+#        x_sec = ak.Array(len(events)*[x_sec])
+#        my_weights = eventWeight*x_sec/sumw
 
-        weights = Weights(size=None, storeIndividual=True)
-        weights.add('myweights', my_weights)
+#        weights = Weights(size=None, storeIndividual=True)
+#        weights.add('myweights', my_weights)
 
         events = modules.objects.createObjects(events)
         selections = modules.selection.createSelection(events)
@@ -37,12 +37,12 @@ class WrAnalysis(processor.ProcessorABC):
         mass = ['60mll150', '150mll400', '400mll']
 
         hists = modules.histograms.create_histograms()
-        hist_dict = modules.histograms.fill_histograms(hists, events, selections, resolved_selections, process, flavor, mass, weights)
+        hist_dict = modules.histograms.fill_histograms(hists, events, selections, resolved_selections, process, flavor, mass)
 
-        masses = {key: None for key in ["mlljj_tuple", "mljj_leadLep_tuple", "mljj_subleadLep_tuple"]}
+        masses = {key: None for key in ["mlljj", "mljj_leadLep", "mljj_subleadLep"]}
         modules.mass.createMasses(masses, resolved_events)
 
-        return {"mc": mc_campaign, "process": process, "dataset": dataset, "hists": hist_dict, "mass_dict":masses}
+        return {"mc": mc_campaign, "process": process, "dataset": dataset, "hists": hist_dict, "mass_tuples":masses}
 
     def postprocess(self, accumulator):
         return accumulator
