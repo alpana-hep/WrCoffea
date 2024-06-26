@@ -1,6 +1,6 @@
 import hist.dask as dah
 import hist
-
+import numpy as np
 def create_histograms():
     pt_leadlep_axis = hist.axis.Regular(400, 0, 2000, name="pt_leadlep", label=r"p_{T} of the leading lepton [GeV]")
     pt_subleadlep_axis = hist.axis.Regular(400, 0, 2000, name="pt_subleadlep", label=r"p_{T} of the subleading lepton [GeV]")
@@ -51,21 +51,27 @@ def fill_histograms(hist_dict, events, selections, resolved_selections, process,
     for flav in flavor:
         for m in mass:
             cut = resolved_selections & selections.all(flav, m)
-#            hist_dict["pt_leadlep_h"].fill(pt_leadlep=events[cut].leptons[:, 0].pt, process=process, channel=flav, mll=m, weight=weights.weight()[cut])
-            hist_dict["pt_leadlep_h"].fill(pt_leadlep=events[cut].leptons[:, 0].pt, process=process, channel=flav, mll=m)
-            hist_dict["pt_subleadlep_h"].fill(pt_subleadlep=events[cut].leptons[:, 1].pt, process=process, channel=flav, mll=m)
-            hist_dict["pt_leadjet_h"].fill(pt_leadjet=events[cut].good_jets[:, 0].pt, process=process, channel=flav, mll=m)
-            hist_dict["pt_subleadjet_h"].fill(pt_subleadjet=events[cut].good_jets[:, 1].pt, process=process, channel=flav, mll=m)
-            hist_dict["pt_dileptons_h"].fill(pt_dileptons=(events[cut].leptons[:, 0] + events[cut].leptons[:, 1]).pt, process=process, channel=flav, mll=m)
-            hist_dict["eta_leadlep_h"].fill(eta_leadlep=events[cut].leptons[:, 0].eta, process=process, channel=flav, mll=m)
-            hist_dict["eta_subleadlep_h"].fill(eta_subleadlep=events[cut].leptons[:, 1].eta, process=process, channel=flav, mll=m)
-            hist_dict["eta_leadjet_h"].fill(eta_leadjet=events[cut].good_jets[:, 0].eta, process=process, channel=flav, mll=m)
-            hist_dict["eta_subleadjet_h"].fill(eta_subleadjet=events[cut].good_jets[:, 1].eta, process=process, channel=flav, mll=m)
-            hist_dict["phi_leadlep_h"].fill(phi_leadlep=events[cut].leptons[:, 0].phi, process=process, channel=flav, mll=m)
-            hist_dict["phi_subleadlep_h"].fill(phi_subleadlep=events[cut].leptons[:, 1].phi, process=process, channel=flav, mll=m)
-            hist_dict["phi_leadjet_h"].fill(phi_leadjet=events[cut].good_jets[:, 0].phi, process=process, channel=flav, mll=m)
-            hist_dict["phi_subleadjet_h"].fill(phi_subleadjet=events[cut].good_jets[:, 1].phi, process=process, channel=flav, mll=m)
-            hist_dict["mass_dileptons_h"].fill(mass_dileptons=(events[cut].leptons[:, 0] + events[cut].leptons[:, 1]).mass, process=process, channel=flav, mll=m)
-            hist_dict["mass_dijets_h"].fill(mass_dijets=(events[cut].good_jets[:, 0] + events[cut].good_jets[:, 1]).mass, process=process, channel=flav, mll=m)
+            hist_dict["pt_leadlep_h"].fill(pt_leadlep=events[cut].leptons[:, 0].pt, process=process, channel=flav, mll=m, weight=weights.weight()[cut])
+            hist_dict["pt_leadlep_h"].fill(pt_leadlep=events[cut].leptons[:, 0].pt, process=process, channel=flav, mll=m, weight=weights.weight()[cut])
+            hist_dict["pt_subleadlep_h"].fill(pt_subleadlep=events[cut].leptons[:, 1].pt, process=process, channel=flav, mll=m, weight=weights.weight()[cut])
+            hist_dict["pt_leadjet_h"].fill(pt_leadjet=events[cut].good_jets[:, 0].pt, process=process, channel=flav, mll=m, weight=weights.weight()[cut])
+            hist_dict["pt_subleadjet_h"].fill(pt_subleadjet=events[cut].good_jets[:, 1].pt, process=process, channel=flav, mll=m, weight=weights.weight()[cut])
+            hist_dict["pt_dileptons_h"].fill(pt_dileptons=(events[cut].leptons[:, 0] + events[cut].leptons[:, 1]).pt, process=process, channel=flav, mll=m, weight=weights.weight()[cut])
+            hist_dict["eta_leadlep_h"].fill(eta_leadlep=events[cut].leptons[:, 0].eta, process=process, channel=flav, mll=m, weight=weights.weight()[cut])
+            hist_dict["eta_subleadlep_h"].fill(eta_subleadlep=events[cut].leptons[:, 1].eta, process=process, channel=flav, mll=m, weight=weights.weight()[cut])
+            hist_dict["eta_leadjet_h"].fill(eta_leadjet=events[cut].good_jets[:, 0].eta, process=process, channel=flav, mll=m, weight=weights.weight()[cut])
+            hist_dict["eta_subleadjet_h"].fill(eta_subleadjet=events[cut].good_jets[:, 1].eta, process=process, channel=flav, mll=m, weight=weights.weight()[cut])
+            hist_dict["phi_leadlep_h"].fill(phi_leadlep=events[cut].leptons[:, 0].phi, process=process, channel=flav, mll=m, weight=weights.weight()[cut])
+            hist_dict["phi_subleadlep_h"].fill(phi_subleadlep=events[cut].leptons[:, 1].phi, process=process, channel=flav, mll=m, weight=weights.weight()[cut])
+            hist_dict["phi_leadjet_h"].fill(phi_leadjet=events[cut].good_jets[:, 0].phi, process=process, channel=flav, mll=m, weight=weights.weight()[cut])
+            hist_dict["phi_subleadjet_h"].fill(phi_subleadjet=events[cut].good_jets[:, 1].phi, process=process, channel=flav, mll=m, weight=weights.weight()[cut])
+            hist_dict["mass_dileptons_h"].fill(mass_dileptons=(events[cut].leptons[:, 0] + events[cut].leptons[:, 1]).mass, process=process, channel=flav, mll=m, weight=weights.weight()[cut])
+            hist_dict["mass_dijets_h"].fill(mass_dijets=(events[cut].good_jets[:, 0] + events[cut].good_jets[:, 1]).mass, process=process, channel=flav, mll=m, weight=weights.weight()[cut])
+#            hist_dict["mass_fourobject_h"].fill(mass_fourobject=(events[cut].leptons[:, 0] + events[cut].leptons[:, 1] + events[cut].good_jets[:, 0] + events[cut].good_jets[:, 1]).mass, process=process, channel=flav, mll=m, weight=weights.weight()[cut])
 
+    return hist_dict
+
+def scale_hists(hist_dict, scaling_factor):
+    for key, histo in hist_dict.items():
+        histo *= scaling_factor
     return hist_dict

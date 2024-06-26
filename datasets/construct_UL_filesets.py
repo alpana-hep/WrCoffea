@@ -14,7 +14,6 @@ ul18_datasets = {
     "/DYJetsToLL_M-50_HT-800to1200_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {"mc_campaign": "UL18", "lumi": 59.74, "process": "DYJets", "dataset": "DYJetsToLL_M-50_HT-800to1200", "xsec": 0.775392},
     "/DYJetsToLL_M-50_HT-1200to2500_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {"mc_campaign": "UL18", "lumi": 59.74, "process": "DYJets", "dataset": "DYJetsToLL_M-50_HT-1200to2500", "xsec": 0.186222},
     "/DYJetsToLL_M-50_HT-2500toInf_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {"mc_campaign": "UL18", "lumi": 59.74, "process": "DYJets", "dataset": "DYJetsToLL_M-50_HT-2500toInf", "xsec": 0.00438495},
-    "/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {"mc_campaign": "UL18", "lumi": 59.74, "process": "tt+tW", "dataset": "TTToSemiLeptonic", "xsec": 365.34},
     "/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {"mc_campaign": "UL18", "lumi": 59.74, "process": "tt+tW", "dataset": "TTTo2L2Nu", "xsec": 88.29},
     "/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {"mc_campaign": "UL18", "lumi": 59.74, "process": "tt+tW", "dataset": "ST_tW_antitop", "xsec": 19.20},
     "/ST_tW_top_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {"mc_campaign": "UL18", "lumi": 59.74, "process": "tt+tW", "dataset": "ST_tW_top", "xsec": 19.20},
@@ -38,6 +37,7 @@ ul18_datasets = {
     "/ST_s-channel_4f_leptonDecays_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {"mc_campaign": "UL18", "lumi": 59.74, "process": "SingleTop", "dataset": "ST_s-channel", "xsec": 3.36},
     "/ST_t-channel_antitop_5f_InclusiveDecays_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {"mc_campaign": "UL18", "lumi": 59.74, "process": "SingleTop", "dataset": "ST_t-channel_antitop", "xsec": 80.95},
     "/ST_t-channel_top_5f_InclusiveDecays_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {"mc_campaign": "UL18", "lumi": 59.74, "process": "SingleTop", "dataset": "ST_t-channel_top", "xsec": 136.02},
+    "/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {"mc_campaign": "UL18", "lumi": 59.74, "process": "tt_semileptonic", "dataset": "TTToSemiLeptonic", "xsec": 365.34},
 }
 
 if __name__ == "__main__":
@@ -53,9 +53,9 @@ if __name__ == "__main__":
     else:
         print(f"{args.sample} is not a valid dataset")
 
-#    ddc.do_save(f"{args.sample}.json")
+    ddc.do_save(f"{args.sample}ULbkg.json") #Use this to do manual preprocessing instead
 
-    fileset_total = ddc.do_preprocess(output_file=f'{args.sample}_ULbkg',
-                  step_size=100000,  #chunk size for files splitting
+    fileset_total = ddc.do_preprocess(output_file=f'{args.sample}ULbkg',
+                  step_size=70000,  #chunk size for files splitting
                   align_to_clusters=False,
                   scheduler_url=None)
