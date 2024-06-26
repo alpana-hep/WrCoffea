@@ -2,15 +2,19 @@ import uproot
 import os
 import dask
 from dask.diagnostics import ProgressBar
+from dask.distributed import progress
 import hist
 from hist import Hist
 
-def save_histograms(all_histograms, hists_name, client):
+def save_histograms(toCompute, hists_name, client, executor):
     output_dir = "root_outputs/hists/"
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, f"{hists_name}")
 
-    summed_hist = sum_hists(all_histograms)
+    to_compute = remove_mass_tuples(toCompute)
+    my_histograms = compute_hists(to_compute, client, executor)
+    my_histograms =scale_hists(my_histograms)
+    summed_hist = sum_hists(my_histograms)
     my_split_hists = split_hists(summed_hist)
 
     with uproot.recreate(output_file) as root_file:
@@ -20,6 +24,37 @@ def save_histograms(all_histograms, hists_name, client):
             root_file[path] = hist
 
     print(f"Histograms saved to {output_file}.")
+
+def remove_mass_tuples(data):
+    new_data = {}
+    for key, value in data.items():
+        new_entry = value.copy()
+        if 'mass_tuples' in new_entry:
+            del new_entry['mass_tuples']
+        new_data[key] = new_entry
+    return new_data
+
+def compute_hists(all_histograms, client, executor):
+        print("\nComputing histograms...")
+        if executor is None:
+            with ProgressBar():
+                (histograms,)= dask.compute(all_histograms)
+        elif executor=="local":
+            (histograms,)= dask.compute(all_histograms)
+            histograms=client.gather(histograms)
+        elif executor=="lpc":
+            (histograms,)= dask.compute(all_histograms)
+#            histograms=client.gather(histograms)
+        return histograms
+
+def scale_hists(data):
+    for dataset_key, dataset_info in data.items():
+        if 'x_sec' in dataset_info and 'sumw' in dataset_info:
+            sf = dataset_info['x_sec']/dataset_info['sumw']
+            for hist_key, hist_obj in dataset_info['hists'].items():
+                hist_obj *= sf 
+                dataset_info['hists'][hist_key] = hist_obj
+    return data
 
 def sum_hists(my_hists):
     summed_hists = create_histos()

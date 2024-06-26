@@ -10,13 +10,15 @@ from dask.diagnostics import ProgressBar
 import dask
 import warnings
 import gzip
-
+import uproot
+import hist.dask as dah
+import hist
 NanoAODSchema.warn_missing_crossrefs = False
 warnings.filterwarnings("ignore", category=FutureWarning, module="htcondor")
 
 def load_output_json(year, sample):
     if sample != "Signal":
-        json_file_path = f'datasets/{year}/{year}_70k_unaligned_available.json.gz'
+        json_file_path = f'datasets/{year}/{year}ULbkg_available.json.gz'
         with gzip.open(json_file_path, 'rt') as file:
             data = json.load(file)
     else:
@@ -38,7 +40,7 @@ def filter_by_process(fileset, desired_process):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Processing script for WR analysis.")
     parser.add_argument("year", type=str, choices=["2016", "2017", "2018"], help="Year to analyze.")
-    parser.add_argument("sample", type=str, choices=["DYJets", "tt+tW", "WJets", "Diboson", "Triboson", "ttX", "SingleTop", "Signal", "allBkg"], help="MC sample to analyze.")
+    parser.add_argument("sample", type=str, choices=["DYJets", "tt+tW", "tt_semileptonic", "WJets", "Diboson", "Triboson", "ttX", "SingleTop", "Signal", "allBkg"], help="MC sample to analyze.")
     parser.add_argument("--max_files", type=int, default=None, help="Number of files to analyze.")
     parser.add_argument("--executor", type=str, choices=["local", "lpc"], default=None, help="How to run the processing")
     parser.add_argument("--hists", type=str, help="Get a root file of histograms.")
@@ -53,16 +55,20 @@ if __name__ == "__main__":
     fileset = max_files(filter_by_process(load_output_json(args.year, args.sample), args.sample), args.max_files)
 
     if args.executor == "local":
-        cluster = LocalCluster(n_workers=4,threads_per_worker=2,memory_limit='2.84GB')
+#        cluster = LocalCluster(n_workers=8,threads_per_worker=1,memory_limit='1.43GB')
+#        cluster = LocalCluster(n_workers=4,threads_per_worker=2,memory_limit='2.84GB')
+#        cluster = LocalCluster(n_workers=2,threads_per_worker=4,memory_limit='5.71GB')
+        cluster = LocalCluster(n_workers=1,threads_per_worker=8,memory_limit='11.43GB')
         client = Client(cluster)
         print(f"\nStarting a Local Cluster: {client.dashboard_link}")
     elif args.executor == "lpc":
         from lpcjobqueue import LPCCondorCluster
-        cluster = LPCCondorCluster(cores=2, memory='8GB',vlog_directory='/uscms/home/bjackson/logs')
-        cluster.scale(150)
+        cluster = LPCCondorCluster(cores=1, memory='8GB',log_directory='/uscms/home/bjackson/logs')
+        cluster.scale(200)
         client = Client(cluster)
         print(f"\nStarting an LPC Cluster: http://127.0.0.1:8787/status")
     else:
+        print(f"\nNot starting a cluster.")
         client = None
 
     if args.sample == "Signal":
@@ -81,13 +87,12 @@ if __name__ == "__main__":
         data_manipulation=WrAnalysis(),
         fileset=max_chunks(fileset, 300),
         schemaclass=NanoAODSchema,
+#        uproot_options={"timeout": 3600},
+        uproot_options={"handler": uproot.XRootDSource, "timeout": 3600}
     )
-    print(to_compute)
+
     if args.hists:
-        print("\nComputing histograms...")
-        (histograms,)= dask.compute(to_compute)
-        histograms=client.gather(histograms)
-        utils.hists_output.save_histograms(histograms, args.hists, client)
+        utils.hists_output.save_histograms(to_compute, args.hists, client, args.executor)
 
     if args.masses:
         utils.masses_output.save_tuples(to_compute, args.masses, client)
