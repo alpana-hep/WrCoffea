@@ -8,13 +8,17 @@ def save_tuples(all_tuples, out_mass, client):
     output_dir = "root_outputs/masses/"
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, f"{out_mass}")
-
     with uproot.recreate(output_file) as root_file:
         mass_tuples = []
         for process_path, data in all_tuples.items():
-            directory_path = f"{data['mc']}{data['process']}/{data['dataset']}/"
-            for mass_name, mtuple in data["mass_tuples"].items():
-                mass_tuples.append((directory_path + mass_name, mtuple))
+#            print("process_path", process_path)
+#            print("data", data)
+            directory_path = f"{data['dataset']}/"
+            mass_tuples.append((directory_path + "mlljj", data['mlljj']))
+            mass_tuples.append((directory_path + "mljj_leadlep", data['mljj_leadlep']))
+            mass_tuples.append((directory_path + "mljj_subleadlep", data['mljj_subleadlep']))
+#            for mass_name, mtuple in data["mass_tuples"].items():
+#                mass_tuples.append((directory_path + mass_name, mtuple))
 
         print("\nComputing mass tuples...")
         with ProgressBar():
