@@ -5,7 +5,7 @@ from rich.console import Console
 from rich.table import Table
 from coffea.dataset_tools.dataset_query import DataDiscoveryCLI
 
-ul18_datasets = {
+UL18bkg_datasets = {
     "/DYJetsToLL_M-50_HT-70to100_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {"mc_campaign": "UL18", "lumi": 59.74, "process": "DYJets", "dataset": "DYJetsToLL_M-50_HT-70to100", "xsec": 208.977},
     "/DYJetsToLL_M-50_HT-100to200_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {"mc_campaign": "UL18", "lumi": 59.74, "process": "DYJets", "dataset": "DYJetsToLL_M-50_HT-100to200", "xsec": 181.30},
     "/DYJetsToLL_M-50_HT-200to400_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {"mc_campaign": "UL18", "lumi": 59.74, "process": "DYJets", "dataset": "DYJetsToLL_M-50_HT-200to400", "xsec": 50.4177},
@@ -42,20 +42,25 @@ ul18_datasets = {
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Construct fileset from list of datasets.')
-    parser.add_argument('sample', choices=['2018', '2017', '2016'], help='Choose the year to query.')
+    parser.add_argument('year', choices=['2018', '2017', '2016'], help='Choose the year to query.')
     args = parser.parse_args()
+
+    if args.year != '2018':
+        raise NotImplementedError
 
     ddc = DataDiscoveryCLI()
     ddc.do_allowlist_sites(["T2_DE_DESY", "T2_US_Wisconsin", "T2_US_Nebraska"])
+    
+    datasets = '{}_{}_datasets'.format(args.sample, args.year)
 
-    if args.sample == '2018':
-        ddc.load_dataset_definition(ul18_datasets,query_results_strategy="all",replicas_strategy="round-robin")
-    else:
-        print(f"{args.sample} is not a valid dataset")
+    ddc.load_dataset_definition(datasets, query_results_strategy="all",replicas_strategy="round-robin")
 
-    ddc.do_save(f"{args.sample}ULbkg.json") #Use this to do manual preprocessing instead
+    if args.year == '2018':
+        ddc.load_dataset_definition(UL18bkg_datasets,query_results_strategy="all",replicas_strategy="round-robin")
 
-    fileset_total = ddc.do_preprocess(output_file=f'{args.sample}ULbkg',
-                  step_size=70000,  #chunk size for files splitting
+    ddc.do_save(f"UL{args.year}Bkg.json") #Use this to do manual preprocessing instead
+
+    fileset_total = ddc.do_preprocess(output_file=f'UL{args.year}Bkg',
+                  step_size=70000,
                   align_to_clusters=False,
                   scheduler_url=None)

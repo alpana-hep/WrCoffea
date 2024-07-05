@@ -1,2 +1,2 @@
-from . import hists_output as hists_output
-from . import masses_output as masses_output
+from . import save_hists as save_hists
+from . import save_masses as save_masses
