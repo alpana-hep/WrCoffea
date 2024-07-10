@@ -131,8 +131,9 @@ if __name__ == "__main__":
     t0 = time.monotonic()
 
     if args.executor == "local":
-        cluster = LocalCluster(n_workers=1,threads_per_worker=8,memory_limit='11.43GB'), #Try (2,4,5.71), (4,2,2.84), (8,1,1.43)
+        cluster = LocalCluster(n_workers=1,threads_per_worker=8,memory_limit='11.43GB') #Try (2,4,5.71), (4,2,2.84), (8,1,1.43)
         client = Client(cluster)
+#        client = Client()
         print(f"\nStarting a Local Cluster: {client.dashboard_link}")
     elif args.executor == "lpc":
         from lpcjobqueue import LPCCondorCluster

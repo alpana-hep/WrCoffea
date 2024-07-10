@@ -157,6 +157,7 @@ class WrAnalysis(processor.ProcessorABC):
         dataset = events.metadata["dataset"]
         output['dataset'] = dataset
 
+        isMC = hasattr(events, "genWeight")
         isRealData = not hasattr(events, "genWeight")
 
         if process == "Signal":
@@ -210,6 +211,7 @@ class WrAnalysis(processor.ProcessorABC):
         # EVENT SELECTION #
         ###################
 
+          
         selections = PackedSelection()
 
         # Resolved Selections
@@ -218,6 +220,14 @@ class WrAnalysis(processor.ProcessorABC):
         selections.add("leadTightLeptonPt60", ((ak.any(tightElectrons.pt > 60, axis=1)) | (ak.any(tightMuons.pt > 60, axis=1))))
         selections.add("mlljj>800", (mlljj > 800))
         selections.add("dr>0.4", (dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4))
+
+        # Trigger Selections
+        eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
+        muTrig = events.HLT.Mu50 | events.HLT.OldMu100 | events.HLT.TkMu100
+
+        selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
+        selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
+        selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
 
         # Flavor Selections
         selections.add("eejj", ((nTightElectrons == 2) & (nTightMuons == 0)))
@@ -230,17 +240,16 @@ class WrAnalysis(processor.ProcessorABC):
         selections.add("400mll", (mll > 400))
 
         regions = {
-            'eejj_60mll150': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mlljj>800', 'dr>0.4', '60mll150', 'eejj'],
-            'mumujj_60mll150': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mlljj>800', 'dr>0.4', '60mll150', 'mumujj'],
-            'emujj_60mll400': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mlljj>800', 'dr>0.4', '60mll150', 'emujj'],
-            'eejj_150mll400': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mlljj>800', 'dr>0.4', '150mll400', 'eejj'],
-            'mumujj_150mll400': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mlljj>800', 'dr>0.4', '150mll400', 'mumujj'],
-            'emujj_150mll400': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mlljj>800', 'dr>0.4', '150mll400', 'emujj'],
-            'eejj_400mll': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mlljj>800', 'dr>0.4', '400mll', 'eejj'],
-            'mumujj_400mll': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mlljj>800', 'dr>0.4', '400mll', 'mumujj'],
-            'emujj_400mll': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mlljj>800', 'dr>0.4', '400mll', 'emujj'],
+            'eejj_60mll150': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'eejj'],
+            'mumujj_60mll150': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'mumujj'],
+            'emujj_60mll400': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'emujj'],
+            'eejj_150mll400': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '150mll400', 'eejj'],
+            'mumujj_150mll400': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '150mll400', 'mumujj'],
+            'emujj_150mll400': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '150mll400', 'emujj'],
+            'eejj_400mll': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'eejj'],
+            'mumujj_400mll': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'mumujj'],
+            'emujj_400mll': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'emujj'],
         }
-
 
         ##################
         # SIGNAL SAMPLES #
@@ -438,10 +447,13 @@ def selectMuons(events):
 
 def selectJets(events):
     # select AK4 jets
+    hem_issue = (-3.0 < np.abs(events.Jet.eta) < -1.3) & (-1.57 < np.abs(events.Jet.phi) < -0.87)
+
     jetSelectAK4 = (
             (events.Jet.pt > 40)
              & (np.abs(events.Jet.eta) < 2.4)
             & (events.Jet.isTightLeptonVeto)
+            & hem_issue
     )
 
     # select AK8 jets (need to add LSF cut)
@@ -450,6 +462,7 @@ def selectJets(events):
             & (np.abs(events.FatJet.eta) < 2.4)
             & (events.FatJet.jetId == 2)
             & (events.FatJet.msoftdrop > 40)
+            & hem_issue
     )
 
     return events.Jet[jetSelectAK4], events.FatJet[jetSelectAK8]
