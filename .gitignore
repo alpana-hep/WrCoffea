@@ -13,3 +13,6 @@ plotting/
 .local/
 .bashrc
 shell/
+.condor_config
+.shell
+shell
