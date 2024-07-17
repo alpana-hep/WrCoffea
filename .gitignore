@@ -3,7 +3,6 @@ __pycache__
 *.pyc
 *.root
 *.tgz
-*.gz
 datasets/.sites_map.json
 datasets/2016
 datasets/2017
@@ -11,8 +10,5 @@ datasets/2018
 histograms/
 plotting/
 .bashrc
-.condor_config
 .env/
 .local/
-shell
-
