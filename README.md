@@ -1,11 +1,5 @@
 # WrCoffea
 
-## Coffea Introduction
-To install coffea:
-```
-python3 -m pip install coffea --user
-```
-All coffea documentation is hosted at https://coffeateam.github.io/coffea/
 ## Getting Started
 Begin by cloning the repository,
 ```
