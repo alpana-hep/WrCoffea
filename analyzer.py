@@ -6,6 +6,7 @@ import numpy as np
 import awkward as ak
 import hist.dask as dah
 import hist
+import dask.array as da
 import dask_awkward as dak
 from coffea.analysis_tools import PackedSelection
 import time
@@ -145,11 +146,14 @@ class WrAnalysis(processor.ProcessorABC):
         }
 
     def process(self, events): 
-
         output = self.make_output()
 
+        isRealData = not hasattr(events, "genWeight")
+
         output['mc_campaign'] = events.metadata["mc_campaign"]
-        output['x_sec'] = events.metadata["xsec"]
+
+        if not isRealData:
+            output['x_sec'] = events.metadata["xsec"]
 
         process = events.metadata["process"]
         output['process'] = process
@@ -162,6 +166,8 @@ class WrAnalysis(processor.ProcessorABC):
 
         if process == "Signal":
             print(f"Analyzing {dataset} events.")
+        elif process in {"SingleMuon", "EGamma"}:
+            print(f"Analyzing {len(events)} {process} {dataset} events.")
         else:
             print(f"Analyzing {len(events)} {dataset} events.")
 
@@ -184,7 +190,10 @@ class WrAnalysis(processor.ProcessorABC):
         ###########
 
         weights = Weights(size=None, storeIndividual=True)
-        eventWeight = np.sign(events.genWeight)
+        if not isRealData:
+            eventWeight = np.sign(events.genWeight)
+        else:
+            eventWeight = abs(np.sign(events.event))
 
         #Only fill histogram with event specific weights
         weights.add("event_weight", weight=eventWeight)
@@ -240,6 +249,26 @@ class WrAnalysis(processor.ProcessorABC):
         selections.add("400mll", (mll > 400))
 
         regions = {
+            'eejj_60mll150': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mlljj>800', 'dr>0.4', '60mll150', 'eejj'],
+            'mumujj_60mll150': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mlljj>800', 'dr>0.4', '60mll150', 'mumujj'],
+            'emujj_60mll150': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mlljj>800', 'dr>0.4', '60mll150', 'emujj'],
+            'eejj_150mll400': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mlljj>800', 'dr>0.4', '150mll400', 'eejj'],
+            'mumujj_150mll400': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mlljj>800', 'dr>0.4', '150mll400', 'mumujj'],
+            'emujj_150mll400': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mlljj>800', 'dr>0.4', '150mll400', 'emujj'],
+            'eejj_400mll': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mlljj>800', 'dr>0.4', '400mll', 'eejj'],
+            'mumujj_400mll': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mlljj>800', 'dr>0.4', '400mll', 'mumujj'],
+            'emujj_400mll': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mlljj>800', 'dr>0.4', '400mll', 'emujj'],
+        }
+
+        #######################
+        # BLIND SIGNAL REGION #
+        #######################
+
+        if isRealData:
+            for region in ['eejj_400mll', 'mumujj_400mll']:
+                if region in regions:
+                    del regions[region]
+
             'eejj_60mll150': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'eejj'],
             'mumujj_60mll150': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'mumujj'],
             'emujj_60mll400': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'emujj'],
