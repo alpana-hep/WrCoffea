@@ -20,6 +20,22 @@ To run over all 2018 data, enter the command
 ```
 python3 run_analysis.py 2018 Data --hists Data.root --executor lpc
 ```
+The shell should then show
+```
+Starting an LPC Cluster
+
+Starting to analyze 2018 Data files
+Analyzing 241608232 SingleMuon Run2018A events.
+Analyzing 119918017 SingleMuon Run2018B events.
+Analyzing 109986009 SingleMuon Run2018C events.
+Analyzing 513909894 SingleMuon Run2018D events.
+Analyzing 339013231 EGamma Run2018A events.
+Analyzing 153792795 EGamma Run2018B events.
+Analyzing 147827904 EGamma Run2018C events.
+Analyzing 752524583 EGamma Run2018D events.
+
+Computing histograms...
+```
 The output is a root file (`Data.root`) containing histograms of kinematic variables across all basic analysis regions.
 
 ### Running on MC
