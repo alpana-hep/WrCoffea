@@ -9,6 +9,7 @@ datasets/2017
 datasets/2018
 histograms/
 plotting/
-.bashrc
 .env/
 .local/
+.bashrc
+shell/
