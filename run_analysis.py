@@ -175,6 +175,7 @@ if __name__ == "__main__":
         if args.hists:
             utils.save_hists.save_histograms(to_compute, args.hists, client, args.executor, args.sample)
         if args.masses:
+            print("to_compute:", to_compute)
             utils.save_masses.save_tuples(to_compute, args.masses, client)
     else:
         fileset = max_files(filter_by_process(load_output_json(args.year, args.sample), args.sample), args.max_files)
@@ -189,7 +190,7 @@ if __name__ == "__main__":
             utils.save_hists.save_histograms(to_compute, args.hists, client, args.executor, args.sample)
    
         if args.masses:
-            raise NotImplementedError
+            utils.save_masses.save_tuples(to_compute, args.masses, client)
 
     if not args.hists and not args.masses:
         print("\nNot saving any histograms or tuples.")

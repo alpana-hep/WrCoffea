@@ -1,0 +1,1 @@
+dask.awkward<mass, npartitions=1>
