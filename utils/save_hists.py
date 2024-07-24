@@ -11,10 +11,11 @@ def save_histograms(toCompute, hists_name, client, executor, sample):
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, f"{hists_name}")
 
-    if sample == "Signal":
-        to_compute = remove_mass_tuples(toCompute)
-    else: 
-        to_compute = toCompute
+#    if sample == "Signal":
+#        pass
+#        to_compute = remove_mass_tuples(toCompute)
+#    else: 
+    to_compute = toCompute
 
     my_histograms = compute_hists(to_compute, client, executor)
 
@@ -44,7 +45,7 @@ def remove_mass_tuples(data):
 
 def compute_hists(all_histograms, client, executor):
         print("\nComputing histograms...")
-        if executor is "umn":
+        if executor == "umn":
             with ProgressBar():
                 (histograms,)= dask.compute(all_histograms)
         elif executor=="local":
