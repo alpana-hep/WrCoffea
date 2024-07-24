@@ -21,6 +21,10 @@ def load_output_json(year, sample, executor):
             json_file_path = f'datasets/signal{year}.json'
         with open(json_file_path, 'r') as file:
             data = json.load(file)
+    elif sample == "Data":
+        json_file_path = f'datasets/2018Data_available.json.gz'
+        with gzip.open(json_file_path, 'rt') as file:
+            data = json.load(file)
     else:
         json_file_path = f'datasets/{year}ULbkg_available.json.gz'
         with gzip.open(json_file_path, 'rt') as file:
@@ -32,7 +36,9 @@ def filter_by_process(fileset, desired_process, mass=None):
         filtered_fileset = {}
         for dataset, data in fileset.items():
             if data['metadata']['dataset'] == mass:
-                filtered_fileset[dataset] = data 
+                filtered_fileset[dataset] = data
+    elif desired_process == "Data":
+        filtered_fileset = fileset
     else:
         filtered_fileset = {}
         for dataset, data in fileset.items():
@@ -60,7 +66,7 @@ if __name__ == "__main__":
     parser.add_argument(
             "sample", 
             type=str, 
-            choices=["DYJets", "tt+tW", "tt_semileptonic", "WJets", "Diboson", "Triboson", "ttX", "SingleTop", "Signal"], 
+            choices=["DYJets", "tt+tW", "tt_semileptonic", "WJets", "Diboson", "Triboson", "ttX", "SingleTop", "Signal", "Data"], 
             help="MC sample to analyze."
     )
     parser.add_argument(
@@ -144,7 +150,7 @@ if __name__ == "__main__":
         print(f"\nStarting a Local Cluster: {client.dashboard_link}")
     elif args.executor == "lpc":
         from lpcjobqueue import LPCCondorCluster
-        cluster = LPCCondorCluster(cores=1, memory='8GB',log_directory='/uscms/home/bjackson/logs')
+        cluster = LPCCondorCluster(cores=1, memory='8GB',log_directory='/uscms/home/bjackson/logs') #Changed form 8GB to 10GB
         cluster.scale(200)
         client = Client(cluster)
         print(f"\nStarting an LPC Cluster")
@@ -176,13 +182,14 @@ if __name__ == "__main__":
         if args.hists:
             utils.save_hists.save_histograms(to_compute, args.hists, client, args.executor, args.sample)
         if args.masses:
+            print("to_compute:", to_compute)
             utils.save_masses.save_tuples(to_compute, args.masses, client)
     else:
         fileset = max_files(filter_by_process(load_output_json(args.year, args.sample), args.sample), args.max_files)
 
         to_compute = apply_to_fileset(
             data_manipulation=WrAnalysis(),
-            fileset=max_chunks(fileset, 500),
+            fileset=max_chunks(fileset, 1000),
             schemaclass=NanoAODSchema,
             uproot_options={"handler": uproot.XRootDSource, "timeout": 3600}
         )
@@ -190,7 +197,7 @@ if __name__ == "__main__":
             utils.save_hists.save_histograms(to_compute, args.hists, client, args.executor, args.sample)
    
         if args.masses:
-            raise NotImplementedError
+            utils.save_masses.save_tuples(to_compute, args.masses, client)
 
     if not args.hists and not args.masses:
         print("\nNot saving any histograms or tuples.")

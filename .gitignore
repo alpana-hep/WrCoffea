@@ -3,16 +3,22 @@ __pycache__
 *.pyc
 *.root
 *.tgz
-*.gz
 datasets/.sites_map.json
 datasets/2016
 datasets/2017
 datasets/2018
 histograms/
 plotting/
-.bashrc
-.condor_config
 .env/
 .local/
+.bashrc
+shell/
+.condor_config
+requirements.txt
+datasets/2018_signal_prelegacy/
+.shell
 shell
+<<<<<<< HEAD
 wr_env/
+=======
+>>>>>>> 2d31a9e53d5d6f79c3909379929c1672ccc3b2f5
