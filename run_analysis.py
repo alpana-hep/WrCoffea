@@ -13,9 +13,12 @@ import uproot
 NanoAODSchema.warn_missing_crossrefs = False
 warnings.filterwarnings("ignore", category=FutureWarning, module="htcondor")
 
-def load_output_json(year, sample):
+def load_output_json(year, sample, executor):
     if sample == "Signal":
-        json_file_path = f'datasets/signal{year}.json'
+        if executor == "umn":
+            json_file_path = f'datasets/signal{year}Local.json'
+        else:
+            json_file_path = f'datasets/signal{year}.json'
         with open(json_file_path, 'r') as file:
             data = json.load(file)
     elif sample == "Data":
@@ -109,7 +112,7 @@ if __name__ == "__main__":
     parser.add_argument(
             "--executor", 
             type=str, 
-            choices=["local", "lpc"], 
+            choices=["local", "lpc", "umn"], 
             default=None, 
             help="How to run the processing"
     )
@@ -123,6 +126,7 @@ if __name__ == "__main__":
             type=str, 
             help="Get a root file of mass tuples."
     )
+
     args = parser.parse_args()
 
     if args.year != "2018":
@@ -132,7 +136,10 @@ if __name__ == "__main__":
         raise ValueError("Enter a signal mass point (e.g. --mass MWR3000_MN1600)")
 
     if args.sample != "Signal" and args.mass:
-        raise ValueError("Sample must be Signal!")
+        raise Exception("Sample must be Signal")
+
+    if args.sample != "Signal" and args.executor == "umn":
+        raise NotImplementedError("Only signal samples can currently be run at umn")
 
     t0 = time.monotonic()
 
