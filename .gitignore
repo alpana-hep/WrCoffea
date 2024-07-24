@@ -15,4 +15,4 @@ plotting/
 .env/
 .local/
 shell
-
+wr_env/

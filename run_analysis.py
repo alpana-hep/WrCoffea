@@ -155,7 +155,7 @@ if __name__ == "__main__":
 
     if args.sample == "Signal":
 
-        fileset = max_files(filter_by_process(load_output_json(args.year, args.sample), args.sample, args.mass), args.max_files)
+        fileset = max_files(filter_by_process(load_output_json(args.year, args.sample, args.executor), args.sample, args.mass), args.max_files)
 
         fileset, dataset_updated = preprocess(
             fileset=fileset,
@@ -171,7 +171,7 @@ if __name__ == "__main__":
             data_manipulation=WrAnalysis(mass_point=args.mass),
             fileset=max_chunks(fileset, 500),
             schemaclass=NanoAODSchema,
-            uproot_options={"handler": uproot.XRootDSource, "timeout": 3600}
+#            uproot_options={"handler": uproot.XRootDSource, "timeout": 3600}
         )
         if args.hists:
             utils.save_hists.save_histograms(to_compute, args.hists, client, args.executor, args.sample)
@@ -195,9 +195,9 @@ if __name__ == "__main__":
     if not args.hists and not args.masses:
         print("\nNot saving any histograms or tuples.")
 
-    if args.executor:
-        client.close()
-        cluster.close()
+#    if args.executor:
+ #       client.close()
+ #       cluster.close()
 
     exec_time = time.monotonic() - t0
     print(f"\nExecution took {exec_time/60:.2f} minutes\n")
