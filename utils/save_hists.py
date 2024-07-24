@@ -44,7 +44,7 @@ def remove_mass_tuples(data):
 
 def compute_hists(all_histograms, client, executor):
         print("\nComputing histograms...")
-        if executor is None:
+        if executor is "umn":
             with ProgressBar():
                 (histograms,)= dask.compute(all_histograms)
         elif executor=="local":
@@ -53,6 +53,9 @@ def compute_hists(all_histograms, client, executor):
         elif executor=="lpc":
             (histograms,)= dask.compute(all_histograms)
 #            histograms=client.gather(histograms)
+        elif executor is None:
+            with ProgressBar():
+                (histograms,)= dask.compute(all_histograms)
         return histograms
 
 def scale_hists(data):
