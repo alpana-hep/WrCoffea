@@ -44,9 +44,9 @@ def filter_by_process(fileset, desired_process, mass=None):
     return filtered_fileset
 
 if __name__ == "__main__":
-    # DYJets:          67.47 minutes for  87,026,512 events.
-    # tt+tW:           99.84 minutes for  163,835,543 events.
-    # tt_semileptonic: 188.94 minutes for 463,092,000 events.
+    # DYJets:          67/31 minutes for  87,026,512 events.
+    # tt+tW:           99/26 minutes for  163,835,543 events.
+    # tt_semileptonic: 188.94/28 minutes for 463,092,000 events.
     # WJets:           24.36 minutes for  206,103,400 events.
     # Diboson:         37.80 minutes for  26,032,000 events.
     # Triboson:        7.08 minutes  for  1,036,000 events.
@@ -143,7 +143,7 @@ if __name__ == "__main__":
         print(f"\nStarting a Local Cluster: {client.dashboard_link}")
     elif args.executor == "lpc":
         from lpcjobqueue import LPCCondorCluster
-        cluster = LPCCondorCluster(cores=1, memory='8GB',log_directory='/uscms/home/bjackson/logs') #Changed form 8GB to 10GB
+        cluster = LPCCondorCluster(cores=2, memory='8GB',log_directory='/uscms/home/bjackson/logs') #Changed form 8GB to 10GB
         cluster.scale(200)
         client = Client(cluster)
         print(f"\nStarting an LPC Cluster")

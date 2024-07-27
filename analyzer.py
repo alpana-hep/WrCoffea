@@ -304,11 +304,11 @@ class WrAnalysis(processor.ProcessorABC):
         # FILL MASS TUPLES #
         ####################
 
-        for region, cuts in regions.items():
-            cut = selections.all(*cuts)
-            output[f'mlljj_{region}'] = (tightLeptons[cut][:, 0] + tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
-            output[f'mljj_leadlep_{region}'] = (tightLeptons[cut][:, 0] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
-            output[f'mljj_subleadlep_{region}'] = (tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
+#        for region, cuts in regions.items():
+#            cut = selections.all(*cuts)
+#            output[f'mlljj_{region}'] = (tightLeptons[cut][:, 0] + tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
+#            output[f'mljj_leadlep_{region}'] = (tightLeptons[cut][:, 0] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
+#            output[f'mljj_subleadlep_{region}'] = (tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
 
         ###################
         # FILL HISTOGRAMS #
