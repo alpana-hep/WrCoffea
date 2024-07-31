@@ -474,13 +474,12 @@ def selectMuons(events):
 
 def selectJets(events):
     # select AK4 jets
-    hem_issue = ((events.Jet.eta <= -3.0) | (events.Jet.eta >= -1.3)) & ((events.Jet.phi <= -1.57) | (events.Jet.phi >= -0.87))
+#    hem_issue = ((-3.0 < events.Jet.eta < -1.3) & (-1.57 < events.Jet.phi < -0.87))
 
     jetSelectAK4 = (
             (events.Jet.pt > 40)
              & (np.abs(events.Jet.eta) < 2.4)
             & (events.Jet.isTightLeptonVeto)
-            & hem_issue
     )
 
     # select AK8 jets (need to add LSF cut)
@@ -489,7 +488,6 @@ def selectJets(events):
             & (np.abs(events.FatJet.eta) < 2.4)
             & (events.FatJet.jetId == 2)
             & (events.FatJet.msoftdrop > 40)
-            & hem_issue
     )
 
     return events.Jet[jetSelectAK4], events.FatJet[jetSelectAK8]

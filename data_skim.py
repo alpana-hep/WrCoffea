@@ -1,14 +1,20 @@
 import argparse
 from coffea.nanoevents import NanoAODSchema
-from coffea.dataset_tools import preprocess, apply_to_fileset, max_files, max_chunks
+from coffea.dataset_tools import preprocess, apply_to_fileset, max_files, max_chunks, slice_files
 import awkward as ak
 import dask_awkward as dak
 import dask
 from dask.diagnostics import ProgressBar
+from dask.distributed import Client, LocalCluster
+#from lpcjobqueue import LPCCondorCluster
 import uproot
 import gzip
 import json
+import time
+import warnings
 
+warnings.filterwarnings("ignore", category=FutureWarning, module="coffea")
+warnings.filterwarnings("ignore", category=FutureWarning, module="htcondor")
 def is_rootcompat(a):
     """Is it a flat or 1-d jagged array?"""
     t = dak.type(a)
@@ -34,15 +40,13 @@ def uproot_writeable(events):
     return out_event
 
 def make_skimmed_events(events):
-    # Place your selection logic here
-    selected_electrons = events.Electron[(events.Electron.pt > 50)]
-    selected_muons = events.Muon[(events.Muon.pt > 50)]
+    selected_electrons = events.Electron[(events.Electron.pt > 45)]
+    selected_muons = events.Muon[(events.Muon.pt > 45)]
     event_filters = ((ak.count(selected_electrons.pt, axis=1) + ak.count(selected_muons.pt, axis=1)) >= 2)
 
     skimmed = events[event_filters]
-    skimmed_dropped = skimmed[list(set(x for x in skimmed.fields if x in ["Electron", "Muon", "Jet", "HLT", "event"]))]
+    skimmed_dropped = skimmed[list(set(x for x in skimmed.fields if x in ["Electron", "Muon", "Jet", "FatJet", "HLT.Ele32_WPTight_Gsf","HLT.Photon200", "HLT.Ele115_CaloIdVT_GsfTrkIdT", "HLT.Mu50", "HLT.OldMu100", "HLT.TkMu100", "event"]))]
 
-    # Returning the skimmed events
     return skimmed_dropped
 
 def load_output_json():
@@ -52,7 +56,6 @@ def load_output_json():
     return data
 
 def extract_data(dataset_dict, dataset, year, run):
-    # Mapping of dataset, year, and run combinations to their corresponding keys
     mapping = {
         ("SingleMuon", "2018", "RunA"): "/SingleMuon/Run2018A-UL2018_MiniAODv2_NanoAODv9-v2/NANOAOD",
         ("SingleMuon", "2018", "RunB"): "/SingleMuon/Run2018B-UL2018_MiniAODv2_NanoAODv9-v2/NANOAOD",
@@ -64,13 +67,11 @@ def extract_data(dataset_dict, dataset, year, run):
         ("EGamma", "2018", "RunD"): "/EGamma/Run2018D-UL2018_MiniAODv2_NanoAODv9-v3/NANOAOD"
     }
 
-    # Extract the corresponding key from the mapping
     key = mapping.get((dataset, year, run))
 
     if key is None:
         raise ValueError(f"Invalid combination of dataset, year, and run: {dataset}, {year}, {run}")
 
-    # Return the corresponding dictionary entry
     return {key: dataset_dict[key]}
 
 if __name__ == "__main__":
@@ -78,39 +79,44 @@ if __name__ == "__main__":
     parser.add_argument('dataset', choices=['SingleMuon', 'EGamma'], help='Dataset to process')
     parser.add_argument('year', choices=['2018'], help='Year of the dataset')
     parser.add_argument('run', choices=['RunA', 'RunB', 'RunC', 'RunD'], help='Run of the dataset')
+    parser.add_argument('--start', type=int, default=1, help='File number at which to start')
 
     args = parser.parse_args()
 
-    print("Starting to skim events")
+    t0 = time.monotonic()
 
-    fileset = load_output_json() # All the data files
+#    cluster = LPCCondorCluster(cores=1, memory='8GB',log_directory='/uscms/home/bjackson/logs', ship_env=True)
+#    cluster.scale(200)
+#    client = Client(cluster)
 
-    dataset = extract_data(fileset, args.dataset, args.year, args.run) # Filtered dataset
+    print("Starting to skim events\n")
 
-    dataset_runnable = max_chunks(max_files(dataset))  # Just 1 chunk of 1 file to test
+    fileset = load_output_json()
 
-    print(f"\nFileset:\n{dataset_runnable}\n")
+    full_dataset = extract_data(fileset, args.dataset, args.year, args.run)
+    dataset_key = list(full_dataset.keys())[0]
+    num_files = len(full_dataset[dataset_key]['files'].keys())
 
-    print("Computing dask task graph")
-    skimmed_dict = apply_to_fileset(
-        make_skimmed_events,
-        dataset_runnable,
-        schemaclass=NanoAODSchema,
-        uproot_options={"handler": uproot.XRootDSource, "timeout": 3600}
-    )
+    for i in range(args.start-1, num_files):
+        t0 = time.monotonic()
+        print(f"Analyzing file {i+1}")
+        sliced_dataset = slice_files(full_dataset, slice(i, i+1))
 
-    print(f"\nskimmed_dict: {skimmed_dict}\n")
-
-    print("Executing task graph and saving")
-    with ProgressBar():
-        for dataset, skimmed in skimmed_dict.items():
-            skimmed = uproot_writeable(skimmed)
-            skimmed = skimmed.repartition(
-                rows_per_partition=2500000 # 1000 events per file
-            )  # Repartitioning so that output file contains ~100_000 events per partition
-            uproot.dask_write(
-                skimmed,
-                destination="dataskims/",
-                prefix=f"{args.year}/{args.dataset}/{args.run}/{args.dataset}{args.year}{args.run}",
+        print("Computing dask task graph")
+        skimmed_dict = apply_to_fileset(
+            make_skimmed_events,
+            sliced_dataset,
+            schemaclass=NanoAODSchema,
+            uproot_options={"handler": uproot.XRootDSource, "timeout": 3600}
             )
 
+        with ProgressBar():
+            for dataset, skimmed in skimmed_dict.items():
+                print("Calling uproot_writeable and skimmed.repartition")
+                skimmed = uproot_writeable(skimmed)
+                skimmed = skimmed.repartition(rows_per_partition=1000000)
+                print("Calling uproot.dask_write")
+                uproot.dask_write(skimmed, compute=True, destination="dataskims/", prefix=f"{args.dataset}_{args.year}_{args.run}_lepPt45/{args.dataset}{args.year}{args.run}_file{i+1}", tree_name = "Events")
+
+        exec_time = time.monotonic() - t0
+        print(f"File {i+1} took {exec_time/60:.2f} minutes to skim\n")
