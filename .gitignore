@@ -3,6 +3,7 @@ __pycache__
 *.pyc
 *.root
 *.tgz
+*.gz
 plots/
 datasets/.sites_map.json
 .bashrc

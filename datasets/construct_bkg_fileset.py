@@ -5,7 +5,7 @@ from rich.console import Console
 from rich.table import Table
 from coffea.dataset_tools.dataset_query import DataDiscoveryCLI
 
-2018_dataset = {
+dataset_2018 = {
     "/DYJetsToLL_M-50_HT-70to100_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {"mc_campaign": "UL18", "lumi": 59.74, "process": "DYJets", "dataset": "DYJetsToLL_M-50_HT-70to100", "xsec": 208.977},
     "/DYJetsToLL_M-50_HT-100to200_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {"mc_campaign": "UL18", "lumi": 59.74, "process": "DYJets", "dataset": "DYJetsToLL_M-50_HT-100to200", "xsec": 181.30},
     "/DYJetsToLL_M-50_HT-200to400_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {"mc_campaign": "UL18", "lumi": 59.74, "process": "DYJets", "dataset": "DYJetsToLL_M-50_HT-200to400", "xsec": 50.4177},
@@ -51,9 +51,8 @@ if __name__ == "__main__":
     ddc = DataDiscoveryCLI()
     ddc.do_allowlist_sites(["T2_DE_DESY", "T2_US_Wisconsin", "T2_US_Nebraska"])
     
-    datasets = '{}_dataset'.format(args.year)
-
-    ddc.load_dataset_definition(datasets, query_results_strategy="all",replicas_strategy="round-robin")
+    if args.year == '2018':
+        ddc.load_dataset_definition(dataset_2018, query_results_strategy="all",replicas_strategy="round-robin")
 
     ddc.do_save(f"UL{args.year}Bkg.json") #Use this to do manual preprocessing instead
 

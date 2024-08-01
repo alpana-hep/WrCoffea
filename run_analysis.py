@@ -23,7 +23,7 @@ def load_output_json(year, sample):
         with gzip.open(json_file_path, 'rt') as file:
             data = json.load(file)
     else:
-        json_file_path = f'datasets/{year}ULbkg_available.json.gz'
+        json_file_path = f'datasets/backgrounds/{year}ULbkg_available.json.gz'
         with gzip.open(json_file_path, 'rt') as file:
             data = json.load(file)
     return data
