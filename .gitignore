@@ -3,12 +3,9 @@ __pycache__
 *.pyc
 *.root
 *.tgz
+*.gz
+plots/
 datasets/.sites_map.json
-datasets/2016
-datasets/2017
-datasets/2018
-histograms/
-plotting/
 .env/
 .local/
 .bashrc

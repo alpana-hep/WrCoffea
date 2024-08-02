@@ -1,42 +1,7 @@
 import ROOT
 import os
+import argparse
 
-# List of input ROOT files
-input_files = [
-    "root_outputs/hists/2018ULbkg_july/Diboson.root",
-    "root_outputs/hists/2018ULbkg_july/Triboson.root",
-    "root_outputs/hists/2018ULbkg_july/SingleTop.root",
-    "root_outputs/hists/2018ULbkg_july/DYJets.root",
-    "root_outputs/hists/2018ULbkg_july/WJets.root",
-    "root_outputs/hists/2018ULbkg_july/ttX.root",
-    "root_outputs/hists/2018ULbkg_july/tt_semileptonic.root",
-    "root_outputs/hists/2018ULbkg_july/tt+tW.root"
-]
-
-# Name of the output file
-output_file = "root_outputs/hists/2018ULbkg_july/UL18_bkgs.root"
-
-# Create a new ROOT file to store the combined histograms
-f_out = ROOT.TFile(output_file, "RECREATE")
-
-# Process each input file
-for file_name in input_files:
-    # Open the input file
-    f_in = ROOT.TFile(file_name, "READ")
-    
-    # Copy the contents of the input file to the corresponding directory in the output file
-    copy_dir(f_in, f_out)
-    
-    # Close the input file
-    f_in.Close()
-
-# Write and close the output file
-f_out.Write()
-f_out.Close()
-
-print(f"Combined ROOT hists into {output_file}")
-
-# Function to recursively copy directories and their contents
 def copy_dir(input_dir, output_dir):
     for key in input_dir.GetListOfKeys():
         obj = key.ReadObj()
@@ -49,3 +14,32 @@ def copy_dir(input_dir, output_dir):
         else:
             output_dir.cd()
             obj.Write()
+
+parser = argparse.ArgumentParser(description="Combine ROOT histograms from multiple files into a single file.")
+parser.add_argument("input_directory", type=str, help="Directory containing the input ROOT files.")
+parser.add_argument("output_file", type=str, help="Name of the output ROOT file.")
+args = parser.parse_args()
+
+required_files = [
+    "DYJets.root", "tt+tW.root", "WJets.root", "tt_semileptonic.root",
+    "Diboson.root", "Triboson.root", "ttX.root", "SingleTop.root"
+]
+
+input_files = [os.path.join(args.input_directory, f) for f in required_files if os.path.isfile(os.path.join(args.input_directory, f))]
+
+output_file = f"{args.input_directory}/{args.output_file}"
+
+f_out = ROOT.TFile(output_file, "RECREATE")
+
+for file_name in input_files:
+    f_in = ROOT.TFile(file_name, "READ")
+    copy_dir(f_in, f_out)
+    f_in.Close()
+
+f_out.Write()
+f_out.Close()
+
+print(f"Combined ROOT hists into {output_file}")
+
+# Example usage
+# python3 merge_hists.py root_outputs/hists/2018ULbkg_triggers_hem UL18_bkgs.root

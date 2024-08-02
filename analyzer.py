@@ -31,86 +31,86 @@ class WrAnalysis(processor.ProcessorABC):
             'pt_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(400, 0, 2000, name='pt_leadlep', label=r'p_{T} of the leading lepton [GeV]'),
+                hist.axis.Regular(200, 0, 2000, name='pt_leadlep', label=r'p_{T} of the leading lepton [GeV]'),
                 hist.storage.Weight(),
             ),
             'pt_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(400, 0, 2000, name='pt_subleadlep', label=r'p_{T} of the subleading lepton [GeV]'),
+                hist.axis.Regular(200, 0, 2000, name='pt_subleadlep', label=r'p_{T} of the subleading lepton [GeV]'),
                 hist.storage.Weight(),
             ),
             'pt_leadjet': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(400, 0, 2000, name='pt_leadjet', label=r'p_{T} of the leading jet [GeV]'),
+                hist.axis.Regular(200, 0, 2000, name='pt_leadjet', label=r'p_{T} of the leading jet [GeV]'),
                 hist.storage.Weight(),
             ),
             'pt_subleadjet': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(400, 0, 2000, name='pt_subleadjet', label=r'p_{T} of the subleading jet [GeV]'),
+                hist.axis.Regular(200, 0, 2000, name='pt_subleadjet', label=r'p_{T} of the subleading jet [GeV]'),
                 hist.storage.Weight(),
             ),
             'pt_dileptons': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(200, 0, 1000, name='pt_dileptons', label=r'p^{T}_{ll} [GeV]'),
+                hist.axis.Regular(100, 0, 1000, name='pt_dileptons', label=r'p^{T}_{ll} [GeV]'),
                 hist.storage.Weight(),
             ),
             'pt_dijets': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(200, 0, 1000, name='pt_dijets', label=r'p^{T}_{jj} [GeV]'),
+                hist.axis.Regular(100, 0, 1000, name='pt_dijets', label=r'p^{T}_{jj} [GeV]'),
                 hist.storage.Weight(),
             ),
             'eta_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(600, -3, 3, name='eta_leadlep', label=r'#eta of the leading lepton [GeV]'),
+                hist.axis.Regular(60, -3, 3, name='eta_leadlep', label=r'#eta of the leading lepton [GeV]'),
                 hist.storage.Weight(),
             ),
             'eta_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(600, -3, 3, name='eta_subleadlep', label=r'#eta of the subleading lepton [GeV]'),
+                hist.axis.Regular(60, -3, 3, name='eta_subleadlep', label=r'#eta of the subleading lepton [GeV]'),
                 hist.storage.Weight(),
             ),
             'eta_leadjet': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(600, -3, 3, name='eta_leadjet', label=r'#eta of the leading jet [GeV]'),
+                hist.axis.Regular(60, -3, 3, name='eta_leadjet', label=r'#eta of the leading jet [GeV]'),
                 hist.storage.Weight(),
             ),
             'eta_subleadjet': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(600, -3, 3, name='eta_subleadjet', label=r'#eta of the subleading jet [GeV]'),
+                hist.axis.Regular(60, -3, 3, name='eta_subleadjet', label=r'#eta of the subleading jet [GeV]'),
                 hist.storage.Weight(),
             ),
 
             'phi_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(800, -4, 4, name='phi_leadlep', label=r'#phi of the leading lepton [GeV]'),
+                hist.axis.Regular(80, -4, 4, name='phi_leadlep', label=r'#phi of the leading lepton [GeV]'),
                 hist.storage.Weight(),
             ),
             'phi_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(800, -4, 4, name='phi_subleadlep', label=r'#phi of the subleading lepton [GeV]'),
+                hist.axis.Regular(80, -4, 4, name='phi_subleadlep', label=r'#phi of the subleading lepton [GeV]'),
                 hist.storage.Weight(),
             ),
             'phi_leadjet': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(800, -4, 4, name='phi_leadjet', label=r'#phi of the leading jet [GeV]'),
+                hist.axis.Regular(80, -4, 4, name='phi_leadjet', label=r'#phi of the leading jet [GeV]'),
                 hist.storage.Weight(),
             ),
             'phi_subleadjet': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(800, -4, 4, name='phi_subleadjet', label=r'#phi of the subleading jet [GeV]'),
+                hist.axis.Regular(80, -4, 4, name='phi_subleadjet', label=r'#phi of the subleading jet [GeV]'),
                 hist.storage.Weight(),
             ),
             'mass_dileptons': dah.hist.Hist(
@@ -122,25 +122,25 @@ class WrAnalysis(processor.ProcessorABC):
             'mass_dijets': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 5000, name='mass_dijets', label=r'm_{jj} [GeV]'),
+                hist.axis.Regular(500, 0, 5000, name='mass_dijets', label=r'm_{jj} [GeV]'),
                 hist.storage.Weight(),
             ),
             'mass_threeobject_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1600, 0, 8000, name='mass_threeobject_leadlep', label=r'm_{ljj} [GeV]'),
+                hist.axis.Regular(800, 0, 8000, name='mass_threeobject_leadlep', label=r'm_{ljj} [GeV]'),
                 hist.storage.Weight(),
             ),
             'mass_threeobject_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1600, 0, 8000, name='mass_threeobject_subleadlep', label=r'm_{ljj} [GeV]'),
+                hist.axis.Regular(800, 0, 8000, name='mass_threeobject_subleadlep', label=r'm_{ljj} [GeV]'),
                 hist.storage.Weight(),
             ),
             'mass_fourobject': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1600, 0, 8000, name='mass_fourobject', label=r'm_{lljj} [GeV]'),
+                hist.axis.Regular(800, 0, 8000, name='mass_fourobject', label=r'm_{lljj} [GeV]'),
                 hist.storage.Weight(),
             ),
         }
@@ -304,11 +304,11 @@ class WrAnalysis(processor.ProcessorABC):
         # FILL MASS TUPLES #
         ####################
 
-        for region, cuts in regions.items():
-            cut = selections.all(*cuts)
-            output[f'mlljj_{region}'] = (tightLeptons[cut][:, 0] + tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
-            output[f'mljj_leadlep_{region}'] = (tightLeptons[cut][:, 0] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
-            output[f'mljj_subleadlep_{region}'] = (tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
+#        for region, cuts in regions.items():
+#            cut = selections.all(*cuts)
+#            output[f'mlljj_{region}'] = (tightLeptons[cut][:, 0] + tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
+#            output[f'mljj_leadlep_{region}'] = (tightLeptons[cut][:, 0] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
+#            output[f'mljj_subleadlep_{region}'] = (tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
 
         ###################
         # FILL HISTOGRAMS #
@@ -474,13 +474,12 @@ def selectMuons(events):
 
 def selectJets(events):
     # select AK4 jets
-    hem_issue = ((events.Jet.eta <= -3.0) | (events.Jet.eta >= -1.3)) & ((events.Jet.phi <= -1.57) | (events.Jet.phi >= -0.87))
+#    hem_issue = ((-3.0 < events.Jet.eta < -1.3) & (-1.57 < events.Jet.phi < -0.87))
 
     jetSelectAK4 = (
             (events.Jet.pt > 40)
              & (np.abs(events.Jet.eta) < 2.4)
             & (events.Jet.isTightLeptonVeto)
-            & hem_issue
     )
 
     # select AK8 jets (need to add LSF cut)
@@ -489,7 +488,6 @@ def selectJets(events):
             & (np.abs(events.FatJet.eta) < 2.4)
             & (events.FatJet.jetId == 2)
             & (events.FatJet.msoftdrop > 40)
-            & hem_issue
     )
 
     return events.Jet[jetSelectAK4], events.FatJet[jetSelectAK8]
