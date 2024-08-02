@@ -6,6 +6,10 @@ __pycache__
 *.gz
 plots/
 datasets/.sites_map.json
-.bashrc
 .env/
 .local/
+.bashrc
+shell/
+.condor_config
+.shell
+shell
