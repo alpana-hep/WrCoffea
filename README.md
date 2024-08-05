@@ -34,11 +34,7 @@ It takes a single argument, which is the path to the `json` file that was produc
 diff backgrounds/UL2018_Bkg_preprocessed_runnable.json backgrounds/UL2018_Bkg_preprocessed_all.json
 ```
 ### Analyze MC files
-The output of the preprocessing can be used directly to start an analysis with dask-awkward. This is done via the `run_analysis` script in the `WrCoffea` directory.
-```
-cd ..
-```
-To run the analyzer, a sample set and process must be specified as arguments. In general, the format is
+The output of the preprocessing can be used directly to start an analysis with dask-awkward. This is done via the `run_analysis` script in the `WrCoffea` directory. To run the analyzer, a sample set and process must be specified as arguments. In general, the format is
 ```
 python3 run_analysis.py <year> <process> --hists <output_filename>.root
 ```
@@ -57,6 +53,39 @@ There are two additional optional arguments:
 Lastly, for debugging purposes one can also change the `max_chunks` and `max_files` parameters inside the `run_analysis.py` script to significantly shorten the analysis time. The `--hists` argument can also be omitted if no histograms are desired.
 
 The output root file of histograms is stored in the `root_outputs/hists` directory.
+
+## Plotting
+### Merge root files
+Once all of the MC processes have been analyzed, there will be a seperate root file for each of them. Before plotting, these should be merged into one file. First, go to the directory where the histograms are saved,
+```
+cd root_outputs/hists
+```
+Make a new directory, and move all of the root files there. For example
+```
+mkdir 2018ULbkg
+mv *.root 2018ULbkg/
+```
+Go back to the `WrCoffea` directory and run the following command to merge the histograms,
+```
+python3 merge_hists.py <input_dir> <output_file>
+```
+For example,
+```
+python3 merge_hists.py root_outputs/hists/2018ULbkg 2018ULbkg.root
+```
+This will produce a single backgrounds file, `2018ULbkg.root`, with folders corresponding to the different files that were produced during the previous step.
+
+### Plotting
+
+To plot histograms, run
+```
+python3 plotting/plot_histograms.py
+```
+This will make plots of all of the histograms in the combined background root file. Bin sizes, x- and y-axis labels and limits for each histogram are all uniquely specified in the file
+```
+plotting/histogram_configs.py 
+```
+
 ### Running on data
 ```
 ./shell coffeateam/coffea-dask-almalinux8:latest
