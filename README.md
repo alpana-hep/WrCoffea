@@ -12,6 +12,51 @@ cd WrCoffea
 bash bootstrap.sh
 ```
 The `./shell` executable can then be used to start an apptainer shell with a coffea environment. For more information: https://github.com/CoffeaTeam/lpcjobqueue
+
+## Running over MC Samples
+### Obtain replica MC files
+First, `cd` into the `datasets` directory:
+ ```
+cd datasets
+```
+The first step is to use Coffeas' built in `DataDiscoveryCLI` class to simplify dataset query, and create a list of all available file replicas. The command to do this is:
+```
+python3 construct_bkg_fileset.py 2018
+```
+It takes one mandatory argument, which is the year of the background sample. In this case, `2018` corresponds to the 2018 Ultra Legacy campaign. The output is a json file, `UL2018_Bkg.json`, which is essentially a dictionary of replica files of all the background processes. It is stored in the `datasets/backgrounds` folder. For more information, see https://coffeateam.github.io/coffea/notebooks/dataset_discovery.html
+### Preprocess MC files
+The replicas metadata contain the file location in the CMS grid. This info can be preprocessed with uproot and dask-awkward to extract the fileset. Practically a fileset is a collection of metadata about the file location, file name, chunks splitting, that can be used directly to configure the uproot reading. The script to do this is also in the `datasets` directory:
+```
+python3 preprocess.py backgrounds/UL2018_Bkg
+```
+It takes a single argument, which is the path to the `json` file that was produced when constructing the background `json` replica files (however notice the `.json` extension is omitted). Two files are produced from this script, `UL2018_Bkg_preprocessed_all.json`, which is the fileset of all preprocessed files (successful or not), and `UL2018_Bkg_preprocessed_runnable.json`, which is the list of only the runnnable files. To see the differences between them (and hopefully there are none), run
+```
+diff backgrounds/UL2018_Bkg_preprocessed_runnable.json backgrounds/UL2018_Bkg_preprocessed_all.json
+```
+### Analyze MC files
+The output of the preprocessing can be used directly to start an analysis with dask-awkward. This is done via the `run_analysis` script in the `WrCoffea` directory.
+```
+cd ..
+```
+To run the analyzer, a sample set and process must be specified as arguments. In general, the format is
+```
+python3 run_analysis.py <year> <process> --hists <output_filename>.root
+```
+For example, 
+```
+python3 run_analysis.py 2018 DYJets --hists DYJets.root
+```
+The options for background processes are `DYJets`, `tt+tW`, `tt_semileptonic`, `WJets`, `Diboson`, `Triboson`, `ttX`, `SingleTop`.
+
+There are two additional optional arguments:
+
+`--executor lpc`: Specify whether or not to run on the LPC. If this argument is used, one must first start an apptainer shell with a coffea environment by running `./shell coffeateam/coffea-dask-almalinux8:latest`.
+
+`--masses`: Generate a root file with branches of the 3-object invariant mass ($m_{ljj}$) and 4-object invariant mass ($m_{lljj}$).
+
+Lastly, for debugging purposes one can also change the `max_chunks` and `max_files` parameters inside the `run_analysis.py` script to significantly shorten the analysis time. The `--hists` argument can also be omitted if no histograms are desired.
+
+The output root file of histograms is stored in the `root_outputs/hists` directory.
 ### Running on data
 ```
 ./shell coffeateam/coffea-dask-almalinux8:latest
