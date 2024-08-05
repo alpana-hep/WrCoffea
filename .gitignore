@@ -9,7 +9,5 @@ datasets/.sites_map.json
 .env/
 .local/
 .bashrc
-shell/
 .condor_config
-.shell
-shell
+old/

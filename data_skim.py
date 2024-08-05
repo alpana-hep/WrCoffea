@@ -50,8 +50,8 @@ def make_skimmed_events(events):
     return skimmed_dropped
 
 def load_output_json():
-    json_file_path = f'datasets/2018Data_available.json.gz'
-    with gzip.open(json_file_path, 'rt') as file:
+    json_file_path = f'datasets/data/UL2018_Data_preprocessed_runnable.json'
+    with open(json_file_path, 'r') as file:
         data = json.load(file)
     return data
 

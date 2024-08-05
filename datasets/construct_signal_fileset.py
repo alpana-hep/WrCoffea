@@ -67,7 +67,7 @@ lines = file_contents.strip().split('\n')
 prepended_lines = [f'{prepend_string}{line}' for line in lines]
 
 # Step 3: Extract MWR and MN values from the ROOT files and save to JSON
-output_json_path = "signal2018.json"
+output_json_path = "signal/PL2018_Signal.json"
 print("\nCreating json file...\n")
 
 mwr_mn_files = extract_genmodel_fields_from_lines(prepended_lines)

@@ -96,6 +96,7 @@ def plot_histogram(channel, mll, hist_name, hist_dict):
             ax.set_ylim(config["ylim"])
 
     bins = array.array('d', bins)
+    bins = np.array(bins)
     # Initialize variables to hold histogram data
     hist_data = []
     labels = []
@@ -119,6 +120,9 @@ def plot_histogram(channel, mll, hist_name, hist_dict):
         hist_data.append(hist_contents)
         labels.append(process)
 
+    # Convert lists to numpy arrays for easier manipulation
+    hist_data = np.array(hist_data)
+
     # Plot stacked histogram
     hep.histplot(
             hist_data,
@@ -129,6 +133,16 @@ def plot_histogram(channel, mll, hist_name, hist_dict):
             color=[colors[process] for process in labels],
             ax=ax
     )
+
+    # Plot the uncertainties
+#    ax.errorbar(
+#        (bins[:-1] + bins[1:]) / 2,
+#        stacked_data,
+#        yerr=stacked_errors,
+#        fmt='none',
+#        ecolor='black',
+#        capsize=2
+#    )
 
     # Set plot labels and title
     plt.legend()
@@ -145,7 +159,7 @@ def plot_histogram(channel, mll, hist_name, hist_dict):
     plt.close()
 
 if __name__ == "__main__":
-    input_file = "root_outputs/hists/2018ULbkg_triggers_hem/UL18_bkgs.root"
+    input_file = "root_outputs/hists/2018ULbkg_august5/2018ULbkg_aug5.root"
     f_in = ROOT.TFile(input_file, "READ")
 
     my_histos = get_histograms(f_in)

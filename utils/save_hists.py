@@ -6,22 +6,16 @@ from dask.distributed import progress
 import hist
 from hist import Hist
 
-def save_histograms(toCompute, hists_name, client, executor, sample):
+def save_histograms(my_histograms, hists_name, sample):
     output_dir = "root_outputs/hists/"
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, f"{hists_name}")
 
-    if sample == "Signal":
-        to_compute = remove_mass_tuples(toCompute)
-    else: 
-        to_compute = toCompute
-
-    my_histograms = compute_hists(to_compute, client, executor)
-
     if sample != "Signal":
-        my_histograms =scale_hists(my_histograms)
+        my_histograms = scale_hists(my_histograms)
 
     summed_hist = sum_hists(my_histograms)
+
     my_split_hists = split_hists(summed_hist)
 
     with uproot.recreate(output_file) as root_file:
@@ -31,29 +25,6 @@ def save_histograms(toCompute, hists_name, client, executor, sample):
             root_file[path] = hist
 
     print(f"Histograms saved to {output_file}.")
-
-def remove_mass_tuples(data):
-    new_data = {}
-    for key, value in data.items():
-        new_entry = value.copy()
-        del new_entry['mlljj']
-        del new_entry['mljj_leadlep']
-        del new_entry['mljj_subleadlep']
-        new_data[key] = new_entry
-    return new_data
-
-def compute_hists(all_histograms, client, executor):
-        print("\nComputing histograms...")
-        if executor is None:
-            with ProgressBar():
-                (histograms,)= dask.compute(all_histograms)
-        elif executor=="local":
-            (histograms,)= dask.compute(all_histograms)
-            histograms=client.gather(histograms)
-        elif executor=="lpc":
-            (histograms,)= dask.compute(all_histograms)
-#            histograms=client.gather(histograms)
-        return histograms
 
 def scale_hists(data):
     for dataset_key, dataset_info in data.items():
