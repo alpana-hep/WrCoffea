@@ -54,6 +54,87 @@ Lastly, for debugging purposes one can also change the `max_chunks` and `max_fil
 
 The output root file of histograms is stored in the `root_outputs/hists` directory.
 
+## Running over Data
+Running over data is slightly more complicated than MC samples because there is an additional skimming step required. The workflow is described below.
+
+### Obtain replica Data files
+Similar to MC, we first obtain the avaliable file replicas. The command to do this is:
+```
+cd datasets
+python3 construct_data_fileset.py 2018
+```
+### Preprocess Data files
+We then preprocess the data files:
+```
+python3 preprocess.py data/UL2018_Data
+```
+Check the differences between the preprocessed data files:
+```
+diff data/UL2018_Data_preprocessed_all.json data/UL2018_Data_preprocessed_runnable.json
+```
+
+### Skim Data files
+To reduce the size of the data files we then skim them, which involves making a cut on the lepton pT of 45 GeV, and selecting only the branches needed in the analysis. The format of the data skimming script is:
+```
+python3 data_skim.py <dataset> <year> <run>
+```
+For example,
+```
+python3 data_skim.py SingleMuon 2018 RunA
+```
+However, the script currently has memory problems, so only a few data files can be skimmed at a time. As a temporary fix, run the script
+```
+./submit_jobs.sh
+```
+which will skim two files at a time without having to manually rerun the python script.
+
+The output skimmed data root files are stored in the `dataskims/` directory. These should be moved to EOS at some point.
+
+### Merge Data files
+After the data files are skimmed, each one has about 70k events. To reduce the stress on Coffea when analyzing them, we them merge these files together, so each one has ~2 million events. To do this, we first `cd` to the directory where the skimmed files are. For example,
+```
+cd dataskims/SingleMuon2018RunAlepPt45
+```
+Then use ROOT's hadd command to merge ~30 files at a time together:
+```
+hadd SingleMuon2018RunA_part1-30.root SingleMuon2018RunA_file{1..30}-part0.root
+rm SingleMuon2018RunA_file{1..30}-part0.root
+```
+### Construct fileset of skimmed data 
+Once we have merged the skimmed data files, we need to contruct the json fileset of them. The command for this is in the `datasets/` directory:
+```
+python3 construct_skimmeddata_fileset.py
+```
+The skimmed filenames are hardcoded into `construct_skimmeddata_fileset.py`.
+
+### Preprocess skimmed data
+Similar to before, we then need to preprocess these files:
+```
+python3 preprocess.py dataskims/UL2018_skimmed_data
+diff UL2018_skimmed_data_preprocessed_all.json UL2018_skimmed_data_preprocessed_runnable.json
+```
+
+### Analyze data files
+The output of the preprocessing can be used directly to start an analysis with dask-awkward. This is done via the `run_analysis` script in the `WrCoffea` directory. To run the analyzer, a sample set and process must be specified as arguments. In general, the format is
+```
+python3 run_analysis.py <year> <process> --hists <output_filename>.root
+```
+For example, 
+```
+python3 run_analysis.py 2018 DYJets --hists DYJets.root
+```
+The options for background processes are `DYJets`, `tt+tW`, `tt_semileptonic`, `WJets`, `Diboson`, `Triboson`, `ttX`, `SingleTop`.
+
+There are two additional optional arguments:
+
+`--executor lpc`: Specify whether or not to run on the LPC. If this argument is used, one must first start an apptainer shell with a coffea environment by running `./shell coffeateam/coffea-dask-almalinux8:latest`.
+
+`--masses`: Generate a root file with branches of the 3-object invariant mass ($m_{ljj}$) and 4-object invariant mass ($m_{lljj}$).
+
+Lastly, for debugging purposes one can also change the `max_chunks` and `max_files` parameters inside the `run_analysis.py` script to significantly shorten the analysis time. The `--hists` argument can also be omitted if no histograms are desired.
+
+The output root file of histograms is stored in the `root_outputs/hists` directory.
+
 ## Plotting
 ### Merge root files
 Once all of the MC processes have been analyzed, there will be a seperate root file for each of them. Before plotting, these should be merged into one file. First, go to the directory where the histograms are saved,
