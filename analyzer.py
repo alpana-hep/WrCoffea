@@ -162,7 +162,6 @@ class WrAnalysis(processor.ProcessorABC):
         output['dataset'] = dataset
 
         isMC = hasattr(events, "genWeight")
-        isRealData = not hasattr(events, "genWeight")
 
         if process == "Signal":
             print(f"Analyzing {dataset} events.")
@@ -231,12 +230,14 @@ class WrAnalysis(processor.ProcessorABC):
         selections.add("dr>0.4", (dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4))
 
         # Trigger Selections
-        eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
-        muTrig = events.HLT.Mu50 | events.HLT.OldMu100 | events.HLT.TkMu100
 
-        selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
-        selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
-        selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
+        if not isRealData:
+            eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
+            muTrig = events.HLT.Mu50 | events.HLT.OldMu100 | events.HLT.TkMu100
+
+            selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
+            selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
+            selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
 
         # Flavor Selections
         selections.add("eejj", ((nTightElectrons == 2) & (nTightMuons == 0)))
@@ -265,9 +266,16 @@ class WrAnalysis(processor.ProcessorABC):
         #######################
 
         if isRealData:
-            for region in ['eejj_400mll', 'mumujj_400mll']:
+            for region in ['eejj_400mll', 'mumujj_400mll', 'emujj_400mll', 'eejj_150mll400', 'mumujj_150mll400', 'emujj_150mll400', 'eejj_60mll150', 'emujj_60mll150']:
                 if region in regions:
                     del regions[region]
+#            print(regions)
+            elements_to_remove = ['mumuTrigger']
+
+            # Iterate over the dictionary and filter out the unwanted elements
+            for key in regions:
+                regions[key] = [item for item in regions[key] if item not in elements_to_remove]
+#            print(regions)
 
         ##################
         # SIGNAL SAMPLES #

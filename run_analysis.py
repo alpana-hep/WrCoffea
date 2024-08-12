@@ -12,13 +12,14 @@ from dask.diagnostics import ProgressBar
 import dask 
 
 NanoAODSchema.warn_missing_crossrefs = False
+NanoAODSchema.error_missing_event_ids = False
 warnings.filterwarnings("ignore", category=FutureWarning, module="htcondor")
 
 def load_json(year, sample):
     if sample == "Signal":
         json_file_path = f'datasets/signal/PL{year}_Signal_preprocessed_runnable.json'
     elif sample == "Data":
-        json_file_path = f'datasets/data/UL{year}_Data_preprocessed_runnable.json'
+        json_file_path = f'datasets/dataskims/UL{year}_skimmed_data_preprocessed_runnable.json'
     else:
         json_file_path = f'datasets/backgrounds/UL{year}_Bkg_preprocessed_runnable.json'
     with open(json_file_path, 'r') as file:

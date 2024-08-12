@@ -45,26 +45,26 @@ def make_skimmed_events(events):
     event_filters = ((ak.count(selected_electrons.pt, axis=1) + ak.count(selected_muons.pt, axis=1)) >= 2)
 
     skimmed = events[event_filters]
-    skimmed_dropped = skimmed[list(set(x for x in skimmed.fields if x in ["Electron", "Muon", "Jet", "FatJet", "HLT.Ele32_WPTight_Gsf","HLT.Photon200", "HLT.Ele115_CaloIdVT_GsfTrkIdT", "HLT.Mu50", "HLT.OldMu100", "HLT.TkMu100", "event"]))]
-
+    skimmed_dropped = skimmed[list(set(x for x in skimmed.fields if x in ["Electron", "Muon", "Jet", "FatJet", "HLT", "event", "run", "luminosityBlock"]))]
+#    skimmed_dropped = skimmed
     return skimmed_dropped
 
 def load_output_json():
-    json_file_path = f'datasets/data/UL2018_Data_preprocessed_runnable.json'
+    json_file_path = f'data/UL2018_Data_preprocessed_runnable.json'
     with open(json_file_path, 'r') as file:
         data = json.load(file)
     return data
 
 def extract_data(dataset_dict, dataset, year, run):
     mapping = {
-        ("SingleMuon", "2018", "RunA"): "/SingleMuon/Run2018A-UL2018_MiniAODv2_NanoAODv9-v2/NANOAOD",
-        ("SingleMuon", "2018", "RunB"): "/SingleMuon/Run2018B-UL2018_MiniAODv2_NanoAODv9-v2/NANOAOD",
-        ("SingleMuon", "2018", "RunC"): "/SingleMuon/Run2018C-UL2018_MiniAODv2_NanoAODv9-v2/NANOAOD",
-        ("SingleMuon", "2018", "RunD"): "/SingleMuon/Run2018D-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD",
-        ("EGamma", "2018", "RunA"): "/EGamma/Run2018A-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD",
-        ("EGamma", "2018", "RunB"): "/EGamma/Run2018B-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD",
-        ("EGamma", "2018", "RunC"): "/EGamma/Run2018C-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD",
-        ("EGamma", "2018", "RunD"): "/EGamma/Run2018D-UL2018_MiniAODv2_NanoAODv9-v3/NANOAOD"
+        ("SingleMuon", "2018", "RunA"): "/SingleMuon/Run2018A-UL2018_MiniAODv2_NanoAODv9-v2/NANOAOD", #92 files
+        ("SingleMuon", "2018", "RunB"): "/SingleMuon/Run2018B-UL2018_MiniAODv2_NanoAODv9-v2/NANOAOD", #51 files
+        ("SingleMuon", "2018", "RunC"): "/SingleMuon/Run2018C-UL2018_MiniAODv2_NanoAODv9-v2/NANOAOD", #56 files
+        ("SingleMuon", "2018", "RunD"): "/SingleMuon/Run2018D-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD", #194 files
+        ("EGamma", "2018", "RunA"): "/EGamma/Run2018A-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD", #226 files
+        ("EGamma", "2018", "RunB"): "/EGamma/Run2018B-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD", #74 files
+        ("EGamma", "2018", "RunC"): "/EGamma/Run2018C-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD", #83 files
+        ("EGamma", "2018", "RunD"): "/EGamma/Run2018D-UL2018_MiniAODv2_NanoAODv9-v3/NANOAOD" #355 files
     }
 
     key = mapping.get((dataset, year, run))
@@ -85,10 +85,6 @@ if __name__ == "__main__":
 
     t0 = time.monotonic()
 
-#    cluster = LPCCondorCluster(cores=1, memory='8GB',log_directory='/uscms/home/bjackson/logs', ship_env=True)
-#    cluster.scale(200)
-#    client = Client(cluster)
-
     print("Starting to skim events\n")
 
     fileset = load_output_json()
@@ -97,7 +93,7 @@ if __name__ == "__main__":
     dataset_key = list(full_dataset.keys())[0]
     num_files = len(full_dataset[dataset_key]['files'].keys())
 
-    for i in range(args.start-1, num_files):
+    for i in range(args.start-1, args.start+1):
         t0 = time.monotonic()
         print(f"Analyzing file {i+1}")
         sliced_dataset = slice_files(full_dataset, slice(i, i+1))
@@ -114,9 +110,9 @@ if __name__ == "__main__":
             for dataset, skimmed in skimmed_dict.items():
                 print("Calling uproot_writeable and skimmed.repartition")
                 skimmed = uproot_writeable(skimmed)
-                skimmed = skimmed.repartition(rows_per_partition=1000000)
+                skimmed = skimmed.repartition(rows_per_partition=2000000)
                 print("Calling uproot.dask_write")
-                uproot.dask_write(skimmed, compute=True, destination="dataskims/", prefix=f"{args.dataset}_{args.year}_{args.run}_lepPt45/{args.dataset}{args.year}{args.run}_file{i+1}", tree_name = "Events")
+                uproot.dask_write(skimmed, compute=True, destination="dataskims/", prefix=f"{args.dataset}{args.year}{args.run}lepPt45/{args.dataset}{args.year}{args.run}_file{i+1}", tree_name = "Events")
 
         exec_time = time.monotonic() - t0
         print(f"File {i+1} took {exec_time/60:.2f} minutes to skim\n")

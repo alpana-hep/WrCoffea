@@ -306,13 +306,13 @@ configurations = {
     "150mll400": {
         "bins": list(range(0, 1050, 50)),
         "ylabel": "Events / bin",
-        "xlim": (0, 1000),
+        "xlim": (150, 400),
         "ylim": (1, 2e3)
     },
     "400mll": {
-        "bins": list(range(0, 1050, 50)),
+        "bins": list(range(400, 1050, 50)),
         "ylabel": "Events / bin",
-        "xlim": (0, 1000),
+        "xlim": (400, 1000),
         "ylim": (1, 2e3)
     },
 },
@@ -380,7 +380,7 @@ configurations = {
     },
 },
 "mass_fourobject": {
-    "xlabel": "$m_{lljj}$ (GeV)",
+    "xlabel": "$m_{lljj}$ [GeV]",
     "60mll150": {
         "bins": [800,1000,1200,1400,1600,2000,2400,2800,3200,8000],
         "ylabel": "Events / bin",
