@@ -67,7 +67,7 @@ if __name__ == "__main__":
     parser.add_argument(
             "--mass", 
             type=str, 
-            default="",
+            default=None,
             choices=['MWR600_MN100', 'MWR600_MN200', 'MWR600_MN400', 'MWR600_MN500', 'MWR800_MN100', 'MWR800_MN200', 
                      'MWR800_MN400', 'MWR800_MN600', 'MWR800_MN700', 'MWR1000_MN100', 'MWR1000_MN200', 'MWR1000_MN400', 
                      'MWR1000_MN600', 'MWR1000_MN800', 'MWR1000_MN900', 'MWR1200_MN100', 'MWR1200_MN200', 'MWR1200_MN400', 
@@ -137,7 +137,9 @@ if __name__ == "__main__":
     print(f"\nStarting to analyze {args.year} {args.sample} files")
 
     preprocessed_fileset = load_json(args.year, args.sample)
-    filtered_fileset = filter_by_process(preprocessed_fileset, args.sample)
+    filtered_fileset = filter_by_process(preprocessed_fileset, args.sample, args.mass)
+
+    print("filtered_fileset", filtered_fileset)
 
     to_compute = apply_to_fileset(
         data_manipulation=WrAnalysis(mass_point=args.mass),

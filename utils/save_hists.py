@@ -11,8 +11,9 @@ def save_histograms(my_histograms, hists_name, sample):
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, f"{hists_name}")
 
-    if sample != "Signal":
-        my_histograms = scale_hists(my_histograms)
+    print("my_histograms:", my_histograms)
+
+    my_histograms = scale_hists(my_histograms)
 
     summed_hist = sum_hists(my_histograms)
 

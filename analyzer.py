@@ -13,10 +13,10 @@ import time
 import re
 
 class WrAnalysis(processor.ProcessorABC):
-    def __init__(self, year='2018', mass_point=None):
+    def __init__(self, year='2018', mass_point=None, save_masses=None):
         self._year = year
         self._signal_sample = mass_point
-
+        self.masses = save_masses
         self._triggers = {
             '2018': [
                 'HLT_Mu50',
@@ -299,12 +299,14 @@ class WrAnalysis(processor.ProcessorABC):
 
             for region in regions:
                 regions[region].append(self._signal_sample)
+    
+            if self.masses:
+                for region, cuts in regions.items():
+                    cut = selections.all(*cuts)
+                    output[f'mlljj_{region}'] = (tightLeptons[cut][:, 0] + tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
+                    output[f'mljj_leadlep_{region}'] = (tightLeptons[cut][:, 0] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
+                    output[f'mljj_subleadlep_{region}'] = (tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
 
-            for region, cuts in regions.items():
-                cut = selections.all(*cuts)
-                output[f'mlljj_{region}'] = (tightLeptons[cut][:, 0] + tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
-                output[f'mljj_leadlep_{region}'] = (tightLeptons[cut][:, 0] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
-                output[f'mljj_subleadlep_{region}'] = (tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
             process = dataset #Not sure why I did this 
 
 

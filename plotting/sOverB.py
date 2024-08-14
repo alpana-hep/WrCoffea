@@ -6,6 +6,7 @@ import mplhep as hep
 import array
 import histogram_configs
 import matplotlib.ticker as mticker
+import matplotlib.patches as mpatches
 
 hep.style.use("CMS")
 
@@ -75,27 +76,17 @@ def reorder_dict(mll, original_dict):
 
     return reordered_dict
 
-def plot_histogram(channel, mll, hist_name, hist_dict, data_hist=None):
-    fig, (ax, ax_ratio) = plt.subplots(nrows=2,ncols=1,gridspec_kw={"height_ratios": [5, 1]},figsize=(10, 10))
+def plot_histogram(channel, mll, hist_name, hist_dict, signal_hists_dict=None):
+    fig, ax, = plt.subplots()
 
-    # Set the bins, labels and limits based on the hist_name and mll
-    if hist_name in histogram_configs.configurations:
-        xlabel = histogram_configs.configurations[hist_name]["xlabel"]
-        if mll in histogram_configs.configurations[hist_name]:
-            config = histogram_configs.configurations[hist_name][mll]
-            bins = np.array(array.array('d', config["bins"]))
-            ylabel = config["ylabel"]
-            xlim = config["xlim"]
-            ylim = config["ylim"]
-
-    dy = []
-    dy_err = []
-    ttbar = []
-    ttbar_err = []
-    nonprompt = []
-    nonprompt_err = []
-    other = []
-    other_err = []
+    bins = np.array(array.array('d', list(range(400,5050,50))))
+    ###########################################################
+    # Calculate the backgrounds and statistical uncertainties #
+    ###########################################################
+    dy, dy_err = [], []
+    ttbar, ttbar_err = [], []
+    nonprompt, nonprompt_err = [], []
+    other, other_err = [], []
 
     for process, hist in hist_dict.items():
         bin_centers, bin_widths = [], []
@@ -131,78 +122,77 @@ def plot_histogram(channel, mll, hist_name, hist_dict, data_hist=None):
     combined_sim = dy + ttbar + nonprompt + other
     combined_sim_err = np.sqrt(dy_err**2 + ttbar_err**2 + nonprompt_err**2 + other_err**2)
 
-    # Plot stacked histogram
+    ###########################################################
+    # Calculate the signal and statistical uncertainties      #
+    ###########################################################
+    mwr1200 = []
+    mwr1200_err = []
+    mwr2000 = []
+    mwr2000_err = []
+    mwr3200 = []
+    mwr3200_err = []
+
+    for mass_label, signal_hist in signal_hists_dict.items():
+        rebinned_signal_hist = signal_hist.Rebin(len(bins)-1, "hnew_data", bins)
+        for bin in range(1, rebinned_signal_hist.GetNbinsX() + 1):
+            if mass_label == 'MWR1200_MN600':
+                mwr1200.append(rebinned_signal_hist.GetBinContent(bin) * 59.74 * 1000)
+                mwr1200_err.append(rebinned_signal_hist.GetBinError(bin) * 59.74 * 1000)
+            elif mass_label == 'MWR2000_MN1000':
+                mwr2000.append(rebinned_signal_hist.GetBinContent(bin) * 59.74 * 1000)
+                mwr2000_err.append(rebinned_signal_hist.GetBinError(bin) * 59.74 * 1000)
+            elif mass_label == 'MWR3200_MN1600':
+                mwr3200.append(rebinned_signal_hist.GetBinContent(bin) * 59.74 * 1000)
+                mwr3200_err.append(rebinned_signal_hist.GetBinError(bin) * 59.74 * 1000)
+
+    mwr1200 = np.array(mwr1200)
+    mwr1200_err = np.array(mwr1200_err)
+    mwr2000 = np.array(mwr2000)
+    mwr2000_err = np.array(mwr2000_err)
+    mwr3200 = np.array(mwr3200)
+    mwr3200_err = np.array(mwr3200_err)
+
+    mwr1200_eff = mwr1200 / np.sqrt(combined_sim + mwr1200)
+    mwr2000_eff = mwr2000 / np.sqrt(combined_sim + mwr2000)
+    mwr3200_eff = mwr3200 / np.sqrt(combined_sim + mwr3200)
+
+    # For Z = X^{n}, del_Z = Z * n * del_X / X
+    sqrt_sim_mwr1200_err = np.sqrt(combined_sim+mwr1200) * (1/2) * np.sqrt(combined_sim_err**2 + mwr1200_err**2) / (combined_sim + mwr1200)
+    sqrt_sim_mwr2000_err = np.sqrt(combined_sim+mwr2000) * (1/2) * np.sqrt(combined_sim_err**2 + mwr2000_err**2) / (combined_sim + mwr2000)
+    sqrt_sim_mwr3200_err = np.sqrt(combined_sim+mwr3200) * (1/2) * np.sqrt(combined_sim_err**2 + mwr3200_err**2) / (combined_sim + mwr3200)
+
+    mwr1200_eff_err = mwr1200_eff * np.sqrt((mwr1200_err/mwr1200)**2 + (sqrt_sim_mwr1200_err/np.sqrt(combined_sim + mwr1200))**2)
+    mwr2000_eff_err = mwr2000_eff * np.sqrt((mwr2000_err/mwr2000)**2 + (sqrt_sim_mwr2000_err/np.sqrt(combined_sim + mwr2000))**2)
+    mwr3200_eff_err = mwr3200_eff * np.sqrt((mwr3200_err/mwr3200)**2 + (sqrt_sim_mwr3200_err/np.sqrt(combined_sim + mwr3200))**2)
+
+    # Main plot
     hep.histplot(
-            [other, nonprompt, ttbar, dy],
-            stack=True,
+            [mwr1200_eff, mwr2000_eff, mwr3200_eff],
             bins=bins,
-#            yerr=np.sqrt([other, nonprompt, ttbar, dy]),
-            histtype='fill',
-            color=['#00BFFF', '#32CD32', '#FF0000', '#FFFF00'],
-            alpha=[1, 1, 1, 1],
-            edgecolor=["k", "k", "k", "k"],
+            yerr=[mwr1200_eff_err, mwr2000_eff_err, mwr3200_eff_err],
+            stack=False,
+            histtype='step',
+            xerr=True,
+            color=['#5790fc', '#f89c20', '#e42536'],
             label=[
-                "Other backgrounds",
-                "Nonprompt",
-                r"$t\bar{t}+tW$",
-                "Z+jets",
+                r"$(m_{W_R}, m_{N})=1200,600 \mathrm{~GeV}$",
+                r"$(m_{W_R}, m_{N})=2000,1000 \mathrm{~GeV}$",
+                r"$(m_{W_R}, m_{N})=3200,1600 \mathrm{~GeV}$",
             ],
+            linewidth=1,
             ax=ax
     )
+    
+    hep.cms.label(data=False, lumi=59.74, fontsize=20, ax=ax)
 
-    hep.cms.label(data=True,lumi=59.74, fontsize=20, ax=ax)
+#    plt.subplots_adjust(left=0.14) 
 
-    # Plot data histogram if available
-    if data_hist:
-        rebinned_data_hist = data_hist.Rebin(len(bins)-1, "hnew_data", bins)
-        data_contents = []
-        xerrs = []
-        yerrs = []
-        center = []
-        for bin in range(1, rebinned_data_hist.GetNbinsX() + 1):
-            bin_width = bins[bin] - bins[bin - 1]
-            center.append((bins[bin] + bins[bin - 1]) * 0.5)
-            xerrs.append(bin_width * 0.5)
-            data_contents.append(rebinned_data_hist.GetBinContent(bin))
-            yerrs.append(rebinned_data_hist.GetBinError(bin))
-
-        ax.errorbar(
-            center,
-            data_contents,
-            xerr=xerrs,
-            yerr=yerrs,
-            fmt='o',
-            linewidth=2, 
-            capsize=2,
-            color='black',
-            label='Data',
-        )
-
-        # Create the ratio plot
-        ratio = np.divide(data_contents, combined_sim, out=np.zeros_like(data_contents), where=combined_sim!=0)
-        ratio_errors = np.divide(yerrs, combined_sim, out=np.zeros_like(yerrs), where=combined_sim!=0)
-        
-        ax_ratio.errorbar(
-            center,
-            ratio,
-            xerr=xerrs,
-            yerr=ratio_errors,
-            fmt='o',
-            linewidth=2,
-            capsize=2,
-            color='black',
-        )
-
-        ax_ratio.axhline(1, color='red', linestyle='--')
-
-#    ax.set_xlabel(xlabel)
-    ax.set_ylabel(ylabel)
-    ax.set_ylim(ylim)
-    ax.set_xlim(xlim)
+    ax.set_xlabel("$m_{ll}$ [GeV]")
+    ax.set_ylabel(r"$S/\sqrt{S+B}$")
+    ax.set_ylim(1e-3, 1e2)
+    ax.set_xlim(400,3500)
     ax.set_yscale('log')
     ax.legend(reverse=True, fontsize=20)
-
-    ax.set_xticklabels([])
 
     def custom_log_formatter(y, pos):
         if y == 1:
@@ -213,14 +203,6 @@ def plot_histogram(channel, mll, hist_name, hist_dict, data_hist=None):
             return f"$10^{{{int(np.log10(y))}}}$"
 
     ax.yaxis.set_major_formatter(mticker.FuncFormatter(custom_log_formatter))
-
-    ax_ratio.set_xlabel(xlabel)
-    ax_ratio.set_ylabel(r"$\frac{Data}{Sim.}$")
-    ax_ratio.set_ylim(0.7, 1.3)
-    ax_ratio.set_yticks([0.8, 1.0, 1.2])
-    ax_ratio.set_xlim(xlim)
-
-    plt.subplots_adjust(hspace=0.1)
 
     # Add the text box in the top-left corner
     if channel == "mumujj" and mll == "400mll":
@@ -238,7 +220,7 @@ def plot_histogram(channel, mll, hist_name, hist_dict, data_hist=None):
             verticalalignment='top', horizontalalignment='left')
 
     # Create output directory if it doesn't exist
-    output_path = os.path.join("plots", channel, mll,  f"{hist_name}.png")
+    output_path = os.path.join("plots", channel, mll,  f"{hist_name}_efficiency_2.png")
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     # Save the plot
@@ -247,23 +229,29 @@ def plot_histogram(channel, mll, hist_name, hist_dict, data_hist=None):
     plt.close()
 
 if __name__ == "__main__":
-    input_file = "root_outputs/hists/2018ULbkg_august5/2018ULbkg_aug5.root"
-    f_in = ROOT.TFile(input_file, "READ")
-    my_histos = get_histograms(f_in)
-    sorted_histograms = organize_histograms(my_histos)
+    bkg_file = "root_outputs/hists/2018ULbkg_august5/2018ULbkg_aug5.root"
+    f_bkg_in = ROOT.TFile(bkg_file, "READ")
+    my_bkg_histos = get_histograms(f_bkg_in)
+    sorted_bkg_histograms = organize_histograms(my_bkg_histos)
 
-    # Load data file
-    data_file = "root_outputs/hists/2018ULbkg_august5/Data.root"
-    f_data = ROOT.TFile(data_file, "READ")
-    data_histos = get_histograms(f_data)
-    sorted_data_histograms = organize_histograms(data_histos)
+    sig_file = "root_outputs/hists/2018ULbkg_august5/Signal_2018.root"
+    f_sig_in = ROOT.TFile(sig_file, "READ")
+    my_sig_histos = get_histograms(f_sig_in)
+    sorted_sig_histograms = organize_histograms(my_sig_histos)
 
-    for (channel, mll, hist_name), hist_dict in sorted_histograms.items():
-        if hist_name == "mass_fourobject" and mll == "400mll":
-            grouped_hist_dict = group_histograms(hist_dict)
-            reordered_dict = reorder_dict(mll, grouped_hist_dict)
-            data_hist = sorted_data_histograms.get((channel, mll, hist_name), {}).get("SingleMuon", None)
-            plot_histogram(channel, mll, hist_name, reordered_dict, data_hist)
+#    print("sorted_bkg_histograms", sorted_bkg_histograms)
+#    print()
+#    print("sorted_sig_histograms", sorted_sig_histograms)
+#    print()
+    for (channel, mll, hist_name), hist_dict in sorted_bkg_histograms.items():
+        for (sig_channel, sig_mll, sig_hist_name), sig_hist_dict in sorted_sig_histograms.items():
+            if (channel, mll, hist_name) == (sig_channel, sig_mll, sig_hist_name):
+                if hist_name == "mass_dileptons" and mll == "400mll":
+                    grouped_hist_dict = group_histograms(hist_dict)
+                    reordered_dict = reorder_dict(mll, grouped_hist_dict)
+                    print("reordered_dict", reordered_dict)
+                    plot_histogram(channel, mll, hist_name, reordered_dict, sig_hist_dict)
 
-    f_in.Close()
+    f_bkg_in.Close()
+    f_sig_in.Close()
     print(f"Finished making histograms.")

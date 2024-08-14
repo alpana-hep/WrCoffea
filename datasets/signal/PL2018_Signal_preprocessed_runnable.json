@@ -18701,7 +18701,7 @@
       "lumi": 59.74,
       "process": "Signal",
       "dataset": "MWR3200_MN1600",
-      "xsec": 1
+      "xsec": 0.008364
     },
     "form": null
   },
@@ -36634,7 +36634,7 @@
       "lumi": 59.74,
       "process": "Signal",
       "dataset": "MWR1200_MN600",
-      "xsec": 1
+      "xsec": 1.947
     },
     "form": null
   },
@@ -46878,7 +46878,7 @@
       "lumi": 59.74,
       "process": "Signal",
       "dataset": "MWR2000_MN1000",
-      "xsec": 1
+      "xsec": 0.1649
     },
     "form": null
   },

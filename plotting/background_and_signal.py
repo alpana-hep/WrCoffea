@@ -6,6 +6,7 @@ import mplhep as hep
 import array
 import histogram_configs
 import matplotlib.ticker as mticker
+import matplotlib.patches as mpatches
 
 hep.style.use("CMS")
 
@@ -75,7 +76,7 @@ def reorder_dict(mll, original_dict):
 
     return reordered_dict
 
-def plot_histogram(channel, mll, hist_name, hist_dict, data_hist=None):
+def plot_histogram(channel, mll, hist_name, hist_dict, signal_hist=None):
     fig, (ax, ax_ratio) = plt.subplots(nrows=2,ncols=1,gridspec_kw={"height_ratios": [5, 1]},figsize=(10, 10))
 
     # Set the bins, labels and limits based on the hist_name and mll
@@ -133,67 +134,86 @@ def plot_histogram(channel, mll, hist_name, hist_dict, data_hist=None):
 
     # Plot stacked histogram
     hep.histplot(
-            [other, nonprompt, ttbar, dy],
+            [other, nonprompt, dy, ttbar],
             stack=True,
             bins=bins,
 #            yerr=np.sqrt([other, nonprompt, ttbar, dy]),
             histtype='fill',
-            color=['#00BFFF', '#32CD32', '#FF0000', '#FFFF00'],
+            color=['#00BFFF', '#32CD32', '#FFFF00', '#FF0000'],
             alpha=[1, 1, 1, 1],
             edgecolor=["k", "k", "k", "k"],
             label=[
                 "Other backgrounds",
                 "Nonprompt",
-                r"$t\bar{t}+tW$",
                 "Z+jets",
+                r"$t\bar{t}+tW$",
             ],
             ax=ax
     )
 
-    hep.cms.label(data=True,lumi=59.74, fontsize=20, ax=ax)
+    hep.cms.label(data=False, lumi=59.74, fontsize=20, ax=ax)
 
+    # Plot the uncertainty on the combined backgrounds
+
+#    circ1 = mpatches.Patch( facecolor='k',alpha=0.6,hatch=r'\\\\',label='Label1')
+#    ax.errorbar(
+#        bin_centers,
+#        combined_sim,
+#        yerr=combined_sim_err, 
+#        xerr=bin_widths*0.5,
+#        marker =circ1
+#        markersize=8, 
+#        markerfacecolor='blue', 
+#        markeredgecolor='black', 
+#        markeredgewidth=1.5,
+#        capsize=3, 
+#        linestyle='none'
+#    )
+    
     # Plot data histogram if available
-    if data_hist:
-        rebinned_data_hist = data_hist.Rebin(len(bins)-1, "hnew_data", bins)
-        data_contents = []
+    if signal_hist:
+        rebinned_signal_hist = signal_hist.Rebin(len(bins)-1, "hnew_data", bins)
+        signal_contents = []
         xerrs = []
-        yerrs = []
+        signal_errs = []
         center = []
-        for bin in range(1, rebinned_data_hist.GetNbinsX() + 1):
+        for bin in range(1, rebinned_signal_hist.GetNbinsX() + 1):
             bin_width = bins[bin] - bins[bin - 1]
             center.append((bins[bin] + bins[bin - 1]) * 0.5)
             xerrs.append(bin_width * 0.5)
-            data_contents.append(rebinned_data_hist.GetBinContent(bin))
-            yerrs.append(rebinned_data_hist.GetBinError(bin))
+            signal_contents.append(rebinned_signal_hist.GetBinContent(bin)* 59.74 * 1000)
+            signal_errs.append(rebinned_signal_hist.GetBinError(bin)* 59.74 * 1000)
+    
+        signal_contents = np.array(signal_contents)
 
-        ax.errorbar(
-            center,
-            data_contents,
-            xerr=xerrs,
-            yerr=yerrs,
-            fmt='o',
-            linewidth=2, 
-            capsize=2,
-            color='black',
-            label='Data',
-        )
-
-        # Create the ratio plot
-        ratio = np.divide(data_contents, combined_sim, out=np.zeros_like(data_contents), where=combined_sim!=0)
-        ratio_errors = np.divide(yerrs, combined_sim, out=np.zeros_like(yerrs), where=combined_sim!=0)
-        
-        ax_ratio.errorbar(
-            center,
-            ratio,
-            xerr=xerrs,
-            yerr=ratio_errors,
-            fmt='o',
+        hep.histplot(
+            signal_contents,
+            stack=False,
+            bins=bins,
+#            yerr=signal_errs,
+            histtype='step',
+            linestyle='dashdot',
             linewidth=2,
-            capsize=2,
             color='black',
+            label=r"$(m_{W_R}, m_{N})=(2000,1000) \mathrm{~GeV}$",
+            ax=ax
         )
 
-        ax_ratio.axhline(1, color='red', linestyle='--')
+#        ratio = np.divide(signal_contents, combined_sim, where=combined_sim!=0)
+#        ratio_err = ratio * np.sqrt(np.square(signal_errs / signal_contents) + np.square(combined_sim_err / combined_sim), where=combined_sim!=0)
+        
+#        ax_ratio.errorbar(
+#            center,
+#            ratio,
+#            xerr=xerrs,
+#            yerr=ratio_err,
+#            fmt='o',
+#            linewidth=2,
+#            capsize=2,
+#            color='black',
+#        )
+
+        ax_ratio.axhline(1, color='black', linestyle='-')
 
 #    ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
@@ -252,18 +272,18 @@ if __name__ == "__main__":
     my_histos = get_histograms(f_in)
     sorted_histograms = organize_histograms(my_histos)
 
-    # Load data file
-    data_file = "root_outputs/hists/2018ULbkg_august5/Data.root"
-    f_data = ROOT.TFile(data_file, "READ")
-    data_histos = get_histograms(f_data)
-    sorted_data_histograms = organize_histograms(data_histos)
+    # Load signal file
+    signal_file = "root_outputs/hists/2018ULbkg_august5/MWR2000_MN1000.root"
+    f_signal = ROOT.TFile(signal_file, "READ")
+    signal_histos = get_histograms(f_signal)
+    sorted_signal_histograms = organize_histograms(signal_histos)
 
     for (channel, mll, hist_name), hist_dict in sorted_histograms.items():
         if hist_name == "mass_fourobject" and mll == "400mll":
             grouped_hist_dict = group_histograms(hist_dict)
             reordered_dict = reorder_dict(mll, grouped_hist_dict)
-            data_hist = sorted_data_histograms.get((channel, mll, hist_name), {}).get("SingleMuon", None)
-            plot_histogram(channel, mll, hist_name, reordered_dict, data_hist)
+            signal_hist = sorted_signal_histograms.get((channel, mll, hist_name), {}).get("MWR2000_MN1000", None)
+            plot_histogram(channel, mll, hist_name, reordered_dict, signal_hist)
 
     f_in.Close()
     print(f"Finished making histograms.")

@@ -310,10 +310,10 @@ configurations = {
         "ylim": (1, 2e3)
     },
     "400mll": {
-        "bins": list(range(400, 1050, 50)),
+        "bins": list(range(400, 5010, 10)),
         "ylabel": "Events / bin",
-        "xlim": (400, 1000),
-        "ylim": (1, 2e3)
+        "xlim": (400, 5000),
+        "ylim": (1e-3, 1e4)
     },
 },
 "mass_dijets": {
@@ -394,10 +394,10 @@ configurations = {
         "ylim": (1, 9e3)
     },
     "400mll": {
-        "bins": [800,1000,1200,1400,1600,2000,2400,2800,3200,8000],
-        "ylabel": "Events / bin",
+        "bins": list(range(800, 8200, 200)),
+        "ylabel": "Events / 200 GeV",
         "xlim": (800, 8000),
-        "ylim": (1, 9e3)
+        "ylim": (1e-3, 1e4)
     },
 },
 }
