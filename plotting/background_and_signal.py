@@ -76,7 +76,7 @@ def reorder_dict(mll, original_dict):
 
     return reordered_dict
 
-def plot_histogram(channel, mll, hist_name, hist_dict, signal_hist=None):
+def plot_histogram(channel, mll, hist_name, hist_dict, signal_hists_dict=None):
     fig, (ax, ax_ratio) = plt.subplots(nrows=2,ncols=1,gridspec_kw={"height_ratios": [5, 1]},figsize=(10, 10))
 
     # Set the bins, labels and limits based on the hist_name and mll
@@ -169,33 +169,52 @@ def plot_histogram(channel, mll, hist_name, hist_dict, signal_hist=None):
 #        capsize=3, 
 #        linestyle='none'
 #    )
-    
-    # Plot data histogram if available
-    if signal_hist:
-        rebinned_signal_hist = signal_hist.Rebin(len(bins)-1, "hnew_data", bins)
-        signal_contents = []
-        xerrs = []
-        signal_errs = []
-        center = []
-        for bin in range(1, rebinned_signal_hist.GetNbinsX() + 1):
-            bin_width = bins[bin] - bins[bin - 1]
-            center.append((bins[bin] + bins[bin - 1]) * 0.5)
-            xerrs.append(bin_width * 0.5)
-            signal_contents.append(rebinned_signal_hist.GetBinContent(bin)* 59.74 * 1000)
-            signal_errs.append(rebinned_signal_hist.GetBinError(bin)* 59.74 * 1000)
-    
-        signal_contents = np.array(signal_contents)
+
+    ###########################################################
+    # Calculate the signal and statistical uncertainties      #
+    ###########################################################
+    if signal_hists_dict:
+        mwr1200 = []
+        mwr1200_err = []
+        mwr2000 = []
+        mwr2000_err = []
+        mwr3200 = []
+        mwr3200_err = []
+
+        for mass_label, signal_hist in signal_hists_dict.items():
+            rebinned_signal_hist = signal_hist.Rebin(len(bins)-1, "hnew_data", bins)
+            for bin in range(1, rebinned_signal_hist.GetNbinsX() + 1):
+                if mass_label == 'MWR1200_MN600':
+                    mwr1200.append(rebinned_signal_hist.GetBinContent(bin) * 59.74 * 1000)
+                    mwr1200_err.append(rebinned_signal_hist.GetBinError(bin) * 59.74 * 1000)
+                elif mass_label == 'MWR2000_MN1000':
+                    mwr2000.append(rebinned_signal_hist.GetBinContent(bin) * 59.74 * 1000)
+                    mwr2000_err.append(rebinned_signal_hist.GetBinError(bin) * 59.74 * 1000)
+                elif mass_label == 'MWR3200_MN1600':
+                    mwr3200.append(rebinned_signal_hist.GetBinContent(bin) * 59.74 * 1000)
+                    mwr3200_err.append(rebinned_signal_hist.GetBinError(bin) * 59.74 * 1000)
+
+        mwr1200 = np.array(mwr1200)
+        mwr1200_err = np.array(mwr1200_err)
+        mwr2000 = np.array(mwr2000)
+        mwr2000_err = np.array(mwr2000_err)
+        mwr3200 = np.array(mwr3200)
+        mwr3200_err = np.array(mwr3200_err)
 
         hep.histplot(
-            signal_contents,
+            [mwr1200, mwr2000, mwr3200],
             stack=False,
             bins=bins,
 #            yerr=signal_errs,
             histtype='step',
-            linestyle='dashdot',
+            linestyle='dashed',
             linewidth=2,
-            color='black',
-            label=r"$(m_{W_R}, m_{N})=(2000,1000) \mathrm{~GeV}$",
+            color=['black', '#e76300', '#832db6'],
+            label=[
+                r"$(m_{W_R}, m_{N})=1200,600 \mathrm{~GeV}$",
+                r"$(m_{W_R}, m_{N})=2000,1000 \mathrm{~GeV}$",
+                r"$(m_{W_R}, m_{N})=3200,1600 \mathrm{~GeV}$",
+            ],
             ax=ax
         )
 
@@ -262,28 +281,30 @@ def plot_histogram(channel, mll, hist_name, hist_dict, signal_hist=None):
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     # Save the plot
-    plt.savefig(output_path)
+    plt.savefig(output_path, dpi=600)
     print(f"Saved {output_path}")
     plt.close()
 
 if __name__ == "__main__":
-    input_file = "root_outputs/hists/2018ULbkg_august5/2018ULbkg_aug5.root"
-    f_in = ROOT.TFile(input_file, "READ")
-    my_histos = get_histograms(f_in)
-    sorted_histograms = organize_histograms(my_histos)
+    bkg_file = "root_outputs/hists/2018ULbkg_august5/2018ULbkg_aug5.root"
+    f_bkg_in = ROOT.TFile(bkg_file, "READ")
+    my_bkg_histos = get_histograms(f_bkg_in)
+    sorted_bkg_histograms = organize_histograms(my_bkg_histos)
 
-    # Load signal file
-    signal_file = "root_outputs/hists/2018ULbkg_august5/MWR2000_MN1000.root"
-    f_signal = ROOT.TFile(signal_file, "READ")
-    signal_histos = get_histograms(f_signal)
-    sorted_signal_histograms = organize_histograms(signal_histos)
+    sig_file = "root_outputs/hists/2018ULbkg_august5/Signal_2018.root"
+    f_sig_in = ROOT.TFile(sig_file, "READ")
+    my_sig_histos = get_histograms(f_sig_in)
+    sorted_sig_histograms = organize_histograms(my_sig_histos)
 
-    for (channel, mll, hist_name), hist_dict in sorted_histograms.items():
-        if hist_name == "mass_fourobject" and mll == "400mll":
-            grouped_hist_dict = group_histograms(hist_dict)
-            reordered_dict = reorder_dict(mll, grouped_hist_dict)
-            signal_hist = sorted_signal_histograms.get((channel, mll, hist_name), {}).get("MWR2000_MN1000", None)
-            plot_histogram(channel, mll, hist_name, reordered_dict, signal_hist)
+    for (channel, mll, hist_name), hist_dict in sorted_bkg_histograms.items():
+        for (sig_channel, sig_mll, sig_hist_name), sig_hist_dict in sorted_sig_histograms.items():
+            if (channel, mll, hist_name) == (sig_channel, sig_mll, sig_hist_name):
+                if hist_name == "mass_fourobject" and mll == "400mll":
+                    grouped_hist_dict = group_histograms(hist_dict)
+                    reordered_dict = reorder_dict(mll, grouped_hist_dict)
+                    plot_histogram(channel, mll, hist_name, reordered_dict, sig_hist_dict)
 
-    f_in.Close()
+    f_bkg_in.Close()
+    f_sig_in.Close()
     print(f"Finished making histograms.")
+

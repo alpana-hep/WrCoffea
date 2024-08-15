@@ -15,6 +15,12 @@ configurations = {
         "xlim": (0, 2e3),
         "ylim": (1,1e4),
     },
+    "150mll": {
+        "bins": list(range(0, 2010, 10)),
+        "ylabel": "Events / 10 GeV",
+        "xlim": (0, 2e3),
+        "ylim": (1,1e4),
+    },
     "400mll": {
         "bins": list(range(0, 1050, 50)),
         "ylabel": "Events / 50 GeV",
@@ -52,6 +58,12 @@ configurations = {
         "ylim": (1, 2e5)
     },
     "150mll400": {
+        "bins": list(range(0, 2010, 50)),
+        "ylabel": "Events / 10 GeV",
+        "xlim": (0, 2e3),
+        "ylim": (1, 2e4)
+    },
+    "150mll": {
         "bins": list(range(0, 2010, 50)),
         "ylabel": "Events / 10 GeV",
         "xlim": (0, 2e3),
@@ -141,6 +153,12 @@ configurations = {
         "xlim": (-3, 3),
         "ylim": (1e-3, 2e3)
     },
+    "150mll": {
+        "bins": list(np.arange(-3, 3.5, 0.5)),
+        "ylabel": "Events / 0.5",
+        "xlim": (-3, 3),
+        "ylim": (1e-3, 2e3)
+    },
     "400mll": {
         "bins": list(np.arange(-3, 3.5, 0.5)),
         "ylabel": "Events / 0.5",
@@ -178,6 +196,12 @@ configurations = {
         "ylim": (1e-3, 2e3)
     },
     "150mll400": {
+        "bins": list(np.arange(-3, 3.5, 0.5)),
+        "ylabel": "Events / bin",
+        "xlim": (-3, 3),
+        "ylim": (1e-3, 2e3)
+    },
+    "150mll": {
         "bins": list(np.arange(-3, 3.5, 0.5)),
         "ylabel": "Events / bin",
         "xlim": (-3, 3),
@@ -225,6 +249,12 @@ configurations = {
         "xlim": (-4, 4),
         "ylim": (1e-3, 2e3)
     },
+    "150mll": {
+        "bins": list(np.arange(-4, 4.5, 0.5)),
+        "ylabel": "Events / 0.5",
+        "xlim": (-4, 4),
+        "ylim": (1e-3, 2e3)
+    },
     "400mll": {
         "bins": list(np.arange(-4, 4.5, 0.5)),
         "ylabel": "Events / 0.5",
@@ -256,6 +286,12 @@ configurations = {
 "phi_leadjet": {
     "xlabel": "$\phi$ of the leading jet",
     "60mll150": {
+        "bins": list(np.arange(-4, 4.5, 0.5)),
+        "ylabel": "Events / bin",
+        "xlim": (-4, 4),
+        "ylim": (1e-3, 2e3)
+    },
+    "150mll": {
         "bins": list(np.arange(-4, 4.5, 0.5)),
         "ylabel": "Events / bin",
         "xlim": (-4, 4),
@@ -301,6 +337,12 @@ configurations = {
         "bins": list(range(0, 1050, 50)),
         "ylabel": "Events / bin",
         "xlim": (0, 1000),
+        "ylim": (1, 2e3)
+    },
+    "150mll": {
+        "bins": list(range(0, 8010, 10)),
+        "ylabel": "Events / bin",
+        "xlim": (150, 8000),
         "ylim": (1, 2e3)
     },
     "150mll400": {
@@ -393,8 +435,15 @@ configurations = {
         "xlim": (800, 8000),
         "ylim": (1, 9e3)
     },
-    "400mll": {
+    "150mll": {
         "bins": list(range(800, 8200, 200)),
+        "ylabel": "Events / 200 GeV",
+        "xlim": (800, 8000),
+        "ylim": (1e-3, 1e4)
+    },
+    "400mll": {
+        "bins": [800,1000,1200,1400,1600,2000,2400,2800,3200,8000],
+#        "bins": list(range(800, 8200, 200)),
         "ylabel": "Events / 200 GeV",
         "xlim": (800, 8000),
         "ylim": (1e-3, 1e4)

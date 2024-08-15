@@ -99,10 +99,10 @@ if __name__ == "__main__":
             help="Signal mass point to analyze"
     )
     parser.add_argument(
-            "--executor", 
-            type=str, 
-            default=None, 
-            help="How to run the processing"
+            "--lpc", 
+            type=bool, 
+            default=False, 
+            help="Start an LPC cluster."
     )
     parser.add_argument(
             "--hists", 
@@ -125,7 +125,7 @@ if __name__ == "__main__":
 
     t0 = time.monotonic()
 
-    if args.executor == "lpc":
+    if args.lpc:
         from lpcjobqueue import LPCCondorCluster
         cluster = LPCCondorCluster(cores=1, memory='8GB',log_directory='/uscms/home/bjackson/logs') #Changed form 8GB to 10GB
         cluster.scale(200)
@@ -139,8 +139,6 @@ if __name__ == "__main__":
     preprocessed_fileset = load_json(args.year, args.sample)
     filtered_fileset = filter_by_process(preprocessed_fileset, args.sample, args.mass)
 
-    print("filtered_fileset", filtered_fileset)
-
     to_compute = apply_to_fileset(
         data_manipulation=WrAnalysis(mass_point=args.mass),
         fileset=max_files(max_chunks(filtered_fileset)),
@@ -150,7 +148,7 @@ if __name__ == "__main__":
 
     if args.hists:
         print("\nComputing histograms...")
-        if args.executor == "lpc":
+        if args.lpc:
             (histograms,)= dask.compute(to_compute)
             client.close()
             cluster.close()

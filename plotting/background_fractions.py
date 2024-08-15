@@ -235,7 +235,7 @@ def plot_histogram(channel, mll, hist_name, hist_dict, data_hist=None):
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     # Save the plot
-    plt.savefig(output_path)
+    plt.savefig(output_path, dpi=600)
     plt.close()
 
 if __name__ == "__main__":

@@ -173,7 +173,7 @@ def plot_histogram(channel, mll, hist_name, hist_dict, signal_hists_dict=None):
             stack=False,
             histtype='step',
             xerr=True,
-            color=['#5790fc', '#f89c20', '#e42536'],
+            color=['black', '#e76300', '#832db6'],
             label=[
                 r"$(m_{W_R}, m_{N})=1200,600 \mathrm{~GeV}$",
                 r"$(m_{W_R}, m_{N})=2000,1000 \mathrm{~GeV}$",
@@ -224,7 +224,7 @@ def plot_histogram(channel, mll, hist_name, hist_dict, signal_hists_dict=None):
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     # Save the plot
-    plt.savefig(output_path)
+    plt.savefig(output_path, dpi=600)
     print(f"Saved {output_path}")
     plt.close()
 

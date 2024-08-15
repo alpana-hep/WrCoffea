@@ -20,12 +20,12 @@ parser.add_argument("input_directory", type=str, help="Directory containing the 
 parser.add_argument("output_file", type=str, help="Name of the output ROOT file.")
 args = parser.parse_args()
 
-#required_files = [
-#    "DYJets.root", "tt+tW.root", "WJets.root", "tt_semileptonic.root",
-#    "Diboson.root", "Triboson.root", "ttX.root", "SingleTop.root"
-#]
+required_files = [
+    "DYJets.root", "tt+tW.root", "WJets.root", "tt_semileptonic.root",
+    "Diboson.root", "Triboson.root", "ttX.root", "SingleTop.root"
+]
 
-required_files = ["MWR3200_MN1600.root", "MWR2000_MN1000.root", "MWR1200_MN600.root"]
+#required_files = ["MWR3200_MN1600.root", "MWR2000_MN1000.root", "MWR1200_MN600.root"]
 
 input_files = [os.path.join(args.input_directory, f) for f in required_files if os.path.isfile(os.path.join(args.input_directory, f))]
 
