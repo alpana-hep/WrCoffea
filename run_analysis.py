@@ -26,9 +26,14 @@ def load_output_json(year, sample, executor):
         with gzip.open(json_file_path, 'rt') as file:
             data = json.load(file)
     else:
-        json_file_path = f'datasets/{year}ULbkg_available.json.gz'
-        with gzip.open(json_file_path, 'rt') as file:
-            data = json.load(file)
+        if executor == "umn":
+            json_file_path = f'datasets/UL{year}_Bkg_preprocessed_runnable.json'
+            with open(json_file_path, 'r') as file:
+                data = json.load(file)
+        else:
+            json_file_path = f'datasets/{year}ULbkg_available.json.gz'
+            with gzip.open(json_file_path, 'rt') as file:
+                data = json.load(file)
     return data
 
 def filter_by_process(fileset, desired_process, mass=None):
@@ -138,9 +143,6 @@ if __name__ == "__main__":
     if args.sample != "Signal" and args.mass:
         raise Exception("Sample must be Signal")
 
-    if args.sample != "Signal" and args.executor == "umn":
-        raise NotImplementedError("Only signal samples can currently be run at umn")
-
     t0 = time.monotonic()
 
     if args.executor == "local":
@@ -185,13 +187,13 @@ if __name__ == "__main__":
             print("to_compute:", to_compute)
             utils.save_masses.save_tuples(to_compute, args.masses, client)
     else:
-        fileset = max_files(filter_by_process(load_output_json(args.year, args.sample), args.sample), args.max_files)
+        fileset = max_files(filter_by_process(load_output_json(args.year, args.sample, args.executor), args.sample), args.max_files)
 
         to_compute = apply_to_fileset(
             data_manipulation=WrAnalysis(),
-            fileset=max_chunks(fileset, 1000),
+            fileset=max_chunks(fileset, 1),
             schemaclass=NanoAODSchema,
-            uproot_options={"handler": uproot.XRootDSource, "timeout": 3600}
+#            uproot_options={"handler": uproot.XRootDSource, "timeout": 3600}
         )
         if args.hists:
             utils.save_hists.save_histograms(to_compute, args.hists, client, args.executor, args.sample)
