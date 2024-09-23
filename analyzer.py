@@ -128,19 +128,19 @@ class WrAnalysis(processor.ProcessorABC):
             'mass_threeobject_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1600, 0, 8000, name='mass_threeobject_leadlep', label=r'm_{ljj} [GeV]'),
+                hist.axis.Regular(1000, 0, 3000, name='mass_threeobject_leadlep', label=r'm_{ljj} [GeV]'),
                 hist.storage.Weight(),
             ),
             'mass_threeobject_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1600, 0, 8000, name='mass_threeobject_subleadlep', label=r'm_{ljj} [GeV]'),
+                hist.axis.Regular(1000, 0, 3000, name='mass_threeobject_subleadlep', label=r'm_{ljj} [GeV]'),
                 hist.storage.Weight(),
             ),
             'mass_fourobject': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1600, 0, 8000, name='mass_fourobject', label=r'm_{lljj} [GeV]'),
+                hist.axis.Regular(1000, 0, 3000, name='mass_fourobject', label=r'm_{lljj} [GeV]'),
                 hist.storage.Weight(),
             ),
 #            'mass_threeobject_leadlep vs. mass_fourobject': dah.hist.Hist(
@@ -634,7 +634,7 @@ class WrAnalysis(processor.ProcessorABC):
             'var_36': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(800, 0, 40, name='var_36', label=r'var_36'),
+                hist.axis.Regular(1000, 0, 10, name='var_36', label=r'var_36'),
                 hist.storage.Weight(),
             ),
 #            'var_36 vs. mass_fourobject': dah.hist.Hist(
@@ -729,13 +729,13 @@ class WrAnalysis(processor.ProcessorABC):
             'var_40_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(200, 0, 1, name='var_40_leadlep', label=r'var_40_leadlep'),
+                hist.axis.Regular(1000, 0, 10, name='var_40_leadlep', label=r'var_40_leadlep'),
                 hist.storage.Weight(),
             ),
             'var_40_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(200, 0, 1, name='var_40_subleadlep', label=r'var_40_subleadlep'),
+                hist.axis.Regular(1000, 0, 10, name='var_40_subleadlep', label=r'var_40_subleadlep'),
                 hist.storage.Weight(),
             ),
 #            'var_40_leadlep vs. mass_fourobject': dah.hist.Hist(
@@ -783,13 +783,13 @@ class WrAnalysis(processor.ProcessorABC):
             'var_42_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(400, 0, 20, name='var_42_leadlep', label=r'var_42_leadlep'),
+                hist.axis.Regular(1000, 0, 5, name='var_42_leadlep', label=r'var_42_leadlep'),
                 hist.storage.Weight(),
             ),
             'var_42_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(400, 0, 20, name='var_42_subleadlep', label=r'var_42_subleadlep'),
+                hist.axis.Regular(1000, 0, 5, name='var_42_subleadlep', label=r'var_42_subleadlep'),
                 hist.storage.Weight(),
             ),
 #            'var_42_leadlep vs. mass_fourobject': dah.hist.Hist(
@@ -864,13 +864,13 @@ class WrAnalysis(processor.ProcessorABC):
             'var_45_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(200, 0, 1, name='var_45_leadlep', label=r'var_45_leadlep'),
+                hist.axis.Regular(1000, 0, 0.4, name='var_45_leadlep', label=r'var_45_leadlep'),
                 hist.storage.Weight(),
             ),
             'var_45_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(200, 0, 1, name='var_45_subleadlep', label=r'var_45_subleadlep'),
+                hist.axis.Regular(1000, 0, 0.4, name='var_45_subleadlep', label=r'var_45_subleadlep'),
                 hist.storage.Weight(),
             ),
 #            'var_45_leadlep vs. mass_fourobject': dah.hist.Hist(
@@ -972,68 +972,68 @@ class WrAnalysis(processor.ProcessorABC):
             'var_49_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 5, name='var_49_leadlep', label=r'var_49_leadlep'),
+                hist.axis.Regular(1000, 0, 1.8, name='var_49_leadlep', label=r'var_49_leadlep'),
                 hist.storage.Weight(),
             ),
             'var_49_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 5, name='var_49_subleadlep', label=r'var_49_subleadlep'),
+                hist.axis.Regular(1000, 0, 1.8, name='var_49_subleadlep', label=r'var_49_subleadlep'),
                 hist.storage.Weight(),
             ),
 ################################################################################################################################################################################
             'var_50_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 5, name='var_50_leadlep', label=r'var_50_leadlep'),
+                hist.axis.Regular(1000, 0, 1.5, name='var_50_leadlep', label=r'var_50_leadlep'),
                 hist.storage.Weight(),
             ),
             'var_50_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 5, name='var_50_subleadlep', label=r'var_50_subleadlep'),
+                hist.axis.Regular(1000, 0, 1.5, name='var_50_subleadlep', label=r'var_50_subleadlep'),
                 hist.storage.Weight(),
             ),
 ################################################################################################################################################################################
             'var_51_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 5, name='var_51_leadlep', label=r'var_51_leadlep'),
+                hist.axis.Regular(1000, 0, 2, name='var_51_leadlep', label=r'var_51_leadlep'),
                 hist.storage.Weight(),
             ),
             'var_51_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 5, name='var_51_subleadlep', label=r'var_51_subleadlep'),
+                hist.axis.Regular(1000, 0, 2, name='var_51_subleadlep', label=r'var_51_subleadlep'),
                 hist.storage.Weight(),
             ),
 ################################################################################################################################################################################
             'var_52': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 5, name='var_52', label=r'var_52'),
+                hist.axis.Regular(1000, 0, 1.5, name='var_52', label=r'var_52'),
                 hist.storage.Weight(),
             ),
 ################################################################################################################################################################################
             'var_53': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 5, name='var_53', label=r'var_53'),
+                hist.axis.Regular(1000, 0.5, 2.5, name='var_53', label=r'var_53'),
                 hist.storage.Weight(),
             ),
 ################################################################################################################################################################################
-            'var_54_leadlep': dah.hist.Hist(
-                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 5, name='var_54_leadlep', label=r'var_54_leadlep'),
-                hist.storage.Weight(),
-            ),
-            'var_54_subleadlep': dah.hist.Hist(
-                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 5, name='var_54_subleadlep', label=r'var_54_subleadlep'),
-                hist.storage.Weight(),
-            ),
+#            'var_54_leadlep': dah.hist.Hist(
+#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+#                hist.axis.Regular(1000, 0, 5, name='var_54_leadlep', label=r'var_54_leadlep'),
+#                hist.storage.Weight(),
+#            ),
+#            'var_54_subleadlep': dah.hist.Hist(
+#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+#                hist.axis.Regular(1000, 0, 5, name='var_54_subleadlep', label=r'var_54_subleadlep'),
+#                hist.storage.Weight(),
+#            ),
 
         }
 
