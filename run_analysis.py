@@ -27,7 +27,7 @@ def load_output_json(year, sample, executor):
             data = json.load(file)
     else:
         if executor == "umn":
-            json_file_path = f'datasets/UL{year}_Bkg_preprocessed_runnable.json'
+            json_file_path = f'/local/cms/user/jack1851/dy_skims/jsons/DY_skimmed_preprocessed.json'
             with open(json_file_path, 'r') as file:
                 data = json.load(file)
         else:
@@ -191,7 +191,7 @@ if __name__ == "__main__":
 
         to_compute = apply_to_fileset(
             data_manipulation=WrAnalysis(),
-            fileset=max_chunks(fileset, 1),
+            fileset=max_chunks(fileset),
             schemaclass=NanoAODSchema,
 #            uproot_options={"handler": uproot.XRootDSource, "timeout": 3600}
         )

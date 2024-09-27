@@ -88,7 +88,6 @@ class WrAnalysis(processor.ProcessorABC):
 #                hist.axis.Regular(600, -3, 3, name='eta_subleadjet', label=r'#eta of the subleading jet [GeV]'),
 #                hist.storage.Weight(),
 #            ),
-#
 #            'phi_leadlep': dah.hist.Hist(
 #                hist.axis.StrCategory([], name="process", label="Process", growth=True),
 #                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
@@ -783,13 +782,13 @@ class WrAnalysis(processor.ProcessorABC):
             'var_42_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 5, name='var_42_leadlep', label=r'var_42_leadlep'),
+                hist.axis.Regular(1000, 0, 15, name='var_42_leadlep', label=r'var_42_leadlep'),
                 hist.storage.Weight(),
             ),
             'var_42_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 5, name='var_42_subleadlep', label=r'var_42_subleadlep'),
+                hist.axis.Regular(1000, 0, 15, name='var_42_subleadlep', label=r'var_42_subleadlep'),
                 hist.storage.Weight(),
             ),
 #            'var_42_leadlep vs. mass_fourobject': dah.hist.Hist(
@@ -864,13 +863,13 @@ class WrAnalysis(processor.ProcessorABC):
             'var_45_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 0.4, name='var_45_leadlep', label=r'var_45_leadlep'),
+                hist.axis.Regular(1000, 0, 2, name='var_45_leadlep', label=r'var_45_leadlep'),
                 hist.storage.Weight(),
             ),
             'var_45_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 0.4, name='var_45_subleadlep', label=r'var_45_subleadlep'),
+                hist.axis.Regular(1000, 0, 2, name='var_45_subleadlep', label=r'var_45_subleadlep'),
                 hist.storage.Weight(),
             ),
 #            'var_45_leadlep vs. mass_fourobject': dah.hist.Hist(
@@ -969,56 +968,56 @@ class WrAnalysis(processor.ProcessorABC):
 #                hist.storage.Weight(),
 #            ),
 ################################################################################################################################################################################
-            'var_49_leadlep': dah.hist.Hist(
-                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 1.8, name='var_49_leadlep', label=r'var_49_leadlep'),
-                hist.storage.Weight(),
-            ),
-            'var_49_subleadlep': dah.hist.Hist(
-                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 1.8, name='var_49_subleadlep', label=r'var_49_subleadlep'),
-                hist.storage.Weight(),
-            ),
+#            'var_49_leadlep': dah.hist.Hist(
+#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+#                hist.axis.Regular(1000, 0, 1.8, name='var_49_leadlep', label=r'var_49_leadlep'),
+#                hist.storage.Weight(),
+#            ),
+#            'var_49_subleadlep': dah.hist.Hist(
+#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+#                hist.axis.Regular(1000, 0, 1.8, name='var_49_subleadlep', label=r'var_49_subleadlep'),
+#                hist.storage.Weight(),
+#            ),
 ################################################################################################################################################################################
             'var_50_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 1.5, name='var_50_leadlep', label=r'var_50_leadlep'),
+                hist.axis.Regular(1000, 0, 4, name='var_50_leadlep', label=r'var_50_leadlep'),
                 hist.storage.Weight(),
             ),
             'var_50_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 1.5, name='var_50_subleadlep', label=r'var_50_subleadlep'),
+                hist.axis.Regular(1000, 0, 4, name='var_50_subleadlep', label=r'var_50_subleadlep'),
                 hist.storage.Weight(),
             ),
 ################################################################################################################################################################################
-            'var_51_leadlep': dah.hist.Hist(
-                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 2, name='var_51_leadlep', label=r'var_51_leadlep'),
-                hist.storage.Weight(),
-            ),
-            'var_51_subleadlep': dah.hist.Hist(
-                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 2, name='var_51_subleadlep', label=r'var_51_subleadlep'),
-                hist.storage.Weight(),
-            ),
+#            'var_51_leadlep': dah.hist.Hist(
+#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+#                hist.axis.Regular(1000, 0, 2, name='var_51_leadlep', label=r'var_51_leadlep'),
+#                hist.storage.Weight(),
+#            ),
+#            'var_51_subleadlep': dah.hist.Hist(
+#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+#                hist.axis.Regular(1000, 0, 2, name='var_51_subleadlep', label=r'var_51_subleadlep'),
+#                hist.storage.Weight(),
+#            ),
 ################################################################################################################################################################################
-            'var_52': dah.hist.Hist(
-                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0, 1.5, name='var_52', label=r'var_52'),
-                hist.storage.Weight(),
-            ),
+#            'var_52': dah.hist.Hist(
+#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+#                hist.axis.Regular(1000, 0, 1.5, name='var_52', label=r'var_52'),
+#                hist.storage.Weight(),
+#            ),
 ################################################################################################################################################################################
             'var_53': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1000, 0.5, 2.5, name='var_53', label=r'var_53'),
+                hist.axis.Regular(1000, 0, 2.5, name='var_53', label=r'var_53'),
                 hist.storage.Weight(),
             ),
 ################################################################################################################################################################################
@@ -1093,8 +1092,10 @@ class WrAnalysis(processor.ProcessorABC):
         weights.add("event_weight", weight=eventWeight)
 
         if not isRealData:
-            output['sumw'] = ak.sum(eventWeight)
-
+            if process == "Signal":
+                output['sumw'] = ak.sum(eventWeight)
+            elif process == "DYJets":
+                output['sumw'] = events.metadata["genEventSumw"]
         ###################
         # EVENT VARIABLES #
         ###################
@@ -2151,18 +2152,18 @@ class WrAnalysis(processor.ProcessorABC):
 #                weight=weights.weight()[cut],
 #            )
 ################################################################################################################################################################################
-            output['var_49_leadlep'].fill(
-                process=process,
-                region=region,
-                var_49_leadlep = (tightLeptons[cut][:,0] + AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).pt / tightLeptons[cut][:,1].pt,
-                weight=weights.weight()[cut],
-            )
-            output['var_49_subleadlep'].fill(
-                process=process,
-                region=region,
-                var_49_subleadlep = (tightLeptons[cut][:,1] + AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).pt / tightLeptons[cut][:,0].pt,
-                weight=weights.weight()[cut],
-            )
+#            output['var_49_leadlep'].fill(
+#                process=process,
+#                region=region,
+#                var_49_leadlep = (tightLeptons[cut][:,0] + AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).pt / tightLeptons[cut][:,1].pt,
+#                weight=weights.weight()[cut],
+#            )
+#            output['var_49_subleadlep'].fill(
+#                process=process,
+#                region=region,
+#                var_49_subleadlep = (tightLeptons[cut][:,1] + AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).pt / tightLeptons[cut][:,0].pt,
+#                weight=weights.weight()[cut],
+#            )
 ################################################################################################################################################################################
             output['var_50_leadlep'].fill(
                 process=process,
@@ -2177,25 +2178,25 @@ class WrAnalysis(processor.ProcessorABC):
                 weight=weights.weight()[cut],
             )
 ################################################################################################################################################################################
-            output['var_51_leadlep'].fill(
-                process=process,
-                region=region,
-                var_51_leadlep = (AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).pt / tightLeptons[cut][:,1].pt,
-                weight=weights.weight()[cut],
-            )
-            output['var_51_subleadlep'].fill(
-                process=process,
-                region=region,
-                var_51_subleadlep = (AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).pt / tightLeptons[cut][:,0].pt,
-                weight=weights.weight()[cut],
-            )
+#            output['var_51_leadlep'].fill(
+#                process=process,
+#                region=region,
+#                var_51_leadlep = (AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).pt / tightLeptons[cut][:,1].pt,
+#                weight=weights.weight()[cut],
+#            )
+#            output['var_51_subleadlep'].fill(
+#                process=process,
+#                region=region,
+#                var_51_subleadlep = (AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).pt / tightLeptons[cut][:,0].pt,
+#                weight=weights.weight()[cut],
+#            )
 ################################################################################################################################################################################
-            output['var_52'].fill(
-                process=process,
-                region=region,
-                var_52 = (tightLeptons[cut][:,0] + tightLeptons[cut][:,1]).pt / (AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).pt,
-                weight=weights.weight()[cut],
-            )
+#            output['var_52'].fill(
+#                process=process,
+#                region=region,
+#                var_52 = (tightLeptons[cut][:,0] + tightLeptons[cut][:,1]).pt / (AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).pt,
+#                weight=weights.weight()[cut],
+#            )
 ################################################################################################################################################################################
             output['var_53'].fill(
                 process=process,
