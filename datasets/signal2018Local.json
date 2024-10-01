@@ -530,7 +530,7 @@
       "lumi": 59.74,
       "process": "Signal",
       "dataset": "MWR2000_MN600",
-      "xsec": 1
+      "xsec": 0.2217
     }
   },
   "MWR1200_MN1000": {
@@ -1094,7 +1094,7 @@
       "lumi": 59.74,
       "process": "Signal",
       "dataset": "MWR2000_MN1900",
-      "xsec": 1
+      "xsec": 0.005147
     }
   },
   "MWR3200_MN2600": {
@@ -1654,7 +1654,7 @@
       "lumi": 59.74,
       "process": "Signal",
       "dataset": "MWR2000_MN1600",
-      "xsec": 1
+      "xsec": 0.0472
     }
   },
   "MWR2000_MN200": {
@@ -2111,7 +2111,7 @@
       "lumi": 59.74,
       "process": "Signal",
       "dataset": "MWR2000_MN400",
-      "xsec": 1
+      "xsec": 0.2415
     }
   },
   "MWR1600_MN1000": {
@@ -2794,7 +2794,7 @@
       "lumi": 59.74,
       "process": "Signal",
       "dataset": "MWR2000_MN800",
-      "xsec": 1
+      "xsec": 0.1962
     }
   },
   "MWR2200_MN1400": {
@@ -2866,7 +2866,7 @@
       "lumi": 59.74,
       "process": "Signal",
       "dataset": "MWR2000_MN1000",
-      "xsec": 1
+      "xsec": 0.1649
     }
   },
   "MWR1800_MN200": {
@@ -3990,7 +3990,7 @@
       "lumi": 59.74,
       "process": "Signal",
       "dataset": "MWR2000_MN1400",
-      "xsec": 1
+      "xsec": 0.08748
     }
   },
   "MWR2600_MN100": {
@@ -5045,7 +5045,7 @@
       "lumi": 59.74,
       "process": "Signal",
       "dataset": "MWR2000_MN1800",
-      "xsec": 1
+      "xsec": 0.01517
     }
   },
   "MWR3200_MN1000": {
@@ -5719,7 +5719,7 @@
       "lumi": 59.74,
       "process": "Signal",
       "dataset": "MWR2000_MN1200",
-      "xsec": 1
+      "xsec": 0.1281
     }
   },
   "MWR3200_MN600": {
