@@ -11,6 +11,7 @@ import dask_awkward as dak
 from coffea.analysis_tools import PackedSelection
 import time
 import re
+from utils.prime_frame import *
 
 class WrAnalysis(processor.ProcessorABC):
     def __init__(self, year='2018', mass_point=None):
@@ -1209,8 +1210,28 @@ class WrAnalysis(processor.ProcessorABC):
         # FILL HISTOGRAMS #
         ###################
 
+        print(regions.items())
+
         for region, cuts in regions.items():
             cut = selections.all(*cuts)
+
+            #gamma_lead, gamma_sublead = gamma(tightLeptons[cut][:, 0].px, tightLeptons[cut][:, 0].py, tightLeptons[cut][:, 1].px, tightLeptons[cut][:, 1].py)
+
+            #leadlep = Four_Vector(tightLeptons[cut][:, 0].energy, tightLeptons[cut][:, 0].px, tightLeptons[cut][:, 0].py, tightLeptons[cut][:, 0].pz, gamma_lead, gamma_sublead)
+            #subleadlep = Four_Vector(tightLeptons[cut][:, 1].energy, tightLeptons[cut][:, 1].px, tightLeptons[cut][:, 1].py, tightLeptons[cut][:, 1].pz, gamma_lead, gamma_sublead)
+            #leadjet = Four_Vector(AK4Jets[cut][:, 0].energy, AK4Jets[cut][:, 0].px, AK4Jets[cut][:, 0].py, AK4Jets[cut][:, 0].pz, gamma_lead, gamma_sublead)
+            #subleadjet = Four_Vector(AK4Jets[cut][:, 1].energy, AK4Jets[cut][:, 1].px, AK4Jets[cut][:, 1].py, AK4Jets[cut][:, 1].pz, gamma_lead, gamma_sublead)
+
+            print('type(tightLeptons[cut][:, 0]) --> ' + str(type(tightLeptons[cut][:, 0])))
+
+            print('tightLeptons[cut][:, 0] --> ' + str(tightLeptons[cut][:, 0]))
+
+            #print('type(tightLeptons[cut][:, 0].pt) --> ' + str(type(tightLeptons[cut][:, 0].pt)))
+
+            #print('tightLeptons[cut][:, 0].pt --> ' + str(tightLeptons[cut][:, 0].pt))
+
+            print('a')
+
 #            output['pt_leadlep'].fill(
 #                process=process,
 #                region=region,
@@ -2217,6 +2238,8 @@ class WrAnalysis(processor.ProcessorABC):
 #                var_54_subleadlep=(tightLeptons[cut][:,1] + AK4Jets[cut][:,0] + AK4Jets[cut][:,1] - tightLeptons[cut][:,0]).pt/(tightLeptons[cut][:,1] + AK4Jets[cut][:,0] + AK4Jets[cut][:,1] + tightLeptons[cut][:,0]),
 #                weight=weights.weight()[cut],
 #            )
+
+
 
         output["weightStats"] = weights.weightStatistics
         return output
