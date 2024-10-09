@@ -14,6 +14,28 @@ bash bootstrap.sh
 The `./shell` executable can then be used to start an apptainer shell with a coffea environment. For more information: https://github.com/CoffeaTeam/lpcjobqueue
 
 ## Running over MC Samples
+
+### Preprocessing
+The entry point to the analyzer is a configuration file provided by the user in `preprocess/configs` (for example `UL18_bkg_cfg.json`), which specifies the DAS dataset names and cross-sections.
+
+The script
+ ```
+python3 make_preprocessed_json.py
+```
+takes in the `UL18_bkg_cfg.json` configuration file and performs several functions. First, it finds replica sites where the NANOAOD root files are located, it computes the sum of the event weights for each dataset, and it preprocesses them so that they can be skimmed, or given directly to the analyzer if skimming is not needed. This information is stored in an output `json` file, `preprocess/jsons/UL18_bkg_preprocessed.json`. This step only needs to be done once, or when a new dataset is added. If skimming is not needed, proceed to the `Analyze MC files` section.
+
+### Skimming
+The MC samples can then be skimmed and uploaded to EOS, where they are read into the analyzer. The skimming is also handled in the `preprocess` directory.
+The skimming itself is handled in the script `skim_files.py` which takes in `UL18_bkg_preprocessed.json` as input. A bash script is used to run it due to a python memory issue
+ ```
+./all_skims.sh
+```
+The skimmed files are saved locally, into a `tmp` folder. Before uploading them to EOS, they can be merged together. For example,
+```
+for i in {1..28}; do hadd DYJetsToLL_M-50_HT-400to600_skim${i}.root DYJetsToLL_M-50_HT-400to600_skim${i}-part*.root && rm DYJetsToLL_M-50_HT-400to600_skim${i}-part*.root; done
+hadd DYJetsToLL_M-50_HT-400to600_skims1to14.root DYJetsToLL_M-50_HT-400to600_skim{1..14}.root && hadd DYJetsToLL_M-50_HT-400to600_skims15to28.root DYJetsToLL_M-50_HT-400to600_skim{15..28}.root && rm DYJetsToLL_M-50_HT-400to600_skim{1..28}.root
+```
+
 ### Obtain replica MC files
 First, `cd` into the `datasets` directory:
  ```
