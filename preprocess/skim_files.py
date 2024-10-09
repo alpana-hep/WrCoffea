@@ -114,17 +114,15 @@ if __name__ == "__main__":
     dataset_key = list(full_dataset.keys())[0]
     num_files = len(full_dataset[dataset_key]['files'])
 
-    max_file = args.start
-
-    # Process files in a loop, using delayed evaluation to optimize memory
     tasks = []
-    for i in range(args.start - 1, args.start):
-        print(f"Skimming file {i+1} of {num_files} for {args.dataset}")
-        sliced_dataset = slice_files(full_dataset, slice(i, i+1))
-        task = process_file(sliced_dataset, args.dataset, i+1)
-        tasks.append(task)
-        exec_time = time.monotonic() - t0
-        print(f"File {i+1} skimmed in {exec_time/60:.2f} minutes.\n")
+
+    sliced_dataset = slice_files(full_dataset, slice(args.start - 1, args.start))
+
+    print(f"Skimming file {args.start} of {num_files} for {args.dataset}")
+    task = process_file(sliced_dataset, args.dataset, args.start)
+    tasks.append(task)
+
     # Execute all tasks
     results = delayed(tasks).compute()
     exec_time = time.monotonic() - t0
+    print(f"File {args.start} skimmed in {exec_time/60:.2f} minutes.\n")
