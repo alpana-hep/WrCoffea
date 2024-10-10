@@ -18,7 +18,7 @@ The `./shell` executable can then be used to start an apptainer shell with a cof
 ### Preprocessing MC and Data
 The entry point to the analyzer is a configuration file provided by the user in `preprocess/configs`, which specifies the DAS dataset names and cross-sections (if MC).
 
-The script `preprocessed_json.py` takes in the configuration file as the first argument and performs several functions. Namely, it finds replica sites where the NANOAOD root files are located and preprocesses them so that they can be skimmed, or given directly to the analyzer if skimming is not needed. This information is stored in an output `JSON` file, which is provided as the second argument. If the sample is MC, it also computes the sum of the event weights for each dataset.
+The script `preprocessed_json.py` takes in the configuration file as the first argument and performs several functions. Namely, it uses Coffeas' built in `DataDiscoveryCLI` class to simplify dataset query, and create a list of all available file replicas. It then preprocesses them using Coffeas' `preprocess` class so that they can be skimmed, or given directly to the analyzer if skimming is not needed. This information is stored in an output `JSON` file, which is provided as the second argument. If the sample is MC, it also computes the sum of the event weights for each dataset.
 
 For example, to preprocesses MC background samples, run
  ```
@@ -41,7 +41,7 @@ The skimmed files are saved locally, into a `tmp` folder. Before uploading them 
 for i in {1..28}; do hadd DYJetsToLL_M-50_HT-400to600_skim${i}.root DYJetsToLL_M-50_HT-400to600_skim${i}-part*.root && rm DYJetsToLL_M-50_HT-400to600_skim${i}-part*.root; done
 hadd DYJetsToLL_M-50_HT-400to600_skims1to14.root DYJetsToLL_M-50_HT-400to600_skim{1..14}.root && hadd DYJetsToLL_M-50_HT-400to600_skims15to28.root DYJetsToLL_M-50_HT-400to600_skim{15..28}.root && rm DYJetsToLL_M-50_HT-400to600_skim{1..28}.root
 ```
-To copy to EOS, use the command
+To copy to EOS, go into the `tmp` folder and use a command of the form
 ```
 xrdcp -r DYJetsToLL_M-50_HT-70to100 root://cmseos.fnal.gov//store/user/wijackso/skims/UL2018/lep_pt_45
 ```
