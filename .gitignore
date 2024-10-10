@@ -11,3 +11,6 @@ datasets/.sites_map.json
 .bashrc
 .condor_config
 old/
+*.png
+wr_env/
+.sites_map.json
