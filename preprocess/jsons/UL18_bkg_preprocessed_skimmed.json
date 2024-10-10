@@ -1,0 +1,908 @@
+{
+    "/DYJetsToLL_M-50_HT-70to100_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
+        "files": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/skims/UL2018/lep_pt_45/DYJetsToLL_M-50_HT-70to100/DYJetsToLL_M-50_HT-70to100_skims1to13.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        100120
+                    ],
+                    [
+                        100120,
+                        200240
+                    ],
+                    [
+                        200240,
+                        300360
+                    ],
+                    [
+                        300360,
+                        400480
+                    ],
+                    [
+                        400480,
+                        500600
+                    ],
+                    [
+                        500600,
+                        600720
+                    ],
+                    [
+                        600720,
+                        700840
+                    ],
+                    [
+                        700840,
+                        800960
+                    ],
+                    [
+                        800960,
+                        901077
+                    ]
+                ],
+                "num_entries": 901077,
+                "uuid": "e76c2114-8677-11ef-8f8e-49bfe183beef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "UL2018",
+            "process": "DYJets",
+            "dataset": "DYJetsToLL_M-50_HT-70to100",
+            "xsec": 208.977,
+            "genEventSumw": 17004433.0
+        },
+        "form": null
+    },
+    "/DYJetsToLL_M-50_HT-100to200_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
+        "files": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/skims/UL2018/lep_pt_45/DYJetsToLL_M-50_HT-100to200/DYJetsToLL_M-50_HT-100to200_skims16to30.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        96436
+                    ],
+                    [
+                        96436,
+                        192872
+                    ],
+                    [
+                        192872,
+                        289308
+                    ],
+                    [
+                        289308,
+                        385744
+                    ],
+                    [
+                        385744,
+                        482180
+                    ],
+                    [
+                        482180,
+                        578616
+                    ],
+                    [
+                        578616,
+                        675052
+                    ],
+                    [
+                        675052,
+                        771488
+                    ],
+                    [
+                        771488,
+                        867924
+                    ],
+                    [
+                        867924,
+                        964360
+                    ],
+                    [
+                        964360,
+                        1060796
+                    ],
+                    [
+                        1060796,
+                        1157232
+                    ],
+                    [
+                        1157232,
+                        1253657
+                    ]
+                ],
+                "num_entries": 1253657,
+                "uuid": "d0e4b8d8-8678-11ef-9598-49bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/skims/UL2018/lep_pt_45/DYJetsToLL_M-50_HT-100to200/DYJetsToLL_M-50_HT-100to200_skims1to15.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        100205
+                    ],
+                    [
+                        100205,
+                        200410
+                    ],
+                    [
+                        200410,
+                        300615
+                    ],
+                    [
+                        300615,
+                        400820
+                    ],
+                    [
+                        400820,
+                        501025
+                    ],
+                    [
+                        501025,
+                        601230
+                    ],
+                    [
+                        601230,
+                        701435
+                    ],
+                    [
+                        701435,
+                        801640
+                    ],
+                    [
+                        801640,
+                        901845
+                    ],
+                    [
+                        901845,
+                        1002050
+                    ],
+                    [
+                        1002050,
+                        1102255
+                    ],
+                    [
+                        1102255,
+                        1202456
+                    ]
+                ],
+                "num_entries": 1202456,
+                "uuid": "a224d208-8678-11ef-bbb4-49bfe183beef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "UL2018",
+            "process": "DYJets",
+            "dataset": "DYJetsToLL_M-50_HT-100to200",
+            "xsec": 181.3,
+            "genEventSumw": 26202328.0
+        },
+        "form": null
+    },
+    "/DYJetsToLL_M-50_HT-200to400_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
+        "files": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/skims/UL2018/lep_pt_45/DYJetsToLL_M-50_HT-200to400/DYJetsToLL_M-50_HT-200to400_skims11to21.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        99529
+                    ],
+                    [
+                        99529,
+                        199058
+                    ],
+                    [
+                        199058,
+                        298587
+                    ],
+                    [
+                        298587,
+                        398116
+                    ],
+                    [
+                        398116,
+                        497645
+                    ],
+                    [
+                        497645,
+                        597174
+                    ],
+                    [
+                        597174,
+                        696703
+                    ],
+                    [
+                        696703,
+                        796232
+                    ],
+                    [
+                        796232,
+                        895761
+                    ],
+                    [
+                        895761,
+                        995290
+                    ],
+                    [
+                        995290,
+                        1094819
+                    ],
+                    [
+                        1094819,
+                        1194348
+                    ],
+                    [
+                        1194348,
+                        1293877
+                    ],
+                    [
+                        1293877,
+                        1393406
+                    ],
+                    [
+                        1393406,
+                        1492935
+                    ],
+                    [
+                        1492935,
+                        1592460
+                    ]
+                ],
+                "num_entries": 1592460,
+                "uuid": "90f5fce0-8679-11ef-80bf-49bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/skims/UL2018/lep_pt_45/DYJetsToLL_M-50_HT-200to400/DYJetsToLL_M-50_HT-200to400_skims1to10.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        103208
+                    ],
+                    [
+                        103208,
+                        206416
+                    ],
+                    [
+                        206416,
+                        309624
+                    ],
+                    [
+                        309624,
+                        412832
+                    ],
+                    [
+                        412832,
+                        516040
+                    ],
+                    [
+                        516040,
+                        619248
+                    ],
+                    [
+                        619248,
+                        722456
+                    ],
+                    [
+                        722456,
+                        825664
+                    ],
+                    [
+                        825664,
+                        928872
+                    ],
+                    [
+                        928872,
+                        1032080
+                    ],
+                    [
+                        1032080,
+                        1135288
+                    ],
+                    [
+                        1135288,
+                        1238496
+                    ],
+                    [
+                        1238496,
+                        1341704
+                    ],
+                    [
+                        1341704,
+                        1444912
+                    ],
+                    [
+                        1444912,
+                        1548114
+                    ]
+                ],
+                "num_entries": 1548114,
+                "uuid": "8c43d53c-8679-11ef-9093-49bfe183beef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "UL2018",
+            "process": "DYJets",
+            "dataset": "DYJetsToLL_M-50_HT-200to400",
+            "xsec": 50.4177,
+            "genEventSumw": 18455718.0
+        },
+        "form": null
+    },
+    "/DYJetsToLL_M-50_HT-400to600_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
+        "files": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/skims/UL2018/lep_pt_45/DYJetsToLL_M-50_HT-400to600/DYJetsToLL_M-50_HT-400to600_skims15to28.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        103770
+                    ],
+                    [
+                        103770,
+                        207540
+                    ],
+                    [
+                        207540,
+                        311310
+                    ],
+                    [
+                        311310,
+                        415080
+                    ],
+                    [
+                        415080,
+                        518850
+                    ],
+                    [
+                        518850,
+                        622620
+                    ],
+                    [
+                        622620,
+                        726390
+                    ],
+                    [
+                        726390,
+                        830160
+                    ],
+                    [
+                        830160,
+                        933930
+                    ],
+                    [
+                        933930,
+                        1037700
+                    ],
+                    [
+                        1037700,
+                        1141470
+                    ],
+                    [
+                        1141470,
+                        1245240
+                    ],
+                    [
+                        1245240,
+                        1349002
+                    ]
+                ],
+                "num_entries": 1349002,
+                "uuid": "7b32da10-85eb-11ef-b59f-5ebfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/skims/UL2018/lep_pt_45/DYJetsToLL_M-50_HT-400to600/DYJetsToLL_M-50_HT-400to600_skims1to14.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        104939
+                    ],
+                    [
+                        104939,
+                        209878
+                    ],
+                    [
+                        209878,
+                        314817
+                    ],
+                    [
+                        314817,
+                        419756
+                    ],
+                    [
+                        419756,
+                        524695
+                    ],
+                    [
+                        524695,
+                        629634
+                    ],
+                    [
+                        629634,
+                        734573
+                    ],
+                    [
+                        734573,
+                        839512
+                    ],
+                    [
+                        839512,
+                        944448
+                    ]
+                ],
+                "num_entries": 944448,
+                "uuid": "61c301d6-85eb-11ef-8a26-5ebfe183beef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "UL2018",
+            "process": "DYJets",
+            "dataset": "DYJetsToLL_M-50_HT-400to600",
+            "xsec": 6.98394,
+            "genEventSumw": 8682257.0
+        },
+        "form": null
+    },
+    "/DYJetsToLL_M-50_HT-600to800_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
+        "files": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/skims/UL2018/lep_pt_45/DYJetsToLL_M-50_HT-600to800/DYJetsToLL_M-50_HT-600to800_skims1to11.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        100886
+                    ],
+                    [
+                        100886,
+                        201772
+                    ],
+                    [
+                        201772,
+                        302658
+                    ],
+                    [
+                        302658,
+                        403544
+                    ],
+                    [
+                        403544,
+                        504430
+                    ],
+                    [
+                        504430,
+                        605316
+                    ],
+                    [
+                        605316,
+                        706202
+                    ],
+                    [
+                        706202,
+                        807088
+                    ],
+                    [
+                        807088,
+                        907974
+                    ],
+                    [
+                        907974,
+                        1008860
+                    ],
+                    [
+                        1008860,
+                        1109746
+                    ],
+                    [
+                        1109746,
+                        1210632
+                    ],
+                    [
+                        1210632,
+                        1311518
+                    ],
+                    [
+                        1311518,
+                        1412404
+                    ],
+                    [
+                        1412404,
+                        1513290
+                    ],
+                    [
+                        1513290,
+                        1614176
+                    ],
+                    [
+                        1614176,
+                        1715062
+                    ],
+                    [
+                        1715062,
+                        1815948
+                    ],
+                    [
+                        1815948,
+                        1916834
+                    ],
+                    [
+                        1916834,
+                        2017720
+                    ],
+                    [
+                        2017720,
+                        2118606
+                    ],
+                    [
+                        2118606,
+                        2219492
+                    ],
+                    [
+                        2219492,
+                        2320372
+                    ]
+                ],
+                "num_entries": 2320372,
+                "uuid": "d3499190-85ef-11ef-bdd0-5ebfe183beef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "UL2018",
+            "process": "DYJets",
+            "dataset": "DYJetsToLL_M-50_HT-600to800",
+            "xsec": 1.68141,
+            "genEventSumw": 7035971.0
+        },
+        "form": null
+    },
+    "/DYJetsToLL_M-50_HT-800to1200_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
+        "files": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/skims/UL2018/lep_pt_45/DYJetsToLL_M-50_HT-800to1200/DYJetsToLL_M-50_HT-800to1200_skims13to24.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        100406
+                    ],
+                    [
+                        100406,
+                        200812
+                    ],
+                    [
+                        200812,
+                        301218
+                    ],
+                    [
+                        301218,
+                        401624
+                    ],
+                    [
+                        401624,
+                        502030
+                    ],
+                    [
+                        502030,
+                        602436
+                    ],
+                    [
+                        602436,
+                        702842
+                    ],
+                    [
+                        702842,
+                        803248
+                    ],
+                    [
+                        803248,
+                        903654
+                    ],
+                    [
+                        903654,
+                        1004060
+                    ],
+                    [
+                        1004060,
+                        1104466
+                    ],
+                    [
+                        1104466,
+                        1204872
+                    ],
+                    [
+                        1204872,
+                        1305278
+                    ],
+                    [
+                        1305278,
+                        1405682
+                    ]
+                ],
+                "num_entries": 1405682,
+                "uuid": "275723c4-85f0-11ef-9b61-5ebfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/skims/UL2018/lep_pt_45/DYJetsToLL_M-50_HT-800to1200/DYJetsToLL_M-50_HT-800to1200_skims1to12.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        96147
+                    ],
+                    [
+                        96147,
+                        192294
+                    ],
+                    [
+                        192294,
+                        288441
+                    ],
+                    [
+                        288441,
+                        384588
+                    ],
+                    [
+                        384588,
+                        480735
+                    ],
+                    [
+                        480735,
+                        576882
+                    ],
+                    [
+                        576882,
+                        673029
+                    ],
+                    [
+                        673029,
+                        769176
+                    ],
+                    [
+                        769176,
+                        865323
+                    ],
+                    [
+                        865323,
+                        961470
+                    ],
+                    [
+                        961470,
+                        1057617
+                    ],
+                    [
+                        1057617,
+                        1153756
+                    ]
+                ],
+                "num_entries": 1153756,
+                "uuid": "22607f82-85f0-11ef-940f-5ebfe183beef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "UL2018",
+            "process": "DYJets",
+            "dataset": "DYJetsToLL_M-50_HT-800to1200",
+            "xsec": 0.775392,
+            "genEventSumw": 6554679.0
+        },
+        "form": null
+    },
+    "/DYJetsToLL_M-50_HT-1200to2500_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
+        "files": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/skims/UL2018/lep_pt_45/DYJetsToLL_M-50_HT-1200to2500/DYJetsToLL_M-50_HT-1200to2500_skims1to8.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        96679
+                    ],
+                    [
+                        96679,
+                        193358
+                    ],
+                    [
+                        193358,
+                        290037
+                    ],
+                    [
+                        290037,
+                        386716
+                    ],
+                    [
+                        386716,
+                        483395
+                    ],
+                    [
+                        483395,
+                        580074
+                    ],
+                    [
+                        580074,
+                        676753
+                    ],
+                    [
+                        676753,
+                        773432
+                    ],
+                    [
+                        773432,
+                        870111
+                    ],
+                    [
+                        870111,
+                        966790
+                    ],
+                    [
+                        966790,
+                        1063469
+                    ],
+                    [
+                        1063469,
+                        1160148
+                    ],
+                    [
+                        1160148,
+                        1256827
+                    ],
+                    [
+                        1256827,
+                        1353501
+                    ]
+                ],
+                "num_entries": 1353501,
+                "uuid": "78c03368-85f0-11ef-8492-5ebfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/skims/UL2018/lep_pt_45/DYJetsToLL_M-50_HT-1200to2500/DYJetsToLL_M-50_HT-1200to2500_skims9to13.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        101992
+                    ],
+                    [
+                        101992,
+                        203984
+                    ],
+                    [
+                        203984,
+                        305976
+                    ],
+                    [
+                        305976,
+                        407968
+                    ],
+                    [
+                        407968,
+                        509960
+                    ],
+                    [
+                        509960,
+                        611952
+                    ],
+                    [
+                        611952,
+                        713944
+                    ],
+                    [
+                        713944,
+                        815936
+                    ],
+                    [
+                        815936,
+                        917928
+                    ],
+                    [
+                        917928,
+                        1019920
+                    ],
+                    [
+                        1019920,
+                        1121912
+                    ],
+                    [
+                        1121912,
+                        1223904
+                    ],
+                    [
+                        1223904,
+                        1325896
+                    ],
+                    [
+                        1325896,
+                        1427888
+                    ],
+                    [
+                        1427888,
+                        1529867
+                    ]
+                ],
+                "num_entries": 1529867,
+                "uuid": "7e96e37c-85f0-11ef-9e87-5ebfe183beef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "UL2018",
+            "process": "DYJets",
+            "dataset": "DYJetsToLL_M-50_HT-1200to2500",
+            "xsec": 0.186222,
+            "genEventSumw": 5966661.0
+        },
+        "form": null
+    },
+    "/DYJetsToLL_M-50_HT-2500toInf_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
+        "files": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/skims/UL2018/lep_pt_45/DYJetsToLL_M-50_HT-2500toInf/DYJetsToLL_M-50_HT-2500toInf_skims11to19.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        101160
+                    ],
+                    [
+                        101160,
+                        202320
+                    ],
+                    [
+                        202320,
+                        303480
+                    ],
+                    [
+                        303480,
+                        404640
+                    ],
+                    [
+                        404640,
+                        505800
+                    ],
+                    [
+                        505800,
+                        606960
+                    ],
+                    [
+                        606960,
+                        708120
+                    ],
+                    [
+                        708120,
+                        809280
+                    ],
+                    [
+                        809280,
+                        910436
+                    ]
+                ],
+                "num_entries": 910436,
+                "uuid": "f61fb068-85f0-11ef-a108-5ebfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/skims/UL2018/lep_pt_45/DYJetsToLL_M-50_HT-2500toInf/DYJetsToLL_M-50_HT-2500toInf_skims1to10.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        105118
+                    ],
+                    [
+                        105118,
+                        210236
+                    ],
+                    [
+                        210236,
+                        315354
+                    ],
+                    [
+                        315354,
+                        420469
+                    ]
+                ],
+                "num_entries": 420469,
+                "uuid": "f3d11482-85f0-11ef-bff8-5ebfe183beef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "UL2018",
+            "process": "DYJets",
+            "dataset": "DYJetsToLL_M-50_HT-2500toInf",
+            "xsec": 0.00438495,
+            "genEventSumw": 1978203.0
+        },
+        "form": null
+    }
+}

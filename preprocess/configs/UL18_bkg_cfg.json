@@ -2,49 +2,49 @@
     "/DYJetsToLL_M-50_HT-70to100_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
 	"mc_campaign": "UL2018",
 	"process": "DYJets",
-        "dataset": "DYJets_HT-70to100",
+        "dataset": "DYJetsToLL_M-50_HT-70to100",
 	"xsec": 208.977
     },
     "/DYJetsToLL_M-50_HT-100to200_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "mc_campaign": "UL2018",
         "process": "DYJets",
-        "dataset": "DYJets_HT-100to200",
+        "dataset": "DYJetsToLL_M-50_HT-100to200",
         "xsec": 181.3
     },
     "/DYJetsToLL_M-50_HT-200to400_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "mc_campaign": "UL2018",
         "process": "DYJets",
-        "dataset": "DYJets_HT-200to400",
+        "dataset": "DYJetsToLL_M-50_HT-200to400",
         "xsec": 50.4177
     },
     "/DYJetsToLL_M-50_HT-400to600_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "mc_campaign": "UL2018",
         "process": "DYJets",
-        "dataset": "DYJets_HT-400to600",
+        "dataset": "DYJetsToLL_M-50_HT-400to600",
         "xsec": 6.98394
     },
     "/DYJetsToLL_M-50_HT-600to800_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "mc_campaign": "UL2018",
         "process": "DYJets",
-        "dataset": "DYJets_HT-600to800",
+        "dataset": "DYJetsToLL_M-50_HT-600to800",
         "xsec": 1.68141
     },
     "/DYJetsToLL_M-50_HT-800to1200_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "mc_campaign": "UL2018",
         "process": "DYJets",
-        "dataset": "DYJets_HT-800to1200",
+        "dataset": "DYJetsToLL_M-50_HT-800to1200",
         "xsec": 0.775392
     },
     "/DYJetsToLL_M-50_HT-1200to2500_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "mc_campaign": "UL2018",
         "process": "DYJets",
-        "dataset": "DYJets_HT-1200to2500",
+        "dataset": "DYJetsToLL_M-50_HT-1200to2500",
         "xsec": 0.186222
     },
     "/DYJetsToLL_M-50_HT-2500toInf_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "mc_campaign": "UL2018",
         "process": "DYJets",
-        "dataset": "DYJets_HT-2500toInf",
+        "dataset": "DYJetsToLL_M-50_HT-2500toInf",
         "xsec": 0.00438495
     },
     "/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {

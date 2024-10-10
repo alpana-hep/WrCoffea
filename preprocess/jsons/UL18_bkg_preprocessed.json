@@ -772,7 +772,7 @@
         "metadata": {
             "mc_campaign": "UL2018",
             "process": "DYJets",
-            "dataset": "DYJets_HT-70to100",
+            "dataset": "DYJetsToLL_M-50_HT-70to100",
             "xsec": 208.977,
             "genEventSumw": 17004433.0
         },
@@ -2054,7 +2054,7 @@
         "metadata": {
             "mc_campaign": "UL2018",
             "process": "DYJets",
-            "dataset": "DYJets_HT-100to200",
+            "dataset": "DYJetsToLL_M-50_HT-100to200",
             "xsec": 181.3,
             "genEventSumw": 26202328.0
         },
@@ -2957,7 +2957,7 @@
         "metadata": {
             "mc_campaign": "UL2018",
             "process": "DYJets",
-            "dataset": "DYJets_HT-200to400",
+            "dataset": "DYJetsToLL_M-50_HT-200to400",
             "xsec": 50.4177,
             "genEventSumw": 18455718.0
         },
@@ -3533,7 +3533,7 @@
         "metadata": {
             "mc_campaign": "UL2018",
             "process": "DYJets",
-            "dataset": "DYJets_HT-400to600",
+            "dataset": "DYJetsToLL_M-50_HT-400to600",
             "xsec": 6.98394,
             "genEventSumw": 8682257.0
         },
@@ -3898,7 +3898,7 @@
         "metadata": {
             "mc_campaign": "UL2018",
             "process": "DYJets",
-            "dataset": "DYJets_HT-600to800",
+            "dataset": "DYJetsToLL_M-50_HT-600to800",
             "xsec": 1.68141,
             "genEventSumw": 7035971.0
         },
@@ -4358,7 +4358,7 @@
         "metadata": {
             "mc_campaign": "UL2018",
             "process": "DYJets",
-            "dataset": "DYJets_HT-800to1200",
+            "dataset": "DYJetsToLL_M-50_HT-800to1200",
             "xsec": 0.775392,
             "genEventSumw": 6554679.0
         },
@@ -4705,7 +4705,7 @@
         "metadata": {
             "mc_campaign": "UL2018",
             "process": "DYJets",
-            "dataset": "DYJets_HT-1200to2500",
+            "dataset": "DYJetsToLL_M-50_HT-1200to2500",
             "xsec": 0.186222,
             "genEventSumw": 5966661.0
         },
@@ -4970,7 +4970,7 @@
         "metadata": {
             "mc_campaign": "UL2018",
             "process": "DYJets",
-            "dataset": "DYJets_HT-2500toInf",
+            "dataset": "DYJetsToLL_M-50_HT-2500toInf",
             "xsec": 0.00438495,
             "genEventSumw": 1978203.0
         },
