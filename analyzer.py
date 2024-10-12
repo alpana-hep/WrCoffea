@@ -11,7 +11,6 @@ import dask_awkward as dak
 from coffea.analysis_tools import PackedSelection
 import time
 import re
-from utils.prime_frame import *
 
 class WrAnalysis(processor.ProcessorABC):
     def __init__(self, year='2018', mass_point=None):
@@ -1077,7 +1076,7 @@ class WrAnalysis(processor.ProcessorABC):
         AK4Jets, AK8Jets = selectJets(events)
         nAK4Jets = ak.num(AK4Jets)
 
-        tightElectrons, looseElectrons, tightMuons, looseMuons, AK4Jets, AK8Jets = primed_shift(tightElectrons, looseElectrons, tightMuons, looseMuons, AK4Jets, AK8Jets)
+        tightLeptons, looseElectrons, looseMuons, AK4Jets, AK8Jets = primed_shift(tightElectrons, looseElectrons, tightMuons, looseMuons, AK4Jets, AK8Jets)
 
         ###########
         # WEIGHTS #
@@ -1101,9 +1100,9 @@ class WrAnalysis(processor.ProcessorABC):
         # EVENT VARIABLES #
         ###################
 
-        tightLeptons = ak.with_name(ak.concatenate((tightElectrons, tightMuons), axis=1), 'PtEtaPhiMCandidate')
-        tightLeptons = ak.pad_none(tightLeptons[ak.argsort(tightLeptons.pt, axis=1, ascending=False)], 2, axis=1)
-        AK4Jets = ak.pad_none(AK4Jets, 2, axis=1)
+        # tightLeptons = ak.with_name(ak.concatenate((tightElectrons, tightMuons), axis=1), 'PtEtaPhiMCandidate')
+        # tightLeptons = ak.pad_none(tightLeptons[ak.argsort(tightLeptons.pt, axis=1, ascending=False)], 2, axis=1)
+        # AK4Jets = ak.pad_none(AK4Jets, 2, axis=1)
 
         mll = ak.fill_none((tightLeptons[:, 0] + tightLeptons[:, 1]).mass, False)
         mlljj = ak.fill_none((tightLeptons[:, 0] + tightLeptons[:, 1] + AK4Jets[:, 0] + AK4Jets[:, 1]).mass, False)
@@ -2296,7 +2295,9 @@ class WrAnalysis(processor.ProcessorABC):
 
 def selectElectrons(events):
 
-    print("events.Electron.pt.head(7) preselection --> " + str(events.Electron.pt.head(7)))
+#    print("events.Electron.px.head(7) preselection --> " + str(events.Electron.px.head(7)))
+#    print("events.Electron.py.head(7) preselection --> " + str(events.Electron.py.head(7)))
+#    print("events.Electron.pz.head(7) preselection --> " + str(events.Electron.pz.head(7)))
     
     # select tight electrons
     electronSelectTight = (
@@ -2315,19 +2316,25 @@ def selectElectrons(events):
     tightElectrons = events.Electron[electronSelectTight]
     looseElectrons = events.Electron[electronSelectLoose]
 
-    tightElectrons_pt_list = tightElectrons.pt.head(100)
+#    tightElectrons_pt_list = tightElectrons.pt.head(100)
+#    print("tightElectrons.pt.head(50): ")
+#    for i in range (0,51):
+#        print(str(i) + ' --> ' + str(tightElectrons_pt_list[i]))
 
-    print("events.Electron.pt.head(50) postselection (tight): ")
-    for i in range (0,51):
-        print(str(i) + ' --> ' + str(tightElectrons_pt_list[i]))
+#    print()
 
-    print()
+#    tightElectrons_subset = tightElectrons[1].compute()
+#    print("tightElectrons[1].fields --> " + str(tightElectrons_subset.fields))
+
+#    print()
 
     return tightElectrons, looseElectrons
 
 def selectMuons(events):
 
-    print("events.Muon.pt.head(7) preselection --> " + str(events.Muon.pt.head(7)))
+#    print("events.Muon.px.head(7) preselection --> " + str(events.Muon.px.head(7)))
+#    print("events.Muon.py.head(7) preselection --> " + str(events.Muon.py.head(7)))
+#    print("events.Muon.pz.head(7) preselection --> " + str(events.Muon.pz.head(7)))
 
     # select tight muons
     muonSelectTight = (
@@ -2347,17 +2354,26 @@ def selectMuons(events):
     tightMuons = events.Muon[muonSelectTight]
     looseMuons = events.Muon[muonSelectLoose]
 
-    tightMuons_pt_list = tightMuons.pt.head(100)
+#    tightMuons_pt_list = tightMuons.pt.head(100)
+#    print("tightMuons.pt.head(50): ")
+#    for i in range (0,51):
+#        print(str(i) + ' --> ' + str(tightMuons_pt_list[i]))
 
-    print("events.Muon.pt.head(50) postselection (tight): ")
-    for i in range (0,51):
-        print(str(i) + ' --> ' + str(tightMuons_pt_list[i]))
+#    print()
 
-    print()
+#    tightMuons_subset = tightMuons[0].compute()
+#    print("tightMuons[0].fields --> " + str(tightMuons_subset.fields))
+
+#    print()
 
     return tightMuons, looseMuons
 
 def selectJets(events):
+
+#    print("events.Jet.px.head(7) preselection --> " + str(events.Jet.px.head(7)))
+#    print("events.Jet.py.head(7) preselection --> " + str(events.Jet.py.head(7)))
+#    print("events.Jet.pz.head(7) preselection --> " + str(events.Jet.pz.head(7)))
+
     # select AK4 jets
     hem_issue = ((events.Jet.eta <= -3.0) | (events.Jet.eta >= -1.3)) & ((events.Jet.phi <= -1.57) | (events.Jet.phi >= -0.87))
 
@@ -2377,22 +2393,46 @@ def selectJets(events):
             & hem_issue
     )
 
-    return events.Jet[jetSelectAK4], events.FatJet[jetSelectAK8]
+    AK4Jets = events.Jet[jetSelectAK4]
+    AK8Jets = events.FatJet[jetSelectAK8]
+
+#    AK4Jets_pt_list = AK4Jets.pt.head(100)
+#    print("AK4Jets.pt.head(50): ")
+#    for i in range (0,51):
+#        print(str(i) + ' --> ' + str(AK4Jets_pt_list[i]))
+
+#    print()
+
+#    AK4Jets_subset = AK4Jets[1].compute()
+#    print("AK4Jets[1].fields --> " + str(AK4Jets_subset.fields))
+
+#    print()
+
+    return AK4Jets, AK8Jets
 
 def primed_shift (tightElectrons, looseElectrons, tightMuons, looseMuons, AK4Jets, AK8Jets):
-    #concatenate tightElectrons and tightMuons into tightLeptons and sort by pt 
+
     tightLeptons = ak.with_name(ak.concatenate((tightElectrons, tightMuons), axis=1), 'PtEtaPhiMCandidate')
-    tightLeptons = tightLeptons[ak.argsort(tightLeptons.pt, axis=1, ascending=False)]
+    tightLeptons = ak.pad_none(tightLeptons[ak.argsort(tightLeptons.pt, axis=1, ascending=False)], 2, axis=1)
+    AK4Jets = ak.pad_none(AK4Jets, 2, axis=1)
 
-    tightLeptons_pt_list = tightLeptons.pt.head(100)
+#    print("tightLeptons.px.head(7) --> " + str(tightLeptons.px.head(7)))
+#    print("tightLeptons.py.head(7) --> " + str(tightLeptons.py.head(7)))
+#    print("tightLeptons.pz.head(7) --> " + str(tightLeptons.pz.head(7)))
 
-    print("events.Leptons.pt.head(50) postselection (tight): ")
-    for i in range (0,51):
-        print(str(i) + ' --> ' + str(tightLeptons_pt_list[i]))
+#    tightLeptons_pt_list = tightLeptons.pt.head(100)
+#    print("tightLeptons.pt.head(50): ")
+#    for i in range (0,51):
+#        print(str(i) + ' --> ' + str(tightLeptons_pt_list[i]))
 
-    print()
+#    print()
 
-    return tightElectrons, looseElectrons, tightMuons, looseMuons, AK4Jets, AK8Jets
+#    tightLeptons_subset = tightLeptons[1].compute()
+#    print("tightLeptons[1].fields --> " + str(tightLeptons_subset.fields))
+
+#    print()
+
+    return tightLeptons, looseElectrons, looseMuons, AK4Jets, AK8Jets
 
 
 
