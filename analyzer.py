@@ -1037,8 +1037,6 @@ class WrAnalysis(processor.ProcessorABC):
 
         }
 
-#asdfaf
-
     def process(self, events): 
         output = self.make_output()
 
@@ -1078,6 +1076,8 @@ class WrAnalysis(processor.ProcessorABC):
 
         AK4Jets, AK8Jets = selectJets(events)
         nAK4Jets = ak.num(AK4Jets)
+
+        tightElectrons, looseElectrons, tightMuons, looseMuons, AK4Jets, AK8Jets = primed_shift(tightElectrons, looseElectrons, tightMuons, looseMuons, AK4Jets, AK8Jets)
 
         ###########
         # WEIGHTS #
@@ -1214,23 +1214,6 @@ class WrAnalysis(processor.ProcessorABC):
 
         for region, cuts in regions.items():
             cut = selections.all(*cuts)
-
-            #gamma_lead, gamma_sublead = gamma(tightLeptons[cut][:, 0].px, tightLeptons[cut][:, 0].py, tightLeptons[cut][:, 1].px, tightLeptons[cut][:, 1].py)
-
-            #leadlep = Four_Vector(tightLeptons[cut][:, 0].energy, tightLeptons[cut][:, 0].px, tightLeptons[cut][:, 0].py, tightLeptons[cut][:, 0].pz, gamma_lead, gamma_sublead)
-            #subleadlep = Four_Vector(tightLeptons[cut][:, 1].energy, tightLeptons[cut][:, 1].px, tightLeptons[cut][:, 1].py, tightLeptons[cut][:, 1].pz, gamma_lead, gamma_sublead)
-            #leadjet = Four_Vector(AK4Jets[cut][:, 0].energy, AK4Jets[cut][:, 0].px, AK4Jets[cut][:, 0].py, AK4Jets[cut][:, 0].pz, gamma_lead, gamma_sublead)
-            #subleadjet = Four_Vector(AK4Jets[cut][:, 1].energy, AK4Jets[cut][:, 1].px, AK4Jets[cut][:, 1].py, AK4Jets[cut][:, 1].pz, gamma_lead, gamma_sublead)
-
-            print('type(tightLeptons[cut][:, 0]) --> ' + str(type(tightLeptons[cut][:, 0])))
-
-            print('tightLeptons[cut][:, 0] --> ' + str(tightLeptons[cut][:, 0]))
-
-            #print('type(tightLeptons[cut][:, 0].pt) --> ' + str(type(tightLeptons[cut][:, 0].pt)))
-
-            #print('tightLeptons[cut][:, 0].pt --> ' + str(tightLeptons[cut][:, 0].pt))
-
-            print('a')
 
 #            output['pt_leadlep'].fill(
 #                process=process,
@@ -2244,12 +2227,77 @@ class WrAnalysis(processor.ProcessorABC):
         output["weightStats"] = weights.weightStatistics
         return output
 
-#dfhgdfsg
-
     def postprocess(self, accumulator):
         return accumulator
 
+#def selectElectrons(events):
+#    # select tight electrons
+#    electronSelectTight = (
+#            (events.Electron.pt > 53)
+#            & (np.abs(events.Electron.eta) < 2.4)
+#            & (events.Electron.cutBased_HEEP)
+#    )
+#
+#    # select loose electrons
+#    electronSelectLoose = (
+#            (events.Electron.pt > 53)
+#            & (np.abs(events.Electron.eta) < 2.4)
+#            & (events.Electron.cutBased == 2)
+#
+#    )
+#    return events.Electron[electronSelectTight], events.Electron[electronSelectLoose]
+#
+#def selectMuons(events):
+#    # select tight muons
+#    muonSelectTight = (
+#            (events.Muon.pt > 53)
+#            & (np.abs(events.Muon.eta) < 2.4)
+#            & (events.Muon.highPtId == 2)
+#            & (events.Muon.tkRelIso < 0.1)
+#    )
+#
+#    # select loose muons
+#    muonSelectLoose = (
+#            (events.Muon.pt > 53) 
+#            & (np.abs(events.Muon.eta) < 2.4) 
+#            & (events.Muon.highPtId == 2)
+#    )
+#
+#    return events.Muon[muonSelectTight], events.Muon[muonSelectLoose] 
+#
+#def selectJets(events):
+#    # select AK4 jets
+#    hem_issue = ((events.Jet.eta <= -3.0) | (events.Jet.eta >= -1.3)) & ((events.Jet.phi <= -1.57) | (events.Jet.phi >= -0.87))
+#
+#    jetSelectAK4 = (
+#            (events.Jet.pt > 40)
+#             & (np.abs(events.Jet.eta) < 2.4)
+#            & (events.Jet.isTightLeptonVeto)
+#            & hem_issue
+#    )
+#
+#    # select AK8 jets (need to add LSF cut)
+#    jetSelectAK8 = (
+#            (events.FatJet.pt > 200)
+#            & (np.abs(events.FatJet.eta) < 2.4)
+#            & (events.FatJet.jetId == 2)
+#            & (events.FatJet.msoftdrop > 40)
+#            & hem_issue
+#    )
+#
+#    return events.Jet[jetSelectAK4], events.FatJet[jetSelectAK8]
+
+######################################################################################################################################################################################
+
+###############################################
+# Changing to primed frame
+#x' axis is along nonneutrino lepton's momentum
+###############################################
+
 def selectElectrons(events):
+
+    print("events.Electron.pt.head(7) preselection --> " + str(events.Electron.pt.head(7)))
+    
     # select tight electrons
     electronSelectTight = (
             (events.Electron.pt > 53)
@@ -2262,11 +2310,25 @@ def selectElectrons(events):
             (events.Electron.pt > 53)
             & (np.abs(events.Electron.eta) < 2.4)
             & (events.Electron.cutBased == 2)
-
     )
-    return events.Electron[electronSelectTight], events.Electron[electronSelectLoose]
+
+    tightElectrons = events.Electron[electronSelectTight]
+    looseElectrons = events.Electron[electronSelectLoose]
+
+    tightElectrons_pt_list = tightElectrons.pt.head(100)
+
+    print("events.Electron.pt.head(50) postselection (tight): ")
+    for i in range (0,51):
+        print(str(i) + ' --> ' + str(tightElectrons_pt_list[i]))
+
+    print()
+
+    return tightElectrons, looseElectrons
 
 def selectMuons(events):
+
+    print("events.Muon.pt.head(7) preselection --> " + str(events.Muon.pt.head(7)))
+
     # select tight muons
     muonSelectTight = (
             (events.Muon.pt > 53)
@@ -2277,12 +2339,23 @@ def selectMuons(events):
 
     # select loose muons
     muonSelectLoose = (
-            (events.Muon.pt > 53) 
-            & (np.abs(events.Muon.eta) < 2.4) 
+            (events.Muon.pt > 53)
+            & (np.abs(events.Muon.eta) < 2.4)
             & (events.Muon.highPtId == 2)
     )
 
-    return events.Muon[muonSelectTight], events.Muon[muonSelectLoose] 
+    tightMuons = events.Muon[muonSelectTight]
+    looseMuons = events.Muon[muonSelectLoose]
+
+    tightMuons_pt_list = tightMuons.pt.head(100)
+
+    print("events.Muon.pt.head(50) postselection (tight): ")
+    for i in range (0,51):
+        print(str(i) + ' --> ' + str(tightMuons_pt_list[i]))
+
+    print()
+
+    return tightMuons, looseMuons
 
 def selectJets(events):
     # select AK4 jets
@@ -2305,6 +2378,23 @@ def selectJets(events):
     )
 
     return events.Jet[jetSelectAK4], events.FatJet[jetSelectAK8]
+
+def primed_shift (tightElectrons, looseElectrons, tightMuons, looseMuons, AK4Jets, AK8Jets):
+    #concatenate tightElectrons and tightMuons into tightLeptons and sort by pt 
+    tightLeptons = ak.with_name(ak.concatenate((tightElectrons, tightMuons), axis=1), 'PtEtaPhiMCandidate')
+    tightLeptons = tightLeptons[ak.argsort(tightLeptons.pt, axis=1, ascending=False)]
+
+    tightLeptons_pt_list = tightLeptons.pt.head(100)
+
+    print("events.Leptons.pt.head(50) postselection (tight): ")
+    for i in range (0,51):
+        print(str(i) + ' --> ' + str(tightLeptons_pt_list[i]))
+
+    print()
+
+    return tightElectrons, looseElectrons, tightMuons, looseMuons, AK4Jets, AK8Jets
+
+
 
 #print('muon.e:')
 #print(events.Muon.e.compute())
