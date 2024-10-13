@@ -22,11 +22,11 @@ The script `preprocessed_json.py` takes in the configuration file as the first a
 
 For example, to preprocesses MC background samples, run
  ```
-python3 preprocessed_json.py configs/UL18_bkg_cfg.json jsons/UL18_bkg_preprocessed.json
+python3 preprocessed_json.py configs/UL18_bkg_cfg.json jsons/preprocessed/UL18_bkg_preprocessed.json
 ```
 or to preprocess data,
  ```
-python3 preprocessed_json.py configs/UL18_data_cfg.json jsons/UL18_data_preprocessed.json
+python3 preprocessed_json.py configs/UL18_data_cfg.json jsons/preprocessed/UL18_data_preprocessed.json
 ```
 This step only needs to be done once, or when a new dataset is added. If skimming is not needed, proceed to the `Analyze MC files` section.
 
@@ -47,11 +47,11 @@ xrdcp -r DYJetsToLL_M-50_HT-70to100 root://cmseos.fnal.gov//store/user/wijackso/
 ```
 Then to preprocess the skimmed MC files, run
 ```
-python3 skimmed_preprocessed_json.py jsons/UL18_bkg_preprocessed.json jsons/UL18_bkg_preprocessed_skimmed.json
+python3 skimmed_preprocessed_json.py jsons/preprocessed/UL18_bkg_preprocessed.json jsons/skimmed/UL18_bkg_preprocessed_skimmed.json
 ```
 or for skimmed data files,
 ```
-python3 skimmed_preprocessed_json.py jsons/UL18_data_preprocessed.jsonn jjsons/UL18_data_preprocessed_skimmed.json
+python3 skimmed_preprocessed_json.py jsons/preprocessed/UL18_data_preprocessed.jsonn jsons/skimmed/UL18_data_preprocessed_skimmed.json
 ```
 ### Obtain replica MC files
 First, `cd` into the `datasets` directory:
