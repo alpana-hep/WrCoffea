@@ -21,4 +21,20 @@ for field in elec_fields:
     if field in muon_fields:
         lepton_fields.append(field)
 
-print("lepton_fields --> " + str(lepton_fields))
+#print("lepton_fields --> " + str(lepton_fields))
+
+new_fields = ['dxy', 'dxyErr', 'dz', 'dzErr', 'eta', 'ip3d', 'jetPtRelv2', 'jetRelIso', 'mass', 'miniPFRelIso_all', 'miniPFRelIso_chg', 'pfRelIso03_all', 'pfRelIso03_chg', 'phi', 'pt', 'sip3d', 'mvaTTH', 'charge', 'jetIdx', 'pdgId', 'tightCharge', 'isPFcand', 'genPartIdx', 'genPartFlav', 'cleanmask', 'genPartIdxG', 'jetIdxG']
+
+if new_fields == elec_fields:
+    print("electron fields")
+if new_fields == muon_fields:
+    print("muon fields")
+if new_fields == lepton_fields:
+    print("lepton fields")
+
+for field in elec_fields:
+    if field == 'px':
+        print('px found in elec_fields')
+for field in muon_fields:
+    if field == 'px':
+        print('px found in muon_fields')
