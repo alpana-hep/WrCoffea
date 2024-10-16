@@ -12,7 +12,11 @@ cd WrCoffea
 bash bootstrap.sh
 ```
 The `./shell` executable can then be used to start an apptainer shell with a coffea environment. For more information: https://github.com/CoffeaTeam/lpcjobqueue
-
+### Each week
+To set up a grid UI
+```
+voms-proxy-init --rfc --voms cms -valid 192:00
+```
 ## Running over MC and Data Samples
 
 ### Preprocessing MC and Data
