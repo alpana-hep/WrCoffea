@@ -34,6 +34,12 @@ class WrAnalysis(processor.ProcessorABC):
                 hist.axis.Regular(1000, 0, 3000, name='sanity_test', label=r'should be at constant of 337'),
                 hist.storage.Weight(),
             ),
+            'assignment_test': dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(1000, 0, 3000, name='assignment_test', label=r''),
+                hist.storage.Weight(),
+            ),
 #            'pt_leadlep': dah.hist.Hist(
 #                hist.axis.StrCategory([], name="process", label="Process", growth=True),
 #                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
@@ -1215,7 +1221,10 @@ class WrAnalysis(processor.ProcessorABC):
         # FILL HISTOGRAMS #
         ###################
 
-        print(regions.items())
+        #print(regions.items())
+
+        print('type(output["sanity_test"]) --> ' + str(type(output['sanity_test'])))
+        print()
 
         for region, cuts in regions.items():
             cut = selections.all(*cuts)
@@ -1229,7 +1238,7 @@ class WrAnalysis(processor.ProcessorABC):
             output['assignment_test'].fill(
                 process=process,
                 region=region,
-                sanity_test=(tightLeptons[cut][:, 0].pt + 1)/(tightLeptons[cut][:, 0].pt + 1)*337,
+                assignment_test=tightLeptons[cut][:, 0].pxy,
                 weight=weights.weight()[cut],
             )
 #            output['pt_leadlep'].fill(
@@ -2311,6 +2320,9 @@ class WrAnalysis(processor.ProcessorABC):
 #x' axis is along nonneutrino lepton's momentum
 ###############################################
 
+def maskFunc(arr, mask):
+    return arr[mask]
+
 def selectElectrons(events):
 
 #    print("events.Electron.px.head(7) preselection --> " + str(events.Electron.px.head(7)))
@@ -2331,8 +2343,8 @@ def selectElectrons(events):
             & (events.Electron.cutBased == 2)
     )
 
-    tightElectrons = events.Electron[electronSelectTight]
-    looseElectrons = events.Electron[electronSelectLoose]
+    tightElectrons = dak.map_partitions(maskFunc, events.Electron, electronSelectTight)
+    looseElectrons = dak.map_partitions(maskFunc, events.Electron, electronSelectLoose)
 
 #    tightElectrons_pt_list = tightElectrons.pt.head(100)
 #    print("tightElectrons.pt.head(50): ")
@@ -2369,8 +2381,8 @@ def selectMuons(events):
             & (events.Muon.highPtId == 2)
     )
 
-    tightMuons = events.Muon[muonSelectTight]
-    looseMuons = events.Muon[muonSelectLoose]
+    tightMuons = dak.map_partitions(maskFunc, events.Muon, muonSelectTight)
+    looseMuons = dak.map_partitions(maskFunc, events.Muon, muonSelectLoose)
 
 #    tightMuons_pt_list = tightMuons.pt.head(100)
 #    print("tightMuons.pt.head(50): ")
@@ -2411,8 +2423,8 @@ def selectJets(events):
             & hem_issue
     )
 
-    AK4Jets = events.Jet[jetSelectAK4]
-    AK8Jets = events.FatJet[jetSelectAK8]
+    AK4Jets = dak.map_partitions(maskFunc, events.Jet, jetSelectAK4)
+    AK8Jets = dak.map_partitions(maskFunc, events.Jet, jetSelectAK8)
 
 #    AK4Jets_pt_list = AK4Jets.pt.head(100)
 #    print("AK4Jets.pt.head(50): ")
@@ -2458,7 +2470,9 @@ def primed_shift (tightElectrons, looseElectrons, tightMuons, looseMuons, AK4Jet
 
 #    print(type(tightLeptons))
 
-    tightLeptons = dak.with_field(tightLeptons, 5*(tightLeptons.px), where='px5')
+    tightLeptons = dak.with_field(tightLeptons, (tightLeptons.px)*(tightLeptons.py), where='pxy')
+
+    tightLeptons = dak.with_field(tightLeptons, (tightLeptons.px)*(tightLeptons.py), where='gamma')
 
 #    tightLeptons_subset = tightLeptons[2].compute()
 #    print("tightLeptons[2].fields --> " + str(tightLeptons_subset.fields))
@@ -2466,21 +2480,28 @@ def primed_shift (tightElectrons, looseElectrons, tightMuons, looseMuons, AK4Jet
 #    print("tightLeptons[2][0].fields --> " + str(tightLeptons_subset[0].fields))
 #    print()
 
-    tightLeptons_px_list = tightLeptons.px.head(51)
-    print("tightLeptons.px.head(51): ")
-    for i in range (0,51):
-        print(str(i) + ' --> ' + str(tightLeptons_px_list[i]))
-
-    print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
-
-    tightLeptons_px5_list = tightLeptons.px5.head(51)
-    print("tightLeptons.px5.head(51): ")
-    for i in range (0,51):
-        print(str(i) + ' --> ' + str(tightLeptons_px5_list[i]))
-    
-    print()
-
-    print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+#    tightLeptons_px_list = tightLeptons.px.head(51)
+#    print('tightLeptons.px.head(51): ')
+#    for i in range (0,51):
+#        print(str(i) + ' --> ' + str(tightLeptons_px_list[i]))
+#
+#    print('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+#
+#    tightLeptons_py_list = tightLeptons.py.head(51)
+#    print('tightLeptons.py.head(51): ')
+#    for i in range (0,51):
+#        print(str(i) + ' --> ' + str(tightLeptons_py_list[i]))
+#
+#    print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
+#
+#    tightLeptons_pxy_list = tightLeptons.pxy.head(51)
+#    print('tightLeptons.pxy.head(51): ')
+#    for i in range (0,51):
+#        print(str(i) + ' --> ' + str(tightLeptons_pxy_list[i]))
+#    
+#    print()
+#
+#    print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 
     return tightLeptons, looseElectrons, looseMuons, AK4Jets, AK8Jets
 
