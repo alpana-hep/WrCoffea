@@ -140,7 +140,7 @@ def process_signal_histograms(channel, mll, hist_name, reordered_bkg_histograms,
             )
             plot_efficiency_vs_thresholds(channel, mll, hist_name, thresholds, efficiencies, efficiency_errors)
 
-def loop_over_mll_thresholds(channel, mll, hist_name, bkg_hist_dict, sig_hist_dict, sig_hists_event_dict, min_mll=150, max_mll=1050, step=50):
+def loop_over_mll_thresholds(channel, mll, hist_name, bkg_hist_dict, sig_hist_dict, sig_hists_event_dict, min_mll=150, max_mll=1050, step=100):
     """Loop over mll thresholds, calculate efficiencies, and store results."""
     thresholds = np.arange(min_mll, max_mll + step, step)
 
@@ -164,7 +164,7 @@ def loop_over_mll_thresholds(channel, mll, hist_name, bkg_hist_dict, sig_hist_di
             event_weights_hist = sig_hists_event_dict.get(sig_name)
 
             signal_results = process_signal_histogram(
-                channel, mll, hist_name, combined_bkg_hist, sig_hist, event_weights_hist, thresholds
+                channel, mll, hist_name, combined_bkg_hist, sig_hist, event_weights_hist, thresholds, sig_name
             )
 
             # Store results for this signal
@@ -189,14 +189,14 @@ def combine_histograms(bkg_hist_dict):
     return combined_hist
 
 
-def process_signal_histogram(channel, mll, hist_name, combined_bkg_hist, sig_hist, event_weights_hist, thresholds):
+def process_signal_histogram(channel, mll, hist_name, combined_bkg_hist, sig_hist, event_weights_hist, thresholds, sig_sample):
     """Process a signal histogram across different mll thresholds."""
     sig_mean, sig_stddev, fit_mean, fit_stddev = [], [], [], []
     sig_efficiencies, sig_efficiencies_err = [], []
 
     # Loop over mll thresholds
     for mll_threshold in thresholds[:-1]:
-        logging.info(f"\n{channel}-{mll} (mll > {mll_threshold})")
+        logging.info(f"\nmll > {mll_threshold}: {channel}")
 
         # Fit Gaussian for this threshold
         fit_result = fit_gaussian_for_mll_threshold(channel, mll, hist_name, sig_hist, event_weights_hist, mll_threshold)
@@ -211,6 +211,7 @@ def process_signal_histogram(channel, mll, hist_name, combined_bkg_hist, sig_his
         lower_bound = fit_result['lower_bound']
         upper_bound = fit_result['upper_bound']
 
+        plot_background_mlljj(channel, mll, hist_name, combined_bkg_hist, mll_threshold, lower_bound, upper_bound, fitted_mean, fitted_stddev)
 
         # Calculate efficiency
         efficiency_result  = get_efficiency_for_mll_threshold(
@@ -222,8 +223,7 @@ def process_signal_histogram(channel, mll, hist_name, combined_bkg_hist, sig_his
         error = efficiency_result['efficiency_error']
 
         # Optionally, plot histogram if threshold is 150
-        if mll_threshold == 150:
-            plot_signal_hist(channel, mll_threshold, hist_name, bin_edges, y_vals, signal_mean, signal_stddev)
+        plot_signal_peak(channel, mll_threshold, hist_name, bin_edges, y_vals, signal_mean, signal_stddev, sig_sample)
 
         # Append results for this threshold
         sig_mean.append(signal_mean)
@@ -249,7 +249,7 @@ def fit_gaussian_for_mll_threshold(channel, mll, hist_name, sig_hist, event_weig
     sig_hist_filtered = filter_hist_by_mll(sig_hist, threshold)
 
     # Compute statistics (mean and stddev) from the filtered histogram
-    mean, stddev, bin_centers, y_vals = compute_stats(sig_hist_filtered)
+    mean, stddev, bin_centers, y_vals, _ = compute_stats(sig_hist_filtered)
     
     # Initial guess for the fit parameters [amplitude, mean, stddev]
     initial_guess = [max(y_vals), bin_centers[np.argmax(y_vals)], initial_guess_stddev]
@@ -264,7 +264,6 @@ def fit_gaussian_for_mll_threshold(channel, mll, hist_name, sig_hist, event_weig
         # Calculate the lower and upper bounds based on the fit
         lower_bound = mu - 2 * fitted_stddev
         upper_bound = mu + 2 * fitted_stddev
-        
         logging.info(f"(Lower, Upper) bounds = ({round(lower_bound, 2)}, {round(upper_bound, 2)})")
         
     except RuntimeError as e:
@@ -324,6 +323,7 @@ def compute_stats(hist):
     # Initialize arrays to hold the centers and weights for the mlljj axis
     mlljj_weights = np.zeros(n_bins_mlljj)
     mlljj_centers = np.zeros(n_bins_mlljj)
+    mlljj_low_bin_edge = np.zeros(n_bins_mlljj)
 
     # Loop over the mlljj bins and sum the content over all mll bins
     for mlljj_bin in range(1, n_bins_mlljj + 1):
@@ -335,13 +335,14 @@ def compute_stats(hist):
         # Store the total weight and bin center
         mlljj_weights[mlljj_bin - 1] = y_bin_content
         mlljj_centers[mlljj_bin - 1] = hist.GetYaxis().GetBinCenter(mlljj_bin)
+        mlljj_low_bin_edge[mlljj_bin - 1] = hist.GetYaxis().GetBinLowEdge(mlljj_bin)
 
     # Compute the weighted mean and standard deviation using NumPy
     mean = np.average(mlljj_centers, weights=mlljj_weights)
     variance = np.average((mlljj_centers - mean) ** 2, weights=mlljj_weights)
     stddev = np.sqrt(variance)
 
-    return mean, stddev, mlljj_centers, mlljj_weights
+    return mean, stddev, mlljj_centers, mlljj_weights, mlljj_low_bin_edge
 
 def gaussian(x, amplitude, mean, stddev):
     return amplitude * np.exp(-((x - mean) ** 2) / (2 * stddev ** 2))
@@ -466,7 +467,157 @@ def setup_plot(ax, xlabel, ylabel, xlim=None, ylim=None, legend_loc='best'):
     ax.ticklabel_format(style="sci", scilimits=(-1, 1), axis='y', useMathText=True)
     ax.legend(loc=legend_loc)
 
-def plot_signal_hist(channel, mll, hist_name, bins, mlljj_values, sig_mean, signal_stddev, output_dir="plots/mll_optimization_september"):
+def rebin_2d_histogram(hist, rebin_factor_y):
+    """Rebin the 2D ROOT histogram by the given rebin factor for the Y axis (mlljj)."""
+    # Rebin only along the Y axis (mlljj axis) with the specified factor
+    rebinned_hist = hist.Clone()
+    rebinned_hist.RebinY(rebin_factor_y)
+    return rebinned_hist
+
+def exp_decreasing(x, a, b):
+    return a * np.exp(-b * x)
+
+def plot_background_mlljj(channel, mll, hist_name, combined_bkg_hist, mll_threshold, low_bound, high_bound, mean, stddev, output_dir=OUTPUT_DIR):
+
+    # Filter the histograms by the mll threshold
+    combined_bkg_hist = filter_hist_by_mll(combined_bkg_hist, mll_threshold)
+
+    # Rebin the 2D ROOT histogram along the Y axis (mlljj axis)
+    rebin_factor_y = 5  # Rebin Y axis by 10 to get 50 GeV bins (10 GeV * 5)
+    rebinned_hist = rebin_2d_histogram(combined_bkg_hist, rebin_factor_y)
+
+    mu, sigma, mlljj_centers, mlljj_weights, new_bins = compute_stats(rebinned_hist)
+
+    fig, ax = plt.subplots()
+
+    uncertainties = np.sqrt(mlljj_weights)
+
+    # Plot the background data
+    hep.histplot(
+        mlljj_weights[:-1],
+        bins=new_bins,
+        yerr=uncertainties[:-1],
+        histtype='step',
+        color='green',
+        label=f'All Backgrounds',
+        linewidth=1,
+        ax=ax
+    )
+
+    low_mask = (mlljj_centers >= mean - 4*stddev) & (mlljj_centers <= low_bound)
+    high_mask = (mlljj_centers >= high_bound) & (mlljj_centers <= mean + 4*stddev)
+    low_masked_bin_centers = mlljj_centers[low_mask]
+    high_masked_bin_centers = mlljj_centers[high_mask]
+
+    filtered_low_mlljj = mlljj_weights[low_mask]
+    filtered_high_mlljj = mlljj_weights[high_mask]
+
+    filtered_low_err = uncertainties[low_mask]
+    filtered_high_err = uncertainties[high_mask]
+
+    a_low_initial = np.max(filtered_low_mlljj)  # Initial guess for a: max value of filtered_dy
+    a_high_initial = np.max(filtered_high_mlljj)
+    b_initial = .001  # A reasonable small value for b
+
+    try:
+        low_popt, low_pcov = curve_fit(
+            exp_decreasing,
+            low_masked_bin_centers,
+            filtered_low_mlljj,
+            sigma=filtered_low_err,
+            p0=[a_low_initial, b_initial],
+        )
+
+        low_fit_values = exp_decreasing(low_masked_bin_centers, *low_popt)
+        ax.plot(low_masked_bin_centers, low_fit_values, label=f'Low Fit: ({int(low_masked_bin_centers[0])}, {int(low_masked_bin_centers[-1])})', color='red', lw=2) #'#FF0000'
+
+        a_low_fitted, b_low_fitted = low_popt
+        a_low_err, b_low_err = np.sqrt(np.diag(low_pcov))
+
+        # Calculate the uncertainty (band) around the fit using error propagation
+        low_delta_fit = np.sqrt(
+            (exp_decreasing(low_masked_bin_centers, a_low_fitted + a_low_err, b_low_fitted) - low_fit_values) ** 2 +
+            (exp_decreasing(low_masked_bin_centers, a_low_fitted, b_low_fitted + b_low_err) - low_fit_values) ** 2
+        )
+
+        # Plot the uncertainty band around the fitted curve
+        ax.fill_between(low_masked_bin_centers, low_fit_values - low_delta_fit, low_fit_values + low_delta_fit, color='black', alpha=0.3)
+
+
+    except RuntimeError as e:
+        print(f"Low Fit failed: {e}")
+
+    try:
+        popt, pcov = curve_fit(
+            exp_decreasing,
+            high_masked_bin_centers,
+            filtered_high_mlljj,
+            sigma=filtered_high_err,
+            p0=[a_high_initial, b_initial],
+        )
+
+        y_fit = exp_decreasing(high_masked_bin_centers, *popt)
+
+        # Extract the parameter uncertainties (square root of the diagonal of the covariance matrix)
+        a_fit, b_fit = popt
+        a_err, b_err = np.sqrt(np.diag(pcov))
+
+        # Calculate the uncertainty in the fit at each x value using error propagation
+        # Partial derivatives for error propagation
+        dy_da = np.exp(-b_fit * high_masked_bin_centers)       # ∂y/∂a = exp(-b * x)
+        dy_db = -a_fit * high_masked_bin_centers * np.exp(-b_fit * high_masked_bin_centers)  # ∂y/∂b = -a * x * exp(-b * x)
+
+        # Total uncertainty using error propagation formula
+        y_uncertainty = np.sqrt((dy_da * a_err)**2 + (dy_db * b_err)**2)
+
+        # Upper and lower bounds for the fit
+        y_fit_upper = y_fit + y_uncertainty
+        y_fit_lower = y_fit - y_uncertainty
+
+        ax.plot(high_masked_bin_centers, y_fit, label=f'High Fit: ({int(high_masked_bin_centers[0])}, {int(high_masked_bin_centers[-1])})', color='blue', lw=2) #'#00BFFF'
+
+        # Plot the uncertainty band around the fitted curve
+        ax.fill_between(high_masked_bin_centers, y_fit_lower, y_fit_upper, color='black', alpha=0.3)
+
+
+    except RuntimeError as e:
+        print(f"High Fit failed: {e}")
+
+    # Set y-axis to logarithmic scale
+    ax.set_yscale('log')
+    ax.set_ylim(1e-1, 1e4)
+#    ax.set_ylim(0, 1e3)
+    ax.set_xlim(0,6000)
+
+    # Add axis labels, title, and legends
+    ax.set_xlabel(r"$m_{lljj} \mathrm{~[GeV]}$")
+    ax.set_ylabel(r"Events / 50 GeV")
+    hep.cms.label(loc=0, ax=ax)
+    ax.legend()
+
+    # Add the text box in the top-left corner
+    if channel == "eejj":
+        flavor = r"$ee$"
+        region = fr"$m_{{ll}} > {mll_threshold} \mathrm{{~GeV}}$"
+    ax.text(0.05, 0.96, flavor, transform=ax.transAxes, fontsize=20,
+            verticalalignment='top', horizontalalignment='left')
+    ax.text(0.05, 0.91, region, transform=ax.transAxes, fontsize=20,
+            verticalalignment='top', horizontalalignment='left')
+
+    output_dir = f'{output_dir}/mll{mll_threshold}'
+    # Ensure the directory exists before saving the plot
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir, exist_ok=True)
+
+    # Save the plot
+    output_path = f'{output_dir}/mlljj_bkg_{channel}_mll{mll_threshold}.png'
+    plt.savefig(output_path)
+    logging.info(f"Saved {output_path}")
+
+    # Close the plot
+    plt.close(fig)
+
+def plot_signal_peak(channel, mll, hist_name, bins, mlljj_values, sig_mean, signal_stddev, signal_sample, output_dir=OUTPUT_DIR):
     fig, ax = plt.subplots()
 
     bins = np.arange(0, 8010, 10)
@@ -499,9 +650,9 @@ def plot_signal_hist(channel, mll, hist_name, bins, mlljj_values, sig_mean, sign
         ymax_scaled = gaussian_at_mean / ax.get_ylim()[1]  # Scale the height of the line to fit within the y-axis limits
         ax.axvline(mean, color='red', linestyle='--', ymax=ymax_scaled, lw=2, label=f'Fit $\mu$ = {mean:.2f} GeV')
 
-        x_stddev_fill = np.linspace(mean - stddev, mean + stddev, 100)
+        x_stddev_fill = np.linspace(mean - (2*stddev), mean + (2*stddev), 100)
         y_stddev_fill = gaussian(x_stddev_fill, *popt)
-        ax.fill_between(x_stddev_fill, y_stddev_fill, color='red', alpha=0.3, label=f'Fit $\sigma$ = {abs(stddev):.2f} GeV')
+        ax.fill_between(x_stddev_fill, y_stddev_fill, color='red', alpha=0.3, label=f'Fit $2\sigma$ = {abs(2*stddev):.2f} GeV')
 
     except RuntimeError as e:
         logging.error(f"Failed to fit Gaussian: {e}")
@@ -510,7 +661,13 @@ def plot_signal_hist(channel, mll, hist_name, bins, mlljj_values, sig_mean, sign
     ax.axvline(x=sig_mean, ymin=0, ymax=0.4, color='#5790fc', linestyle='--', lw=2, label=f'Sig. $\mu$ = {sig_mean:.2f} GeV')
     x_sig_stddev_fill = np.linspace(sig_mean - signal_stddev, sig_mean + signal_stddev, 100)
     y_sig_stddev_fill = np.interp(x_sig_stddev_fill, bin_centers, mlljj_values)
-    ax.fill_between(x_sig_stddev_fill, 0, y_sig_stddev_fill, color='#5790fc', alpha=0.3, label=f'Sig. $\sigma$ = {abs(signal_stddev):.2f} GeV')
+    ax.fill_between(x_sig_stddev_fill, 0, y_sig_stddev_fill, color='#5790fc', alpha=0.3, label=f'Sig. $2\sigma$ = {abs(2*signal_stddev):.2f} GeV')
+
+    # ADD THE LABEL (Lower, Upper)
+    lower_bound = mean - abs(2 * stddev)
+    upper_bound = mean + abs(2 * stddev)
+    ax.text(0.545, 0.74, f'(Low, High) = ({lower_bound:.2f}, {upper_bound:.2f})',
+            transform=ax.transAxes, fontsize=16, verticalalignment='top', horizontalalignment='left')
 
     setup_plot(ax, "$m_{lljj} \mathrm{~[GeV]}$", r"Events / 10 GeV", xlim=(0, 4000))
 
@@ -519,11 +676,21 @@ def plot_signal_hist(channel, mll, hist_name, bins, mlljj_values, sig_mean, sign
     flavor = r"$\mu\mu$" if channel == "mumujj" else r"$ee$"
     ax.text(0.05, 0.83, flavor, transform=ax.transAxes, fontsize=20, verticalalignment='top', horizontalalignment='left')
 
+    # Create custom legend with specific font size
+    legend_fontsize = 16  # Set desired legend font size here
+    legend = ax.legend(fontsize=legend_fontsize, loc='upper right')  # Apply font size to the legend
+
+    output_dir = f'{output_dir}/mll{mll}'
+    # Ensure the directory exists before saving the plot
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir, exist_ok=True)
+
     # Save the plot
-    output_path = f'{output_dir}/{hist_name}_signal_peak_{channel}.png'
+    output_path = f'{output_dir}/{signal_sample}_mlljj_mll{mll}_{channel}.png'
     plt.savefig(output_path)
     logging.info(f"Saved {output_path}")
 
+    # Close the plot
     plt.close(fig)
 
 def plot_efficiency_vs_thresholds(channel, mll, hist_name, thresholds, efficiencies, efficiency_errors, output_dir="plotting/mll_optimization_study"):
