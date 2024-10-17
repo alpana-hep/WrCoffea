@@ -2364,7 +2364,7 @@ def concat(arr1,arr2):                                                          
     return ak.with_name(ak.concatenate((arr1,arr2), axis=1), 'PtEtaPhiMCandidate')  #
                                                                                     #
 def lep_padding(arr):                                                               ##### for use in dak.map_partitions()
-    return ak.pad_none(arr[ak.argsort(arr.pt, axis=1, ascending=False)], 5, axis=1) #
+    return ak.pad_none(arr[ak.argsort(arr.pt, axis=1, ascending=False)], 2, axis=1) #
                                 #FIX PADDING FUNCS TO BE MORE GENERAL               #
 def jet_padding(arr):                                                               #
     return ak.pad_none(arr, 2, axis=1)                                              #
