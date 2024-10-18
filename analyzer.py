@@ -29,18 +29,18 @@ class WrAnalysis(processor.ProcessorABC):
         }
 
         self.make_output = lambda: {
-#            'pt_leadlep': dah.hist.Hist(
-#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-#                hist.axis.Regular(400, 0, 2000, name='pt_leadlep', label=r'p_{T} of the leading lepton [GeV]'),
-#                hist.storage.Weight(),
-#            ),
-#            'pt_subleadlep': dah.hist.Hist(
-#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-#                hist.axis.Regular(400, 0, 2000, name='pt_subleadlep', label=r'p_{T} of the subleading lepton [GeV]'),
-#                hist.storage.Weight(),
-#            ),
+            'pt_leadlep': dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(1000, 0, 2000, name='pt_leadlep', label=r'p_{T} of the leading lepton [GeV]'),
+                hist.storage.Weight(),
+            ),
+            'pt_subleadlep': dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(1000, 0, 2000, name='pt_subleadlep', label=r'p_{T} of the subleading lepton [GeV]'),
+                hist.storage.Weight(),
+            ),
 #            'pt_leadjet': dah.hist.Hist(
 #                hist.axis.StrCategory([], name="process", label="Process", growth=True),
 #                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
@@ -1214,6 +1214,46 @@ class WrAnalysis(processor.ProcessorABC):
                 hist.axis.Regular(1000, 0, 3000, name='fourobject_py_prime_leadlep', label=r'm_{lljj} [GeV]'),
                 hist.storage.Weight(),
             ),
+################################################################################################################################################################################
+            'threeobject_mass_leadlep_prime_subleadlep': dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(1000, 0, 3000, name='threeobject_mass_leadlep_prime_subleadlep', label=r'm_{ljj} [GeV]'),
+                hist.storage.Weight(),
+            ),
+            'threeobject_mass_leadlep_prime_leadlep': dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(1000, 0, 3000, name='threeobject_mass_leadlep_prime_leadlep', label=r'm_{ljj} [GeV]'),
+                hist.storage.Weight(),
+            ),
+################################################################################################################################################################################
+            'threeobject_mass_subleadlep_prime_subleadlep': dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(1000, 0, 3000, name='threeobject_mass_subleadlep_prime_subleadlep', label=r'm_{ljj} [GeV]'),
+                hist.storage.Weight(),
+            ),
+            'threeobject_mass_subleadlep_prime_leadlep': dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(1000, 0, 3000, name='threeobject_mass_subleadlep_prime_leadlep', label=r'm_{ljj} [GeV]'),
+                hist.storage.Weight(),
+            ),
+################################################################################################################################################################################
+            'fourobject_mass_prime_subleadlep': dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(1000, 0, 3000, name='fourobject_mass_prime_subleadlep', label=r'm_{lljj} [GeV]'),
+                hist.storage.Weight(),
+            ),
+            'fourobject_mass_prime_leadlep': dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(1000, 0, 3000, name='fourobject_mass_prime_leadlep', label=r'm_{lljj} [GeV]'),
+                hist.storage.Weight(),
+            ),
+
         }
 
     def process(self, events): 
@@ -1394,12 +1434,18 @@ class WrAnalysis(processor.ProcessorABC):
         for region, cuts in regions.items():
             cut = selections.all(*cuts)
 
-#            output['pt_subleadlep'].fill(
-#                process=process,
-#                region=region,
-#                pt_subleadlep=tightLeptons[cut][:, 1].pt,
-#                weight=weights.weight()[cut],
-#            )
+            output['pt_leadlep'].fill(
+                process=process,
+                region=region,
+                pt_leadlep=tightLeptons[cut][:, 0].pt,
+                weight=weights.weight()[cut],
+            )
+            output['pt_subleadlep'].fill(
+                process=process,
+                region=region,
+                pt_subleadlep=tightLeptons[cut][:, 1].pt,
+                weight=weights.weight()[cut],
+            )
 #            output['pt_leadjet'].fill(
 #                process=process,
 #                region=region,
@@ -2405,7 +2451,7 @@ class WrAnalysis(processor.ProcessorABC):
             output['leadlep_px_prime_leadlep'].fill(
                 process=process,
                 region=region,
-                leadlep_px_prime_leadlep=tightLeptons[cut][:,0].px_prime_leadlep=,
+                leadlep_px_prime_leadlep=tightLeptons[cut][:,0].px_prime_leadlep,
                 weight=weights.weight()[cut],
             )
 ################################################################################################################################################################################
@@ -2418,7 +2464,7 @@ class WrAnalysis(processor.ProcessorABC):
             output['leadlep_py_prime_leadlep'].fill(
                 process=process,
                 region=region,
-                leadlep_py_prime_leadlep=tightLeptons[cut][:,0].py_prime_leadlep=,
+                leadlep_py_prime_leadlep=tightLeptons[cut][:,0].py_prime_leadlep,
                 weight=weights.weight()[cut],
             )
 ################################################################################################################################################################################
@@ -2431,7 +2477,7 @@ class WrAnalysis(processor.ProcessorABC):
             output['subleadlep_px_prime_leadlep'].fill(
                 process=process,
                 region=region,
-                subleadlep_px_prime_leadlep=tightLeptons[cut][:,1].px_prime_leadlep=,
+                subleadlep_px_prime_leadlep=tightLeptons[cut][:,1].px_prime_leadlep,
                 weight=weights.weight()[cut],
             )
 ################################################################################################################################################################################
@@ -2444,7 +2490,7 @@ class WrAnalysis(processor.ProcessorABC):
             output['subleadlep_py_prime_leadlep'].fill(
                 process=process,
                 region=region,
-                subleadlep_py_prime_leadlep=tightLeptons[cut][:,1].py_prime_leadlep=,
+                subleadlep_py_prime_leadlep=tightLeptons[cut][:,1].py_prime_leadlep,
                 weight=weights.weight()[cut],
             )
 ################################################################################################################################################################################
@@ -2457,7 +2503,7 @@ class WrAnalysis(processor.ProcessorABC):
             output['leadjet_px_prime_leadlep'].fill(
                 process=process,
                 region=region,
-                leadjet_px_prime_leadlep=AK4Jets[cut][:,0].px_prime_leadlep=,
+                leadjet_px_prime_leadlep=AK4Jets[cut][:,0].px_prime_leadlep,
                 weight=weights.weight()[cut],
             )
 ################################################################################################################################################################################
@@ -2470,7 +2516,7 @@ class WrAnalysis(processor.ProcessorABC):
             output['leadjet_py_prime_leadlep'].fill(
                 process=process,
                 region=region,
-                leadjet_py_prime_leadlep=AK4Jets[cut][:,0].py_prime_leadlep=,
+                leadjet_py_prime_leadlep=AK4Jets[cut][:,0].py_prime_leadlep,
                 weight=weights.weight()[cut],
             )
 ################################################################################################################################################################################
@@ -2483,7 +2529,7 @@ class WrAnalysis(processor.ProcessorABC):
             output['subleadjet_px_prime_leadlep'].fill(
                 process=process,
                 region=region,
-                subleadjet_px_prime_leadlep=AK4Jets[cut][:,1].px_prime_leadlep=,
+                subleadjet_px_prime_leadlep=AK4Jets[cut][:,1].px_prime_leadlep,
                 weight=weights.weight()[cut],
             )
 ################################################################################################################################################################################
@@ -2496,82 +2542,121 @@ class WrAnalysis(processor.ProcessorABC):
             output['subleadjet_py_prime_leadlep'].fill(
                 process=process,
                 region=region,
-                subleadjet_py_prime_leadlep=AK4Jets[cut][:,1].py_prime_leadlep=,
+                subleadjet_py_prime_leadlep=AK4Jets[cut][:,1].py_prime_leadlep,
                 weight=weights.weight()[cut],
             )
 ################################################################################################################################################################################
             output['threeobject_leadlep_px_prime_subleadlep'].fill(
                 process=process,
                 region=region,
-                threeobject_leadlep_px_prime_subleadlep=(tightLeptons[cut][:,0] + AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).px_prime_subleadlep,
+                threeobject_leadlep_px_prime_subleadlep=tightLeptons[cut][:,0].px_prime_subleadlep + AK4Jets[cut][:,0].px_prime_subleadlep + AK4Jets[cut][:,1].px_prime_subleadlep,
                 weight=weights.weight()[cut],
             )
             output['threeobject_leadlep_px_prime_leadlep'].fill(
                 process=process,
                 region=region,
-                threeobject_leadlep_px_prime_leadlep=(tightLeptons[cut][:,0] + AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).px_prime_leadlep,
+                threeobject_leadlep_px_prime_leadlep=tightLeptons[cut][:,0].px_prime_leadlep + AK4Jets[cut][:,0].px_prime_leadlep + AK4Jets[cut][:,1].px_prime_leadlep,
                 weight=weights.weight()[cut],
             )
             output['threeobject_leadlep_py_prime_subleadlep'].fill(
                 process=process,
                 region=region,
-                threeobject_leadlep_py_prime_subleadlep=(tightLeptons[cut][:,0] + AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).py_prime_subleadlep,
+                threeobject_leadlep_py_prime_subleadlep=tightLeptons[cut][:,0].py_prime_subleadlep + AK4Jets[cut][:,0].py_prime_subleadlep + AK4Jets[cut][:,1].py_prime_subleadlep,
                 weight=weights.weight()[cut],
             )
             output['threeobject_leadlep_py_prime_leadlep'].fill(
                 process=process,
                 region=region,
-                threeobject_leadlep_py_prime_leadlep=(tightLeptons[cut][:,0] + AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).py_prime_leadlep,
+                threeobject_leadlep_py_prime_leadlep=tightLeptons[cut][:,0].py_prime_leadlep + AK4Jets[cut][:,0].py_prime_leadlep + AK4Jets[cut][:,1].py_prime_leadlep,
                 weight=weights.weight()[cut],
             )
 ################################################################################################################################################################################
             output['threeobject_subleadlep_px_prime_subleadlep'].fill(
                 process=process,
                 region=region,
-                threeobject_subleadlep_px_prime_subleadlep=(tightLeptons[cut][:,1] + AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).px_prime_subleadlep,
+                threeobject_subleadlep_px_prime_subleadlep=tightLeptons[cut][:,1].px_prime_subleadlep + AK4Jets[cut][:,0].px_prime_subleadlep + AK4Jets[cut][:,1].px_prime_subleadlep,
                 weight=weights.weight()[cut],
             )
             output['threeobject_subleadlep_px_prime_leadlep'].fill(
                 process=process,
                 region=region,
-                threeobject_subleadlep_px_prime_leadlep=(tightLeptons[cut][:,1] + AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).px_prime_leadlep,
+                threeobject_subleadlep_px_prime_leadlep=tightLeptons[cut][:,1].px_prime_leadlep + AK4Jets[cut][:,0].px_prime_leadlep + AK4Jets[cut][:,1].px_prime_leadlep,
                 weight=weights.weight()[cut],
             )
             output['threeobject_subleadlep_py_prime_subleadlep'].fill(
                 process=process,
                 region=region,
-                threeobject_subleadlep_py_prime_subleadlep=(tightLeptons[cut][:,1] + AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).py_prime_subleadlep,
+                threeobject_subleadlep_py_prime_subleadlep=tightLeptons[cut][:,1].py_prime_subleadlep + AK4Jets[cut][:,0].py_prime_subleadlep + AK4Jets[cut][:,1].py_prime_subleadlep,
                 weight=weights.weight()[cut],
             )
             output['threeobject_subleadlep_py_prime_leadlep'].fill(
                 process=process,
                 region=region,
-                threeobject_subleadlep_py_prime_leadlep=(tightLeptons[cut][:,1] + AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).py_prime_leadlep,
+                threeobject_subleadlep_py_prime_leadlep=tightLeptons[cut][:,1].py_prime_leadlep + AK4Jets[cut][:,0].py_prime_leadlep + AK4Jets[cut][:,1].py_prime_leadlep,
                 weight=weights.weight()[cut],
             )
 ################################################################################################################################################################################
             output['fourobject_px_prime_subleadlep'].fill(
                 process=process,
                 region=region,
-                fourobject_px_prime_subleadlep=(tightLeptons[cut][:,0] + tightLeptons[cut][:,1] + AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).px_prime_subleadlep,
+                fourobject_px_prime_subleadlep=tightLeptons[cut][:,0].px_prime_subleadlep + tightLeptons[cut][:,1].px_prime_subleadlep + AK4Jets[cut][:,0].px_prime_subleadlep + AK4Jets[cut][:,1].px_prime_subleadlep,
                 weight=weights.weight()[cut],
             )
             output['fourobject_px_prime_leadlep'].fill(
                 process=process,
                 region=region,
-                fourobject_px_prime_leadlep=(tightLeptons[cut][:,0] + tightLeptons[cut][:,1] + AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).px_prime_leadlep,
+                fourobject_px_prime_leadlep=tightLeptons[cut][:,0].px_prime_leadlep + tightLeptons[cut][:,1].px_prime_leadlep + AK4Jets[cut][:,0].px_prime_leadlep + AK4Jets[cut][:,1].px_prime_leadlep,
                 weight=weights.weight()[cut],
             )
             output['fourobject_py_prime_subleadlep'].fill(
                 process=process,
                 region=region,
-                fourobject_py_prime_subleadlep=(tightLeptons[cut][:,0] + tightLeptons[cut][:,1] + AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).py_prime_subleadlep,
+                fourobject_py_prime_subleadlep=tightLeptons[cut][:,0].py_prime_subleadlep + tightLeptons[cut][:,1].py_prime_subleadlep + AK4Jets[cut][:,0].py_prime_subleadlep + AK4Jets[cut][:,1].py_prime_subleadlep,
                 weight=weights.weight()[cut],
             )
             output['fourobject_py_prime_leadlep'].fill(
                 process=process,
                 region=region,
-                fourobject_py_prime_leadlep=(tightLeptons[cut][:,0] + tightLeptons[cut][:,1] + AK4Jets[cut][:,0] + AK4Jets[cut][:,1]).py_prime_leadlep,
+                fourobject_py_prime_leadlep=tightLeptons[cut][:,0].py_prime_leadlep + tightLeptons[cut][:,1].py_prime_leadlep + AK4Jets[cut][:,0].py_prime_leadlep + AK4Jets[cut][:,1].py_prime_leadlep,
+                weight=weights.weight()[cut],
+            )
+################################################################################################################################################################################
+            output['threeobject_mass_leadlep_prime_subleadlep'].fill(
+                process=process,
+                region=region,
+                threeobject_mass_leadlep_prime_subleadlep=np.sqrt((tightLeptons[cut][:,0].energy + AK4Jets[cut][:,0].energy + AK4Jets[cut][:,1].energy)**2 - (tightLeptons[cut][:,0].px_prime_subleadlep + AK4Jets[cut][:,0].px_prime_subleadlep + AK4Jets[cut][:,1].px_prime_subleadlep)**2 - (tightLeptons[cut][:,0].py_prime_subleadlep + AK4Jets[cut][:,0].py_prime_subleadlep + AK4Jets[cut][:,1].py_prime_subleadlep)**2 - (tightLeptons[cut][:,0].pz + AK4Jets[cut][:,0].pz + AK4Jets[cut][:,1].pz)**2),
+                weight=weights.weight()[cut],
+            )
+            output['threeobject_mass_leadlep_prime_leadlep'].fill(
+                process=process,
+                region=region,
+                threeobject_mass_leadlep_prime_leadlep=np.sqrt((tightLeptons[cut][:,0].energy + AK4Jets[cut][:,0].energy + AK4Jets[cut][:,1].energy)**2 - (tightLeptons[cut][:,0].px_prime_leadlep + AK4Jets[cut][:,0].px_prime_leadlep + AK4Jets[cut][:,1].px_prime_leadlep)**2 - (tightLeptons[cut][:,0].py_prime_leadlep + AK4Jets[cut][:,0].py_prime_leadlep + AK4Jets[cut][:,1].py_prime_leadlep)**2 - (tightLeptons[cut][:,0].pz + AK4Jets[cut][:,0].pz + AK4Jets[cut][:,1].pz)**2),
+                weight=weights.weight()[cut],
+            )
+################################################################################################################################################################################
+            output['threeobject_mass_subleadlep_prime_subleadlep'].fill(
+                process=process,
+                region=region,
+                threeobject_mass_subleadlep_prime_subleadlep=np.sqrt((tightLeptons[cut][:,1].energy + AK4Jets[cut][:,0].energy + AK4Jets[cut][:,1].energy)**2 - (tightLeptons[cut][:,1].px_prime_subleadlep + AK4Jets[cut][:,0].px_prime_subleadlep + AK4Jets[cut][:,1].px_prime_subleadlep)**2 - (tightLeptons[cut][:,1].py_prime_subleadlep + AK4Jets[cut][:,0].py_prime_subleadlep + AK4Jets[cut][:,1].py_prime_subleadlep)**2 - (tightLeptons[cut][:,1].pz + AK4Jets[cut][:,0].pz + AK4Jets[cut][:,1].pz)**2),
+                weight=weights.weight()[cut],
+            )
+            output['threeobject_mass_subleadlep_prime_leadlep'].fill(
+                process=process,
+                region=region,
+                threeobject_mass_subleadlep_prime_leadlep=np.sqrt((tightLeptons[cut][:,1].energy + AK4Jets[cut][:,0].energy + AK4Jets[cut][:,1].energy)**2 - (tightLeptons[cut][:,1].px_prime_leadlep + AK4Jets[cut][:,0].px_prime_leadlep + AK4Jets[cut][:,1].px_prime_leadlep)**2 - (tightLeptons[cut][:,1].py_prime_leadlep + AK4Jets[cut][:,0].py_prime_leadlep + AK4Jets[cut][:,1].py_prime_leadlep)**2 - (tightLeptons[cut][:,1].pz + AK4Jets[cut][:,0].pz + AK4Jets[cut][:,1].pz)**2),
+                weight=weights.weight()[cut],
+            )
+################################################################################################################################################################################
+            output['fourobject_mass_prime_subleadlep'].fill(
+                process=process,
+                region=region,
+                fourobject_mass_prime_subleadlep=np.sqrt((tightLeptons[cut][:,0].energy + tightLeptons[cut][:,1].energy + AK4Jets[cut][:,0].energy + AK4Jets[cut][:,1].energy)**2 - (tightLeptons[cut][:,0].px_prime_subleadlep + tightLeptons[cut][:,1].px_prime_subleadlep + AK4Jets[cut][:,0].px_prime_subleadlep + AK4Jets[cut][:,1].px_prime_subleadlep)**2 - (tightLeptons[cut][:,0].py_prime_subleadlep + tightLeptons[cut][:,1].py_prime_subleadlep + AK4Jets[cut][:,0].py_prime_subleadlep + AK4Jets[cut][:,1].py_prime_subleadlep)**2 - (tightLeptons[cut][:,0].pz + tightLeptons[cut][:,1].pz + AK4Jets[cut][:,0].pz + AK4Jets[cut][:,1].pz)**2),
+                weight=weights.weight()[cut],
+            )
+            output['fourobject_mass_prime_leadlep'].fill(
+                process=process,
+                region=region,
+                fourobject_mass_prime_leadlep=np.sqrt((tightLeptons[cut][:,0].energy + tightLeptons[cut][:,1].energy + AK4Jets[cut][:,0].energy + AK4Jets[cut][:,1].energy)**2 - (tightLeptons[cut][:,0].px_prime_leadlep + tightLeptons[cut][:,1].px_prime_leadlep + AK4Jets[cut][:,0].px_prime_leadlep + AK4Jets[cut][:,1].px_prime_leadlep)**2 - (tightLeptons[cut][:,0].py_prime_leadlep + tightLeptons[cut][:,1].py_prime_leadlep + AK4Jets[cut][:,0].py_prime_leadlep + AK4Jets[cut][:,1].py_prime_leadlep)**2 - (tightLeptons[cut][:,0].pz + tightLeptons[cut][:,1].pz + AK4Jets[cut][:,0].pz + AK4Jets[cut][:,1].pz)**2),
                 weight=weights.weight()[cut],
             )
 
@@ -2685,40 +2770,40 @@ def primed_shift (tightElectrons, looseElectrons, tightMuons, looseMuons, AK4Jet
     #create the primed px of the leptons as a field of the tightLeptons column assuming the neutrino lepton is the sublead lepton
     tightLeptons = dak.with_field(tightLeptons,
             np.cos(tightLeptons[:,0].gamma)*tightLeptons.px + np.sin(tightLeptons[:,0].gamma)*tightLeptons.py,
-            where='px_prime_sublead')
+            where='px_prime_subleadlep')
     #create the primed py of the leptons as a field of the tightLeptons column assuming the neutrino lepton is the sublead lepton
     tightLeptons = dak.with_field(tightLeptons,
             np.sin(tightLeptons[:,0].gamma)*tightLeptons.px*(-1) + np.cos(tightLeptons[:,0].gamma)*tightLeptons.py,
-            where='py_prime_sublead')
+            where='py_prime_subleadlep')
 
     #create the primed px of the jets as a field of the AK4Jets column assuming the neutrino lepton is the sublead lepton
     AK4Jets = dak.with_field(AK4Jets,
             np.cos(tightLeptons[:,0].gamma)*AK4Jets.px + np.sin(tightLeptons[:,0].gamma)*AK4Jets.py,
-            where='px_prime_sublead')
+            where='px_prime_subleadlep')
     #create the primed py of the jets as a field of the AK4Jets column assuming the neutrino lepton is the sublead lepton
     AK4Jets = dak.with_field(AK4Jets,
             np.sin(tightLeptons[:,0].gamma)*AK4Jets.px*(-1) + np.cos(tightLeptons[:,0].gamma)*AK4Jets.py,
-            where='py_prime_sublead')
+            where='py_prime_subleadlep')
 
 
 
     #create the primed px of the leptons as a field of the tightLeptons column assuming the neutrino lepton is the lead lepton
     tightLeptons = dak.with_field(tightLeptons,
             np.cos(tightLeptons[:,1].gamma)*tightLeptons.px + np.sin(tightLeptons[:,1].gamma)*tightLeptons.py,
-            where='px_prime_lead')
+            where='px_prime_leadlep')
     #create the primed py of the leptons as a field of the tightLeptons column assuming the neutrino lepton is the lead lepton
     tightLeptons = dak.with_field(tightLeptons,
             np.sin(tightLeptons[:,1].gamma)*tightLeptons.px*(-1) + np.cos(tightLeptons[:,1].gamma)*tightLeptons.py,
-            where='py_prime_lead')
+            where='py_prime_leadlep')
 
     #create the primed px of the jets as a field of the AK4Jets column assuming the neutrino lepton is the lead lepton
     AK4Jets = dak.with_field(AK4Jets,
             np.cos(tightLeptons[:,1].gamma)*AK4Jets.px + np.sin(tightLeptons[:,1].gamma)*AK4Jets.py,
-            where='px_prime_sublead')
+            where='px_prime_leadlep')
     #create the primed py of the jets as a field of the AK4Jets column assuming the neutrino lepton is the lead lepton
     AK4Jets = dak.with_field(AK4Jets,
             np.sin(tightLeptons[:,1].gamma)*AK4Jets.px*(-1) + np.cos(tightLeptons[:,1].gamma)*AK4Jets.py,
-            where='py_prime_sublead')
+            where='py_prime_leadlep')
 
 #    num_to_print = 51
 #
