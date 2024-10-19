@@ -142,7 +142,7 @@ def run_analysis(args, preprocessed_fileset):
 
 if __name__ == "__main__":
     # Load mass choices from the CSV file
-    file_path = Path('data/masses_full.csv')
+    file_path = Path('data/Run2Legacy_2018_mass_points.csv')
     MASS_CHOICES = load_masses_from_csv(file_path)
 
     # Initialize argparse
