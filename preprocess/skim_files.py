@@ -41,9 +41,9 @@ def uproot_writeable(events):
 
 def make_skimmed_events(events):
     """Apply event selection to create skimmed datasets."""
-    selected_electrons = events.Electron[(events.Electron.pt > 45)]
-    selected_muons = events.Muon[(events.Muon.pt > 45)]
-    event_filters = ((ak.count(selected_electrons.pt, axis=1) + ak.count(selected_muons.pt, axis=1)) >= 2)
+    selected_electrons = events.Electron[(events.Electron.pt > 10)]
+    selected_muons = events.Muon[(events.Muon.pt > 10)]
+    event_filters = ((ak.count(selected_electrons.pt, axis=1) + ak.count(selected_muons.pt, axis=1)) >= 1)
 
     skimmed = events[event_filters]
     skimmed_dropped = skimmed[list(set(x for x in skimmed.fields if x in ["Electron", "Muon", "Jet", "FatJet", "HLT", "event", "run", "luminosityBlock", "genWeight"]))]
@@ -51,12 +51,12 @@ def make_skimmed_events(events):
 
 def load_output_json():
     """Load dataset from JSON file."""
-    json_file_path = f'jsons/UL18_bkg_preprocessed.json'
+    json_file_path = f'jsons/preprocessed/UL18_data_preprocessed.json'
     with open(json_file_path, 'r') as file:
         data = json.load(file)
     return data
 
-def extract_data(dataset_dict, dataset, config_path="configs/UL18_bkg_cfg.json"):
+def extract_data(dataset_dict, dataset, config_path="configs/UL18_data_cfg.json"):
     """Extract data for the given dataset and year from the JSON config."""
     with open(config_path, 'r') as f:
         dataset_mapping = json.load(f)
@@ -78,12 +78,13 @@ def process_file(sliced_dataset, dataset, file_index):
         make_skimmed_events,
         sliced_dataset,
         schemaclass=NanoAODSchema,
+        uproot_options={"handler": uproot.XRootDSource, "timeout": 3600}
     )
 
     with ProgressBar():
         for dataset_name, skimmed in skimmed_dict.items():
             skimmed = uproot_writeable(skimmed)
-            uproot.dask_write(skimmed.repartition(rows_per_partition=10000), compute=True, destination=f"tmp/{dataset}", prefix=f"{dataset}_skim{file_index}", tree_name="Events")
+            uproot.dask_write(skimmed.repartition(rows_per_partition=10000), compute=True, destination=f"tmp/{dataset}", prefix=f"{dataset}_skim{file_index}", tree_name="Events") #10000
 
     gc.collect()
 
@@ -97,7 +98,7 @@ if __name__ == "__main__":
 
 #    fileset = load_output_json()
 
-    json_file_path = f'jsons/UL18_bkg_preprocessed.json'
+    json_file_path = f'jsons/preprocessed/UL18_data_preprocessed.json'
     with open(json_file_path, 'r') as file:
         fileset = json.load(file)
 

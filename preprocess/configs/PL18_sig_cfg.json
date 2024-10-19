@@ -1,1306 +1,980 @@
 {
     "WRtoNLtoLLJJ_WR600_N100": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR600_N100",
-            "xsec": 45.97
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR600_N100",
+        "xsec": 45.97
     },
     "WRtoNLtoLLJJ_WR600_N200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR600_N200",
-            "xsec": 40.29
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR600_N200",
+        "xsec": 40.29
     },
     "WRtoNLtoLLJJ_WR600_N400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR600_N400",
-            "xsec": 19.83
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR600_N400",
+        "xsec": 19.83
     },
     "WRtoNLtoLLJJ_WR600_N500": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR600_N500",
-            "xsec": 7.149
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR600_N500",
+        "xsec": 7.149
     },
     "WRtoNLtoLLJJ_WR800_N100": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR800_N100",
-            "xsec": 15.51
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR800_N100",
+        "xsec": 15.51
     },
     "WRtoNLtoLLJJ_WR800_N200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR800_N200",
-            "xsec": 14.46
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR800_N200",
+        "xsec": 14.46
     },
     "WRtoNLtoLLJJ_WR800_N400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR800_N400",
-            "xsec": 10.41
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR800_N400",
+        "xsec": 10.41
     },
     "WRtoNLtoLLJJ_WR800_N600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR800_N600",
-            "xsec": 4.351
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR800_N600",
+        "xsec": 4.351
     },
     "WRtoNLtoLLJJ_WR800_N700": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR800_N700",
-            "xsec": 1.473
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR800_N700",
+        "xsec": 1.473
     },
     "WRtoNLtoLLJJ_WR1000_N100": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1000_N100",
-            "xsec": 6.383
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1000_N100",
+        "xsec": 6.383
     },
     "WRtoNLtoLLJJ_WR1000_N200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1000_N200",
-            "xsec": 6.083
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1000_N200",
+        "xsec": 6.083
     },
     "WRtoNLtoLLJJ_WR1000_N400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1000_N400",
-            "xsec": 5.023
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1000_N400",
+        "xsec": 5.023
     },
     "WRtoNLtoLLJJ_WR1000_N600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1000_N600",
-            "xsec": 3.323
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1000_N600",
+        "xsec": 3.323
     },
     "WRtoNLtoLLJJ_WR1000_N800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1000_N800",
-            "xsec": 1.256
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1000_N800",
+        "xsec": 1.256
     },
     "WRtoNLtoLLJJ_WR1000_N900": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1000_N900",
-            "xsec": 0.4125
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1000_N900",
+        "xsec": 0.4125
     },
     "WRtoNLtoLLJJ_WR1200_N100": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1200_N100",
-            "xsec": 2.97
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1200_N100",
+        "xsec": 2.97
     },
     "WRtoNLtoLLJJ_WR1200_N200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1200_N200",
-            "xsec": 2.867
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1200_N200",
+        "xsec": 2.867
     },
     "WRtoNLtoLLJJ_WR1200_N400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1200_N400",
-            "xsec": 2.511
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1200_N400",
+        "xsec": 2.511
     },
     "WRtoNLtoLLJJ_WR1200_N600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1200_N600",
-            "xsec": 1.947
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1200_N600",
+        "xsec": 1.947
     },
     "WRtoNLtoLLJJ_WR1200_N800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1200_N800",
-            "xsec": 1.207
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1200_N800",
+        "xsec": 1.207
     },
     "WRtoNLtoLLJJ_WR1200_N1000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1200_N1000",
-            "xsec": 0.4296
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1200_N1000",
+        "xsec": 0.4296
     },
     "WRtoNLtoLLJJ_WR1200_N1100": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1200_N1100",
-            "xsec": 0.1406
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1200_N1100",
+        "xsec": 0.1406
     },
     "WRtoNLtoLLJJ_WR1400_N100": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1400_N100",
-            "xsec": 1.502
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1400_N100",
+        "xsec": 1.502
     },
     "WRtoNLtoLLJJ_WR1400_N200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1400_N200",
-            "xsec": 1.458
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1400_N200",
+        "xsec": 1.458
     },
     "WRtoNLtoLLJJ_WR1400_N400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1400_N400",
-            "xsec": 1.321
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1400_N400",
+        "xsec": 1.321
     },
     "WRtoNLtoLLJJ_WR1400_N600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1400_N600",
-            "xsec": 1.111
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1400_N600",
+        "xsec": 1.111
     },
     "WRtoNLtoLLJJ_WR1400_N800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1400_N800",
-            "xsec": 0.825
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1400_N800",
+        "xsec": 0.825
     },
     "WRtoNLtoLLJJ_WR1400_N1000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1400_N1000",
-            "xsec": 0.4887
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1400_N1000",
+        "xsec": 0.4887
     },
     "WRtoNLtoLLJJ_WR1400_N1200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1400_N1200",
-            "xsec": 0.166
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1400_N1200",
+        "xsec": 0.166
     },
     "WRtoNLtoLLJJ_WR1400_N1300": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1400_N1300",
-            "xsec": 0.05455
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1400_N1300",
+        "xsec": 0.05455
     },
     "WRtoNLtoLLJJ_WR1600_N100": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1600_N100",
-            "xsec": 0.8063
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1600_N100",
+        "xsec": 0.8063
     },
     "WRtoNLtoLLJJ_WR1600_N200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1600_N200",
-            "xsec": 0.7864
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1600_N200",
+        "xsec": 0.7864
     },
     "WRtoNLtoLLJJ_WR1600_N400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1600_N400",
-            "xsec": 0.7256
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1600_N400",
+        "xsec": 0.7256
     },
     "WRtoNLtoLLJJ_WR1600_N600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1600_N600",
-            "xsec": 0.6375
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1600_N600",
+        "xsec": 0.6375
     },
     "WRtoNLtoLLJJ_WR1600_N800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1600_N800",
-            "xsec": 0.5188
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1600_N800",
+        "xsec": 0.5188
     },
     "WRtoNLtoLLJJ_WR1600_N1000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1600_N1000",
-            "xsec": 0.3731
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1600_N1000",
+        "xsec": 0.3731
     },
     "WRtoNLtoLLJJ_WR1600_N1200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1600_N1200",
-            "xsec": 0.2129
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1600_N1200",
+        "xsec": 0.2129
     },
     "WRtoNLtoLLJJ_WR1600_N1400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1600_N1400",
-            "xsec": 0.07031
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1600_N1400",
+        "xsec": 0.07031
     },
     "WRtoNLtoLLJJ_WR1600_N1500": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1600_N1500",
-            "xsec": 0.02318
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1600_N1500",
+        "xsec": 0.02318
     },
     "WRtoNLtoLLJJ_WR1800_N100": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1800_N100",
-            "xsec": 0.453
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1800_N100",
+        "xsec": 0.453
     },
     "WRtoNLtoLLJJ_WR1800_N200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1800_N200",
-            "xsec": 0.4422
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1800_N200",
+        "xsec": 0.4422
     },
     "WRtoNLtoLLJJ_WR1800_N400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1800_N400",
-            "xsec": 0.4125
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1800_N400",
+        "xsec": 0.4125
     },
     "WRtoNLtoLLJJ_WR1800_N600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1800_N600",
-            "xsec": 0.3718
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1800_N600",
+        "xsec": 0.3718
     },
     "WRtoNLtoLLJJ_WR1800_N800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1800_N800",
-            "xsec": 0.3192
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1800_N800",
+        "xsec": 0.3192
     },
     "WRtoNLtoLLJJ_WR1800_N1000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1800_N1000",
-            "xsec": 0.2528
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1800_N1000",
+        "xsec": 0.2528
     },
     "WRtoNLtoLLJJ_WR1800_N1200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1800_N1200",
-            "xsec": 0.1771
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1800_N1200",
+        "xsec": 0.1771
     },
     "WRtoNLtoLLJJ_WR1800_N1400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1800_N1400",
-            "xsec": 0.09803
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1800_N1400",
+        "xsec": 0.09803
     },
     "WRtoNLtoLLJJ_WR1800_N1600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1800_N1600",
-            "xsec": 0.03186
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1800_N1600",
+        "xsec": 0.03186
     },
     "WRtoNLtoLLJJ_WR1800_N1700": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR1800_N1700",
-            "xsec": 0.01069
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR1800_N1700",
+        "xsec": 0.01069
     },
     "WRtoNLtoLLJJ_WR2000_N100": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2000_N100",
-            "xsec": 0.2622
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2000_N100",
+        "xsec": 0.2622
     },
     "WRtoNLtoLLJJ_WR2000_N200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2000_N200",
-            "xsec": 0.2565
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2000_N200",
+        "xsec": 0.2565
     },
     "WRtoNLtoLLJJ_WR2000_N400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2000_N400",
-            "xsec": 0.2415
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2000_N400",
+        "xsec": 0.2415
     },
     "WRtoNLtoLLJJ_WR2000_N600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2000_N600",
-            "xsec": 0.2217
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2000_N600",
+        "xsec": 0.2217
     },
     "WRtoNLtoLLJJ_WR2000_N800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2000_N800",
-            "xsec": 0.1962
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2000_N800",
+        "xsec": 0.1962
     },
     "WRtoNLtoLLJJ_WR2000_N1000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2000_N1000",
-            "xsec": 0.1649
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2000_N1000",
+        "xsec": 0.1649
     },
     "WRtoNLtoLLJJ_WR2000_N1200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2000_N1200",
-            "xsec": 0.1281
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2000_N1200",
+        "xsec": 0.1281
     },
     "WRtoNLtoLLJJ_WR2000_N1400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2000_N1400",
-            "xsec": 0.08748
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2000_N1400",
+        "xsec": 0.08748
     },
     "WRtoNLtoLLJJ_WR2000_N1600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2000_N1600",
-            "xsec": 0.0472
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2000_N1600",
+        "xsec": 0.0472
     },
     "WRtoNLtoLLJJ_WR2000_N1800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2000_N1800",
-            "xsec": 0.01517
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2000_N1800",
+        "xsec": 0.01517
     },
     "WRtoNLtoLLJJ_WR2000_N1900": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2000_N1900",
-            "xsec": 0.005147
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2000_N1900",
+        "xsec": 0.005147
     },
     "WRtoNLtoLLJJ_WR2200_N100": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2200_N100",
-            "xsec": 0.1563
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2200_N100",
+        "xsec": 0.1563
     },
     "WRtoNLtoLLJJ_WR2200_N200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2200_N200",
-            "xsec": 0.1526
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2200_N200",
+        "xsec": 0.1526
     },
     "WRtoNLtoLLJJ_WR2200_N400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2200_N400",
-            "xsec": 0.1443
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2200_N400",
+        "xsec": 0.1443
     },
     "WRtoNLtoLLJJ_WR2200_N600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2200_N600",
-            "xsec": 0.134
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2200_N600",
+        "xsec": 0.134
     },
     "WRtoNLtoLLJJ_WR2200_N800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2200_N800",
-            "xsec": 0.1211
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2200_N800",
+        "xsec": 0.1211
     },
     "WRtoNLtoLLJJ_WR2200_N1000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2200_N1000",
-            "xsec": 0.1055
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2200_N1000",
+        "xsec": 0.1055
     },
     "WRtoNLtoLLJJ_WR2200_N1200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2200_N1200",
-            "xsec": 0.08713
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2200_N1200",
+        "xsec": 0.08713
     },
     "WRtoNLtoLLJJ_WR2200_N1400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2200_N1400",
-            "xsec": 0.0664
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2200_N1400",
+        "xsec": 0.0664
     },
     "WRtoNLtoLLJJ_WR2200_N1600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2200_N1600",
-            "xsec": 0.04463
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2200_N1600",
+        "xsec": 0.04463
     },
     "WRtoNLtoLLJJ_WR2200_N1800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2200_N1800",
-            "xsec": 0.02379
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2200_N1800",
+        "xsec": 0.02379
     },
     "WRtoNLtoLLJJ_WR2200_N2000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2200_N2000",
-            "xsec": 0.007548
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2200_N2000",
+        "xsec": 0.007548
     },
     "WRtoNLtoLLJJ_WR2200_N2100": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2200_N2100",
-            "xsec": 0.002602
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2200_N2100",
+        "xsec": 0.002602
     },
     "WRtoNLtoLLJJ_WR2400_N100": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2400_N100",
-            "xsec": 0.09505
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2400_N100",
+        "xsec": 0.09505
     },
     "WRtoNLtoLLJJ_WR2400_N200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2400_N200",
-            "xsec": 0.09283
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2400_N200",
+        "xsec": 0.09283
     },
     "WRtoNLtoLLJJ_WR2400_N400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2400_N400",
-            "xsec": 0.08794
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2400_N400",
+        "xsec": 0.08794
     },
     "WRtoNLtoLLJJ_WR2400_N600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2400_N600",
-            "xsec": 0.08234
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2400_N600",
+        "xsec": 0.08234
     },
     "WRtoNLtoLLJJ_WR2400_N800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2400_N800",
-            "xsec": 0.07538
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2400_N800",
+        "xsec": 0.07538
     },
     "WRtoNLtoLLJJ_WR2400_N1000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2400_N1000",
-            "xsec": 0.06736
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2400_N1000",
+        "xsec": 0.06736
     },
     "WRtoNLtoLLJJ_WR2400_N1200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2400_N1200",
-            "xsec": 0.05781
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2400_N1200",
+        "xsec": 0.05781
     },
     "WRtoNLtoLLJJ_WR2400_N1400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2400_N1400",
-            "xsec": 0.04709
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2400_N1400",
+        "xsec": 0.04709
     },
     "WRtoNLtoLLJJ_WR2400_N1600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2400_N1600",
-            "xsec": 0.03533
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2400_N1600",
+        "xsec": 0.03533
     },
     "WRtoNLtoLLJJ_WR2400_N1800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2400_N1800",
-            "xsec": 0.02333
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2400_N1800",
+        "xsec": 0.02333
     },
     "WRtoNLtoLLJJ_WR2400_N2000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2400_N2000",
-            "xsec": 0.01227
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2400_N2000",
+        "xsec": 0.01227
     },
     "WRtoNLtoLLJJ_WR2400_N2200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2400_N2200",
-            "xsec": 0.003845
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2400_N2200",
+        "xsec": 0.003845
     },
     "WRtoNLtoLLJJ_WR2400_N2300": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2400_N2300",
-            "xsec": 0.001352
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2400_N2300",
+        "xsec": 0.001352
     },
     "WRtoNLtoLLJJ_WR2600_N100": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2600_N100",
-            "xsec": 0.05897
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2600_N100",
+        "xsec": 0.05897
     },
     "WRtoNLtoLLJJ_WR2600_N200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2600_N200",
-            "xsec": 0.05743
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2600_N200",
+        "xsec": 0.05743
     },
     "WRtoNLtoLLJJ_WR2600_N400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2600_N400",
-            "xsec": 0.05436
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2600_N400",
+        "xsec": 0.05436
     },
     "WRtoNLtoLLJJ_WR2600_N600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2600_N600",
-            "xsec": 0.05118
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2600_N600",
+        "xsec": 0.05118
     },
     "WRtoNLtoLLJJ_WR2600_N800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2600_N800",
-            "xsec": 0.0473
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2600_N800",
+        "xsec": 0.0473
     },
     "WRtoNLtoLLJJ_WR2600_N1000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2600_N1000",
-            "xsec": 0.04291
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2600_N1000",
+        "xsec": 0.04291
     },
     "WRtoNLtoLLJJ_WR2600_N1200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2600_N1200",
-            "xsec": 0.03784
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2600_N1200",
+        "xsec": 0.03784
     },
     "WRtoNLtoLLJJ_WR2600_N1400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2600_N1400",
-            "xsec": 0.03211
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2600_N1400",
+        "xsec": 0.03211
     },
     "WRtoNLtoLLJJ_WR2600_N1600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2600_N1600",
-            "xsec": 0.0258
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2600_N1600",
+        "xsec": 0.0258
     },
     "WRtoNLtoLLJJ_WR2600_N1800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2600_N1800",
-            "xsec": 0.01914
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2600_N1800",
+        "xsec": 0.01914
     },
     "WRtoNLtoLLJJ_WR2600_N2000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2600_N2000",
-            "xsec": 0.01247
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2600_N2000",
+        "xsec": 0.01247
     },
     "WRtoNLtoLLJJ_WR2600_N2200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2600_N2200",
-            "xsec": 0.006481
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2600_N2200",
+        "xsec": 0.006481
     },
     "WRtoNLtoLLJJ_WR2600_N2400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2600_N2400",
-            "xsec": 0.002025
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2600_N2400",
+        "xsec": 0.002025
     },
     "WRtoNLtoLLJJ_WR2600_N2500": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2600_N2500",
-            "xsec": 0.0007201
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2600_N2500",
+        "xsec": 0.0007201
     },
     "WRtoNLtoLLJJ_WR2800_N100": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2800_N100",
-            "xsec": 0.03711
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N100",
+        "xsec": 0.03711
     },
     "WRtoNLtoLLJJ_WR2800_N200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2800_N200",
-            "xsec": 0.03609
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N200",
+        "xsec": 0.03609
     },
     "WRtoNLtoLLJJ_WR2800_N400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2800_N400",
-            "xsec": 0.03408
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N400",
+        "xsec": 0.03408
     },
     "WRtoNLtoLLJJ_WR2800_N600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2800_N600",
-            "xsec": 0.03214
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N600",
+        "xsec": 0.03214
     },
     "WRtoNLtoLLJJ_WR2800_N800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2800_N800",
-            "xsec": 0.0299
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N800",
+        "xsec": 0.0299
     },
     "WRtoNLtoLLJJ_WR2800_N1000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2800_N1000",
-            "xsec": 0.02748
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N1000",
+        "xsec": 0.02748
     },
     "WRtoNLtoLLJJ_WR2800_N1200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2800_N1200",
-            "xsec": 0.02468
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N1200",
+        "xsec": 0.02468
     },
     "WRtoNLtoLLJJ_WR2800_N1400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2800_N1400",
-            "xsec": 0.02155
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N1400",
+        "xsec": 0.02155
     },
     "WRtoNLtoLLJJ_WR2800_N1600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2800_N1600",
-            "xsec": 0.01806
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N1600",
+        "xsec": 0.01806
     },
     "WRtoNLtoLLJJ_WR2800_N1800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2800_N1800",
-            "xsec": 0.01431
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N1800",
+        "xsec": 0.01431
     },
     "WRtoNLtoLLJJ_WR2800_N2000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2800_N2000",
-            "xsec": 0.01053
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N2000",
+        "xsec": 0.01053
     },
     "WRtoNLtoLLJJ_WR2800_N2200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2800_N2200",
-            "xsec": 0.006788
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N2200",
+        "xsec": 0.006788
     },
     "WRtoNLtoLLJJ_WR2800_N2400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2800_N2400",
-            "xsec": 0.003482
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N2400",
+        "xsec": 0.003482
     },
     "WRtoNLtoLLJJ_WR2800_N2600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2800_N2600",
-            "xsec": 0.001081
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N2600",
+        "xsec": 0.001081
     },
     "WRtoNLtoLLJJ_WR2800_N2700": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR2800_N2700",
-            "xsec": 0.0003928
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N2700",
+        "xsec": 0.0003928
     },
     "WRtoNLtoLLJJ_WR3000_N100": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3000_N100",
-            "xsec": 0.02376
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3000_N100",
+        "xsec": 0.02376
     },
     "WRtoNLtoLLJJ_WR3000_N200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3000_N200",
-            "xsec": 0.02301
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3000_N200",
+        "xsec": 0.02301
     },
     "WRtoNLtoLLJJ_WR3000_N400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3000_N400",
-            "xsec": 0.02166
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3000_N400",
+        "xsec": 0.02166
     },
     "WRtoNLtoLLJJ_WR3000_N600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3000_N600",
-            "xsec": 0.02042
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3000_N600",
+        "xsec": 0.02042
     },
     "WRtoNLtoLLJJ_WR3000_N800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3000_N800",
-            "xsec": 0.01905
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3000_N800",
+        "xsec": 0.01905
     },
     "WRtoNLtoLLJJ_WR3000_N1000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3000_N1000",
-            "xsec": 0.01762
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3000_N1000",
+        "xsec": 0.01762
     },
     "WRtoNLtoLLJJ_WR3000_N1200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3000_N1200",
-            "xsec": 0.01605
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3000_N1200",
+        "xsec": 0.01605
     },
     "WRtoNLtoLLJJ_WR3000_N1400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3000_N1400",
-            "xsec": 0.01427
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3000_N1400",
+        "xsec": 0.01427
     },
     "WRtoNLtoLLJJ_WR3000_N1600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3000_N1600",
-            "xsec": 0.01236
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3000_N1600",
+        "xsec": 0.01236
     },
     "WRtoNLtoLLJJ_WR3000_N1800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3000_N1800",
-            "xsec": 0.01025
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3000_N1800",
+        "xsec": 0.01025
     },
     "WRtoNLtoLLJJ_WR3000_N2000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3000_N2000",
-            "xsec": 0.008069
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3000_N2000",
+        "xsec": 0.008069
     },
     "WRtoNLtoLLJJ_WR3000_N2200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3000_N2200",
-            "xsec": 0.005861
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3000_N2200",
+        "xsec": 0.005861
     },
     "WRtoNLtoLLJJ_WR3000_N2400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3000_N2400",
-            "xsec": 0.003746
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3000_N2400",
+        "xsec": 0.003746
     },
     "WRtoNLtoLLJJ_WR3000_N2600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3000_N2600",
-            "xsec": 0.001903
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3000_N2600",
+        "xsec": 0.001903
     },
     "WRtoNLtoLLJJ_WR3000_N2800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3000_N2800",
-            "xsec": 0.0005913
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3000_N2800",
+        "xsec": 0.0005913
     },
     "WRtoNLtoLLJJ_WR3200_N100": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3200_N100",
-            "xsec": 0.01545
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N100",
+        "xsec": 0.01545
     },
     "WRtoNLtoLLJJ_WR3200_N200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3200_N200",
-            "xsec": 0.01486
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N200",
+        "xsec": 0.01486
     },
     "WRtoNLtoLLJJ_WR3200_N400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3200_N400",
-            "xsec": 0.01391
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N400",
+        "xsec": 0.01391
     },
     "WRtoNLtoLLJJ_WR3200_N600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3200_N600",
-            "xsec": 0.01308
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N600",
+        "xsec": 0.01308
     },
     "WRtoNLtoLLJJ_WR3200_N800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3200_N800",
-            "xsec": 0.01223
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N800",
+        "xsec": 0.01223
     },
     "WRtoNLtoLLJJ_WR3200_N1000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3200_N1000",
-            "xsec": 0.01134
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N1000",
+        "xsec": 0.01134
     },
     "WRtoNLtoLLJJ_WR3200_N1200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3200_N1200",
-            "xsec": 0.01044
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N1200",
+        "xsec": 0.01044
     },
     "WRtoNLtoLLJJ_WR3200_N1400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3200_N1400",
-            "xsec": 0.009417
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N1400",
+        "xsec": 0.009417
     },
     "WRtoNLtoLLJJ_WR3200_N1600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3200_N1600",
-            "xsec": 0.008364
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N1600",
+        "xsec": 0.008364
     },
     "WRtoNLtoLLJJ_WR3200_N1800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3200_N1800",
-            "xsec": 0.007143
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N1800",
+        "xsec": 0.007143
     },
     "WRtoNLtoLLJJ_WR3200_N2000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3200_N2000",
-            "xsec": 0.005881
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N2000",
+        "xsec": 0.005881
     },
     "WRtoNLtoLLJJ_WR3200_N2200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3200_N2200",
-            "xsec": 0.004585
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N2200",
+        "xsec": 0.004585
     },
     "WRtoNLtoLLJJ_WR3200_N2400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3200_N2400",
-            "xsec": 0.003303
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N2400",
+        "xsec": 0.003303
     },
     "WRtoNLtoLLJJ_WR3200_N2600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3200_N2600",
-            "xsec": 0.002092
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N2600",
+        "xsec": 0.002092
     },
     "WRtoNLtoLLJJ_WR3200_N2800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3200_N2800",
-            "xsec": 0.001055
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N2800",
+        "xsec": 0.001055
     },
     "WRtoNLtoLLJJ_WR3200_N3000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3200_N3000",
-            "xsec": 0.0003262
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N3000",
+        "xsec": 0.0003262
     },
     "WRtoNLtoLLJJ_WR3400_N100": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3400_N100",
-            "xsec": 0.01017
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3400_N100",
+        "xsec": 0.01017
     },
     "WRtoNLtoLLJJ_WR3400_N200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3400_N200",
-            "xsec": 0.009756
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3400_N200",
+        "xsec": 0.009756
     },
     "WRtoNLtoLLJJ_WR3400_N400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3400_N400",
-            "xsec": 0.009058
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3400_N400",
+        "xsec": 0.009058
     },
     "WRtoNLtoLLJJ_WR3400_N600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3400_N600",
-            "xsec": 0.008478
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3400_N600",
+        "xsec": 0.008478
     },
     "WRtoNLtoLLJJ_WR3400_N800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3400_N800",
-            "xsec": 0.007946
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3400_N800",
+        "xsec": 0.007946
     },
     "WRtoNLtoLLJJ_WR3400_N1000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3400_N1000",
-            "xsec": 0.007375
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3400_N1000",
+        "xsec": 0.007375
     },
     "WRtoNLtoLLJJ_WR3400_N1200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3400_N1200",
-            "xsec": 0.006836
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3400_N1200",
+        "xsec": 0.006836
     },
     "WRtoNLtoLLJJ_WR3400_N1400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3400_N1400",
-            "xsec": 0.006229
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3400_N1400",
+        "xsec": 0.006229
     },
     "WRtoNLtoLLJJ_WR3400_N1600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3400_N1600",
-            "xsec": 0.005584
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3400_N1600",
+        "xsec": 0.005584
     },
     "WRtoNLtoLLJJ_WR3400_N1800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3400_N1800",
-            "xsec": 0.004898
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3400_N1800",
+        "xsec": 0.004898
     },
     "WRtoNLtoLLJJ_WR3400_N2000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3400_N2000",
-            "xsec": 0.004166
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3400_N2000",
+        "xsec": 0.004166
     },
     "WRtoNLtoLLJJ_WR3400_N2200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3400_N2200",
-            "xsec": 0.0034
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3400_N2200",
+        "xsec": 0.0034
     },
     "WRtoNLtoLLJJ_WR3400_N2400": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3400_N2400",
-            "xsec": 0.002632
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3400_N2400",
+        "xsec": 0.002632
     },
     "WRtoNLtoLLJJ_WR3400_N2600": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3400_N2600",
-            "xsec": 0.001883
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3400_N2600",
+        "xsec": 0.001883
     },
     "WRtoNLtoLLJJ_WR3400_N2800": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3400_N2800",
-            "xsec": 0.001181
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3400_N2800",
+        "xsec": 0.001181
     },
     "WRtoNLtoLLJJ_WR3400_N3000": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3400_N3000",
-            "xsec": 0.0005894
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3400_N3000",
+        "xsec": 0.0005894
     },
     "WRtoNLtoLLJJ_WR3400_N3200": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3400_N3200",
-            "xsec": 0.0001844
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3400_N3200",
+        "xsec": 0.0001844
     },
     "WRtoNLtoLLJJ_WR3400_N3300": {
-        "metadata": {
-            "mc_campaign": "PL18",
-            "process": "Signal",
-            "dataset": "WRtoNLtoLLJJ_WR3400_N3300",
-            "xsec": 7.064e-05
-        }
+        "mc_campaign": "PL18",
+        "process": "Signal",
+        "dataset": "WRtoNLtoLLJJ_WR3400_N3300",
+        "xsec": 7.064e-05
     }
 }

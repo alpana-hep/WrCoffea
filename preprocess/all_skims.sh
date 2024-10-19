@@ -130,32 +130,38 @@
 #    python3 skim_files.py ZZZ --start $i
 #done
 
-for ((i=30; i<=42; i+=1))
-do
-    python3 skim_files.py ttWJets --start $i
-done
+#for ((i=30; i<=42; i+=1))
+#do
+#    python3 skim_files.py ttWJets --start $i
+#done
 
-for ((i=1; i<=52; i+=1))
-do
-    python3 skim_files.py ttZJets --start $i
-done
+#for ((i=1; i<=52; i+=1))
+#do
+#    python3 skim_files.py ttZJets --start $i
+#done
 
-for ((i=1; i<=19; i+=1))
-do
-    python3 skim_files.py ST_s-channel --start $i
-done
+#for ((i=1; i<=19; i+=1))
+#do
+#    python3 skim_files.py ST_s-channel --start $i
+#done
 
-for ((i=1; i<=132; i+=1))
-do
-    python3 skim_files.py ST_t-channel_antitop --start $i
-done
+#for ((i=60; i<=132; i+=1))
+#do
+#    python3 skim_files.py ST_t-channel_antitop --start $i
+#done
 
-for ((i=1; i<=196; i+=1))
-do
-    python3 skim_files.py ST_t-channel_top --start $i
-done
+#for ((i=1; i<=196; i+=1))
+#do
+#    python3 skim_files.py ST_t-channel_top --start $i
+#done
 
-for ((i=1; i<=391; i+=1))
+#for ((i=1; i<=391; i+=1))
+#do
+#    python3 skim_files.py TTToSemiLeptonic --start $i
+#done
+
+for ((i=341; i<=355; i+=1))
 do
-    python3 skim_files.py TTToSemiLeptonic --start $i
+  # Construct and run the python command
+  python3 skim_files.py EGamma_Run2018D --start $i
 done

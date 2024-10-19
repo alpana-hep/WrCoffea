@@ -1,142 +1,126 @@
 import argparse
 import time
 import json
-import utils
+import logging
+import csv
+from pathlib import Path
 from coffea.nanoevents import NanoAODSchema
 from coffea.dataset_tools import apply_to_fileset, max_chunks, max_files
 from analyzer import WrAnalysis
 from dask.distributed import Client
-import warnings
-import uproot
 from dask.diagnostics import ProgressBar
-import dask 
+import dask
+import uproot
+import warnings
+import utils
 
+# Set up logging configuration
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+# Suppress specific warnings
 NanoAODSchema.warn_missing_crossrefs = False
 NanoAODSchema.error_missing_event_ids = False
 warnings.filterwarnings("ignore", category=FutureWarning, module="htcondor")
 
-def load_json(year, sample):
-    if sample == "Signal":
-        json_file_path = f'datasets/signal/PL{year}_Signal_preprocessed_runnable.json'
-    elif sample == "Data":
-        json_file_path = f'datasets/dataskims/UL{year}_skimmed_data_preprocessed_runnable.json'
-    else:
-        json_file_path = f'datasets/backgrounds/UL{year}_Bkg_preprocessed_runnable.json'
-    with open(json_file_path, 'r') as file:
-        data = json.load(file)
-    return data
+def load_masses_from_csv(file_path):
+    """Load mass points from a CSV file where the first column is WR and the second column is N."""
+    mass_choices = []
+    try:
+        with open(file_path, mode='r') as file:
+            csv_reader = csv.reader(file)
+            next(csv_reader)  # Skip the header row
+            for row in csv_reader:
+                if len(row) >= 2:  # Ensure the row has at least two columns
+                    wr_mass = row[0].strip()
+                    n_mass = row[1].strip()
+                    mass_choice = f"WRtoNLtoLLJJ_WR{wr_mass}_N{n_mass}"
+                    mass_choices.append(mass_choice)
+        logging.info(f"Loaded {len(mass_choices)} mass points from {file_path}")
+    except FileNotFoundError:
+        logging.error(f"Mass CSV file not found at: {file_path}")
+        raise
+    except Exception as e:
+        logging.error(f"Error loading CSV file: {e}")
+        raise
+    return mass_choices
+
+def load_json(sample, run, year, skimmed=False):
+    """Load the appropriate JSON file based on sample, run, and year."""
+    base_dir = Path(f'preprocess/jsons/{run}/{year}')
+    
+    # File patterns based on sample type
+    file_patterns = {
+        'Data': {
+            'Skimmed': f'{run}_{year}_Data_Skimmed.json',
+            'Preprocessed': f'{run}_{year}_Data_Preprocessed.json'
+        },
+        'Signal': {
+            'Preprocessed': f'{run}_{year}_Signal_Preprocessed.json'
+        },
+        'Bkg': {
+            'Skimmed': f'{run}_{year}_Bkg_Skimmed.json',
+            'Preprocessed': f'{run}_{year}_Bkg_Preprocessed.json'
+        }
+    }
+
+    # Choose the correct file based on the sample type and whether it's skimmed
+    if sample == 'Data':
+        sub_dir = 'Skim_Tree_Lepton_Pt45' if skimmed else 'Preprocessed'
+        filename = file_patterns['Data']['Skimmed'] if skimmed else file_patterns['Data']['Preprocessed']
+    elif sample == 'Signal':
+        sub_dir = 'Preprocessed'
+        filename = file_patterns['Signal']['Preprocessed']
+    else:  # Background (Bkg) or other
+        sub_dir = 'Skim_Tree_Lepton_Pt45' if skimmed else 'Preprocessed'
+        filename = file_patterns['Bkg']['Skimmed'] if skimmed else file_patterns['Bkg']['Preprocessed']
+
+    filepath = base_dir / sub_dir / filename
+
+    try:
+        with open(filepath, 'r') as file:
+            data = json.load(file)
+        logging.info(f"Successfully loaded file: {filepath}")
+        return data
+    except FileNotFoundError:
+        logging.error(f"File not found: {filepath}")
+        return None
+    except json.JSONDecodeError:
+        logging.error(f"Invalid JSON format in file: {filepath}")
+        return None
 
 def filter_by_process(fileset, desired_process, mass=None):
-    if desired_process == "Data":
-        filtered_fileset = fileset
+    """Filter fileset based on process type and mass."""
+    if desired_process == "AllBackgrounds":
+        return fileset
+    elif desired_process == "Data":
+        return fileset
     elif desired_process == "Signal":
-        filtered_fileset = {}
-        for dataset, data in fileset.items():
-            if data['metadata']['dataset'] == mass:
-                filtered_fileset[dataset] = data
+        return {ds: data for ds, data in fileset.items() if data['metadata']['dataset'] == mass}
     else:
-        filtered_fileset = {}
-        for dataset, data in fileset.items():
-            if data['metadata']['process'] == desired_process:
-                filtered_fileset[dataset] = data
-    return filtered_fileset
+        return {ds: data for ds, data in fileset.items() if data['metadata']['process'] == desired_process}
 
-if __name__ == "__main__":
-    # DYJets:          67/31 minutes for  87,026,512 events (91,880,250 events).
-    # tt+tW:           99/26 minutes for  163,835,543 events.
-    # tt_semileptonic: 188.94/28 minutes for 463,092,000 events.
-    # WJets:           24.36 minutes for  206,103,400 events.
-    # Diboson:         37.80 minutes for  26,032,000 events.
-    # Triboson:        7.08 minutes  for  1,036,000 events.
-    # ttX:             118.26 minutes for 60,480,677 events.
-    # SingleTop:      47.85 minutes for  311,533,999 events.
-    parser = argparse.ArgumentParser(description="Processing script for WR analysis.")
-
-    parser.add_argument(
-            "year", 
-            type=str, 
-            choices=["2016", "2017", "2018"], 
-            help="Year to analyze."
-    )
-    parser.add_argument(
-            "sample", 
-            type=str, 
-            choices=["DYJets", "tt+tW", "tt_semileptonic", "WJets", "Diboson", "Triboson", "ttX", "SingleTop", "Signal", "Data"], 
-            help="MC sample to analyze."
-    )
-    parser.add_argument(
-            "--mass", 
-            type=str, 
-            default=None,
-            choices=['MWR600_MN100', 'MWR600_MN200', 'MWR600_MN400', 'MWR600_MN500', 'MWR800_MN100', 'MWR800_MN200', 
-                     'MWR800_MN400', 'MWR800_MN600', 'MWR800_MN700', 'MWR1000_MN100', 'MWR1000_MN200', 'MWR1000_MN400', 
-                     'MWR1000_MN600', 'MWR1000_MN800', 'MWR1000_MN900', 'MWR1200_MN100', 'MWR1200_MN200', 'MWR1200_MN400', 
-                     'MWR1200_MN600', 'MWR1200_MN800', 'MWR1200_MN1000', 'MWR1200_MN1100', 'MWR1400_MN100', 'MWR1400_MN200', 
-                     'MWR1400_MN400', 'MWR1400_MN600', 'MWR1400_MN800', 'MWR1400_MN1000', 'MWR1400_MN1200', 'MWR1400_MN1300', 
-                     'MWR1600_MN100', 'MWR1600_MN200', 'MWR1600_MN400', 'MWR1600_MN600', 'MWR1600_MN800', 'MWR1600_MN1000', 
-                     'MWR1600_MN1200', 'MWR1600_MN1400', 'MWR1600_MN1500', 'MWR1800_MN100', 'MWR1800_MN200', 'MWR1800_MN400', 
-                     'MWR1800_MN600', 'MWR1800_MN800', 'MWR1800_MN1000', 'MWR1800_MN1200', 'MWR1800_MN1400', 'MWR1800_MN1600', 
-                     'MWR1800_MN1700', 'MWR2000_MN100', 'MWR2000_MN200', 'MWR2000_MN400', 'MWR2000_MN600', 'MWR2000_MN800', 
-                     'MWR2000_MN1000', 'MWR2000_MN1200', 'MWR2000_MN1400', 'MWR2000_MN1600', 'MWR2000_MN1800', 'MWR2000_MN1900', 
-                     'MWR2200_MN100', 'MWR2200_MN200', 'MWR2200_MN400', 'MWR2200_MN600', 'MWR2200_MN800', 'MWR2200_MN1000', 
-                     'MWR2200_MN1200', 'MWR2200_MN1400', 'MWR2200_MN1600', 'MWR2200_MN1800', 'MWR2200_MN2000', 'MWR2200_MN2100', 
-                     'MWR2400_MN100', 'MWR2400_MN200', 'MWR2400_MN400', 'MWR2400_MN600', 'MWR2400_MN800', 'MWR2400_MN1000', 
-                     'MWR2400_MN1200', 'MWR2400_MN1400', 'MWR2400_MN1600', 'MWR2400_MN1800', 'MWR2400_MN2000', 'MWR2400_MN2200', 
-                     'MWR2400_MN2300', 'MWR2600_MN100', 'MWR2600_MN200', 'MWR2600_MN400', 'MWR2600_MN600', 'MWR2600_MN800', 
-                     'MWR2600_MN1000', 'MWR2600_MN1200', 'MWR2600_MN1400', 'MWR2600_MN1600', 'MWR2600_MN1800', 'MWR2600_MN2000', 
-                     'MWR2600_MN2200', 'MWR2600_MN2400', 'MWR2600_MN2500', 'MWR2800_MN100', 'MWR2800_MN200', 'MWR2800_MN400', 
-                     'MWR2800_MN600', 'MWR2800_MN800', 'MWR2800_MN1000', 'MWR2800_MN1200', 'MWR2800_MN1400', 'MWR2800_MN1600', 
-                     'MWR2800_MN1800', 'MWR2800_MN2000', 'MWR2800_MN2200', 'MWR2800_MN2400', 'MWR2800_MN2600', 'MWR2800_MN2700', 
-                     'MWR3000_MN100', 'MWR3000_MN200', 'MWR3000_MN400', 'MWR3000_MN600', 'MWR3000_MN800', 'MWR3000_MN1000', 
-                     'MWR3000_MN1200', 'MWR3000_MN1400', 'MWR3000_MN1600', 'MWR3000_MN1800', 'MWR3000_MN2000', 'MWR3000_MN2200', 
-                     'MWR3000_MN2400', 'MWR3000_MN2600', 'MWR3000_MN2800', 'MWR3000_MN2900', 'MWR3200_MN100', 'MWR3200_MN200', 
-                     'MWR3200_MN400', 'MWR3200_MN600', 'MWR3200_MN800', 'MWR3200_MN1000', 'MWR3200_MN1200', 'MWR3200_MN1400', 
-                     'MWR3200_MN1600', 'MWR3200_MN1800', 'MWR3200_MN2000', 'MWR3200_MN2200', 'MWR3200_MN2400', 'MWR3200_MN2600', 
-                     'MWR3200_MN2800', 'MWR3200_MN3000', 'MWR3200_MN3100', 'MWR3400_MN100', 'MWR3400_MN200', 'MWR3400_MN400', 
-                     'MWR3400_MN600', 'MWR3400_MN800', 'MWR3400_MN1000', 'MWR3400_MN1200', 'MWR3400_MN1400', 'MWR3400_MN1600', 
-                     'MWR3400_MN1800', 'MWR3400_MN2000', 'MWR3400_MN2200', 'MWR3400_MN2400', 'MWR3400_MN2600', 'MWR3400_MN2800', 
-                     'MWR3400_MN3000', 'MWR3400_MN3200', 'MWR3400_MN3300'],
-            help="Signal mass point to analyze"
-    )
-    parser.add_argument(
-            "--lpc", 
-            type=bool, 
-            default=False, 
-            help="Start an LPC cluster."
-    )
-    parser.add_argument(
-            "--hists", 
-            type=str, 
-            help="Get a root file of histograms."
-    )
-    parser.add_argument(
-            "--masses", 
-            type=str, 
-            help="Get a root file of mass tuples."
-    )
-    args = parser.parse_args()
-
-    if args.year != "2018":
-        raise NotImplementedError("Only 2018 samples currently exist.")
-    if args.sample == "Signal" and args.mass == "":
-        raise ValueError("Enter a signal mass point (e.g. --mass MWR3000_MN1600)")
+def validate_arguments(args):
+    """ Validate signal and mass argument consistency """
+    if args.sample == "Signal" and not args.mass:
+        logging.error("For 'Signal', you must provide a --mass argument (e.g. --mass MWR3000_MN1600).")
+        raise ValueError("Missing mass argument for Signal sample.")
     if args.sample != "Signal" and args.mass:
-        raise ValueError("Sample must be Signal!")
+        logging.error("The --mass option is only valid for 'Signal' samples.")
+        raise ValueError("Mass argument provided for non-signal sample.")
+    logging.info("Arguments validated successfully.")
 
+def setup_lpc_cluster():
+    """Set up LPC cluster and return the client."""
+    from lpcjobqueue import LPCCondorCluster
+    cluster = LPCCondorCluster(cores=1, memory='8GB', log_directory='/uscms/home/bjackson/logs')
+    cluster.scale(200)
+    client = Client(cluster)
+    logging.info("LPC Cluster started.")
+    return client, cluster
+
+def run_analysis(args, preprocessed_fileset):
+    """Run the main analysis logic."""
     t0 = time.monotonic()
-
-    if args.lpc:
-        from lpcjobqueue import LPCCondorCluster
-        cluster = LPCCondorCluster(cores=1, memory='8GB',log_directory='/uscms/home/bjackson/logs') #Changed form 8GB to 10GB
-        cluster.scale(200)
-        client = Client(cluster)
-        print(f"\nStarting an LPC Cluster")
-    else:
-        client = None
-
-    print(f"\nStarting to analyze {args.year} {args.sample} files")
-
-    preprocessed_fileset = load_json(args.year, args.sample)
     filtered_fileset = filter_by_process(preprocessed_fileset, args.sample, args.mass)
 
     to_compute = apply_to_fileset(
@@ -147,23 +131,51 @@ if __name__ == "__main__":
     )
 
     if args.hists:
-        print("\nComputing histograms...")
-        if args.lpc:
-            (histograms,)= dask.compute(to_compute)
-            client.close()
-            cluster.close()
-        else:
-            with ProgressBar():
-                (histograms,)= dask.compute(to_compute)
-
-        utils.save_hists.save_histograms(histograms, args.hists, args.sample)
-   
-    if args.masses:
-        (masses,)= dask.compute(to_compute)
-        utils.save_masses.save_tuples(masses, args.masses, client)
-
-    if not args.hists and not args.masses:
-        print("\nNot saving any histograms or tuples.")
+        logging.info("Computing histograms...")
+ #       with ProgressBar():
+#            histograms = dask.compute(to_compute)
+        utils.save_hists.save_histograms(tp_compute, args.hists, args.sample)
+        logging.info(f"Histograms saved to: {args.hists}")
 
     exec_time = time.monotonic() - t0
-    print(f"\nExecution took {exec_time/60:.2f} minutes\n")
+    logging.info(f"Execution took {exec_time/60:.2f} minutes")
+
+if __name__ == "__main__":
+    # Load mass choices from the CSV file
+    file_path = Path('data/masses_full.csv')
+    MASS_CHOICES = load_masses_from_csv(file_path)
+
+    # Initialize argparse
+    parser = argparse.ArgumentParser(description="Processing script for WR analysis.")
+
+    # Required arguments
+    parser.add_argument("run", type=str, choices=["Run2Legacy", "Run2UltraLegacy"], help="Campaign to analyze.")
+    parser.add_argument("year", type=str, choices=["2018"], help="Year to analyze.")
+    parser.add_argument("sample", type=str, choices=["DYJets", "tt+tW", "tt_semileptonic", "WJets", "Diboson", "Triboson", "ttX", "SingleTop", "AllBackgrounds", "Signal", "Data"],
+                        help="MC sample to analyze (e.g., Signal, DYJets).")
+
+    # Optional arguments
+    optional = parser.add_argument_group("Optional arguments")
+    optional.add_argument("--mass", type=str, default=None, choices=MASS_CHOICES, help="Signal mass point to analyze.")
+    optional.add_argument("--skimmed", action='store_true', help="Use the skimmed files.")
+    optional.add_argument("--lpc", action='store_true', help="Start an LPC cluster.")
+    optional.add_argument("--hists", type=str, default=None, help="Filepath for output histograms.")
+
+    args = parser.parse_args()
+
+    # Validate the parsed arguments
+    validate_arguments(args)
+
+    # Load the fileset based on parsed arguments
+    preprocessed_fileset = load_json(args.sample, args.run, args.year, args.skimmed)
+
+    # Set up and run analysis with or without LPC cluster
+    if args.lpc:
+        client, cluster = setup_lpc_cluster()
+        try:
+            run_analysis(args, preprocessed_fileset)
+        finally:
+            client.close()
+            cluster.close()
+    else:
+        run_analysis(args, preprocessed_fileset)

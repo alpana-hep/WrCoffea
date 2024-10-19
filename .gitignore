@@ -4,6 +4,8 @@ __pycache__
 *.root
 *.tgz
 *.gz
+*.png
+*.pdf
 plots/
 datasets/.sites_map.json
 .env/
@@ -14,3 +16,6 @@ old/
 *.png
 wr_env/
 .sites_map.json
+WR_Plotter/
+root_outputs/
+preprocess/jsons
