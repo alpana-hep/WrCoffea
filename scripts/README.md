@@ -5,32 +5,24 @@
 *	**Content**: These might be shell scripts (.sh), Python scripts, or other scripts that automate tasks like running simulations, executing analysis workflows, downloading datasets, cleaning data, generating plots, etc. They are often used to orchestrate the different stages of the analysis pipeline.
 
 ## Description of files
-
-### miniaod_files_for_x_sec.py
-
+### [miniaod_files_for_x_sec.py](https://github.com/UMN-CMS/WrCoffea/blob/simplify/scripts/miniaod_files_for_xsec.py) 
 #### Description
-* [miniaod_files_for_x_sec.py](https://github.com/UMN-CMS/WrCoffea/blob/simplify/scripts/miniaod_files_for_xsec.py) is used to generate a filelist of MINIAOD `ROOT` files for each MC dataset. The files in this list are combined and used to compute the cross section for the dataset. 
-
-* The input MINIAOD dataset names are stored in the `data/` directory, for example [here](https://github.com/UMN-CMS/WrCoffea/blob/simplify/data/miniaod_files/Run3Summer22/Run3Summer22_bkg_datasets.txt).
-
-* The output list of MINIAOD file paths are also stored in the `data/` [directory](https://github.com/UMN-CMS/WrCoffea/tree/simplify/data/miniaod_files/Run3Summer22).
+* Uses a list of MINIAOD [dataset names](https://github.com/UMN-CMS/WrCoffea/blob/simplify/data/miniaod_files/Run3Summer22/Run3Summer22_bkg_datasets.txt) to generate [filelists](https://github.com/UMN-CMS/WrCoffea/tree/simplify/data/miniaod_files/Run3Summer22) of MINIAOD `ROOT` files for each MC dataset. 
 
 #### Example usage
 ```
 python3 miniaod_files_for_xsec.py Run3Summer22 bkg
 ```
-* [miniaod_files_for_x_sec.py](https://github.com/UMN-CMS/WrCoffea/blob/simplify/scripts/miniaod_files_for_xsec.py):
-
-### ana.py
+### [ana.py](https://github.com/UMN-CMS/WrCoffea/blob/simplify/scripts/ana.py)
 
 #### Description
-* [ana.py](https://github.com/UMN-CMS/WrCoffea/blob/simplify/scripts/ana.py) (which must be run in a `CMSSW` area) takes the lists created by `miniaod_files_for_x_sec.py ` and combines the files to compute the cross section for the dataset. 
+* Takes the lists created by `miniaod_files_for_x_sec.py` and combines the files to compute the cross section for the dataset (must be run in a `CMSSW` area). For more information see the [twiki](https://twiki.cern.ch/twiki/bin/viewauth/CMS/HowToGenXSecAnalyzer#Running_the_GenXSecAnalyzer_on_a).
 
 #### Example usage
 ```
 cmsRun ana.py inputFiles=/uscms/home/bjackson/nobackup/WrCoffea/data/miniaod_files/Run3Summer22/DYto2L-4Jets_MLL-50to120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8_MINIAOD_files.txt maxEvents=-1
 ```
-* This generates a table of the following form, where `After filter: final cross section` is the final cross section used in the analysis.
+This generates a table of the following form, where `After filter: final cross section` is the final cross section stored in the `JSON` [configuration files](https://github.com/UMN-CMS/WrCoffea/blob/simplify/data/configs/Run3Summer22/Run3Summer22_bkg_cfg.json).
 ```------------------------------------
 GenXsecAnalyzer:
 ------------------------------------
@@ -55,3 +47,5 @@ After filter: final cross section = 3.165e+02 +- 3.044e-02 pb
 After filter: final fraction of events with negative weights = 0.000e+00 +- 0.000e+00
 After filter: final equivalent lumi for 1M events (1/fb) = 3.159e+00 +- 3.174e-03
 ```
+### [preprocessed_json.py](https://github.com/UMN-CMS/WrCoffea/blob/simplify/scripts/ana.py)
+
