@@ -202,8 +202,8 @@ class WrAnalysis(processor.ProcessorABC):
         weights.add("event_weight", weight=eventWeight)
 
         if not isRealData:
-            output['sumw'] = events.metadata["genEventSumw"]
-#            output['sumw'] = ak.sum(eventWeight)
+#            output['sumw'] = events.metadata["genEventSumw"]
+            output['sumw'] = ak.sum(eventWeight)
 
         ###################
         # EVENT VARIABLES #
@@ -238,8 +238,8 @@ class WrAnalysis(processor.ProcessorABC):
 
         if not isRealData:
             eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
-            muTrig = events.HLT.Mu50 | events.HLT.OldMu100 | events.HLT.TkMu100
-
+#            muTrig = events.HLT.Mu50 | events.HLT.OldMu100 | events.HLT.TkMu100
+            muTrig = events.HLT.Mu50
             selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
             selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
             selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
@@ -339,7 +339,7 @@ class WrAnalysis(processor.ProcessorABC):
                 print("cuts", cuts)
                 cut = no_selections.all(*cuts)
                 print("cut", cut)
-                print(weights.weight()[cut].compute())
+#                print(weights.weight()[cut].compute())
                 output['event_weight'].fill(
                     process=process,
                     region=region,
@@ -349,12 +349,12 @@ class WrAnalysis(processor.ProcessorABC):
 
         for region, cuts in regions.items():
             cut = selections.all(*cuts)
-            output['pt_leadlep'].fill(
-                process=process,
-                region=region,
-                pt_leadlep=tightLeptons[cut][:, 0].pt,
-                weight=weights.weight()[cut],
-            )
+#            output['pt_leadlep'].fill(
+#                process=process,
+#                region=region,
+#                pt_leadlep=tightLeptons[cut][:, 0].pt,
+#                weight=weights.weight()[cut],
+#            )
 #            output['pt_subleadlep'].fill(
 #                process=process,
 #                region=region,
@@ -463,13 +463,13 @@ class WrAnalysis(processor.ProcessorABC):
                 mass_fourobject=(tightLeptons[cut][:, 0]+tightLeptons[cut][:, 1]+AK4Jets[cut][:, 0]+AK4Jets[cut][:, 1]).mass,
                 weight=weights.weight()[cut],
             )
-            output['mass_dileptons_fourobject'].fill(
-                process=process,
-                region=region,
-                mass_dileptons=(tightLeptons[cut][:, 0]+tightLeptons[cut][:, 1]).mass,
-                mass_fourobject=(tightLeptons[cut][:, 0]+tightLeptons[cut][:, 1]+AK4Jets[cut][:, 0]+AK4Jets[cut][:, 1]).mass,
-                weight=weights.weight()[cut],
-            )
+#            output['mass_dileptons_fourobject'].fill(
+#                process=process,
+#                region=region,
+#                mass_dileptons=(tightLeptons[cut][:, 0]+tightLeptons[cut][:, 1]).mass,
+#                mass_fourobject=(tightLeptons[cut][:, 0]+tightLeptons[cut][:, 1]+AK4Jets[cut][:, 0]+AK4Jets[cut][:, 1]).mass,
+#                weight=weights.weight()[cut],
+#3            )
 #            output['mass_dileptons_fourobject_nocuts'].fill(
 #                process=process,
 #                region=region,
@@ -478,7 +478,7 @@ class WrAnalysis(processor.ProcessorABC):
 #                weight=weights.weight(),
 #            )
 
-        output["weightStats"] = weights.weightStatistics
+#        output["weightStats"] = weights.weightStatistics
 #        print("sumw", output["weightStats"]["event_weight"]["sumw"].compute())
 #        print("minw", output["weightStats"]["event_weight"]["minw"].compute())
 #        print("maxw", output["weightStats"]["event_weight"]["maxw"].compute())

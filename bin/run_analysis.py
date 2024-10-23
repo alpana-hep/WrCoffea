@@ -6,13 +6,25 @@ import csv
 from pathlib import Path
 from coffea.nanoevents import NanoAODSchema
 from coffea.dataset_tools import apply_to_fileset, max_chunks, max_files
+
+import sys
+import os
+
+# Add the src/ directory to sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../data')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../python`')))
+# Add the parent directory (project_root) to sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from analyzer import WrAnalysis
+
 from dask.distributed import Client
 from dask.diagnostics import ProgressBar
 import dask
 import uproot
 import warnings
-import utils
+import python
 
 # Set up logging configuration
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -44,22 +56,22 @@ def load_masses_from_csv(file_path):
         raise
     return mass_choices
 
-def load_json(sample, run, year, skimmed=False):
+def load_json(sample, run, skimmed=False):
     """Load the appropriate JSON file based on sample, run, and year."""
-    base_dir = Path(f'preprocess/jsons/{run}/{year}')
+    base_dir = Path(f'/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/')
     
     # File patterns based on sample type
     file_patterns = {
         'Data': {
-            'Skimmed': f'{run}_{year}_Data_Skimmed.json',
-            'Preprocessed': f'{run}_{year}_Data_Preprocessed.json'
+            'Skimmed': f'{run}_Data_Skimmed.json',
+            'Preprocessed': f'{run}_Data_Preprocessed.json'
         },
         'Signal': {
-            'Preprocessed': f'{run}_{year}_Signal_Preprocessed.json'
+            'Preprocessed': f'{run}_Signal_Preprocessed.json'
         },
         'Bkg': {
-            'Skimmed': f'{run}_{year}_Bkg_Skimmed.json',
-            'Preprocessed': f'{run}_{year}_Bkg_Preprocessed.json'
+            'Skimmed': f'{run}_Bkg_Skimmed.json',
+            'Preprocessed': f'{run}_Bkg_Preprocessed.json'
         }
     }
 
@@ -132,9 +144,9 @@ def run_analysis(args, preprocessed_fileset):
 
     if args.hists:
         logging.info("Computing histograms...")
- #       with ProgressBar():
-#            histograms = dask.compute(to_compute)
-        utils.save_hists.save_histograms(tp_compute, args.hists, args.sample)
+        with ProgressBar():
+            (histograms,) = dask.compute(to_compute)
+        python.save_hists.save_histograms(histograms, args.hists, args.sample)
         logging.info(f"Histograms saved to: {args.hists}")
 
     exec_time = time.monotonic() - t0
@@ -142,15 +154,14 @@ def run_analysis(args, preprocessed_fileset):
 
 if __name__ == "__main__":
     # Load mass choices from the CSV file
-    file_path = Path('data/Run2Legacy_2018_mass_points.csv')
+    file_path = Path('/uscms/home/bjackson/nobackup/WrCoffea/data/Run2Legacy_2018_mass_points.csv')
     MASS_CHOICES = load_masses_from_csv(file_path)
 
     # Initialize argparse
     parser = argparse.ArgumentParser(description="Processing script for WR analysis.")
 
     # Required arguments
-    parser.add_argument("run", type=str, choices=["Run2Legacy", "Run2UltraLegacy"], help="Campaign to analyze.")
-    parser.add_argument("year", type=str, choices=["2018"], help="Year to analyze.")
+    parser.add_argument("run", type=str, choices=["Run2Legacy", "Run2UltraLegacy", "Run3Summer22", "Run3Summer22EE"], help="Campaign to analyze.")
     parser.add_argument("sample", type=str, choices=["DYJets", "tt+tW", "tt_semileptonic", "WJets", "Diboson", "Triboson", "ttX", "SingleTop", "AllBackgrounds", "Signal", "Data"],
                         help="MC sample to analyze (e.g., Signal, DYJets).")
 
@@ -167,7 +178,7 @@ if __name__ == "__main__":
     validate_arguments(args)
 
     # Load the fileset based on parsed arguments
-    preprocessed_fileset = load_json(args.sample, args.run, args.year, args.skimmed)
+    preprocessed_fileset = load_json(args.sample, args.run, args.skimmed)
 
     # Set up and run analysis with or without LPC cluster
     if args.lpc:
