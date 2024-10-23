@@ -48,4 +48,9 @@ After filter: final fraction of events with negative weights = 0.000e+00 +- 0.00
 After filter: final equivalent lumi for 1M events (1/fb) = 3.159e+00 +- 3.174e-03
 ```
 ### [preprocessed_json.py](https://github.com/UMN-CMS/WrCoffea/blob/simplify/scripts/ana.py)
-
+#### Description
+* Takes in a `JSON` [configuration file](https://github.com/UMN-CMS/WrCoffea/blob/simplify/data/configs/Run3Summer22/Run3Summer22_bkg_cfg.json) and uses Coffeas' built in `DataDiscoveryCLI` [class](https://github.com/CoffeaTeam/coffea/blob/master/src/coffea/dataset_tools/dataset_query.py#L109) to create a list of all available file replicas. It then preprocesses them using Coffeas' [preprocess function](https://github.com/CoffeaTeam/coffea/blob/master/src/coffea/dataset_tools/preprocess.py#L253) so that they can be skimmed, or given directly to the analyzer if skimming is not needed. This information is stored in an output `JSON` [file](https://github.com/UMN-CMS/WrCoffea/blob/simplify/data/jsons/Run3Summer22/Preprocessed/Run3Summer22_Bkg_Preprocessed.json). If the sample is MC, it also computes the sum of the event weights for each dataset.
+#### Example usage
+```
+python3 preprocessed_json.py Run3Summer22 bkg
+```
