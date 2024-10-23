@@ -5,6 +5,8 @@
 *	**Content**: These might be shell scripts (.sh), Python scripts, or other scripts that automate tasks like running simulations, executing analysis workflows, downloading datasets, cleaning data, generating plots, etc. They are often used to orchestrate the different stages of the analysis pipeline.
 
 ## Description of files
+A description and example use of each file in the `scripts/` directory is described below, in the order that they would be used to process a new MC campaign.
+
 ### [miniaod_files_for_x_sec.py](https://github.com/UMN-CMS/WrCoffea/blob/simplify/scripts/miniaod_files_for_xsec.py) 
 #### Description
 * Uses a list of MINIAOD [dataset names](https://github.com/UMN-CMS/WrCoffea/blob/simplify/data/miniaod_files/Run3Summer22/Run3Summer22_bkg_datasets.txt) to generate [filelists](https://github.com/UMN-CMS/WrCoffea/tree/simplify/data/miniaod_files/Run3Summer22) of MINIAOD `ROOT` files for each MC dataset. 
