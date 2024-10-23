@@ -16,13 +16,13 @@ python3 miniaod_files_for_xsec.py Run3Summer22 bkg
 ### [ana.py](https://github.com/UMN-CMS/WrCoffea/blob/simplify/scripts/ana.py)
 
 #### Description
-* Takes the lists created by `miniaod_files_for_x_sec.py` and combines the files to compute the cross section for the dataset (must be run in a `CMSSW` area).
+* Takes the lists created by `miniaod_files_for_x_sec.py` and combines the files to compute the cross section for the dataset (must be run in a `CMSSW` area). For more information see the [twiki](https://twiki.cern.ch/twiki/bin/viewauth/CMS/HowToGenXSecAnalyzer#Running_the_GenXSecAnalyzer_on_a).
 
 #### Example usage
 ```
 cmsRun ana.py inputFiles=/uscms/home/bjackson/nobackup/WrCoffea/data/miniaod_files/Run3Summer22/DYto2L-4Jets_MLL-50to120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8_MINIAOD_files.txt maxEvents=-1
 ```
-This generates a table of the following form, where `After filter: final cross section` is the final cross section used in the analysis.
+This generates a table of the following form, where `After filter: final cross section` is the final cross section stored in the `JSON` [configuration files](https://github.com/UMN-CMS/WrCoffea/blob/simplify/data/configs/Run3Summer22/Run3Summer22_bkg_cfg.json).
 ```------------------------------------
 GenXsecAnalyzer:
 ------------------------------------
@@ -47,3 +47,5 @@ After filter: final cross section = 3.165e+02 +- 3.044e-02 pb
 After filter: final fraction of events with negative weights = 0.000e+00 +- 0.000e+00
 After filter: final equivalent lumi for 1M events (1/fb) = 3.159e+00 +- 3.174e-03
 ```
+### [preprocessed_json.py](https://github.com/UMN-CMS/WrCoffea/blob/simplify/scripts/ana.py)
+
