@@ -7,7 +7,7 @@
 ## Description of files
 ### [miniaod_files_for_x_sec.py](https://github.com/UMN-CMS/WrCoffea/blob/simplify/scripts/miniaod_files_for_xsec.py) 
 #### Description
-Uses a list of MINIAOD [dataset names](https://github.com/UMN-CMS/WrCoffea/blob/simplify/data/miniaod_files/Run3Summer22/Run3Summer22_bkg_datasets.txt) to generate [filelists](https://github.com/UMN-CMS/WrCoffea/tree/simplify/data/miniaod_files/Run3Summer22) of MINIAOD `ROOT` files for each MC dataset. 
+* Uses a list of MINIAOD [dataset names](https://github.com/UMN-CMS/WrCoffea/blob/simplify/data/miniaod_files/Run3Summer22/Run3Summer22_bkg_datasets.txt) to generate [filelists](https://github.com/UMN-CMS/WrCoffea/tree/simplify/data/miniaod_files/Run3Summer22) of MINIAOD `ROOT` files for each MC dataset. 
 
 #### Example usage
 ```
@@ -16,7 +16,7 @@ python3 miniaod_files_for_xsec.py Run3Summer22 bkg
 ### [ana.py](https://github.com/UMN-CMS/WrCoffea/blob/simplify/scripts/ana.py)
 
 #### Description
-Takes the lists created by `miniaod_files_for_x_sec.py` and combines the files to compute the cross section for the dataset (must be run in a `CMSSW` area).
+* Takes the lists created by `miniaod_files_for_x_sec.py` and combines the files to compute the cross section for the dataset (must be run in a `CMSSW` area).
 
 #### Example usage
 ```
