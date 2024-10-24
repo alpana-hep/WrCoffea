@@ -6,23 +6,20 @@ from dask.distributed import progress
 import hist
 from hist import Hist
 
-def save_histograms(my_histograms, hists_name, sample):
-    output_dir = "root_outputs/hists/"
+def save_histograms(my_histograms, sample, run):
+    output_dir = f"root_files/{run}/"
     os.makedirs(output_dir, exist_ok=True)
-    output_file = os.path.join(output_dir, f"{hists_name}")
+    output_file = os.path.join(output_dir, f"WRAnalyzer_SkimTree_LRSMHighPt_{sample}.root")
 
-    print(my_histograms)
-
-#    my_histograms = scale_hists(my_histograms)
-
+    my_histograms = scale_hists(my_histograms)
     summed_hist = sum_hists(my_histograms)
 
     my_split_hists = split_hists(summed_hist)
 
     with uproot.recreate(output_file) as root_file:
         for key, hist in my_split_hists.items():
-            name, process, channel, mll = key
-            path = f'{process}/{channel}/{mll}/{name}'
+            region, hist_name = key
+            path = f'/{region}/{hist_name}_{region}'
             root_file[path] = hist
 
     print(f"Histograms saved to {output_file}.")
@@ -61,8 +58,7 @@ def split_hists(summed_hists):
         for process in unique_processes:
             for region in unique_regions:
                 sub_hist = sum_hist[{process_axis.name: process, regions_axis.name: region}]
-                channel, mll = region.split('_')
-                key = (hist_name, process, channel, mll)
+                key = (region, hist_name)
                 split_histograms[key] = sub_hist
 
     return split_histograms
