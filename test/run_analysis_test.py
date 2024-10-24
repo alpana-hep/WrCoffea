@@ -17,7 +17,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../pyth
 # Add the parent directory (project_root) to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from analyzer import WrAnalysis
+from analyzer_test import WrAnalysis
 
 from dask.distributed import Client
 from dask.diagnostics import ProgressBar
@@ -27,7 +27,8 @@ import warnings
 import python
 
 # Set up logging configuration
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Suppress specific warnings
 NanoAODSchema.warn_missing_crossrefs = False
@@ -58,36 +59,7 @@ def load_masses_from_csv(file_path):
 
 def load_json(sample, run, skimmed=False):
     """Load the appropriate JSON file based on sample, run, and year."""
-    base_dir = Path(f'/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/')
-    
-    # File patterns based on sample type
-    file_patterns = {
-        'Data': {
-            'Skimmed': f'{run}_Data_Skimmed.json',
-            'Preprocessed': f'{run}_Data_Preprocessed.json'
-        },
-        'Signal': {
-            'Preprocessed': f'{run}_Signal_Preprocessed.json'
-        },
-        'Bkg': {
-            'Skimmed': f'{run}_Bkg_Skimmed.json',
-            'Preprocessed': f'{run}_Bkg_Preprocessed.json'
-        }
-    }
-
-    # Choose the correct file based on the sample type and whether it's skimmed
-    if sample == 'Data':
-        sub_dir = 'Skim_Tree_Lepton_Pt45' if skimmed else 'Preprocessed'
-        filename = file_patterns['Data']['Skimmed'] if skimmed else file_patterns['Data']['Preprocessed']
-    elif sample == 'Signal':
-        sub_dir = 'Preprocessed'
-        filename = file_patterns['Signal']['Preprocessed']
-    else:  # Background (Bkg) or other
-        sub_dir = 'Skim_Tree_Lepton_Pt45' if skimmed else 'Preprocessed'
-        filename = file_patterns['Bkg']['Skimmed'] if skimmed else file_patterns['Bkg']['Preprocessed']
-
-    filepath = base_dir / sub_dir / filename
-
+    filepath = "/uscms/home/bjackson/nobackup/WrCoffea/test/Run2Summer20Ul18_bkg_skimmed_test.json"
     try:
         with open(filepath, 'r') as file:
             data = json.load(file)
@@ -146,8 +118,7 @@ def run_analysis(args, preprocessed_fileset):
         logging.info("Computing histograms...")
         with ProgressBar():
             (histograms,) = dask.compute(to_compute)
-        python.save_hists.save_histograms(histograms, args.hists, args.sample)
-        logging.info(f"Histograms saved to: {args.hists}")
+        python.save_hists.save_histograms(histograms, args.sample, args.run)
 
     exec_time = time.monotonic() - t0
     logging.info(f"Execution took {exec_time/60:.2f} minutes")
@@ -161,7 +132,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Processing script for WR analysis.")
 
     # Required arguments
-    parser.add_argument("run", type=str, choices=["Run2Legacy", "Run2UltraLegacy", "Run3Summer22", "Run3Summer22EE"], help="Campaign to analyze.")
+    parser.add_argument("run", type=str, choices=["Run2Legacy", "Run2Summer20UL18", "Run3Summer22", "Run3Summer22EE"], help="Campaign to analyze.")
     parser.add_argument("sample", type=str, choices=["DYJets", "tt+tW", "tt_semileptonic", "WJets", "Diboson", "Triboson", "ttX", "SingleTop", "AllBackgrounds", "Signal", "Data"],
                         help="MC sample to analyze (e.g., Signal, DYJets).")
 
@@ -170,7 +141,7 @@ if __name__ == "__main__":
     optional.add_argument("--mass", type=str, default=None, choices=MASS_CHOICES, help="Signal mass point to analyze.")
     optional.add_argument("--skimmed", action='store_true', help="Use the skimmed files.")
     optional.add_argument("--lpc", action='store_true', help="Start an LPC cluster.")
-    optional.add_argument("--hists", type=str, default=None, help="Filepath for output histograms.")
+    optional.add_argument("--hists", action='store_true', help="Output histograms.")
 
     args = parser.parse_args()
 
