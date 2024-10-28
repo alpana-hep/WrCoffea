@@ -64,12 +64,14 @@ def get_metadata(config, is_data, is_signal):
 
     return data
 
-def query_datasets(data):
+def query_datasets(data, run):
     print(f"\nQuerying replica sites")
     ddc = DataDiscoveryCLI()
-#    ddc.do_regex_sites= r"T[2]_(|US|)_\w+",
-#    ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_CH_CERN", "T2_FI_HIP", "T2_UK_London_IC", "T2_US_Vanderbilt", "T2_US_Nebraska", "T2_US_UCSD", "T2_US_FLORIDA"]) #delete T1_US_FNAL_Disk
-    ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_US_Caltech", "T2_US_Vanderbilt", "T2_US_Nebraska", "T2_US_UCSD", "T2_US_Florida", "T2_UK_London_IC"])
+    if run == "Run2Summer20UL18":
+        ddc.do_allowlist_sites(["T1_US_FNAL_Disk", "T2_US_Wisconsin", "T2_CH_CERN", "T2_FI_HIP", "T2_UK_London_IC", "T2_US_Vanderbilt", "T2_US_Nebraska", "T2_US_UCSD", "T2_US_FLORIDA"])
+#        ddc.do_allowlist_sites(["T3_US_FNALLPC", "T2_CH_CERN", "T2_US_MIT", "T2_US_Nebraska", "T2_US_Wisconsin", "T2_US_Florida", "T2_US_UCSD", "T2_DE_DESY", "T2_FI_HIP", "T1_US_FNAL_Disk"]) #delete T2_US_Vanderbilt
+    if run == "Run3Summer22":
+        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_US_Caltech", "T2_US_Vanderbilt", "T2_US_Nebraska", "T2_US_UCSD", "T2_US_Florida", "T2_UK_London_IC"])
     dataset = ddc.load_dataset_definition(dataset_definition = data, query_results_strategy="all", replicas_strategy="round-robin")
     return dataset
 
@@ -203,7 +205,7 @@ if __name__ == "__main__":
 
     # Set up argument parsing
     parser = argparse.ArgumentParser(description="Process the JSON configuration file.")
-    parser.add_argument("run", type=str, choices=["Run2Legacy", "Run2UltraLegacy", "Run3Summer22"], help="Run (e.g., Run2UltraLegacy)")
+    parser.add_argument("run", type=str, choices=["Run2Summer20UL18", "Run3Summer22"], help="Run (e.g., Run2UltraLegacy)")
     parser.add_argument("sample", type=str, choices=["bkg", "sig", "data"], help="Sample type (bkg, sig, data)")
 
     # Parse the arguments
@@ -227,7 +229,7 @@ if __name__ == "__main__":
     updated_config = get_metadata(config, is_data, is_signal)
 
     if not is_signal:
-        dataset = query_datasets(updated_config)
+        dataset = query_datasets(updated_config, args.run)
     else:
         dataset = get_signal_files(updated_config)
 
