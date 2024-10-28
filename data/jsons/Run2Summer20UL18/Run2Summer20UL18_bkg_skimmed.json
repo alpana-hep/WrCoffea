@@ -1,7 +1,7 @@
 {
     "/DYJetsToLL_M-50_HT-70to100_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/DYJetsToLL_M-50_HT-70to100/DYJetsToLL_M-50_HT-70to100_skims1to13.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/DYJetsToLL_M-50_HT-70to100/DYJetsToLL_M-50_HT-70to100_skims1to13.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -46,7 +46,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "DYJets",
             "dataset": "DYJetsToLL_M-50_HT-70to100",
             "xsec": 208.977,
@@ -56,7 +56,7 @@
     },
     "/DYJetsToLL_M-50_HT-100to200_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/DYJetsToLL_M-50_HT-100to200/DYJetsToLL_M-50_HT-100to200_skims16to30.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/DYJetsToLL_M-50_HT-100to200/DYJetsToLL_M-50_HT-100to200_skims16to30.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -115,7 +115,7 @@
                 "num_entries": 1253657,
                 "uuid": "d0e4b8d8-8678-11ef-9598-49bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/DYJetsToLL_M-50_HT-100to200/DYJetsToLL_M-50_HT-100to200_skims1to15.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/DYJetsToLL_M-50_HT-100to200/DYJetsToLL_M-50_HT-100to200_skims1to15.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -172,7 +172,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "DYJets",
             "dataset": "DYJetsToLL_M-50_HT-100to200",
             "xsec": 181.3,
@@ -182,7 +182,7 @@
     },
     "/DYJetsToLL_M-50_HT-200to400_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/DYJetsToLL_M-50_HT-200to400/DYJetsToLL_M-50_HT-200to400_skims11to21.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/DYJetsToLL_M-50_HT-200to400/DYJetsToLL_M-50_HT-200to400_skims11to21.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -253,7 +253,7 @@
                 "num_entries": 1592460,
                 "uuid": "90f5fce0-8679-11ef-80bf-49bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/DYJetsToLL_M-50_HT-200to400/DYJetsToLL_M-50_HT-200to400_skims1to10.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/DYJetsToLL_M-50_HT-200to400/DYJetsToLL_M-50_HT-200to400_skims1to10.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -322,7 +322,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "DYJets",
             "dataset": "DYJetsToLL_M-50_HT-200to400",
             "xsec": 50.4177,
@@ -332,7 +332,7 @@
     },
     "/DYJetsToLL_M-50_HT-400to600_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/DYJetsToLL_M-50_HT-400to600/DYJetsToLL_M-50_HT-400to600_skims15to28.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/DYJetsToLL_M-50_HT-400to600/DYJetsToLL_M-50_HT-400to600_skims15to28.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -391,7 +391,7 @@
                 "num_entries": 1349002,
                 "uuid": "7b32da10-85eb-11ef-b59f-5ebfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/DYJetsToLL_M-50_HT-400to600/DYJetsToLL_M-50_HT-400to600_skims1to14.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/DYJetsToLL_M-50_HT-400to600/DYJetsToLL_M-50_HT-400to600_skims1to14.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -436,7 +436,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "DYJets",
             "dataset": "DYJetsToLL_M-50_HT-400to600",
             "xsec": 6.98394,
@@ -446,7 +446,7 @@
     },
     "/DYJetsToLL_M-50_HT-600to800_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/DYJetsToLL_M-50_HT-600to800/DYJetsToLL_M-50_HT-600to800_skims1to11.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/DYJetsToLL_M-50_HT-600to800/DYJetsToLL_M-50_HT-600to800_skims1to11.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -547,7 +547,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "DYJets",
             "dataset": "DYJetsToLL_M-50_HT-600to800",
             "xsec": 1.68141,
@@ -557,7 +557,7 @@
     },
     "/DYJetsToLL_M-50_HT-800to1200_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/DYJetsToLL_M-50_HT-800to1200/DYJetsToLL_M-50_HT-800to1200_skims13to24.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/DYJetsToLL_M-50_HT-800to1200/DYJetsToLL_M-50_HT-800to1200_skims13to24.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -620,7 +620,7 @@
                 "num_entries": 1405682,
                 "uuid": "275723c4-85f0-11ef-9b61-5ebfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/DYJetsToLL_M-50_HT-800to1200/DYJetsToLL_M-50_HT-800to1200_skims1to12.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/DYJetsToLL_M-50_HT-800to1200/DYJetsToLL_M-50_HT-800to1200_skims1to12.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -677,7 +677,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "DYJets",
             "dataset": "DYJetsToLL_M-50_HT-800to1200",
             "xsec": 0.775392,
@@ -687,7 +687,7 @@
     },
     "/DYJetsToLL_M-50_HT-1200to2500_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/DYJetsToLL_M-50_HT-1200to2500/DYJetsToLL_M-50_HT-1200to2500_skims1to8.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/DYJetsToLL_M-50_HT-1200to2500/DYJetsToLL_M-50_HT-1200to2500_skims1to8.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -750,7 +750,7 @@
                 "num_entries": 1353501,
                 "uuid": "78c03368-85f0-11ef-8492-5ebfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/DYJetsToLL_M-50_HT-1200to2500/DYJetsToLL_M-50_HT-1200to2500_skims9to13.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/DYJetsToLL_M-50_HT-1200to2500/DYJetsToLL_M-50_HT-1200to2500_skims9to13.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -819,7 +819,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "DYJets",
             "dataset": "DYJetsToLL_M-50_HT-1200to2500",
             "xsec": 0.186222,
@@ -829,7 +829,7 @@
     },
     "/DYJetsToLL_M-50_HT-2500toInf_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/DYJetsToLL_M-50_HT-2500toInf/DYJetsToLL_M-50_HT-2500toInf_skims11to19.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/DYJetsToLL_M-50_HT-2500toInf/DYJetsToLL_M-50_HT-2500toInf_skims11to19.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -872,7 +872,7 @@
                 "num_entries": 910436,
                 "uuid": "f61fb068-85f0-11ef-a108-5ebfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/DYJetsToLL_M-50_HT-2500toInf/DYJetsToLL_M-50_HT-2500toInf_skims1to10.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/DYJetsToLL_M-50_HT-2500toInf/DYJetsToLL_M-50_HT-2500toInf_skims1to10.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -897,7 +897,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "DYJets",
             "dataset": "DYJetsToLL_M-50_HT-2500toInf",
             "xsec": 0.00438495,
@@ -907,7 +907,7 @@
     },
     "/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTTo2L2Nu/TTTo2L2Nu_skims106to120.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTTo2L2Nu/TTTo2L2Nu_skims106to120.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -978,7 +978,7 @@
                 "num_entries": 1602678,
                 "uuid": "2b25e0e4-8708-11ef-bc78-ffbee183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTTo2L2Nu/TTTo2L2Nu_skims121to135.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTTo2L2Nu/TTTo2L2Nu_skims121to135.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1053,7 +1053,7 @@
                 "num_entries": 1731285,
                 "uuid": "3ff1f724-8708-11ef-b92d-ffbee183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTTo2L2Nu/TTTo2L2Nu_skims136to145.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTTo2L2Nu/TTTo2L2Nu_skims136to145.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1096,7 +1096,7 @@
                 "num_entries": 863199,
                 "uuid": "57edb944-8708-11ef-b8ec-ffbee183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTTo2L2Nu/TTTo2L2Nu_skims146to155.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTTo2L2Nu/TTTo2L2Nu_skims146to155.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1143,7 +1143,7 @@
                 "num_entries": 994933,
                 "uuid": "696a2db0-8708-11ef-88d2-ffbee183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTTo2L2Nu/TTTo2L2Nu_skims16to30.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTTo2L2Nu/TTTo2L2Nu_skims16to30.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1238,7 +1238,7 @@
                 "num_entries": 2183298,
                 "uuid": "96b7da02-8707-11ef-bedc-ffbee183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTTo2L2Nu/TTTo2L2Nu_skims1to15.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTTo2L2Nu/TTTo2L2Nu_skims1to15.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1321,7 +1321,7 @@
                 "num_entries": 1907992,
                 "uuid": "7a41a65a-8707-11ef-bda9-ffbee183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTTo2L2Nu/TTTo2L2Nu_skims31to45.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTTo2L2Nu/TTTo2L2Nu_skims31to45.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1420,7 +1420,7 @@
                 "num_entries": 2275227,
                 "uuid": "b38f88c8-8707-11ef-af06-ffbee183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTTo2L2Nu/TTTo2L2Nu_skims46to60.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTTo2L2Nu/TTTo2L2Nu_skims46to60.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1495,7 +1495,7 @@
                 "num_entries": 1706182,
                 "uuid": "cd750baa-8707-11ef-a814-ffbee183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTTo2L2Nu/TTTo2L2Nu_skims61to75.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTTo2L2Nu/TTTo2L2Nu_skims61to75.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1586,7 +1586,7 @@
                 "num_entries": 2136644,
                 "uuid": "e8e05836-8707-11ef-a429-ffbee183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTTo2L2Nu/TTTo2L2Nu_skims76to90.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTTo2L2Nu/TTTo2L2Nu_skims76to90.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1653,7 +1653,7 @@
                 "num_entries": 1547428,
                 "uuid": "01353fa0-8708-11ef-a69f-ffbee183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTTo2L2Nu/TTTo2L2Nu_skims91to105.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTTo2L2Nu/TTTo2L2Nu_skims91to105.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1730,7 +1730,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "tt+tW",
             "dataset": "TTTo2L2Nu",
             "xsec": 88.29,
@@ -1740,7 +1740,7 @@
     },
     "/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/ST_tW_antitop/ST_tW_antitop_skims1to16.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/ST_tW_antitop/ST_tW_antitop_skims1to16.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1773,7 +1773,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "tt+tW",
             "dataset": "ST_tW_antitop",
             "xsec": 19.2,
@@ -1783,7 +1783,7 @@
     },
     "/ST_tW_top_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/ST_tW_top/ST_tW_top_skims1to15.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/ST_tW_top/ST_tW_top_skims1to15.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1816,7 +1816,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "tt+tW",
             "dataset": "ST_tW_top",
             "xsec": 19.2,
@@ -1826,7 +1826,7 @@
     },
     "/WJetsToLNu_HT-70To100_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/WJetsToLNu_HT-70To100/WJetsToLNu_HT-70To100_skims1to97.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/WJetsToLNu_HT-70To100/WJetsToLNu_HT-70To100_skims1to97.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1851,7 +1851,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "WJets",
             "dataset": "WJetsToLNu_HT-70To100",
             "xsec": 1637.1,
@@ -1861,7 +1861,7 @@
     },
     "/WJetsToLNu_HT-100To200_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/WJetsToLNu_HT-100To200/WJetsToLNu_HT-100To200_skims1to57.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/WJetsToLNu_HT-100To200/WJetsToLNu_HT-100To200_skims1to57.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1894,7 +1894,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "WJets",
             "dataset": "WJetsToLNu_HT-100To200",
             "xsec": 1627.45,
@@ -1904,7 +1904,7 @@
     },
     "/WJetsToLNu_HT-200To400_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/WJetsToLNu_HT-200To400/WJetsToLNu_HT-200To400_skims1to101.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/WJetsToLNu_HT-200To400/WJetsToLNu_HT-200To400_skims1to101.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1993,7 +1993,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "WJets",
             "dataset": "WJetsToLNu_HT-200To400",
             "xsec": 435.237,
@@ -2003,7 +2003,7 @@
     },
     "/WJetsToLNu_HT-400To600_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/WJetsToLNu_HT-400To600/WJetsToLNu_HT-400To600_skims1to44.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/WJetsToLNu_HT-400To600/WJetsToLNu_HT-400To600_skims1to44.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2036,7 +2036,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "WJets",
             "dataset": "WJetsToLNu_HT-400To600",
             "xsec": 59.1811,
@@ -2046,7 +2046,7 @@
     },
     "/WJetsToLNu_HT-600To800_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/WJetsToLNu_HT-600To800/WJetsToLNu_HT-600To800_skims1to33.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/WJetsToLNu_HT-600To800/WJetsToLNu_HT-600To800_skims1to33.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2095,7 +2095,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "WJets",
             "dataset": "WJetsToLNu_HT-600To800",
             "xsec": 14.5805,
@@ -2105,7 +2105,7 @@
     },
     "/WJetsToLNu_HT-800To1200_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/WJetsToLNu_HT-800To1200/WJetsToLNu_HT-800To1200_skims1to11.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/WJetsToLNu_HT-800To1200/WJetsToLNu_HT-800To1200_skims1to11.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2166,7 +2166,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "WJets",
             "dataset": "WJetsToLNu_HT-800To1200",
             "xsec": 6.65621,
@@ -2176,7 +2176,7 @@
     },
     "/WJetsToLNu_HT-1200To2500_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/WJetsToLNu_HT-1200To2500/WJetsToLNu_HT-1200To2500_skims1to4.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/WJetsToLNu_HT-1200To2500/WJetsToLNu_HT-1200To2500_skims1to4.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2215,7 +2215,7 @@
                 "num_entries": 796044,
                 "uuid": "166d13fe-87f6-11ef-82d1-f9bee183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/WJetsToLNu_HT-1200To2500/WJetsToLNu_HT-1200To2500_skims5to8.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/WJetsToLNu_HT-1200To2500/WJetsToLNu_HT-1200To2500_skims5to8.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2260,7 +2260,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "WJets",
             "dataset": "WJetsToLNu_HT-1200To2500",
             "xsec": 1.60809,
@@ -2270,7 +2270,7 @@
     },
     "/WJetsToLNu_HT-2500ToInf_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v2/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/WJetsToLNu_HT-2500ToInf/WJetsToLNu_HT-2500ToInf_skims1to51.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/WJetsToLNu_HT-2500ToInf/WJetsToLNu_HT-2500ToInf_skims1to51.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2323,7 +2323,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "WJets",
             "dataset": "WJetsToLNu_HT-2500ToInf",
             "xsec": 0.0389136,
@@ -2333,7 +2333,7 @@
     },
     "/WW_TuneCP5_13TeV-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/WW/WW_skims1to31.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/WW/WW_skims1to31.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2350,7 +2350,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "Diboson",
             "dataset": "WW",
             "xsec": 118.7,
@@ -2360,7 +2360,7 @@
     },
     "/WZ_TuneCP5_13TeV-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/WZ/WZ_skims1to16.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/WZ/WZ_skims1to16.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2373,7 +2373,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "Diboson",
             "dataset": "WZ",
             "xsec": 47.13,
@@ -2383,7 +2383,7 @@
     },
     "/ZZ_TuneCP5_13TeV-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/ZZ/ZZ_skims1to6.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/ZZ/ZZ_skims1to6.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2396,7 +2396,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "Diboson",
             "dataset": "ZZ",
             "xsec": 16.523,
@@ -2406,7 +2406,7 @@
     },
     "/WWW_4F_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/WWW/WWW_skims1to5.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/WWW/WWW_skims1to5.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2419,7 +2419,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "Triboson",
             "dataset": "WWW",
             "xsec": 0.2086,
@@ -2429,7 +2429,7 @@
     },
     "/WWZ_4F_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/WWZ/WWZ_skims1to5.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/WWZ/WWZ_skims1to5.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2442,7 +2442,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "Triboson",
             "dataset": "WWZ",
             "xsec": 0.1651,
@@ -2452,7 +2452,7 @@
     },
     "/WZZ_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/WZZ/WZZ_skims1to15.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/WZZ/WZZ_skims1to15.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2465,7 +2465,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "Triboson",
             "dataset": "WZZ",
             "xsec": 0.05565,
@@ -2475,7 +2475,7 @@
     },
     "/ZZZ_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/ZZZ/ZZZ_skims1to14.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/ZZZ/ZZZ_skims1to14.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2488,7 +2488,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "Triboson",
             "dataset": "ZZZ",
             "xsec": 0.01398,
@@ -2498,7 +2498,7 @@
     },
     "/ttWJets_TuneCP5_13TeV_madgraphMLM_pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v2/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/ttWJets/ttWJets_skims1to21.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/ttWJets/ttWJets_skims1to21.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2569,7 +2569,7 @@
                 "num_entries": 1582671,
                 "uuid": "524126f2-88ac-11ef-8092-54bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/ttWJets/ttWJets_skims22to42.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/ttWJets/ttWJets_skims22to42.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2634,7 +2634,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "ttX",
             "dataset": "ttWJets",
             "xsec": 0.4611,
@@ -2644,7 +2644,7 @@
     },
     "/ttZJets_TuneCP5_13TeV_madgraphMLM_pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v2/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/ttZJets/ttZJets_skims18to35.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/ttZJets/ttZJets_skims18to35.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2699,7 +2699,7 @@
                 "num_entries": 1190663,
                 "uuid": "3c6d960c-88ad-11ef-b587-54bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/ttZJets/ttZJets_skims1to17.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/ttZJets/ttZJets_skims1to17.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2750,7 +2750,7 @@
                 "num_entries": 1052951,
                 "uuid": "3a4f8f60-88ad-11ef-8397-54bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/ttZJets/ttZJets_skims36to52.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/ttZJets/ttZJets_skims36to52.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2807,7 +2807,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "ttX",
             "dataset": "ttZJets",
             "xsec": 0.5407,
@@ -2817,7 +2817,7 @@
     },
     "/ST_s-channel_4f_leptonDecays_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/ST_s-channel/ST_s-channel_skims1to19.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/ST_s-channel/ST_s-channel_skims1to19.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2838,7 +2838,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "SingleTop",
             "dataset": "ST_s-channel",
             "xsec": 3.36,
@@ -2848,7 +2848,7 @@
     },
     "/ST_t-channel_antitop_5f_InclusiveDecays_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/ST_t-channel_antitop/ST_t-channel_antitop_skims1to132.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/ST_t-channel_antitop/ST_t-channel_antitop_skims1to132.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2881,7 +2881,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "SingleTop",
             "dataset": "ST_t-channel_antitop",
             "xsec": 80.95,
@@ -2891,7 +2891,7 @@
     },
     "/ST_t-channel_top_5f_InclusiveDecays_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/ST_t-channel_top/ST_t-channel_top_skims1to196.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/ST_t-channel_top/ST_t-channel_top_skims1to196.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -2952,7 +2952,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "SingleTop",
             "dataset": "ST_t-channel_top",
             "xsec": 136.02,
@@ -2962,7 +2962,7 @@
     },
     "/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTToSemiLeptonic/TTToSemiLeptonic_skims121to150.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTToSemiLeptonic/TTToSemiLeptonic_skims121to150.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -3021,7 +3021,7 @@
                 "num_entries": 1333355,
                 "uuid": "2d6ced8a-898c-11ef-bbee-54bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTToSemiLeptonic/TTToSemiLeptonic_skims151to180.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTToSemiLeptonic/TTToSemiLeptonic_skims151to180.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -3084,7 +3084,7 @@
                 "num_entries": 1351374,
                 "uuid": "42ddad94-898c-11ef-9f1a-54bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTToSemiLeptonic/TTToSemiLeptonic_skims181to210.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTToSemiLeptonic/TTToSemiLeptonic_skims181to210.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -3147,7 +3147,7 @@
                 "num_entries": 1378031,
                 "uuid": "59b13cca-898c-11ef-a432-54bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTToSemiLeptonic/TTToSemiLeptonic_skims1to30.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTToSemiLeptonic/TTToSemiLeptonic_skims1to30.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -3210,7 +3210,7 @@
                 "num_entries": 1382970,
                 "uuid": "c44685fa-898b-11ef-853a-54bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTToSemiLeptonic/TTToSemiLeptonic_skims211to240.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTToSemiLeptonic/TTToSemiLeptonic_skims211to240.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -3269,7 +3269,7 @@
                 "num_entries": 1312843,
                 "uuid": "7090c23a-898c-11ef-b81b-54bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTToSemiLeptonic/TTToSemiLeptonic_skims241to270.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTToSemiLeptonic/TTToSemiLeptonic_skims241to270.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -3328,7 +3328,7 @@
                 "num_entries": 1341989,
                 "uuid": "8d53c872-898c-11ef-b8a0-54bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTToSemiLeptonic/TTToSemiLeptonic_skims271to300.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTToSemiLeptonic/TTToSemiLeptonic_skims271to300.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -3387,7 +3387,7 @@
                 "num_entries": 1315678,
                 "uuid": "adb77320-898c-11ef-9ca0-54bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTToSemiLeptonic/TTToSemiLeptonic_skims301to330.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTToSemiLeptonic/TTToSemiLeptonic_skims301to330.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -3450,7 +3450,7 @@
                 "num_entries": 1352726,
                 "uuid": "c485e898-898c-11ef-b244-54bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTToSemiLeptonic/TTToSemiLeptonic_skims31to60.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTToSemiLeptonic/TTToSemiLeptonic_skims31to60.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -3513,7 +3513,7 @@
                 "num_entries": 1374567,
                 "uuid": "d9e46738-898b-11ef-9477-54bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTToSemiLeptonic/TTToSemiLeptonic_skims331to360.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTToSemiLeptonic/TTToSemiLeptonic_skims331to360.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -3572,7 +3572,7 @@
                 "num_entries": 1331266,
                 "uuid": "ff9a7d04-898c-11ef-ae48-54bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTToSemiLeptonic/TTToSemiLeptonic_skims361to391.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTToSemiLeptonic/TTToSemiLeptonic_skims361to391.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -3631,7 +3631,7 @@
                 "num_entries": 1336743,
                 "uuid": "2b8e7a78-898d-11ef-9740-54bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTToSemiLeptonic/TTToSemiLeptonic_skims61to90.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTToSemiLeptonic/TTToSemiLeptonic_skims61to90.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -3690,7 +3690,7 @@
                 "num_entries": 1307193,
                 "uuid": "f64340a2-898b-11ef-88e8-54bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/TTToSemiLeptonic/TTToSemiLeptonic_skims91to120.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/TTToSemiLeptonic/TTToSemiLeptonic_skims91to120.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -3751,7 +3751,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "tt_semileptonic",
             "dataset": "TTToSemiLeptonic",
             "xsec": 365.34,

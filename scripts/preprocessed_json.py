@@ -69,7 +69,6 @@ def query_datasets(data, run):
     ddc = DataDiscoveryCLI()
     if run == "Run2Summer20UL18":
         ddc.do_allowlist_sites(["T1_US_FNAL_Disk", "T2_US_Wisconsin", "T2_CH_CERN", "T2_FI_HIP", "T2_UK_London_IC", "T2_US_Vanderbilt", "T2_US_Nebraska", "T2_US_UCSD", "T2_US_FLORIDA"])
-#        ddc.do_allowlist_sites(["T3_US_FNALLPC", "T2_CH_CERN", "T2_US_MIT", "T2_US_Nebraska", "T2_US_Wisconsin", "T2_US_Florida", "T2_US_UCSD", "T2_DE_DESY", "T2_FI_HIP", "T1_US_FNAL_Disk"]) #delete T2_US_Vanderbilt
     if run == "Run3Summer22":
         ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_US_Caltech", "T2_US_Vanderbilt", "T2_US_Nebraska", "T2_US_UCSD", "T2_US_Florida", "T2_UK_London_IC"])
     dataset = ddc.load_dataset_definition(dataset_definition = data, query_results_strategy="all", replicas_strategy="round-robin")

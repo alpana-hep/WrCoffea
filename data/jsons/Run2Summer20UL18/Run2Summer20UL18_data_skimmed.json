@@ -1,7 +1,7 @@
 {
     "/SingleMuon/Run2018A-UL2018_MiniAODv2_NanoAODv9-v2/NANOAOD": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/SingleMuon_Run2018A/SingleMuon2018RunA_files1-30.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018A/SingleMuon2018RunA_files1-30.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -52,7 +52,7 @@
                 "num_entries": 1134250,
                 "uuid": "f1579ae6-540e-11ef-9dc5-8dbee183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/SingleMuon_Run2018A/SingleMuon2018RunA_files31-60.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018A/SingleMuon2018RunA_files31-60.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -135,7 +135,7 @@
                 "num_entries": 1852190,
                 "uuid": "8329d096-5410-11ef-8852-8dbee183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/SingleMuon_Run2018A/SingleMuon2018RunA_files61-92.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018A/SingleMuon2018RunA_files61-92.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -196,7 +196,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "SingleMuon",
             "dataset": "SingleMuon_Run2018A"
         },
@@ -204,7 +204,7 @@
     },
     "/SingleMuon/Run2018B-UL2018_MiniAODv2_NanoAODv9-v2/NANOAOD": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/SingleMuon_Run2018B/SingleMuon2018RunB_files1-25.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018B/SingleMuon2018RunB_files1-25.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -247,7 +247,7 @@
                 "num_entries": 897069,
                 "uuid": "1ba8a066-54e0-11ef-a235-95bee183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/SingleMuon_Run2018B/SingleMuon2018RunB_files26-51.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018B/SingleMuon2018RunB_files26-51.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -304,7 +304,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "SingleMuon",
             "dataset": "SingleMuon_Run2018B"
         },
@@ -312,7 +312,7 @@
     },
     "/SingleMuon/Run2018C-UL2018_MiniAODv2_NanoAODv9-v2/NANOAOD": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/SingleMuon_Run2018C/SingleMuon2018RunC_files1-28.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018C/SingleMuon2018RunC_files1-28.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -379,7 +379,7 @@
                 "num_entries": 1499075,
                 "uuid": "d321a228-5748-11ef-8274-60bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/SingleMuon_Run2018C/SingleMuon2018RunC_files29-56.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018C/SingleMuon2018RunC_files29-56.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -432,7 +432,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "SingleMuon",
             "dataset": "SingleMuon_Run2018C"
         },
@@ -440,7 +440,7 @@
     },
     "/SingleMuon/Run2018D-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/SingleMuon_Run2018D/SingleMuon2018RunD_files1-30.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018D/SingleMuon2018RunD_files1-30.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -495,7 +495,7 @@
                 "num_entries": 1240144,
                 "uuid": "8b0cda58-54e0-11ef-9b4f-95bee183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/SingleMuon_Run2018D/SingleMuon2018RunD_files121-150.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018D/SingleMuon2018RunD_files121-150.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -566,7 +566,7 @@
                 "num_entries": 1600610,
                 "uuid": "30b03320-5526-11ef-b947-46bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/SingleMuon_Run2018D/SingleMuon2018RunD_files151-194.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018D/SingleMuon2018RunD_files151-194.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -609,7 +609,7 @@
                 "num_entries": 875075,
                 "uuid": "2e451d74-5749-11ef-ba22-60bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/SingleMuon_Run2018D/SingleMuon2018RunD_files31-55.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018D/SingleMuon2018RunD_files31-55.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -628,7 +628,7 @@
                 "num_entries": 320376,
                 "uuid": "e4230d60-54e0-11ef-8f61-95bee183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/SingleMuon_Run2018D/SingleMuon2018RunD_files56-90.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018D/SingleMuon2018RunD_files56-90.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -715,7 +715,7 @@
                 "num_entries": 1992959,
                 "uuid": "102445c6-54e3-11ef-ad76-95bee183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/SingleMuon_Run2018D/SingleMuon2018RunD_files91-120.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018D/SingleMuon2018RunD_files91-120.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -760,7 +760,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "SingleMuon",
             "dataset": "SingleMuon_Run2018D"
         },
@@ -768,7 +768,7 @@
     },
     "/EGamma/Run2018A-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/EGamma_Run2018A/EGamma2018RunA_files1-30.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018A/EGamma2018RunA_files1-30.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -803,7 +803,7 @@
                 "num_entries": 711091,
                 "uuid": "e7e147ae-5be4-11ef-ae65-63bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/EGamma_Run2018A/EGamma2018RunA_files121-150.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018A/EGamma2018RunA_files121-150.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -850,7 +850,7 @@
                 "num_entries": 1009384,
                 "uuid": "1b4e9420-5be5-11ef-904c-63bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/EGamma_Run2018A/EGamma2018RunA_files151-180.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018A/EGamma2018RunA_files151-180.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -897,7 +897,7 @@
                 "num_entries": 990065,
                 "uuid": "27020856-5be5-11ef-9918-63bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/EGamma_Run2018A/EGamma2018RunA_files181-226.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018A/EGamma2018RunA_files181-226.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -948,7 +948,7 @@
                 "num_entries": 1080683,
                 "uuid": "3d5b862c-5be5-11ef-b31d-63bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/EGamma_Run2018A/EGamma2018RunA_files31-60.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018A/EGamma2018RunA_files31-60.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -991,7 +991,7 @@
                 "num_entries": 937114,
                 "uuid": "f3be8d48-5be4-11ef-bec1-63bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/EGamma_Run2018A/EGamma2018RunA_files61-90.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018A/EGamma2018RunA_files61-90.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1030,7 +1030,7 @@
                 "num_entries": 816136,
                 "uuid": "03ee6fb2-5be5-11ef-a84e-63bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/EGamma_Run2018A/EGamma2018RunA_files91-120.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018A/EGamma2018RunA_files91-120.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1075,7 +1075,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "EGamma",
             "dataset": "EGamma_Run2018A"
         },
@@ -1083,7 +1083,7 @@
     },
     "/EGamma/Run2018B-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/EGamma_Run2018B/EGamma2018RunB_files1-37.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018B/EGamma2018RunB_files1-37.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1134,7 +1134,7 @@
                 "num_entries": 1104918,
                 "uuid": "6c12f388-5be5-11ef-b2fa-63bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/EGamma_Run2018B/EGamma2018RunB_files38-74.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018B/EGamma2018RunB_files38-74.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1215,7 +1215,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "EGamma",
             "dataset": "EGamma_Run2018B"
         },
@@ -1223,7 +1223,7 @@
     },
     "/EGamma/Run2018C-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/EGamma_Run2018C/EGamma2018RunC_files1-30.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018C/EGamma2018RunC_files1-30.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1294,7 +1294,7 @@
                 "num_entries": 1568784,
                 "uuid": "215fa3a4-5578-11ef-a89e-62bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/EGamma_Run2018C/EGamma2018RunC_files31-60.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018C/EGamma2018RunC_files31-60.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1345,7 +1345,7 @@
                 "num_entries": 1144386,
                 "uuid": "33e97dd8-5578-11ef-8a9a-62bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/EGamma_Run2018C/EGamma2018RunC_files61-83.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018C/EGamma2018RunC_files61-83.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1386,7 +1386,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "EGamma",
             "dataset": "EGamma_Run2018C"
         },
@@ -1394,7 +1394,7 @@
     },
     "/EGamma/Run2018D-UL2018_MiniAODv2_NanoAODv9-v3/NANOAOD": {
         "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/EGamma_Run2018D/EGamma_Run2018D_skims141to200.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018D/EGamma_Run2018D_skims141to200.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1473,7 +1473,7 @@
                 "num_entries": 1821777,
                 "uuid": "fea4e560-8bf3-11ef-a295-52bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/EGamma_Run2018D/EGamma_Run2018D_skims1to30.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018D/EGamma_Run2018D_skims1to30.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1528,7 +1528,7 @@
                 "num_entries": 1182080,
                 "uuid": "9d09c4d8-8bf3-11ef-aa46-52bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/EGamma_Run2018D/EGamma_Run2018D_skims201to260.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018D/EGamma_Run2018D_skims201to260.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1651,7 +1651,7 @@
                 "num_entries": 2919762,
                 "uuid": "1cf4046a-8bf4-11ef-a1ab-52bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/EGamma_Run2018D/EGamma_Run2018D_skims261to300.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018D/EGamma_Run2018D_skims261to300.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1698,7 +1698,7 @@
                 "num_entries": 983278,
                 "uuid": "3aa7fc3c-8bf4-11ef-b5d3-52bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/EGamma_Run2018D/EGamma_Run2018D_skims301to355.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018D/EGamma_Run2018D_skims301to355.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1773,7 +1773,7 @@
                 "num_entries": 1714080,
                 "uuid": "58149226-8bf4-11ef-9832-52bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/EGamma_Run2018D/EGamma_Run2018D_skims31to80.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018D/EGamma_Run2018D_skims31to80.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1848,7 +1848,7 @@
                 "num_entries": 1701489,
                 "uuid": "b8fa9118-8bf3-11ef-9ebc-52bfe183beef"
             },
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/EGamma_Run2018D/EGamma_Run2018D_skims81to140.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018D/EGamma_Run2018D_skims81to140.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -1917,7 +1917,7 @@
             }
         },
         "metadata": {
-            "mc_campaign": "UL2018",
+            "mc_campaign": "Run2Summer20UL18",
             "process": "EGamma",
             "dataset": "EGamma_Run2018D"
         },

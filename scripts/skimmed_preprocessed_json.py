@@ -11,7 +11,7 @@ import difflib
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-def replace_files_in_json(data):
+def replace_files_in_json(data, run):
     """
     Clears 'files' and 'form' entries from the provided JSON data and fetches new file paths.
     """
@@ -26,7 +26,7 @@ def replace_files_in_json(data):
 
         # Get the dataset name from metadata
         dataset = dataset_info["metadata"].get("dataset", "")
-        root_files = get_root_files_from_eos(dataset)
+        root_files = get_root_files_from_eos(dataset, run)
 
         if root_files:
             for file_path in root_files:
@@ -36,11 +36,11 @@ def replace_files_in_json(data):
 
     return data
 
-def get_root_files_from_eos(dataset):
+def get_root_files_from_eos(dataset, mc_campaign):
     """
     Use xrdfs to get the list of ROOT files from EOS for a given dataset.
     """
-    base_path = f"/store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer22/{dataset}/"
+    base_path = f"/store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/{mc_campaign}/{dataset}/"
     cmd = ["xrdfs", "root://cmseos.fnal.gov", "ls", base_path]
 
     try:
@@ -110,29 +110,33 @@ def save_json(output_file, data, data_all):
 
 if __name__ == "__main__":
     # Set up argument parsing
-    parser = argparse.ArgumentParser(description="Clear 'files' content in the input JSON file.")
-    parser.add_argument("input_file", type=str, help="Path to the input JSON file")
-    parser.add_argument("output_file", type=str, help="Path to the output JSON file")
+    parser = argparse.ArgumentParser(description="Process the JSON configuration file.")
+    parser.add_argument("run", type=str, choices=["Run2Summer20UL18", "Run3Summer22"], help="Run (e.g., Run2UltraLegacy)")
+    parser.add_argument("sample", type=str, choices=["bkg", "sig", "data"], help="Sample type (bkg, sig, data)")
     parser.add_argument("--chunks", type=int, default=100_000, help="Chunk size for processing")
     parser.add_argument("--timeout", type=int, default=3600, help="Timeout for uproot file handling")
 
     # Parse the arguments
     args = parser.parse_args()
 
+    # Build input and output file paths based on the arguments
+    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed.json"
+    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_skimmed.json"
+
     # Load the input JSON file
     try:
-        with open(args.input_file, 'r') as file:
+        with open(input_file, 'r') as file:
             fileset = json.load(file)
-        logging.info(f"Loaded input JSON file from {args.input_file}")
+        logging.info(f"Loaded input JSON file from {input_file}")
     except FileNotFoundError:
-        logging.error(f"Input file {args.input_file} not found!")
+        logging.error(f"Input file {input_file} not found!")
         exit(1)
 
     # Clear the "files" content and update with new ROOT files
-    fileset = replace_files_in_json(fileset)
+    fileset = replace_files_in_json(fileset, args.run)
 
     # Preprocess the updated fileset
     dataset_runnable, dataset_updated = preprocess_json(fileset, chunks=args.chunks, timeout=args.timeout)
 
     # Save the modified JSON to the output file
-    save_json(args.output_file, dataset_runnable, dataset_updated)
+    save_json(output_file, dataset_runnable, dataset_updated)
