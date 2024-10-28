@@ -72,7 +72,13 @@ def extract_data(dataset_dict, dataset, config_path="/uscms/home/bjackson/noback
 
     return {found_dataset: dataset_dict[found_dataset]}
 
-def process_file(sliced_dataset, dataset, file_index):
+def process_file(sliced_dataset, dataset_key, dataset, file_index):
+    """Process and skim individual files."""
+    # Access the list of files for the dataset
+    file_names = sliced_dataset[dataset_key]['files']
+    # Print the file name being processed
+    print(f"Processing file: {file_names.keys()}")
+
     """Process and skim individual files."""
     skimmed_dict = apply_to_fileset(
         make_skimmed_events,
@@ -98,7 +104,7 @@ if __name__ == "__main__":
 
 #    fileset = load_output_json()
 
-    json_file_path = f'/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/Run3Summer22/Preprocessed/Run3Summer22_Bkg_Preprocessed.json'
+    json_file_path = f'/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/Run3Summer22/Run3Summer22_bkg_preprocessed.json'
     with open(json_file_path, 'r') as file:
         fileset = json.load(file)
 
@@ -109,7 +115,7 @@ if __name__ == "__main__":
     sliced_dataset = slice_files(full_dataset, slice(args.start - 1, args.start))
 
     print(f"Skimming file {args.start} of {num_files} for {args.dataset}")
-    task = process_file(sliced_dataset, args.dataset, args.start)
+    task = process_file(sliced_dataset, dataset_key, args.dataset, args.start)
 
     exec_time = time.monotonic() - t0
     print(f"File {args.start} skimmed in {exec_time/60:.2f} minutes.\n")

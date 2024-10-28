@@ -67,7 +67,9 @@ def get_metadata(config, is_data, is_signal):
 def query_datasets(data):
     print(f"\nQuerying replica sites")
     ddc = DataDiscoveryCLI()
-    ddc.do_allowlist_sites(["T1_US_FNAL_Disk", "T2_US_Wisconsin", "T2_CH_CERN", "T2_FI_HIP", "T2_UK_London_IC", "T2_US_Vanderbilt", "T2_US_Nebraska"])
+#    ddc.do_regex_sites= r"T[2]_(|US|)_\w+",
+#    ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_CH_CERN", "T2_FI_HIP", "T2_UK_London_IC", "T2_US_Vanderbilt", "T2_US_Nebraska", "T2_US_UCSD", "T2_US_FLORIDA"]) #delete T1_US_FNAL_Disk
+    ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_US_Caltech", "T2_US_Vanderbilt", "T2_US_Nebraska", "T2_US_UCSD", "T2_US_Florida", "T2_UK_London_IC"])
     dataset = ddc.load_dataset_definition(dataset_definition = data, query_results_strategy="all", replicas_strategy="round-robin")
     return dataset
 
@@ -209,7 +211,7 @@ if __name__ == "__main__":
 
     # Build input and output file paths based on the arguments
     input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
-    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample.capitalize()}_Preprocessed.json"
+    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed.json"
 
     # Create the Dask client
     client = Client(n_workers=4, threads_per_worker=1, memory_limit='2GB', nanny=False)

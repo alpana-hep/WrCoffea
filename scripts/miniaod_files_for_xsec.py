@@ -28,15 +28,15 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 if __name__ == "__main__":
     # Set up argument parsing
     parser = argparse.ArgumentParser(description="Process the JSON configuration file.")
-    parser.add_argument("mc_campaign", type=str, choices=["Run2UltraLegacy", "Run3Summer22"], help="Run (e.g., Run2UltraLegacy)")
+    parser.add_argument("mc_campaign", type=str, choices=["Run2Summer20UL18", "Run3Summer22"], help="Run (e.g., Run2UltraLegacy)")
     parser.add_argument("sample", type=str, choices=["bkg", "sig", "data"], help="Sample type (bkg, sig, data)")
 
     # Parse the arguments
     args = parser.parse_args()
 
     # Build input and output file paths based on the arguments
-    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/miniaod_files/{args.mc_campaign}/{args.mc_campaign}_{args.sample}_datasets.txt"
-    output_dir = f"/uscms/home/bjackson/nobackup/WrCoffea/data/miniaod_files/{args.mc_campaign}"
+    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/miniaod/{args.mc_campaign}/{args.mc_campaign}_{args.sample}_datasets.txt"
+    output_dir = f"/uscms/home/bjackson/nobackup/WrCoffea/data/miniaod/{args.mc_campaign}"
 
     # Load the configuration file
     with open(input_file, 'r') as file:

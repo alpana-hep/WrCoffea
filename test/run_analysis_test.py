@@ -59,7 +59,13 @@ def load_masses_from_csv(file_path):
 
 def load_json(sample, run, skimmed=False):
     """Load the appropriate JSON file based on sample, run, and year."""
-    filepath = "/uscms/home/bjackson/nobackup/WrCoffea/test/Run2Summer20Ul18_bkg_skimmed_test.json"
+    if "EGamma" in sample or "SingleMuon" in sample:
+        filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_data_skimmed.json"
+    else:
+        if skimmed:
+            filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_bkg_skimmed.json"
+        else:
+            filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_bkg_processed.json"
     try:
         with open(filepath, 'r') as file:
             data = json.load(file)
@@ -133,7 +139,7 @@ if __name__ == "__main__":
 
     # Required arguments
     parser.add_argument("run", type=str, choices=["Run2Legacy", "Run2Summer20UL18", "Run3Summer22", "Run3Summer22EE"], help="Campaign to analyze.")
-    parser.add_argument("sample", type=str, choices=["DYJets", "tt+tW", "tt_semileptonic", "WJets", "Diboson", "Triboson", "ttX", "SingleTop", "AllBackgrounds", "Signal", "Data"],
+    parser.add_argument("sample", type=str, choices=["DYJets", "tt+tW", "tt_semileptonic", "WJets", "Diboson", "Triboson", "ttX", "SingleTop", "AllBackgrounds", "Signal", "EGamma", "SingleMuon"],
                         help="MC sample to analyze (e.g., Signal, DYJets).")
 
     # Optional arguments

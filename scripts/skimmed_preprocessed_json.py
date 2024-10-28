@@ -40,7 +40,7 @@ def get_root_files_from_eos(dataset):
     """
     Use xrdfs to get the list of ROOT files from EOS for a given dataset.
     """
-    base_path = f"/store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2UltaLegacy/2018/{dataset}/"
+    base_path = f"/store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer22/{dataset}/"
     cmd = ["xrdfs", "root://cmseos.fnal.gov", "ls", base_path]
 
     try:

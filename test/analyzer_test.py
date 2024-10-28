@@ -74,7 +74,7 @@ class WrAnalysis(processor.ProcessorABC):
         selections.add("mlljj>800", mlljj > 800)
         selections.add("dr>0.4", (dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4))
 
-    def fill_histograms(self, output, selections, region, cuts,  process, jets, leptons, weights):
+    def fill_basic_histograms(self, output, region, cut,  process, jets, leptons, weights):
         """Helper function to fill histograms dynamically."""
         # Define a list of variables and their corresponding histograms
         variables = [
@@ -94,9 +94,6 @@ class WrAnalysis(processor.ProcessorABC):
             ('ZCand_Pt', (leptons[:, 0] + leptons[:, 1]).pt, 'pt_dileptons'),
         ]
 
-        # Apply the selections
-        cut = selections.all(*cuts)
-
         # Loop over variables and fill corresponding histograms
         for hist_name, values, axis_name in variables:
             output[hist_name].fill(
@@ -114,6 +111,7 @@ class WrAnalysis(processor.ProcessorABC):
         process = metadata["process"]
         dataset = metadata["dataset"]
         isRealData = not hasattr(events, "genWeight")
+        isMC = hasattr(events, "genWeight")
 
         output['mc_campaign'] = mc_campaign
         output['process'] = process
@@ -133,12 +131,6 @@ class WrAnalysis(processor.ProcessorABC):
         AK4Jets, _ = self.selectJets(events)
         nAK4Jets = ak.num(AK4Jets)
 
-        # Weights
-        weights = Weights(size=None, storeIndividual=True)
-        eventWeight = events.genWeight
-        weights.add("event_weight", weight=eventWeight)
-        output['sumw'] = events.metadata["genEventSumw"]
-
         # Event variables
         tightLeptons = ak.with_name(ak.concatenate((tightElectrons, tightMuons), axis=1), 'PtEtaPhiMCandidate')
         tightLeptons = ak.pad_none(tightLeptons[ak.argsort(tightLeptons.pt, axis=1, ascending=False)], 2, axis=1)
@@ -156,12 +148,31 @@ class WrAnalysis(processor.ProcessorABC):
         self.add_resolved_selections(selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2)
 
         # Trigger selections
-        eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
-        muTrig = events.HLT.Mu50 | events.HLT.OldMu100 | events.HLT.TkMu100
+        if isMC:
+            # Apply triggers for MC
+            if mc_campaign == "Run2Summer20UL18":
+                eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
+                muTrig = events.HLT.Mu50 | events.HLT.OldMu100 | events.HLT.TkMu100
+                selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
+                selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
+                selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
+            elif mc_campaign == "Run3Summer22":
+                eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
+                muTrig = events.HLT.Mu50 | events.HLT.HighPtTkMu100
+                selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
+                selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
+                selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
 
-        selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
-        selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
-        selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
+            # Use genWeight for MC
+            eventWeight = events.genWeight
+            output['sumw'] = events.metadata["genEventSumw"]
+        elif isRealData:
+            # Fill the data weights with one
+            eventWeight = abs(np.sign(events.event)) # Find a better way to do this
+
+        # Weights
+        weights = Weights(size=None, storeIndividual=True)
+        weights.add("event_weight", weight=eventWeight)
 
         # Channel selections
         selections.add("eejj", ((nTightElectrons == 2) & (nTightMuons == 0)))
@@ -170,7 +181,6 @@ class WrAnalysis(processor.ProcessorABC):
 
         # mll selections
         selections.add("60mll150", ((mll > 60) & (mll < 150)))
-        selections.add("150mll400", ((mll > 150) & (mll < 400)))
         selections.add("400mll", (mll > 400))
         selections.add("150mll", (mll > 150))
 
@@ -186,9 +196,21 @@ class WrAnalysis(processor.ProcessorABC):
             'WR_EMu_150mll': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '150mll', 'emujj'],
         }
 
+        # Blind signal region and remove triggers
+        if isRealData:
+            # Remove specific regions
+            for region in ['WR_EE_Resolved_DYSR', 'WR_MuMu_Resolved_DYSR', 'WR_EE_150mll', 'WR_MuMu_150mll', 'WR_EMu_150mll']:
+                regions.pop(region, None)  # Use pop with a default to avoid KeyError
+
+            # Remove triggers from all remaining regions
+            elements_to_remove = {'mumuTrigger', 'eeTrigger', 'emuTrigger'}  # Use a set for faster lookups
+            regions = {key: [item for item in cuts if item not in elements_to_remove] for key, cuts in regions.items()}
+
         # Fill histograms
         for region, cuts in regions.items():
-            self.fill_histograms(output, selections, region, cuts, process, AK4Jets, tightLeptons, weights)
+            cut = selections.all(*cuts)
+            self.fill_basic_histograms(output, region, cut, process, AK4Jets, tightLeptons, weights)
+#            output['ZCand_WRCand_Mass'].fill(process=process,region=region,mass_dileptons=(tightLeptons[cut][:, 0]+tightLeptons[cut][:, 1]).mass,mass_fourobject=(tightLeptons[cut][:, 0]+tightLeptons[cut][:, 1]+AK4Jets[cut][:, 0]+AK4Jets[cut][:, 1]).mass,weight=weights.weight()[cut])
 
         output["weightStats"] = weights.weightStatistics
         return output

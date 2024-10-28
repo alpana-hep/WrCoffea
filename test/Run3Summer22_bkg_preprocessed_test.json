@@ -1,0 +1,3337 @@
+{
+    "/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
+        "files": {
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/05549f08-38b0-4319-bf0e-f08b9134e6f2.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        13114
+                    ]
+                ],
+                "num_entries": 13114,
+                "uuid": "c3065498-6a8e-11ef-8614-e64514acbeef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/05db0d3f-66c0-4624-9c1d-419438e93a4b.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        55809
+                    ]
+                ],
+                "num_entries": 55809,
+                "uuid": "d315599c-6a8e-11ef-a677-311fa8c0beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/105d5914-cac7-46db-ae8f-c489c8a21fcb.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        14915
+                    ]
+                ],
+                "num_entries": 14915,
+                "uuid": "8e99ffa2-6a8e-11ef-9e2c-11d09a83beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/16d713d2-4623-49ae-8cf2-d4023f7916f0.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        95308
+                    ],
+                    [
+                        95308,
+                        190616
+                    ],
+                    [
+                        190616,
+                        285923
+                    ]
+                ],
+                "num_entries": 285923,
+                "uuid": "3824b2ce-6a17-11ef-9eef-36bfe183beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/183b22e9-166a-425c-91fe-f412936d9241.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        99966
+                    ],
+                    [
+                        99966,
+                        199932
+                    ]
+                ],
+                "num_entries": 199932,
+                "uuid": "4ad1c6d2-6a17-11ef-9e9a-38bde183beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/273b2329-dec6-42b7-9164-b47825d58f2e.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        42657
+                    ]
+                ],
+                "num_entries": 42657,
+                "uuid": "8ef1965e-6a8e-11ef-9ffd-83bee183beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/37a147e4-4ef3-4f0e-81fd-07a9409b498b.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        102216
+                    ]
+                ],
+                "num_entries": 102216,
+                "uuid": "1bb52f3e-6a8e-11ef-99fc-0103fea9beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/44fd9a0b-e64d-4fa9-b807-e5041f47f394.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        31388
+                    ]
+                ],
+                "num_entries": 31388,
+                "uuid": "80313e58-6a8e-11ef-b490-10041cacbeef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/5b569b03-c26b-4cc6-9a78-422b7907b1d4.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        76767
+                    ]
+                ],
+                "num_entries": 76767,
+                "uuid": "bf76885c-6a8e-11ef-bb00-0901640abeef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/5c2c62a6-5f9b-47a0-9fb2-b19fdefc82b4.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        95130
+                    ]
+                ],
+                "num_entries": 95130,
+                "uuid": "b89b6e80-6a8e-11ef-aeb0-0924a8c0beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/5fd82d09-b5a2-4fa2-b0ac-60aa397fdaa3.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        86267
+                    ]
+                ],
+                "num_entries": 86267,
+                "uuid": "c8ae3500-6a8e-11ef-be86-4acd36c0beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/66d77402-b05a-456b-bb4e-06cf5e3ef875.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        81432
+                    ],
+                    [
+                        81432,
+                        162864
+                    ]
+                ],
+                "num_entries": 162864,
+                "uuid": "a9f68ca6-6a21-11ef-91b4-20bde183beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/6b79e7bc-abef-438a-83d7-73958e68550e.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        39890
+                    ]
+                ],
+                "num_entries": 39890,
+                "uuid": "2c6d2d86-6a8e-11ef-946c-08890d0abeef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/6bbbaa38-1a82-43ec-87f1-fe4229e4046b.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        13902
+                    ]
+                ],
+                "num_entries": 13902,
+                "uuid": "bd3d1682-6a8e-11ef-b193-1f1b3d86beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/6bcd1065-6094-4d7c-9767-d5c49da51ee9.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        4797
+                    ]
+                ],
+                "num_entries": 4797,
+                "uuid": "ec7a19ea-6a93-11ef-95fb-2e9110acbeef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/6ef97570-a087-4bfa-a647-29eccf7268f1.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        31068
+                    ]
+                ],
+                "num_entries": 31068,
+                "uuid": "c91b8592-6a8e-11ef-988d-3a01a8c0beef"
+            },
+            "root://xrootd-local.unl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/7362fa05-f5f4-49a1-a007-ff5e9be8807e.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        135564
+                    ]
+                ],
+                "num_entries": 135564,
+                "uuid": "39c52286-6a8e-11ef-9e82-020013acbeef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/77835a0e-ba5a-4053-a49e-76ec12f742a2.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        12721
+                    ]
+                ],
+                "num_entries": 12721,
+                "uuid": "c6f0e4d8-6a8e-11ef-aa79-1de15d9fbeef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/787f3f6f-014f-4976-bd5b-fb3b20d5d164.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        39264
+                    ]
+                ],
+                "num_entries": 39264,
+                "uuid": "bc2d2de0-6a8e-11ef-93e9-a6013c0abeef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/78f63797-4cc1-4ad7-9602-52470c9df0ee.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        71378
+                    ]
+                ],
+                "num_entries": 71378,
+                "uuid": "2e006258-6a8e-11ef-9aa5-138ed380beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/8513389d-4961-4ee4-bdb9-9a8d10915d9d.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        14396
+                    ]
+                ],
+                "num_entries": 14396,
+                "uuid": "0a747072-6a9d-11ef-b5c2-99339e86beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/85fa5fce-1206-4e60-8e7a-c6609791fffa.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        81355
+                    ],
+                    [
+                        81355,
+                        162710
+                    ]
+                ],
+                "num_entries": 162710,
+                "uuid": "3910ca72-6a37-11ef-976e-06bfe183beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/9218234a-af3a-4119-91a4-d63e50a82383.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        88139
+                    ]
+                ],
+                "num_entries": 88139,
+                "uuid": "24905dae-6a8e-11ef-a9a9-0c0a0c12beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/92b2a5ae-a0d1-4cdf-bfbd-fa2b8c78baa3.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        1359
+                    ]
+                ],
+                "num_entries": 1359,
+                "uuid": "9609f3fa-6a8e-11ef-972a-0c64a8c0beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/97f35c35-b825-4f74-afdf-7683ac0bb9a8.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        82357
+                    ]
+                ],
+                "num_entries": 82357,
+                "uuid": "74e5abba-6a8e-11ef-aeae-56e75d9fbeef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/a0a6e15c-76b0-4dca-8cb0-6bc08f165721.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        27957
+                    ]
+                ],
+                "num_entries": 27957,
+                "uuid": "7a3af994-6a8e-11ef-a956-6501430abeef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/ab7ca151-b74f-4cc6-b90b-6e5758413ce8.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        84149
+                    ],
+                    [
+                        84149,
+                        168297
+                    ]
+                ],
+                "num_entries": 168297,
+                "uuid": "0de92734-6a48-11ef-8fde-27e65d9fbeef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/ac0402ce-daf0-484a-aa83-96972729c78f.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        75223
+                    ]
+                ],
+                "num_entries": 75223,
+                "uuid": "cc9e88e0-6a8e-11ef-92c4-942df682beef"
+            },
+            "root://redirector.t2.ucsd.edu:1095//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/afd81e3f-6ed0-4c8a-969f-7e07c495cd97.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        40774
+                    ]
+                ],
+                "num_entries": 40774,
+                "uuid": "2a15fb3a-6a8e-11ef-87b2-f782e4a9beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/c03caf50-82cf-4a33-8e92-0a56b5d2afb3.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        81459
+                    ],
+                    [
+                        81459,
+                        162917
+                    ]
+                ],
+                "num_entries": 162917,
+                "uuid": "150ee47e-6a32-11ef-baa3-b5870d0abeef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/c6656925-233a-4011-8a93-d8e0923df7b5.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        81916
+                    ],
+                    [
+                        81916,
+                        163831
+                    ]
+                ],
+                "num_entries": 163831,
+                "uuid": "46ec453e-6a20-11ef-b453-66090d0abeef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/db775a87-3283-4b1b-91a1-f6b5ce8cdef1.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        32014
+                    ]
+                ],
+                "num_entries": 32014,
+                "uuid": "ed16eea0-6a8e-11ef-846c-62eab392beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/e12001e7-3e3b-4edf-9353-bbc2232f13f6.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        19041
+                    ]
+                ],
+                "num_entries": 19041,
+                "uuid": "cb4ce02c-6a8e-11ef-a48e-3303a8c0beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/e4201615-07c5-422d-88a1-3846e933edf6.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        89978
+                    ],
+                    [
+                        89978,
+                        179956
+                    ],
+                    [
+                        179956,
+                        269932
+                    ]
+                ],
+                "num_entries": 269932,
+                "uuid": "e8d191ca-6a1f-11ef-bdc0-8bbee183beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/e993b527-14a5-4bf8-a6f0-66b7ab143550.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        3998
+                    ]
+                ],
+                "num_entries": 3998,
+                "uuid": "bff766b6-6a8e-11ef-9f19-0564010abeef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/ee970ac0-b526-470d-a584-81e88a90af80.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        26946
+                    ]
+                ],
+                "num_entries": 26946,
+                "uuid": "faa84c26-6a8e-11ef-97c6-64ceb9bcbeef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-40to70",
+            "xsec": 4.548,
+            "genEventSumw": 66166865.0
+        },
+        "form": null
+    },
+    "/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
+        "files": {
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/02e82ca2-7426-4826-b929-e860f6476abf.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        30178
+                    ]
+                ],
+                "num_entries": 30178,
+                "uuid": "61ddde0a-6752-11ef-b459-c4e9b392beef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/0fc102ad-3b6d-4e02-841c-8b996a38e608.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        1392
+                    ]
+                ],
+                "num_entries": 1392,
+                "uuid": "83c7b592-6827-11ef-8e08-2320a8c0beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/14cdc74d-c6c5-40cb-bd28-ee638987fdc9.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        82376
+                    ],
+                    [
+                        82376,
+                        164751
+                    ]
+                ],
+                "num_entries": 164751,
+                "uuid": "e07ec1de-66e9-11ef-9708-85e45d9fbeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/18b12f03-9548-4f7e-949a-24b962b14eaf.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        77978
+                    ]
+                ],
+                "num_entries": 77978,
+                "uuid": "b9bdca7a-6759-11ef-b21a-03041cacbeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/21d203eb-5bde-4f5e-8c45-cbf3378e9ccf.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        105128
+                    ]
+                ],
+                "num_entries": 105128,
+                "uuid": "9c07020a-67c0-11ef-b30b-29e75d9fbeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/2df58f9a-bbaa-4a06-bb66-d87f7a15d569.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        6739
+                    ]
+                ],
+                "num_entries": 6739,
+                "uuid": "18b92c40-6755-11ef-b993-499110acbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/2f3cced6-52f3-4e94-b4a3-dec58e33d396.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        93939
+                    ],
+                    [
+                        93939,
+                        187877
+                    ]
+                ],
+                "num_entries": 187877,
+                "uuid": "2b0bf6de-6728-11ef-a5b0-d0bce183beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/396095e3-5a0e-486d-908b-a56f523bdb45.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        17377
+                    ]
+                ],
+                "num_entries": 17377,
+                "uuid": "4deedd68-6752-11ef-b459-6101a8c0beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/4a0b80f4-598b-407c-8459-c725d699338e.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        101378
+                    ]
+                ],
+                "num_entries": 101378,
+                "uuid": "aa60b35a-67c0-11ef-9ea7-05d09a83beef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/4b619969-52b6-4c82-a213-b61f06f8adc7.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        18209
+                    ]
+                ],
+                "num_entries": 18209,
+                "uuid": "eb0a0fe6-6770-11ef-b9b2-7e339e86beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/4f22ca03-4421-4e8b-ab62-a38608e1ead2.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        12785
+                    ]
+                ],
+                "num_entries": 12785,
+                "uuid": "7f286ad6-687c-11ef-830b-11bee183beef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/4fb86f00-3796-4c19-9aae-410da569d72e.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        4783
+                    ]
+                ],
+                "num_entries": 4783,
+                "uuid": "14447294-6815-11ef-b98c-af0f010abeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/57fde5cc-4a3f-4f73-9d74-856c47a88414.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        66321
+                    ]
+                ],
+                "num_entries": 66321,
+                "uuid": "5809d5be-6752-11ef-95d3-2d94d380beef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/671fa393-e558-4208-9f11-526bdbdcdd30.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        13338
+                    ]
+                ],
+                "num_entries": 13338,
+                "uuid": "44cf019a-6752-11ef-b3b2-9d2df682beef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/6b240502-6dc2-4f46-8b56-59ff905cd914.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        9428
+                    ]
+                ],
+                "num_entries": 9428,
+                "uuid": "8d1f8302-677f-11ef-b858-861a3d86beef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/6d9339e0-4307-4ca8-9e9f-86df5b07ab13.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        17915
+                    ]
+                ],
+                "num_entries": 17915,
+                "uuid": "b3f70c00-66f5-11ef-bded-41c49a83beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/6f2ed223-e6b0-4858-a8e1-e5668254f120.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        2742
+                    ]
+                ],
+                "num_entries": 2742,
+                "uuid": "9f6dc7d6-679c-11ef-a596-1a64a8c0beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/74352354-23e9-48e5-a160-0629be368474.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        105792
+                    ]
+                ],
+                "num_entries": 105792,
+                "uuid": "07368002-674c-11ef-a7b8-9fe36880beef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/7638c677-3c9c-4664-9532-58cf71c7dcf7.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        104297
+                    ]
+                ],
+                "num_entries": 104297,
+                "uuid": "2dbeb41e-67f2-11ef-90a9-2ebee183beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/782f72c0-b496-4635-8d83-16a7fa5667b3.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        32200
+                    ]
+                ],
+                "num_entries": 32200,
+                "uuid": "163af698-67ef-11ef-b9d8-860c0d0abeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/798f783c-8bbe-4ee5-96a4-dcd6b683b2ab.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        10705
+                    ]
+                ],
+                "num_entries": 10705,
+                "uuid": "343cd0dc-6752-11ef-8d8e-2be05d9fbeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/7c1f8f56-6472-496f-a6f1-ef8d0f8a9012.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        428
+                    ]
+                ],
+                "num_entries": 428,
+                "uuid": "8e20b630-679e-11ef-915b-3cd7b9bcbeef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/7f2d8b74-ad4b-41aa-8ef1-ce18b4d1ba40.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        22248
+                    ]
+                ],
+                "num_entries": 22248,
+                "uuid": "588a4ad2-6752-11ef-9dea-204614acbeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/946674eb-a985-42f2-a9bc-13fdd3703c75.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        136931
+                    ]
+                ],
+                "num_entries": 136931,
+                "uuid": "2451b9b0-66fa-11ef-b30e-3ae55d9fbeef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/9973c9de-5701-472f-a223-3706e56f8962.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        81454
+                    ],
+                    [
+                        81454,
+                        162907
+                    ]
+                ],
+                "num_entries": 162907,
+                "uuid": "268e415e-66e5-11ef-8485-47e75d9fbeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/9b0616a4-a6c3-4940-bd34-a0482b719ee2.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        81354
+                    ],
+                    [
+                        81354,
+                        162708
+                    ]
+                ],
+                "num_entries": 162708,
+                "uuid": "2699dbc0-6728-11ef-bf1b-38bee183beef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/a6d873e0-7372-448a-8e93-04c3dd4b137e.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        4775
+                    ]
+                ],
+                "num_entries": 4775,
+                "uuid": "4a9d8132-6752-11ef-911a-a584e4a9beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/acec7207-2b90-4594-83e0-32c988c1ea7a.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        4051
+                    ]
+                ],
+                "num_entries": 4051,
+                "uuid": "df519bc8-6776-11ef-be41-0d64010abeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/af7c6da6-c7b5-4695-9199-b0f1eab734c4.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        22158
+                    ]
+                ],
+                "num_entries": 22158,
+                "uuid": "1918c878-6753-11ef-8d2c-cd803c0abeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/bb2ee52f-4462-4acc-bff7-17efa426597b.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        80388
+                    ],
+                    [
+                        80388,
+                        160775
+                    ]
+                ],
+                "num_entries": 160775,
+                "uuid": "1c55cc8c-66d3-11ef-8909-3de55d9fbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/cc0dc853-704f-4c6b-b693-f4ace0e87cf6.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        79649
+                    ],
+                    [
+                        79649,
+                        159298
+                    ]
+                ],
+                "num_entries": 159298,
+                "uuid": "e7c3fe2a-6728-11ef-8121-020013acbeef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/e1dec764-d32f-41e4-9748-8ca243e9000c.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        76213
+                    ]
+                ],
+                "num_entries": 76213,
+                "uuid": "82141db6-6774-11ef-8f22-92ce36c0beef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/ea0807c8-4a86-408e-9cea-4347a12b0fc0.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        42861
+                    ]
+                ],
+                "num_entries": 42861,
+                "uuid": "26c379ca-67ec-11ef-a670-6a00640abeef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/ef098d0c-2990-4f0f-a56f-d19be4627d74.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        2657
+                    ]
+                ],
+                "num_entries": 2657,
+                "uuid": "00814b5a-6758-11ef-aa34-2903a8c0beef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/fdc8efc7-d497-4ce6-b961-9ddbc196cc90.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        20796
+                    ]
+                ],
+                "num_entries": 20796,
+                "uuid": "d62cf1be-67df-11ef-bc47-020013acbeef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-70to100",
+            "xsec": 2.22,
+            "genEventSumw": 30184435.0
+        },
+        "form": null
+    },
+    "/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
+        "files": {
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/120000/07b4bdb2-bb22-4864-aa25-ae84a37c2952.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        14912
+                    ]
+                ],
+                "num_entries": 14912,
+                "uuid": "a9217e46-7618-11ef-a861-591a3d86beef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/120000/2766a7f7-7a8f-4d99-91e3-f8f66532eed2.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        1225
+                    ]
+                ],
+                "num_entries": 1225,
+                "uuid": "6a2c26aa-7618-11ef-9b3d-d5bde183beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/120000/28cd36ac-5849-4857-93d9-b205a56d36f9.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        628
+                    ]
+                ],
+                "num_entries": 628,
+                "uuid": "4204beda-7618-11ef-9142-399110acbeef"
+            },
+            "root://xrootd-local.unl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/120000/39f01592-412d-4d29-a817-0ac873aa8d1c.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        18537
+                    ]
+                ],
+                "num_entries": 18537,
+                "uuid": "3fe3b170-7617-11ef-a32d-d90c0d0abeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/120000/3d0dd1ef-eb5b-4ca2-8aef-dac3f4159027.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        661
+                    ]
+                ],
+                "num_entries": 661,
+                "uuid": "8f684ec8-761b-11ef-84db-8f4614acbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/120000/3fe1abb2-d5bb-49aa-9944-e13a4f911f5d.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        2994
+                    ]
+                ],
+                "num_entries": 2994,
+                "uuid": "b7ee9b24-7623-11ef-8d70-1d44010abeef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/120000/401dd3a4-db72-4a4c-8d68-7436df0676aa.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        2349
+                    ]
+                ],
+                "num_entries": 2349,
+                "uuid": "2bb68d66-7618-11ef-aa02-0f803c0abeef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/120000/5b493c18-dd44-42e1-806c-90c0dc5644e7.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        21960
+                    ]
+                ],
+                "num_entries": 21960,
+                "uuid": "b4a6990c-761f-11ef-95b8-8de9b392beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/120000/60d47247-6dce-49b0-bf1b-fc8c9c5b459f.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        2997
+                    ]
+                ],
+                "num_entries": 2997,
+                "uuid": "1864475c-7619-11ef-bf97-6ec0b9bcbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/120000/613ea7c0-12c1-4d4a-9162-35cbce0ce0af.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        576
+                    ]
+                ],
+                "num_entries": 576,
+                "uuid": "300afb86-7618-11ef-bd2d-b3dca8c0beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/120000/734ca74a-437d-4e58-8112-9a48d7dcc290.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        2382
+                    ]
+                ],
+                "num_entries": 2382,
+                "uuid": "26dd4d98-7618-11ef-a7b9-6703a8c0beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/120000/7632afaf-a552-44c2-8a5a-6c555b6ab86f.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        5229
+                    ]
+                ],
+                "num_entries": 5229,
+                "uuid": "30a979be-7618-11ef-981f-95ce36c0beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/120000/76366ded-b6a5-4eab-8310-cb56d4fa4a02.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        4842
+                    ]
+                ],
+                "num_entries": 4842,
+                "uuid": "3c1812fc-7617-11ef-992b-70c210acbeef"
+            },
+            "root://redirector.t2.ucsd.edu:1095//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/120000/781eb9d6-50c3-4e6c-8fd0-0d110e85869f.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        2864
+                    ]
+                ],
+                "num_entries": 2864,
+                "uuid": "44a60258-7617-11ef-8ac7-e482e4a9beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/120000/81419ac7-e239-4260-ab10-c3fe1f63601b.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        4263
+                    ]
+                ],
+                "num_entries": 4263,
+                "uuid": "7d7efc3c-7618-11ef-a4c1-0224a8c0beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/120000/9ad6c575-e2af-4a09-bc6b-bd0eb5dc59d0.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        45274
+                    ]
+                ],
+                "num_entries": 45274,
+                "uuid": "7b9a0122-7641-11ef-86ce-8be65d9fbeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/120000/a91e3a85-3166-4757-bc68-466953882891.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        18373
+                    ]
+                ],
+                "num_entries": 18373,
+                "uuid": "40b998ee-7617-11ef-a32d-148ed380beef"
+            },
+            "root://xrootd-local.unl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/120000/d5e5eee8-df65-419e-a3b7-483dcac40853.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        29442
+                    ]
+                ],
+                "num_entries": 29442,
+                "uuid": "4b6de952-7617-11ef-a67d-8be36880beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/120000/f5b494ec-9939-40fc-9ffe-6294555d905c.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        15976
+                    ]
+                ],
+                "num_entries": 15976,
+                "uuid": "3c7829c0-7618-11ef-8bec-101fa8c0beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/130000/02370c78-fb4b-47a4-bbcb-66a232585b0d.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        3600
+                    ]
+                ],
+                "num_entries": 3600,
+                "uuid": "f2d4728a-69fe-11ef-a26d-09041cacbeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/130000/0478f734-3467-41c5-86bc-2821c0237cc1.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        575
+                    ]
+                ],
+                "num_entries": 575,
+                "uuid": "8fbc5538-69fd-11ef-aa09-50c59a83beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/130000/1f95b85a-55f4-419d-a69e-b92e7b348550.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        81340
+                    ],
+                    [
+                        81340,
+                        162680
+                    ]
+                ],
+                "num_entries": 162680,
+                "uuid": "53351358-6916-11ef-ba05-f7cee183beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/130000/3cca6c66-4f2f-4f2b-b48f-1cd940d8bb49.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        4275
+                    ]
+                ],
+                "num_entries": 4275,
+                "uuid": "d90019e6-69fd-11ef-8b87-9400640abeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/130000/409a035b-d0e9-44da-8ec0-76d7830929d8.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        4190
+                    ]
+                ],
+                "num_entries": 4190,
+                "uuid": "b5721958-69e8-11ef-83cf-42cd36c0beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/130000/459cec85-1e87-4bec-9026-c09b71807c33.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        1173
+                    ]
+                ],
+                "num_entries": 1173,
+                "uuid": "d7c968da-69e8-11ef-8c90-2a94d380beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/130000/737f94a1-1407-4043-b046-417547e3015b.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        1177
+                    ]
+                ],
+                "num_entries": 1177,
+                "uuid": "a9ad0c0e-69e8-11ef-b691-e34514acbeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/130000/7a7001c5-b320-4b40-b7da-7a2383ef3217.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        7285
+                    ]
+                ],
+                "num_entries": 7285,
+                "uuid": "5069872c-69d8-11ef-ac52-b00b010abeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/130000/89e1f83c-406c-4f40-8a35-bac90d141fe4.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        3632
+                    ]
+                ],
+                "num_entries": 3632,
+                "uuid": "d214468a-69e8-11ef-b7f3-48090d0abeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/130000/8e1335a8-c063-43ac-a8f4-05ad6891fcb2.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        99473
+                    ],
+                    [
+                        99473,
+                        198946
+                    ],
+                    [
+                        198946,
+                        298418
+                    ]
+                ],
+                "num_entries": 298418,
+                "uuid": "c5fcf7b8-691e-11ef-9c39-28bde183beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/130000/8ebeb13d-e4d8-4ac2-8dd4-af539cc63cfe.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        98906
+                    ],
+                    [
+                        98906,
+                        197812
+                    ],
+                    [
+                        197812,
+                        296717
+                    ]
+                ],
+                "num_entries": 296717,
+                "uuid": "bb7ddde8-691e-11ef-842d-83bee183beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/130000/8fb71014-9c8a-4d28-9b8b-b6b51b8e9ede.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        93276
+                    ],
+                    [
+                        93276,
+                        186552
+                    ]
+                ],
+                "num_entries": 186552,
+                "uuid": "47588290-6916-11ef-a201-78bfe183beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/130000/9672108f-a3ff-49fa-a67c-d97bc756e1b1.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        1779
+                    ]
+                ],
+                "num_entries": 1779,
+                "uuid": "f4c4e68e-69fd-11ef-b448-93cfb9bcbeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/130000/aa092059-9521-42a6-8ab8-98600a6e0da4.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        50433
+                    ]
+                ],
+                "num_entries": 50433,
+                "uuid": "8168bdf0-69fd-11ef-b630-52bee183beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/130000/aa528ff4-a477-4de0-8fd1-6b4a84c7d97f.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        86653
+                    ],
+                    [
+                        86653,
+                        173305
+                    ]
+                ],
+                "num_entries": 173305,
+                "uuid": "0f60e680-6933-11ef-82e5-31bee183beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/130000/dc7b2352-fa94-4101-8e44-7d5a5e2474fc.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        1192
+                    ]
+                ],
+                "num_entries": 1192,
+                "uuid": "a9f7a0aa-6c15-11ef-9a7e-0ccce183beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/130000/e93c8d03-ef58-490e-999a-1ea2fc636e66.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        618
+                    ]
+                ],
+                "num_entries": 618,
+                "uuid": "948e234e-6a15-11ef-8b4e-dbe65d9fbeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/130000/fc24af4d-575e-4cf2-9641-dd9b5dd51196.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        99043
+                    ],
+                    [
+                        99043,
+                        198086
+                    ],
+                    [
+                        198086,
+                        297129
+                    ]
+                ],
+                "num_entries": 297129,
+                "uuid": "562161d4-6916-11ef-9438-0abfe183beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/130000/fc6340c1-dda9-4a94-9ee7-bf8f3ba94198.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        99459
+                    ],
+                    [
+                        99459,
+                        198918
+                    ],
+                    [
+                        198918,
+                        298377
+                    ]
+                ],
+                "num_entries": 298377,
+                "uuid": "ba9fdc32-691e-11ef-8c72-2dbfe183beef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-100to400",
+            "xsec": 3.33,
+            "genEventSumw": 61512300.0
+        },
+        "form": null
+    },
+    "/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
+        "files": {
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/02f836f5-6f55-4b66-8f76-a1ca8f1881a4.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        21255
+                    ]
+                ],
+                "num_entries": 21255,
+                "uuid": "59670284-6aad-11ef-8fb3-0b041cacbeef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/0510e083-2705-4017-aead-2f5ee4ac13f3.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        75418
+                    ]
+                ],
+                "num_entries": 75418,
+                "uuid": "a0ca9b18-6aad-11ef-9171-8a2df682beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/06a1e3c4-59d5-41b7-9f27-b078e9ed8269.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        135933
+                    ]
+                ],
+                "num_entries": 135933,
+                "uuid": "c622234e-6a0e-11ef-9f0c-88b45c90beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/109bb157-d19e-49a8-884b-de5633d17dac.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        138265
+                    ]
+                ],
+                "num_entries": 138265,
+                "uuid": "8b0b0728-6a2a-11ef-adf5-56bee183beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/115e4e6c-ba20-4bb7-8234-d96036f1582c.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        4800
+                    ]
+                ],
+                "num_entries": 4800,
+                "uuid": "cf7d2efc-6aae-11ef-ba2f-0c4614acbeef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/137f9ad9-adf3-4a9e-82a8-44996c47f9e9.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        60271
+                    ]
+                ],
+                "num_entries": 60271,
+                "uuid": "a285239c-6aad-11ef-880c-3c04640abeef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/16c5e796-498e-40eb-b68e-37e425371bb6.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        1585
+                    ]
+                ],
+                "num_entries": 1585,
+                "uuid": "1fde5a0c-6aae-11ef-83ff-0a01a8c0beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/195eb0f4-6e9b-4cdd-9cfa-de15f17bf747.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        7871
+                    ]
+                ],
+                "num_entries": 7871,
+                "uuid": "7c594f86-6aad-11ef-afbf-4ec59a83beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/2bfbc60b-af44-4921-9387-5938dbde1d73.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        39276
+                    ]
+                ],
+                "num_entries": 39276,
+                "uuid": "ccd65062-6ab2-11ef-91c8-f5446980beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/3843af8c-0206-425b-a0a8-d84162757dc3.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        11199
+                    ]
+                ],
+                "num_entries": 11199,
+                "uuid": "a3a73a44-6aad-11ef-a50d-7e0c010abeef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/5066aef9-6d1f-43c5-a5e4-72c0a476d806.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        116670
+                    ]
+                ],
+                "num_entries": 116670,
+                "uuid": "a4762eda-6aad-11ef-8cde-108ed380beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/5fd8f45c-ddb3-4297-97bc-ffdceb230e23.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        75624
+                    ],
+                    [
+                        75624,
+                        151248
+                    ]
+                ],
+                "num_entries": 151248,
+                "uuid": "30bb4764-6a0d-11ef-b271-75bee183beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/626689a1-1d25-4d5d-ab2d-09951eae1c3a.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        8868
+                    ]
+                ],
+                "num_entries": 8868,
+                "uuid": "f9ee57b2-6ab6-11ef-a1af-8103a8c0beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/675783ee-f631-4029-8fdc-a1dd0f16b25f.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        108431
+                    ]
+                ],
+                "num_entries": 108431,
+                "uuid": "b3d941c6-6a91-11ef-ab1d-0524a8c0beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/6776f678-71d2-47be-bb4b-1231738c07c6.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        5866
+                    ]
+                ],
+                "num_entries": 5866,
+                "uuid": "4b1d3c52-6aad-11ef-90a9-39e75d9fbeef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/67d38a75-11b0-4606-ad3b-e585bbed06b9.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        43751
+                    ]
+                ],
+                "num_entries": 43751,
+                "uuid": "7ea37762-6aad-11ef-bf0a-020013acbeef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/72e21ba2-1d2b-4550-a59d-4453cd604133.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        136924
+                    ]
+                ],
+                "num_entries": 136924,
+                "uuid": "f8bde39e-6a0c-11ef-ad53-020013acbeef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/7c09b798-02ec-4204-adc9-d33d734ea45d.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        134829
+                    ]
+                ],
+                "num_entries": 134829,
+                "uuid": "7c65f302-6a4a-11ef-ae4f-3cbfe183beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/7c6ac453-ff39-4fb0-b847-974bec20653a.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        42889
+                    ]
+                ],
+                "num_entries": 42889,
+                "uuid": "2f3f2aee-6aae-11ef-9b16-66d4b9bcbeef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/7edc8069-c747-4160-916b-19f3776eef74.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        5391
+                    ]
+                ],
+                "num_entries": 5391,
+                "uuid": "56144f24-6aad-11ef-b0ce-b0339e86beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/81efc7c3-d423-4018-897e-ae82e1225d4f.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        34971
+                    ]
+                ],
+                "num_entries": 34971,
+                "uuid": "ab764d8c-6aad-11ef-b1fe-0521a8c0beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/821cb790-9416-4f82-b8ae-69a3a0554b18.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        99218
+                    ]
+                ],
+                "num_entries": 99218,
+                "uuid": "1d0ea50e-6ab1-11ef-bcf1-9b090d0abeef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/884c851b-b8e0-45b3-8c31-c94ddda17fea.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        88073
+                    ]
+                ],
+                "num_entries": 88073,
+                "uuid": "9e77a908-6a91-11ef-9f40-94870d0abeef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/8d749eed-6746-4da2-8bcb-12f2c0adff51.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        131194
+                    ]
+                ],
+                "num_entries": 131194,
+                "uuid": "8076bf6e-6a2a-11ef-94e1-e0e65d9fbeef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/8f3d6cea-a94a-4031-bf20-0a293358eb0f.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        3700
+                    ]
+                ],
+                "num_entries": 3700,
+                "uuid": "5ff10a28-6aad-11ef-ad24-77bee183beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/abb9d59b-60d0-4adb-b957-620bda8237c5.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        2622
+                    ]
+                ],
+                "num_entries": 2622,
+                "uuid": "a4650c40-6aad-11ef-be93-1e64010abeef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/b76249e0-16d7-4dca-aa95-0958bdc31fd9.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        33980
+                    ]
+                ],
+                "num_entries": 33980,
+                "uuid": "bf3b8448-6a91-11ef-bc42-5701a8c0beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/bf16c882-fe35-4e18-90fd-359de3e3e694.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        16992
+                    ]
+                ],
+                "num_entries": 16992,
+                "uuid": "2fcd5724-6aae-11ef-8b9b-bb008d0abeef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/c0827c61-c6e8-423c-890b-8c6e1801cbe8.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        65468
+                    ]
+                ],
+                "num_entries": 65468,
+                "uuid": "66dc26fc-6a98-11ef-925a-12803c0abeef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/c9963b50-8cba-4103-b6cd-33ac1e274725.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        15415
+                    ]
+                ],
+                "num_entries": 15415,
+                "uuid": "968e06ee-6aad-11ef-a785-f082e4a9beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/dc503b14-3d27-448c-95fc-31afed54bad4.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        75784
+                    ],
+                    [
+                        75784,
+                        151567
+                    ]
+                ],
+                "num_entries": 151567,
+                "uuid": "a3fc2fec-69de-11ef-ad06-01bfe183beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/df76363b-4a48-4d0b-ba8f-dc1ebee13fa3.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        24447
+                    ]
+                ],
+                "num_entries": 24447,
+                "uuid": "9776353e-74d2-11ef-a567-a8e05d9fbeef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/e9e7bc81-c9b6-4995-b0d9-31fe869b2235.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        19132
+                    ]
+                ],
+                "num_entries": 19132,
+                "uuid": "a7413bd6-6a95-11ef-a6f1-811a3d86beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2820000/ec6f532b-e51c-4fc1-8587-5f842934274c.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        107758
+                    ]
+                ],
+                "num_entries": 107758,
+                "uuid": "ab836e68-6aad-11ef-9dfd-e7489e86beef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-400to800",
+            "xsec": 0.1749,
+            "genEventSumw": 4306883.0
+        },
+        "form": null
+    },
+    "/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
+        "files": {
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/0174d609-20ff-4fcd-a887-47b4bdd3c0bb.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        20473
+                    ]
+                ],
+                "num_entries": 20473,
+                "uuid": "90b5905a-6ae1-11ef-b516-76339e86beef"
+            },
+            "root://xrootd-local.unl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/100e0a3a-a7fe-4bac-8b77-0c19800c4664.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        14105
+                    ]
+                ],
+                "num_entries": 14105,
+                "uuid": "dbf29f40-6ae1-11ef-aa3b-2f4514acbeef"
+            },
+            "root://xrootd-local.unl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/15155904-c60d-487a-82e1-17cb0cd30ef5.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        19726
+                    ]
+                ],
+                "num_entries": 19726,
+                "uuid": "91698bf0-6ae1-11ef-a8fa-851a3d86beef"
+            },
+            "root://xrootd-local.unl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/2ebe30b2-7d47-4962-b429-f61b3b3e1b62.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        918
+                    ]
+                ],
+                "num_entries": 918,
+                "uuid": "13503ba2-6b4e-11ef-acab-7cbfe183beef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/3365357d-9dca-4173-b224-de3c7f6d1d5b.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        15994
+                    ]
+                ],
+                "num_entries": 15994,
+                "uuid": "daf222f0-74cd-11ef-90d1-39e25d9fbeef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/3b7309d2-c077-4aab-b97c-6ef8e5e4a54e.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        9946
+                    ]
+                ],
+                "num_entries": 9946,
+                "uuid": "a555da3a-6af8-11ef-b41f-1f03a8c0beef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/3ccca5a9-2102-4180-9c25-9f4d2eefc916.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        91891
+                    ]
+                ],
+                "num_entries": 91891,
+                "uuid": "440711be-6afc-11ef-b9ae-d1090d0abeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/3d06bf23-0628-4d5c-a7f7-211689abe3b6.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        6313
+                    ]
+                ],
+                "num_entries": 6313,
+                "uuid": "d58a5b20-6af5-11ef-ac75-469110acbeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/442127c2-ad63-4568-95d6-c05940aa8f96.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        45490
+                    ]
+                ],
+                "num_entries": 45490,
+                "uuid": "dfbfd836-6f55-11ef-ba11-1104640abeef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/5d859f4e-80df-4d46-8298-93a6af11cb81.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        85083
+                    ]
+                ],
+                "num_entries": 85083,
+                "uuid": "ac72905e-6ae1-11ef-86c2-0f8ed380beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/6029af10-32a0-4296-acaf-45849cd38dd9.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        56900
+                    ]
+                ],
+                "num_entries": 56900,
+                "uuid": "ca468658-6ae1-11ef-899f-fce9b392beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/606a5910-c5ae-4892-9067-124b0e22f754.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        128842
+                    ]
+                ],
+                "num_entries": 128842,
+                "uuid": "81cb1e72-6a35-11ef-8784-a3cfe183beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/62f693ee-a36a-4bd7-abb1-a74697457797.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        21371
+                    ]
+                ],
+                "num_entries": 21371,
+                "uuid": "2d7a02a0-6ae1-11ef-b448-b70f010abeef"
+            },
+            "root://xrootd-local.unl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/64adecbc-80a7-4c70-b2dd-58554feb3753.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        52929
+                    ]
+                ],
+                "num_entries": 52929,
+                "uuid": "aa8b1a7c-6ae1-11ef-b60a-f682e4a9beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/6916839e-0e1f-4f09-8e22-7e37188c29fe.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        6848
+                    ]
+                ],
+                "num_entries": 6848,
+                "uuid": "94e9aeae-6ae1-11ef-bb72-1564010abeef"
+            },
+            "root://xrootd-local.unl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/7901a01e-dac4-4368-b7bf-4b9d9d0c23e5.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        41404
+                    ]
+                ],
+                "num_entries": 41404,
+                "uuid": "bf05da98-6ae4-11ef-bd6d-96013c0abeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/807b3ea6-1891-43c9-b1ad-cc4850e33f46.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        21878
+                    ]
+                ],
+                "num_entries": 21878,
+                "uuid": "5748a600-6ae5-11ef-8826-30c59a83beef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/8b0b30e7-3841-48fb-9199-4788073f0660.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        67013
+                    ]
+                ],
+                "num_entries": 67013,
+                "uuid": "bf20426e-6ae1-11ef-b57d-13cd36c0beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/960dda99-a573-4606-9b21-49dfd8622f9d.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        27502
+                    ]
+                ],
+                "num_entries": 27502,
+                "uuid": "9fca5be8-6ae1-11ef-956e-f4c210acbeef"
+            },
+            "root://xrootd-local.unl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/982f9ce0-f861-4b5b-b314-dc2e07dd3192.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        61619
+                    ]
+                ],
+                "num_entries": 61619,
+                "uuid": "9103029a-6ae1-11ef-841d-0124a8c0beef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/a706ff6d-d2e7-45fd-81d4-5635a7cd5a6b.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        28881
+                    ]
+                ],
+                "num_entries": 28881,
+                "uuid": "74da35d4-6b1d-11ef-8f52-9db45c90beef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/b58b68fb-ff4a-401e-b5de-b40985d32a95.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        126205
+                    ]
+                ],
+                "num_entries": 126205,
+                "uuid": "889f2fcc-6a62-11ef-a859-4ae36880beef"
+            },
+            "root://xrootd-local.unl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/c07b0701-ec78-4501-b3bb-743959e63954.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        128656
+                    ]
+                ],
+                "num_entries": 128656,
+                "uuid": "2629b0b6-6a66-11ef-8dae-0be75d9fbeef"
+            },
+            "root://xrootd-local.unl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/c503eff4-8113-4afe-90c1-b59e6a8687c1.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        341
+                    ]
+                ],
+                "num_entries": 341,
+                "uuid": "b39af4d4-6ae1-11ef-8093-a2d4b9bcbeef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/c562f1a5-ceac-4069-8a18-e319e112ab39.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        124452
+                    ]
+                ],
+                "num_entries": 124452,
+                "uuid": "921ab63a-6a8e-11ef-bb61-56bee183beef"
+            },
+            "root://xrootd-local.unl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/ceb9426d-6d51-4e07-a611-87539a7a508f.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        37311
+                    ]
+                ],
+                "num_entries": 37311,
+                "uuid": "9b8068e8-6ae1-11ef-ad89-0821a8c0beef"
+            },
+            "root://xrootd-local.unl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/d346e68c-1404-4028-8fcb-3dea6982e933.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        844
+                    ]
+                ],
+                "num_entries": 844,
+                "uuid": "abb0329a-6ba2-11ef-93d1-0103fea9beef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/d6161e0f-c723-4ec4-84cd-83af2b4e2b2e.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        66962
+                    ]
+                ],
+                "num_entries": 66962,
+                "uuid": "9d316caa-6ae1-11ef-b0d8-a02df682beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/e4fd4c3b-ed8b-4d1b-ab23-d7071784dd8f.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        87062
+                    ]
+                ],
+                "num_entries": 87062,
+                "uuid": "cdd64de8-6b19-11ef-a595-020013acbeef"
+            },
+            "root://xrootd-local.unl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/e6ae35bd-ba86-4cf5-a8fb-637de6da156d.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        9169
+                    ]
+                ],
+                "num_entries": 9169,
+                "uuid": "22dd419a-6b1d-11ef-821b-85e65d9fbeef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/e986669c-e66b-460f-adb1-761110cff359.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        126122
+                    ]
+                ],
+                "num_entries": 126122,
+                "uuid": "5f003d16-6a33-11ef-b7cf-020013acbeef"
+            },
+            "root://xrootd-local.unl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/eea7723e-df58-4feb-98eb-45776ff10946.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        36147
+                    ]
+                ],
+                "num_entries": 36147,
+                "uuid": "25f7f2ec-6ae3-11ef-a303-0d041cacbeef"
+            },
+            "root://xrootd-local.unl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/f50df525-3447-4317-9891-d7c0ceaa3e7a.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        474
+                    ]
+                ],
+                "num_entries": 474,
+                "uuid": "0c9d0358-6afe-11ef-944a-1f01a8c0beef"
+            },
+            "root://xrootd-local.unl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/f7109039-22b3-4225-bbba-2ec324a05417.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        31781
+                    ]
+                ],
+                "num_entries": 31781,
+                "uuid": "a031d8ae-6ae1-11ef-8857-7d01a8c0beef"
+            },
+            "root://k8s-redir.ultralight.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/f9cb520a-6f3e-4da2-aca2-0ab46055e28e.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        132113
+                    ]
+                ],
+                "num_entries": 132113,
+                "uuid": "db1fe70c-6a38-11ef-a282-d7e45d9fbeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/fbf66fd2-ca5d-451f-95ea-0ecb888c0008.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        124482
+                    ]
+                ],
+                "num_entries": 124482,
+                "uuid": "a2398de2-6a35-11ef-a14d-a0090d0abeef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-800to1500",
+            "xsec": 0.02102,
+            "genEventSumw": 473358.0
+        },
+        "form": null
+    },
+    "/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
+        "files": {
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/039bdd41-b359-4c9e-acb3-33f33cbfe0bf.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        1752
+                    ]
+                ],
+                "num_entries": 1752,
+                "uuid": "b5accdbc-6afd-11ef-8280-1f01a8c0beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/066a8afe-e7ba-4ef0-b34a-790dcdb89be5.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        119969
+                    ]
+                ],
+                "num_entries": 119969,
+                "uuid": "78ca64fe-6a62-11ef-b4f0-84e36880beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/09686a7d-e133-4e91-9aa2-0f51fb168cd2.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        12412
+                    ]
+                ],
+                "num_entries": 12412,
+                "uuid": "16bcb74a-6ab6-11ef-9770-b6339e86beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/0fe16a52-805a-427f-892e-62de48c24558.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        20539
+                    ]
+                ],
+                "num_entries": 20539,
+                "uuid": "e16b4cca-6aa9-11ef-a103-33ceb9bcbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/17e3a933-42a7-4dc2-a13b-e3c8b3147b87.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        78438
+                    ]
+                ],
+                "num_entries": 78438,
+                "uuid": "552af9cc-6aa9-11ef-b561-2804640abeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/1a45d7c9-c509-456e-a02a-7ccf9339a6d0.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        124838
+                    ]
+                ],
+                "num_entries": 124838,
+                "uuid": "9a015506-6a62-11ef-b9d5-f2bde183beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/266063e8-f1ac-4835-a6bb-9281a62b65a5.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        469
+                    ]
+                ],
+                "num_entries": 469,
+                "uuid": "bb400c4e-6b66-11ef-93ab-a22df682beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/30ed3fdf-700b-4c3c-8c72-605fa46ea4ef.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        17667
+                    ]
+                ],
+                "num_entries": 17667,
+                "uuid": "557fe158-6aa9-11ef-bc79-c9d09a83beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/33ac192f-28be-436c-8107-347869a61da2.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        446
+                    ]
+                ],
+                "num_entries": 446,
+                "uuid": "155a9a54-6b72-11ef-ad20-61bee183beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/350491d1-f282-4ae9-bd8c-6a52ec28c20e.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        15573
+                    ]
+                ],
+                "num_entries": 15573,
+                "uuid": "8b159406-6ac8-11ef-b89a-e34514acbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/39c5ec44-8750-42f1-9f3a-10007b3ff349.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        1764
+                    ]
+                ],
+                "num_entries": 1764,
+                "uuid": "563cad60-6aa9-11ef-bd4b-1b64010abeef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/4ae3dfe8-282a-41ad-bf01-d9b731cb7545.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        29367
+                    ]
+                ],
+                "num_entries": 29367,
+                "uuid": "5b3b249e-6b1d-11ef-a9c2-0103fea9beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/52489578-7d05-4e63-9916-51843d20eda7.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        415
+                    ]
+                ],
+                "num_entries": 415,
+                "uuid": "21a4c504-6db2-11ef-9477-40a89a83beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/5670aa53-8a31-408a-9713-8388d4018e16.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        117433
+                    ]
+                ],
+                "num_entries": 117433,
+                "uuid": "86fdf412-6a4b-11ef-a9d4-95e55d9fbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/5ac8a1fd-dd3a-45cc-bf5d-72153ac5ca6b.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        21058
+                    ]
+                ],
+                "num_entries": 21058,
+                "uuid": "45c377e8-6aa9-11ef-926d-e4e5b49dbeef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/5b20197e-aa82-4333-a289-c7ca5d226448.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        22715
+                    ]
+                ],
+                "num_entries": 22715,
+                "uuid": "894cf96c-6aa9-11ef-ada0-b2870d0abeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/6173ad5c-9bf5-4043-928a-0672d80a4132.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        51857
+                    ]
+                ],
+                "num_entries": 51857,
+                "uuid": "6f8a74a0-6aa9-11ef-a389-0b44010abeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/67dcdc31-bc55-46b5-a42c-bffe6f68b936.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        5536
+                    ]
+                ],
+                "num_entries": 5536,
+                "uuid": "9074820e-6af5-11ef-a2b9-459110acbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/69d0ca11-e9f8-4135-8934-999ad83e7466.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        120288
+                    ]
+                ],
+                "num_entries": 120288,
+                "uuid": "7a4a87c4-69fd-11ef-a1ac-5fbee183beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/6d54d04d-e1e1-49d3-b709-ff730c640824.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        131628
+                    ]
+                ],
+                "num_entries": 131628,
+                "uuid": "8d94f0b6-6a62-11ef-8f51-020013acbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/6f983d1e-800a-4fc5-8796-7c578cf7b01d.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        1280
+                    ]
+                ],
+                "num_entries": 1280,
+                "uuid": "5a95c026-6b09-11ef-9486-8165a8c0beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/7096908e-c9d4-44c2-b8ba-8c57bcf213b5.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        414
+                    ]
+                ],
+                "num_entries": 414,
+                "uuid": "e046a0fc-6b66-11ef-833c-fae9b392beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/7108ae06-ce3d-4022-86a0-28993c976492.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        67045
+                    ]
+                ],
+                "num_entries": 67045,
+                "uuid": "649bc5c6-6aa9-11ef-8e4b-4b2df682beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/71cb420a-dc09-4c3c-be74-e9c3897dee68.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        41596
+                    ]
+                ],
+                "num_entries": 41596,
+                "uuid": "3f385de4-6aa9-11ef-8d54-15041cacbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/77d9255b-d103-403d-8eb4-ef89e4ddbabe.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        57147
+                    ]
+                ],
+                "num_entries": 57147,
+                "uuid": "2e745d1e-6b21-11ef-b996-8cbce183beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/85271a5b-a043-4653-afe2-3fac87baa7b5.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        120753
+                    ]
+                ],
+                "num_entries": 120753,
+                "uuid": "fbf2ac38-6a62-11ef-badf-6a849e86beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/919e1149-9e70-4e38-83b6-709ad4d24156.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        49178
+                    ]
+                ],
+                "num_entries": 49178,
+                "uuid": "84371982-6b24-11ef-9cab-070a0c12beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/92c9498c-9cf4-4505-9b91-f16b88d553e5.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        53650
+                    ]
+                ],
+                "num_entries": 53650,
+                "uuid": "a140e474-6ac8-11ef-852d-1f20a8c0beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/95e69c9d-423d-4c00-9a0a-2245b2453e3d.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        35349
+                    ]
+                ],
+                "num_entries": 35349,
+                "uuid": "244f8f10-6b31-11ef-8143-020013acbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/9635d78c-577d-4650-a41f-d4975bdfa6a8.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        31877
+                    ]
+                ],
+                "num_entries": 31877,
+                "uuid": "68ab61a8-6aa9-11ef-87e9-7b01a8c0beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/965bce57-123a-4621-8aec-b3da50aa5f3d.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        7327
+                    ]
+                ],
+                "num_entries": 7327,
+                "uuid": "dbafea58-6b2f-11ef-98d4-8f489e86beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/a0a04fa4-fe81-41fb-897a-acb136d64aa5.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        59756
+                    ]
+                ],
+                "num_entries": 59756,
+                "uuid": "50976e40-6aa9-11ef-8e5c-0425a8c0beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/a3619a2a-f006-4be2-92b5-4c83116f3f3e.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        10414
+                    ]
+                ],
+                "num_entries": 10414,
+                "uuid": "578093c6-6aa9-11ef-ada0-171b3d86beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/b14fc91f-e57b-4951-a528-af5f638f03d3.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        121020
+                    ]
+                ],
+                "num_entries": 121020,
+                "uuid": "7e9fe94e-6a62-11ef-8838-68090d0abeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/bc142a42-690f-4ca8-99cb-4ad0e18b34d8.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        12960
+                    ]
+                ],
+                "num_entries": 12960,
+                "uuid": "858ca822-6aa9-11ef-846d-77e05d9fbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/c50a0b44-3a64-4534-8bc9-7ace7b8d9402.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        488
+                    ]
+                ],
+                "num_entries": 488,
+                "uuid": "c21d0756-6b66-11ef-9587-0d21a8c0beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/dd9bcd18-1a18-4111-88e0-9524e6160f85.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        127543
+                    ]
+                ],
+                "num_entries": 127543,
+                "uuid": "6cf6a84a-6a49-11ef-941b-9f090d0abeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/e165f53e-f1e1-4937-8edb-9fd60e5da454.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        428
+                    ]
+                ],
+                "num_entries": 428,
+                "uuid": "4e71994c-6b67-11ef-9670-7b01a8c0beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/e1d9d99b-192b-4651-bd22-09d471ffdfc8.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        446
+                    ]
+                ],
+                "num_entries": 446,
+                "uuid": "e2061bbe-74cd-11ef-8473-88e25d9fbeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/e2ea24fd-7fd3-44f1-ae71-ee812e4e6eb2.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        123822
+                    ]
+                ],
+                "num_entries": 123822,
+                "uuid": "f5158554-6a65-11ef-983f-48e75d9fbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/ecba82c1-618b-4cc9-ae43-4271f1febdce.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        50261
+                    ]
+                ],
+                "num_entries": 50261,
+                "uuid": "61ca69a4-6aab-11ef-82f4-9782e4a9beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/eed81663-a9dc-4a49-87bf-faf3c697ec5d.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        31713
+                    ]
+                ],
+                "num_entries": 31713,
+                "uuid": "598f2268-6aa9-11ef-81e9-d3803c0abeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/f7bab446-2030-49cc-a9ee-45e38336e109.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        8231
+                    ]
+                ],
+                "num_entries": 8231,
+                "uuid": "cf82a84e-6b37-11ef-88d4-40e65d9fbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/fd9968e1-a517-4df1-a66c-fdacef9ab8dd.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        7477
+                    ]
+                ],
+                "num_entries": 7477,
+                "uuid": "5832da9a-6aa9-11ef-a521-3d03a8c0beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/ff8f2a12-865a-4d70-b5a2-28dd6edf3fa3.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        75478
+                    ]
+                ],
+                "num_entries": 75478,
+                "uuid": "9e7146f4-6aa9-11ef-b488-108ed380beef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-1500to2500",
+            "xsec": 0.001679,
+            "genEventSumw": 39689.0
+        },
+        "form": null
+    },
+    "/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
+        "files": {
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/0031ef29-e403-4ac0-b417-1a637fa270e8.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        11620
+                    ]
+                ],
+                "num_entries": 11620,
+                "uuid": "b038a66c-6a17-11ef-b11b-96e45d9fbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/07f96bb3-3ce8-42d1-b216-d78650c76798.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        1524
+                    ]
+                ],
+                "num_entries": 1524,
+                "uuid": "ac4e3d2a-6a1a-11ef-a2f4-06e25d9fbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/13f7136c-6c22-4514-b2ae-1fc2a2176b03.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        344
+                    ]
+                ],
+                "num_entries": 344,
+                "uuid": "55a52b24-6a1e-11ef-849c-f31a3d86beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/14a71dda-eebf-4f04-8ed4-ce418b008a06.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        366
+                    ]
+                ],
+                "num_entries": 366,
+                "uuid": "e6e38718-6a17-11ef-9aa4-6e339e86beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/26cc4fce-f1ff-4b66-b1c4-908652b56ac7.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        11087
+                    ]
+                ],
+                "num_entries": 11087,
+                "uuid": "c41d8882-6a17-11ef-8efa-7512010abeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/2ef102b9-590d-41d7-b60a-11df69a8dcec.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        355
+                    ]
+                ],
+                "num_entries": 355,
+                "uuid": "e30114ee-6a17-11ef-b985-2a4614acbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/30e2e83b-9771-4733-8520-5b8103f12a3a.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        2976
+                    ]
+                ],
+                "num_entries": 2976,
+                "uuid": "da952188-6a17-11ef-a2e3-942df682beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/3afb8744-0835-420b-bcb7-a5a889932e1b.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        740
+                    ]
+                ],
+                "num_entries": 740,
+                "uuid": "b8f044f6-6a1a-11ef-b258-0f21a8c0beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/4779b0f9-4867-413b-a355-89f8a894ce70.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        2580
+                    ]
+                ],
+                "num_entries": 2580,
+                "uuid": "d21493b8-6a17-11ef-a974-93013c0abeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/4b6916b5-0016-4b9f-b102-0906f03b0cf7.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        117343
+                    ]
+                ],
+                "num_entries": 117343,
+                "uuid": "2f11d004-69a9-11ef-b23e-fdbde183beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/55b04584-5756-4ea4-aea2-d20d08ad51e9.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        3951
+                    ]
+                ],
+                "num_entries": 3951,
+                "uuid": "eb57e578-6a21-11ef-bf35-020013acbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/81ae6518-a102-41ea-8b7e-087d5227b49d.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        9171
+                    ]
+                ],
+                "num_entries": 9171,
+                "uuid": "610367de-6a22-11ef-8841-d1cd36c0beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/874ffdb0-981f-4bd4-ba43-957356f3ad35.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        100343
+                    ]
+                ],
+                "num_entries": 100343,
+                "uuid": "e5680e54-6a17-11ef-b6cd-f6cee183beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/89d4ae46-e8ea-4a0b-b48e-48067888d18c.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        1482
+                    ]
+                ],
+                "num_entries": 1482,
+                "uuid": "bb76accc-6a17-11ef-a666-00041cacbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/a56b2256-f61a-4aab-bc2a-b9f737b2110f.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        802
+                    ]
+                ],
+                "num_entries": 802,
+                "uuid": "604ba7da-6a17-11ef-9830-3183e4a9beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/ab065a8b-c275-435a-bd14-0941358e8aa2.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        4869
+                    ]
+                ],
+                "num_entries": 4869,
+                "uuid": "f072a53e-6a17-11ef-acef-52eab392beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/bc19c59c-a727-4378-9c58-f21456f547f4.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        6629
+                    ]
+                ],
+                "num_entries": 6629,
+                "uuid": "f740c878-6a17-11ef-8efa-0103fea9beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/bd165070-a31d-4043-a660-f69af8a60a90.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        6527
+                    ]
+                ],
+                "num_entries": 6527,
+                "uuid": "e2663168-6a17-11ef-afc4-108ed380beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/cd5f2401-4ef5-4e73-8590-a7cc6f432cf6.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        1547
+                    ]
+                ],
+                "num_entries": 1547,
+                "uuid": "bb51e6d2-6a1a-11ef-b956-5c01a8c0beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/ce7732dd-5f98-4fd9-abe2-3795095d5ea5.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        132430
+                    ]
+                ],
+                "num_entries": 132430,
+                "uuid": "d7bdaa72-69a2-11ef-a69a-1fbde183beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/e75f5cc2-fda7-42d2-bd51-979ca5211bfd.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        1496
+                    ]
+                ],
+                "num_entries": 1496,
+                "uuid": "fda06d72-6a17-11ef-96bd-be04640abeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/ee39d06f-3731-4179-9915-ddef9f9575fb.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        122970
+                    ]
+                ],
+                "num_entries": 122970,
+                "uuid": "1f725786-69cc-11ef-9680-0fbfe183beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/f1f1da85-862e-44c6-8682-5f8374d941c0.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        381
+                    ]
+                ],
+                "num_entries": 381,
+                "uuid": "bffad72c-6b30-11ef-a07b-0901a8c0beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/f4940610-020d-41bf-adc5-be4fed4a353a.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        4371
+                    ]
+                ],
+                "num_entries": 4371,
+                "uuid": "abdb9d38-6a1a-11ef-9038-0f22a8c0beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/f7b82281-5d62-4ac3-b11a-884b0854b30f.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        143478
+                    ]
+                ],
+                "num_entries": 143478,
+                "uuid": "b447b740-69a2-11ef-bc3b-fcbce183beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2560000/fa5566ec-6b50-40d9-9910-eec35f112122.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        7459
+                    ]
+                ],
+                "num_entries": 7459,
+                "uuid": "49c213f2-6a1a-11ef-9977-94060d0abeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/10b1b0ce-3616-421b-a1e7-04598311d2ad.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        120305
+                    ]
+                ],
+                "num_entries": 120305,
+                "uuid": "788af58e-69eb-11ef-9c19-84e65d9fbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/19f01811-3699-48b9-8056-a453360a97b0.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        5649
+                    ]
+                ],
+                "num_entries": 5649,
+                "uuid": "c4d8a974-6a8e-11ef-8bbd-8103a8c0beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/1ceee9c1-a4c4-4b3b-a00a-d7f6a731925d.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        4921
+                    ]
+                ],
+                "num_entries": 4921,
+                "uuid": "64fee624-6aa9-11ef-9ba6-68c59a83beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/2af25e69-7433-4e05-99c5-450ce91c438d.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        790
+                    ]
+                ],
+                "num_entries": 790,
+                "uuid": "518aec50-6aa9-11ef-b3cd-1964010abeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/2ecd5157-7548-443c-ba60-2b8101d959c6.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        22249
+                    ]
+                ],
+                "num_entries": 22249,
+                "uuid": "dc590dd0-6aa9-11ef-a88c-d2d6b9bcbeef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/37053584-6a6a-417f-b321-29410e61b027.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        17896
+                    ]
+                ],
+                "num_entries": 17896,
+                "uuid": "1e4dfbae-6a8e-11ef-8326-1f890d0abeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/3f840d6f-f940-44c6-b4e0-d806d9dfa2d3.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        6604
+                    ]
+                ],
+                "num_entries": 6604,
+                "uuid": "c4909562-6a8e-11ef-aa79-5801a8c0beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/4785af07-96e9-4664-b5b6-1b7a2d28131c.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        57479
+                    ]
+                ],
+                "num_entries": 57479,
+                "uuid": "672bcbe2-6aa9-11ef-ad6b-d4cd36c0beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/4c11975b-165e-4ff3-9797-043be4beef2e.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        10423
+                    ]
+                ],
+                "num_entries": 10423,
+                "uuid": "bc822840-6a8e-11ef-b131-d4803c0abeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/51bb064e-b2b7-4e41-90ab-552f8567840c.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        16033
+                    ]
+                ],
+                "num_entries": 16033,
+                "uuid": "c4062ba2-6a8e-11ef-8614-1024a8c0beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/586e8a11-bcaa-4175-aab5-6dcfbe7c6f2e.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        44330
+                    ]
+                ],
+                "num_entries": 44330,
+                "uuid": "33f60154-6a8e-11ef-87b2-97b55c90beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/59d5ac0c-ad20-4bf6-ab99-664a9ce8fcf4.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        15391
+                    ]
+                ],
+                "num_entries": 15391,
+                "uuid": "3b0e6970-6aa9-11ef-9f51-1e041cacbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/5dbbbea5-0b40-457b-8857-bcf77d918b48.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        90687
+                    ]
+                ],
+                "num_entries": 90687,
+                "uuid": "dde48af0-6aac-11ef-9821-79bee183beef"
+            },
+            "root://cmsio2.rc.ufl.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/618dd55d-5d9d-45af-89d3-b7cd0258d359.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        23102
+                    ]
+                ],
+                "num_entries": 23102,
+                "uuid": "c6f2f954-6a33-11ef-940e-0f8ed380beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/67e37a2c-1cac-433d-be44-adbdca94ad65.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        20623
+                    ]
+                ],
+                "num_entries": 20623,
+                "uuid": "55e61680-6aa9-11ef-9bfc-972df682beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/6b8ee1de-9909-4b71-9886-db766df9907e.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        145057
+                    ]
+                ],
+                "num_entries": 145057,
+                "uuid": "75a729ac-69e4-11ef-b3ac-77bce183beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/79c507a2-a30e-4f90-855e-653e5df3dfc7.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        118059
+                    ]
+                ],
+                "num_entries": 118059,
+                "uuid": "70186cc6-69e4-11ef-9d60-03bfe183beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/7eb9c491-0c54-4823-befc-ea21ecc7047b.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        32074
+                    ]
+                ],
+                "num_entries": 32074,
+                "uuid": "28b31a20-6a8e-11ef-bcc5-020013acbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/7fb6cbaf-657c-458f-8ff3-fd9125980dbf.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        122820
+                    ]
+                ],
+                "num_entries": 122820,
+                "uuid": "b25c661c-69eb-11ef-afd1-090a0c12beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/84536567-fc4f-400d-9337-140866f1b23a.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        375
+                    ]
+                ],
+                "num_entries": 375,
+                "uuid": "1099d15e-6b38-11ef-a289-fc090d0abeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/9532c09c-e761-43cc-b64c-2d0d5f0fe39b.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        374
+                    ]
+                ],
+                "num_entries": 374,
+                "uuid": "140d77d6-6afd-11ef-a23e-1f01a8c0beef"
+            },
+            "root://gfe02.grid.hep.ph.ic.ac.uk:1094//pnfs/hep.ph.ic.ac.uk/data/cms/store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/95e26e65-1a2a-40ba-9b92-9aed505d746e.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        4820
+                    ]
+                ],
+                "num_entries": 4820,
+                "uuid": "8c84a7d8-6aa9-11ef-a776-fce9b392beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/9653fa25-4464-47a4-aa87-77320b010e8d.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        5952
+                    ]
+                ],
+                "num_entries": 5952,
+                "uuid": "0401e5ce-6a72-11ef-944c-851a3d86beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/a77cbd25-7c55-494e-9211-bbf9b0eac111.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        3008
+                    ]
+                ],
+                "num_entries": 3008,
+                "uuid": "679d5262-6aa9-11ef-956e-70e05d9fbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/ad0af474-e8ec-4216-97b3-58d14ccfa97c.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        4906
+                    ]
+                ],
+                "num_entries": 4906,
+                "uuid": "c272404a-6ab2-11ef-8340-35339e86beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/b4c8eaf7-495b-4eba-8509-206490d9d91a.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        76620
+                    ]
+                ],
+                "num_entries": 76620,
+                "uuid": "2d493fb8-6aa9-11ef-b21b-2ce75d9fbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/b5db625c-ebd5-49a8-8b31-874a55456063.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        362
+                    ]
+                ],
+                "num_entries": 362,
+                "uuid": "e2c889bc-6b2f-11ef-9aa8-0444010abeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/b6f7d0e0-aab7-4e30-8952-37535eb83946.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        13634
+                    ]
+                ],
+                "num_entries": 13634,
+                "uuid": "8e99f848-6aa9-11ef-8b5e-f282e4a9beef"
+            },
+            "root://cmsxrootd.hep.wisc.edu:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/b9679ac5-a299-44bd-85bf-0a2dd45d489c.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        396
+                    ]
+                ],
+                "num_entries": 396,
+                "uuid": "1faa9caa-6b38-11ef-95ef-3fe36880beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/bdfa3a5e-120a-4ead-a17a-554db0a3b2e2.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        44502
+                    ]
+                ],
+                "num_entries": 44502,
+                "uuid": "6cbaa740-6aa9-11ef-b6c9-5500640abeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/d6607574-39a2-487c-aacd-2c5913a13dbe.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        25628
+                    ]
+                ],
+                "num_entries": 25628,
+                "uuid": "7a45b410-6a8e-11ef-852e-7812010abeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/d6bd964c-f21f-468b-87f0-90b9fa28893b.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        39336
+                    ]
+                ],
+                "num_entries": 39336,
+                "uuid": "9d505ab2-6aa9-11ef-861e-0a080d0abeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/e01d0c0e-1b4d-45bb-9f04-175c35b68fcb.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        1934
+                    ]
+                ],
+                "num_entries": 1934,
+                "uuid": "e52c0a2a-6af4-11ef-abb1-469110acbeef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/f38f9bd2-4857-4f80-8f60-44c1c487159e.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        14843
+                    ]
+                ],
+                "num_entries": 14843,
+                "uuid": "6ddcf9ca-6aa9-11ef-956e-271fa8c0beef"
+            },
+            "root://xrootd-vanderbilt.sites.opensciencegrid.org:1094//store/mc/Run3Summer22NanoAODv12/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/2810000/fe618dd9-719f-4eef-b9ac-c0aa3745c93e.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        4455
+                    ]
+                ],
+                "num_entries": 4455,
+                "uuid": "5ab78d6a-6aa9-11ef-a564-c94514acbeef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-2500",
+            "xsec": 0.0001238,
+            "genEventSumw": 2510.0
+        },
+        "form": null
+    }
+}

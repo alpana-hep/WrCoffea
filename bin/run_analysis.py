@@ -137,7 +137,7 @@ def run_analysis(args, preprocessed_fileset):
 
     to_compute = apply_to_fileset(
         data_manipulation=WrAnalysis(mass_point=args.mass),
-        fileset=max_files(max_chunks(filtered_fileset)),
+        fileset=max_files(max_chunks(filtered_fileset, 1), 1),
         schemaclass=NanoAODSchema,
         uproot_options={"handler": uproot.XRootDSource, "timeout": 3600}
     )
