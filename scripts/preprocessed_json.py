@@ -8,6 +8,8 @@ import warnings
 import subprocess
 import re
 import uproot
+import numpy as np
+import awkward as ak
 import multiprocessing
 from pathlib import Path
 from coffea.nanoevents import NanoEventsFactory, NanoAODSchema
@@ -152,7 +154,7 @@ def get_genevents_from_coffea(rootFile):
     filepath = f"{rootFile}"
     try:
         events = NanoEventsFactory.from_root(
-                {filepath: "Runs"},
+                {filepath: "Run"},
                 schemaclass=NanoAODSchema
         ).events()
 
