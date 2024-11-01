@@ -235,14 +235,14 @@ class WrAnalysis(processor.ProcessorABC):
             'leadlep_px2pt_prime_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(2000, -10, 10, name='leadlep_px2pt_prime_subleadlep', label=r'm_{ljj} [GeV]'),
+                hist.axis.Regular(2000, -2, 2, name='leadlep_px2pt_prime_subleadlep', label=r'm_{ljj} [GeV]'),
                 hist.storage.Weight(),
             ),
 
             'subleadlep_px2pt_prime_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(2000, -10, 10, name='subleadlep_px2pt_prime_leadlep', label=r'm_{ljj} [GeV]'),
+                hist.axis.Regular(2000, -2, 2, name='subleadlep_px2pt_prime_leadlep', label=r'm_{ljj} [GeV]'),
                 hist.storage.Weight(),
             ),
 ################################################################################################################################################################################
@@ -250,14 +250,14 @@ class WrAnalysis(processor.ProcessorABC):
             'leadlep_py2pt_prime_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(2000, -10, 10, name='leadlep_py2pt_prime_subleadlep', label=r'm_{ljj} [GeV]'),
+                hist.axis.Regular(2000, -2, 2, name='leadlep_py2pt_prime_subleadlep', label=r'm_{ljj} [GeV]'),
                 hist.storage.Weight(),
             ),
 
             'subleadlep_py2pt_prime_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(2000, -10, 10, name='subleadlep_py2pt_prime_leadlep', label=r'm_{ljj} [GeV]'),
+                hist.axis.Regular(2000, -2, 2, name='subleadlep_py2pt_prime_leadlep', label=r'm_{ljj} [GeV]'),
                 hist.storage.Weight(),
             ),
 ################################################################################################################################################################################
@@ -310,14 +310,14 @@ class WrAnalysis(processor.ProcessorABC):
             'subleadlep_px2pt_prime_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(2000, -50, 50, name='subleadlep_px2pt_prime_subleadlep', label=r'p_{y\'} of the subleading lepton [GeV]'),
+                hist.axis.Regular(2000, -2, 2, name='subleadlep_px2pt_prime_subleadlep', label=r'p_{y\'} of the subleading lepton [GeV]'),
                 hist.storage.Weight(),
             ),
 
             'leadlep_px2pt_prime_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(2000, -50, 50, name='leadlep_px2pt_prime_leadlep', label=r'p_{y\'} of the leading lepton [GeV]'),
+                hist.axis.Regular(2000, -2, 2, name='leadlep_px2pt_prime_leadlep', label=r'p_{y\'} of the leading lepton [GeV]'),
                 hist.storage.Weight(),
             ),
 ################################################################################################################################################################################
@@ -325,14 +325,14 @@ class WrAnalysis(processor.ProcessorABC):
             'subleadlep_py2pt_prime_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(2000, -50, 50, name='subleadlep_py2pt_prime_subleadlep', label=r'p_{y\'} of the subleading lepton [GeV]'),
+                hist.axis.Regular(2000, -2, 2, name='subleadlep_py2pt_prime_subleadlep', label=r'p_{y\'} of the subleading lepton [GeV]'),
                 hist.storage.Weight(),
             ),
 
             'leadlep_py2pt_prime_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(2000, -50, 50, name='leadlep_py2pt_prime_leadlep', label=r'p_{y\'} of the leading lepton [GeV]'),
+                hist.axis.Regular(2000, -2, 2, name='leadlep_py2pt_prime_leadlep', label=r'p_{y\'} of the leading lepton [GeV]'),
                 hist.storage.Weight(),
             ),
 ################################################################################################################################################################################
@@ -385,14 +385,14 @@ class WrAnalysis(processor.ProcessorABC):
             'fourobject_px2pt_prime_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(2000, -50, 50, name='fourobject_px2pt_prime_subleadlep', label=r'm_{lljj} [GeV]'),
+                hist.axis.Regular(2000, -2, 2, name='fourobject_px2pt_prime_subleadlep', label=r'm_{lljj} [GeV]'),
                 hist.storage.Weight(),
             ),
 
             'fourobject_px2pt_prime_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(2000, -50, 50, name='fourobject_px2pt_prime_leadlep', label=r'm_{lljj} [GeV]'),
+                hist.axis.Regular(2000, -2, 2, name='fourobject_px2pt_prime_leadlep', label=r'm_{lljj} [GeV]'),
                 hist.storage.Weight(),
             ),
 ################################################################################################################################################################################
@@ -400,14 +400,14 @@ class WrAnalysis(processor.ProcessorABC):
             'fourobject_py2pt_prime_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(2000, -50, 50, name='fourobject_py2pt_prime_subleadlep', label=r'm_{lljj} [GeV]'),
+                hist.axis.Regular(2000, -2, 2, name='fourobject_py2pt_prime_subleadlep', label=r'm_{lljj} [GeV]'),
                 hist.storage.Weight(),
             ),
 
             'fourobject_py2pt_prime_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(2000, -50, 50, name='fourobject_py2pt_prime_leadlep', label=r'm_{lljj} [GeV]'),
+                hist.axis.Regular(2000, -2, 2, name='fourobject_py2pt_prime_leadlep', label=r'm_{lljj} [GeV]'),
                 hist.storage.Weight(),
             ),
 ################################################################################################################################################################################
@@ -460,14 +460,14 @@ class WrAnalysis(processor.ProcessorABC):
             'threeobject_subleadlep_px2pt_prime_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(2000, -50, 50, name='threeobject_subleadlep_px2pt_prime_subleadlep', label=r'm_{ljj} [GeV]'),
+                hist.axis.Regular(2000, -2, 2, name='threeobject_subleadlep_px2pt_prime_subleadlep', label=r'm_{ljj} [GeV]'),
                 hist.storage.Weight(),
             ),
 
             'threeobject_leadlep_px2pt_prime_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(2000, -50, 50, name='threeobject_leadlep_px2pt_prime_leadlep', label=r'm_{ljj} [GeV]'),
+                hist.axis.Regular(2000, -2, 2, name='threeobject_leadlep_px2pt_prime_leadlep', label=r'm_{ljj} [GeV]'),
                 hist.storage.Weight(),
             ),
 ################################################################################################################################################################################
@@ -475,14 +475,14 @@ class WrAnalysis(processor.ProcessorABC):
             'threeobject_subleadlep_py2pt_prime_subleadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(2000, -50, 50, name='threeobject_subleadlep_py2pt_prime_subleadlep', label=r'm_{ljj} [GeV]'),
+                hist.axis.Regular(2000, -2, 2, name='threeobject_subleadlep_py2pt_prime_subleadlep', label=r'm_{ljj} [GeV]'),
                 hist.storage.Weight(),
             ),
 
             'threeobject_leadlep_py2pt_prime_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(2000, -50, 50, name='threeobject_leadlep_py2pt_prime_leadlep', label=r'm_{ljj} [GeV]'),
+                hist.axis.Regular(2000, -2, 2, name='threeobject_leadlep_py2pt_prime_leadlep', label=r'm_{ljj} [GeV]'),
                 hist.storage.Weight(),
             ),
         }
@@ -1105,7 +1105,7 @@ class WrAnalysis(processor.ProcessorABC):
             output['threeobject_leadlep_px2pt_prime_leadlep'].fill(
                 process=process,
                 region=region,
-                threeobject_leadlep_px2pt_prime_leadlep=(tightLeptons[cut][:,1].px_prime_leadlep + AK4Jets[cut][:,0].px_prime_leadlep + AK4Jets[cut][:,1].px_prime_leadlep)/((tightLeptons[cut][:,1].px_prime_leadlep + AK4Jets[cut][:,0].px_prime_leadlep + AK4Jets[cut][:,1].px_prime_leadlep)**2 + (tightLeptons[cut][:,1].py_prime_leadlep + AK4Jets[cut][:,0].py_prime_leadlep + AK4Jets[cut][:,1].py_prime_leadlep)**2)**0.5,
+                threeobject_leadlep_px2pt_prime_leadlep=(tightLeptons[cut][:,0].px_prime_leadlep + AK4Jets[cut][:,0].px_prime_leadlep + AK4Jets[cut][:,1].px_prime_leadlep)/((tightLeptons[cut][:,0].px_prime_leadlep + AK4Jets[cut][:,0].px_prime_leadlep + AK4Jets[cut][:,1].px_prime_leadlep)**2 + (tightLeptons[cut][:,0].py_prime_leadlep + AK4Jets[cut][:,0].py_prime_leadlep + AK4Jets[cut][:,1].py_prime_leadlep)**2)**0.5,
                 weight=weights.weight()[cut],
             )
 ################################################################################################################################################################################
@@ -1120,7 +1120,7 @@ class WrAnalysis(processor.ProcessorABC):
             output['threeobject_leadlep_py2pt_prime_leadlep'].fill(
                 process=process,
                 region=region,
-                threeobject_leadlep_py2pt_prime_leadlep=(tightLeptons[cut][:,1].py_prime_leadlep + AK4Jets[cut][:,0].py_prime_leadlep + AK4Jets[cut][:,1].py_prime_leadlep)/((tightLeptons[cut][:,1].px_prime_leadlep + AK4Jets[cut][:,0].px_prime_leadlep + AK4Jets[cut][:,1].px_prime_leadlep)**2 + (tightLeptons[cut][:,1].py_prime_leadlep + AK4Jets[cut][:,0].py_prime_leadlep + AK4Jets[cut][:,1].py_prime_leadlep)**2)**0.5,
+                threeobject_leadlep_py2pt_prime_leadlep=(tightLeptons[cut][:,0].py_prime_leadlep + AK4Jets[cut][:,0].py_prime_leadlep + AK4Jets[cut][:,1].py_prime_leadlep)/((tightLeptons[cut][:,0].px_prime_leadlep + AK4Jets[cut][:,0].px_prime_leadlep + AK4Jets[cut][:,1].px_prime_leadlep)**2 + (tightLeptons[cut][:,0].py_prime_leadlep + AK4Jets[cut][:,0].py_prime_leadlep + AK4Jets[cut][:,1].py_prime_leadlep)**2)**0.5,
                 weight=weights.weight()[cut],
             )
 
