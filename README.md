@@ -7,11 +7,6 @@ git clone git@github.com:UMN-CMS/WrCoffea.git
 cd WrCoffea
 ```
 ## Running the analyzer
-### The first time
-```
-bash bootstrap.sh
-```
-The `./shell` executable can then be used to start an apptainer shell with a coffea environment. For more information: https://github.com/CoffeaTeam/lpcjobqueue
 ### Each week
 To set up a grid UI
 ```
