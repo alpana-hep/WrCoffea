@@ -67,127 +67,127 @@
     },
     "/WJetsToLNu_HT-70To100_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "WJets",
+      "process": "Nonprompt",
       "dataset": "WJetsToLNu_HT-70To100",
       "xsec": 1637.1
     },
     "/WJetsToLNu_HT-100To200_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "WJets",
+      "process": "Nonprompt",
       "dataset": "WJetsToLNu_HT-100To200",
       "xsec": 1627.45
     },
     "/WJetsToLNu_HT-200To400_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "WJets",
+      "process": "Nonprompt",
       "dataset": "WJetsToLNu_HT-200To400",
       "xsec": 435.237
     },
     "/WJetsToLNu_HT-400To600_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "WJets",
+      "process": "Nonprompt",
       "dataset": "WJetsToLNu_HT-400To600",
       "xsec": 59.1811
     },
     "/WJetsToLNu_HT-600To800_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "WJets",
+      "process": "Nonprompt",
       "dataset": "WJetsToLNu_HT-600To800",
       "xsec": 14.5805
     },
     "/WJetsToLNu_HT-800To1200_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "WJets",
+      "process": "Nonprompt",
       "dataset": "WJetsToLNu_HT-800To1200",
       "xsec": 6.65621
     },
     "/WJetsToLNu_HT-1200To2500_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "WJets",
+      "process": "Nonprompt",
       "dataset": "WJetsToLNu_HT-1200To2500",
       "xsec": 1.60809
     },
     "/WJetsToLNu_HT-2500ToInf_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v2/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "WJets",
+      "process": "Nonprompt",
       "dataset": "WJetsToLNu_HT-2500ToInf",
       "xsec": 0.0389136
     },
     "/WW_TuneCP5_13TeV-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "Diboson",
+      "process": "Other",
       "dataset": "WW",
       "xsec": 118.7
     },
     "/WZ_TuneCP5_13TeV-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "Diboson",
+      "process": "Other",
       "dataset": "WZ",
       "xsec": 47.13
     },
     "/ZZ_TuneCP5_13TeV-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "Diboson",
+      "process": "Other",
       "dataset": "ZZ",
       "xsec": 16.523
     },
     "/WWW_4F_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "Triboson",
+      "process": "Other",
       "dataset": "WWW",
       "xsec": 0.2086
     },
     "/WWZ_4F_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "Triboson",
+      "process": "Other",
       "dataset": "WWZ",
       "xsec": 0.1651
     },
     "/WZZ_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "Triboson",
+      "process": "Other",
       "dataset": "WZZ",
       "xsec": 0.05565
     },
     "/ZZZ_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "Triboson",
+      "process": "Other",
       "dataset": "ZZZ",
       "xsec": 0.01398
     },
     "/ttWJets_TuneCP5_13TeV_madgraphMLM_pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v2/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "ttX",
+      "process": "Other",
       "dataset": "ttWJets",
       "xsec": 0.4611
     },
     "/ttZJets_TuneCP5_13TeV_madgraphMLM_pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v2/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "ttX",
+      "process": "Other",
       "dataset": "ttZJets",
       "xsec": 0.5407
     },
     "/ST_s-channel_4f_leptonDecays_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "SingleTop",
+      "process": "Nonprompt",
       "dataset": "ST_s-channel",
       "xsec": 3.36
     },
     "/ST_t-channel_antitop_5f_InclusiveDecays_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "SingleTop",
+      "process": "Nonprompt",
       "dataset": "ST_t-channel_antitop",
       "xsec": 80.95
     },
     "/ST_t-channel_top_5f_InclusiveDecays_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "SingleTop",
+      "process": "Nonprompt",
       "dataset": "ST_t-channel_top",
       "xsec": 136.02
     },
     "/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
       "mc_campaign": "Run2Summer20UL18",
-      "process": "tt_semileptonic",
+      "process": "Nonprompt",
       "dataset": "TTToSemiLeptonic",
       "xsec": 365.34
     }

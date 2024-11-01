@@ -18,7 +18,6 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../pyth
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from analyzer import WrAnalysis
-
 from dask.distributed import Client
 from dask.diagnostics import ProgressBar
 import dask
@@ -27,7 +26,8 @@ import warnings
 import python
 
 # Set up logging configuration
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Suppress specific warnings
 NanoAODSchema.warn_missing_crossrefs = False
@@ -45,7 +45,7 @@ def load_masses_from_csv(file_path):
                 if len(row) >= 2:  # Ensure the row has at least two columns
                     wr_mass = row[0].strip()
                     n_mass = row[1].strip()
-                    mass_choice = f"WRtoNLtoLLJJ_WR{wr_mass}_N{n_mass}"
+                    mass_choice = f"MWR{wr_mass}_MN{n_mass}"
                     mass_choices.append(mass_choice)
         logging.info(f"Loaded {len(mass_choices)} mass points from {file_path}")
     except FileNotFoundError:
@@ -56,38 +56,21 @@ def load_masses_from_csv(file_path):
         raise
     return mass_choices
 
-def load_json(sample, run, skimmed=False):
+def load_json(args):
+    sample = args.sample
+    run = args.run 
+    skimmed = args.skimmed
+
     """Load the appropriate JSON file based on sample, run, and year."""
-    base_dir = Path(f'/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/')
-    
-    # File patterns based on sample type
-    file_patterns = {
-        'Data': {
-            'Skimmed': f'{run}_Data_Skimmed.json',
-            'Preprocessed': f'{run}_Data_Preprocessed.json'
-        },
-        'Signal': {
-            'Preprocessed': f'{run}_Signal_Preprocessed.json'
-        },
-        'Bkg': {
-            'Skimmed': f'{run}_Bkg_Skimmed.json',
-            'Preprocessed': f'{run}_Bkg_Preprocessed.json'
-        }
-    }
-
-    # Choose the correct file based on the sample type and whether it's skimmed
-    if sample == 'Data':
-        sub_dir = 'Skim_Tree_Lepton_Pt45' if skimmed else 'Preprocessed'
-        filename = file_patterns['Data']['Skimmed'] if skimmed else file_patterns['Data']['Preprocessed']
-    elif sample == 'Signal':
-        sub_dir = 'Preprocessed'
-        filename = file_patterns['Signal']['Preprocessed']
-    else:  # Background (Bkg) or other
-        sub_dir = 'Skim_Tree_Lepton_Pt45' if skimmed else 'Preprocessed'
-        filename = file_patterns['Bkg']['Skimmed'] if skimmed else file_patterns['Bkg']['Preprocessed']
-
-    filepath = base_dir / sub_dir / filename
-
+    if "EGamma" in sample or "SingleMuon" in sample:
+        filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_data_skimmed.json"
+    elif "Signal" in sample:
+        filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_sig_processed.json"
+    else:
+        if skimmed:
+            filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_bkg_skimmed.json"
+        else:
+            filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_bkg_processed.json"
     try:
         with open(filepath, 'r') as file:
             data = json.load(file)
@@ -102,9 +85,7 @@ def load_json(sample, run, skimmed=False):
 
 def filter_by_process(fileset, desired_process, mass=None):
     """Filter fileset based on process type and mass."""
-    if desired_process == "AllBackgrounds":
-        return fileset
-    elif desired_process == "Data":
+    if desired_process == "Data":
         return fileset
     elif desired_process == "Signal":
         return {ds: data for ds, data in fileset.items() if data['metadata']['dataset'] == mass}
@@ -137,7 +118,7 @@ def run_analysis(args, preprocessed_fileset):
 
     to_compute = apply_to_fileset(
         data_manipulation=WrAnalysis(mass_point=args.mass),
-        fileset=max_files(max_chunks(filtered_fileset, 1), 1),
+        fileset=max_files(max_chunks(filtered_fileset)),
         schemaclass=NanoAODSchema,
         uproot_options={"handler": uproot.XRootDSource, "timeout": 3600}
     )
@@ -146,23 +127,22 @@ def run_analysis(args, preprocessed_fileset):
         logging.info("Computing histograms...")
         with ProgressBar():
             (histograms,) = dask.compute(to_compute)
-        python.save_hists.save_histograms(histograms, args.hists, args.sample)
-        logging.info(f"Histograms saved to: {args.hists}")
+        python.save_hists.save_histograms(histograms, args)
 
     exec_time = time.monotonic() - t0
     logging.info(f"Execution took {exec_time/60:.2f} minutes")
 
 if __name__ == "__main__":
     # Load mass choices from the CSV file
-    file_path = Path('/uscms/home/bjackson/nobackup/WrCoffea/data/Run2Legacy_2018_mass_points.csv')
+    file_path = Path('/uscms/home/bjackson/nobackup/WrCoffea/data/Run2Autumn18_mass_points.csv')
     MASS_CHOICES = load_masses_from_csv(file_path)
 
     # Initialize argparse
     parser = argparse.ArgumentParser(description="Processing script for WR analysis.")
 
     # Required arguments
-    parser.add_argument("run", type=str, choices=["Run2Legacy", "Run2UltraLegacy", "Run3Summer22", "Run3Summer22EE"], help="Campaign to analyze.")
-    parser.add_argument("sample", type=str, choices=["DYJets", "tt+tW", "tt_semileptonic", "WJets", "Diboson", "Triboson", "ttX", "SingleTop", "AllBackgrounds", "Signal", "Data"],
+    parser.add_argument("run", type=str, choices=["Run2Autumn18", "Run2Summer20UL18", "Run3Summer22"], help="Campaign to analyze.")
+    parser.add_argument("sample", type=str, choices=["DYJets", "tt+tW", "Nonprompt", "Other", "EGamma", "SingleMuon", "Signal"],
                         help="MC sample to analyze (e.g., Signal, DYJets).")
 
     # Optional arguments
@@ -170,7 +150,7 @@ if __name__ == "__main__":
     optional.add_argument("--mass", type=str, default=None, choices=MASS_CHOICES, help="Signal mass point to analyze.")
     optional.add_argument("--skimmed", action='store_true', help="Use the skimmed files.")
     optional.add_argument("--lpc", action='store_true', help="Start an LPC cluster.")
-    optional.add_argument("--hists", type=str, default=None, help="Filepath for output histograms.")
+    optional.add_argument("--hists", action='store_true', help="Output histograms.")
 
     args = parser.parse_args()
 
@@ -178,7 +158,7 @@ if __name__ == "__main__":
     validate_arguments(args)
 
     # Load the fileset based on parsed arguments
-    preprocessed_fileset = load_json(args.sample, args.run, args.skimmed)
+    preprocessed_fileset = load_json(args)
 
     # Set up and run analysis with or without LPC cluster
     if args.lpc:

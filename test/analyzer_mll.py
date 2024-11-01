@@ -4,6 +4,7 @@ import awkward as ak
 import hist.dask as dah
 import hist
 import numpy as np
+import re
 import time
 import logging
 import warnings
@@ -17,20 +18,11 @@ class WrAnalysis(processor.ProcessorABC):
         self._signal_sample = mass_point
 
         self.make_output = lambda: {
-            'Jet_0_Pt': self.create_hist('pt_leadjet', 'process', 'region', (200, 0, 2000), r'p_{T} of the leading jet [GeV]'),
-            'Jet_1_Pt': self.create_hist('pt_subleadjet', 'process', 'region', (200, 0, 2000), r'p_{T} of the subleading jet [GeV]'),
-            'Lepton_0_Eta': self.create_hist('eta_leadlep', 'process', 'region', (60, -3, 3), r'#eta of the leading lepton'),
-            'Lepton_0_Pt': self.create_hist('pt_leadlep', 'process', 'region', (200, 0, 2000), r'p_{T} of the leading lepton [GeV]'),
-            'Lepton_1_Eta': self.create_hist('eta_subleadlep', 'process', 'region', (60, -3, 3), r'#eta of the subleading lepton'),
-            'Lepton_1_Pt': self.create_hist('pt_subleadlep', 'process', 'region', (200, 0, 2000), r'p_{T} of the subleading lepton [GeV]'),
+            'event_weight': self.create_hist('event_weight', 'process', 'region', (1,0,1), r'Event count without cuts'),
             'NCand_Lepton_0_Mass': self.create_hist('mass_threeobject_leadlep', 'process', 'region', (800, 0, 8000), r'm_{ljj} [GeV]'),
-            'NCand_Lepton_0_Pt': self.create_hist('pt_threeobject_leadlep', 'process', 'region', (800, 0, 8000), r'p^{T}_{ljj} [GeV]'),
             'NCand_Lepton_1_Mass': self.create_hist('mass_threeobject_subleadlep', 'process', 'region', (800, 0, 8000), r'm_{ljj} [GeV]'),
-            'NCand_Lepton_1_Pt': self.create_hist('pt_threeobject_subleadlep', 'process', 'region', (800, 0, 8000), r'p^{T}_{ljj} [GeV]'),
             'WRCand_Mass': self.create_hist('mass_fourobject', 'process', 'region', (800, 0, 8000), r'm_{lljj} [GeV]'),
-            'WRCand_Pt': self.create_hist('pt_fourobject', 'process', 'region', (800, 0, 8000), r'p^{T}_{lljj} [GeV]'),
             'ZCand_Mass': self.create_hist('mass_dileptons', 'process', 'region', (5000, 0, 5000), r'm_{ll} [GeV]'),
-            'ZCand_Pt': self.create_hist('pt_dileptons', 'process', 'region', (200, 0, 2000), r'p^{T}_{ll} [GeV]'),
             'ZCand_WRCand_Mass': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
@@ -67,6 +59,24 @@ class WrAnalysis(processor.ProcessorABC):
         ak8_jets = (events.FatJet.pt > 200) & (np.abs(events.FatJet.eta) < 2.4) & (events.FatJet.jetId == 2) & (events.FatJet.msoftdrop > 40)
         return events.Jet[ak4_jets], events.FatJet[ak8_jets]
 
+    def check_mass_point_resolved(self):
+        """Check if the specified mass point is a resolved sample.
+
+        Raises:
+            NotImplementedError: If MN/MWR is less than 0.2, indicating an unresolved sample.
+            ValueError: If the mass point format in _signal_sample is invalid.
+        """
+        match = re.match(r"MWR(\d+)_MN(\d+)", self._signal_sample)
+        if match:
+            mwr, mn = int(match.group(1)), int(match.group(2))
+            ratio = mn / mwr
+            if ratio < 0.2:
+                raise NotImplementedError(
+                    f"Choose a resolved sample (MN/MWR > 0.2). For this sample, MN/MWR = {ratio:.2f}."
+                )
+        else:
+            raise ValueError(f"Invalid mass point format: {self._signal_sample}")
+
     def add_resolved_selections(self, selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2):
         selections.add("twoTightLeptons", (ak.num(tightElectrons) + ak.num(tightMuons)) == 2)
         selections.add("minTwoAK4Jets", ak.num(AK4Jets) >= 2)
@@ -78,20 +88,11 @@ class WrAnalysis(processor.ProcessorABC):
         """Helper function to fill histograms dynamically."""
         # Define a list of variables and their corresponding histograms
         variables = [
-            ('Jet_0_Pt', jets[:, 0].pt, 'pt_leadjet'),
-            ('Jet_1_Pt', jets[:, 1].pt, 'pt_subleadjet'),
-            ('Lepton_0_Eta', leptons[:, 0].eta, 'eta_leadlep'),
-            ('Lepton_0_Pt', leptons[:, 0].pt, 'pt_leadlep'),
-            ('Lepton_1_Eta', leptons[:, 1].eta, 'eta_subleadlep'),
-            ('Lepton_1_Pt', leptons[:, 1].pt, 'pt_subleadlep'),
             ('NCand_Lepton_0_Mass', (leptons[:, 0] + jets[:, 0] + jets[:, 1]).mass, 'mass_threeobject_leadlep'),
-            ('NCand_Lepton_0_Pt', (leptons[:, 0] + jets[:, 0] + jets[:, 1]).pt, 'pt_threeobject_leadlep'),
             ('NCand_Lepton_1_Mass', (leptons[:, 1] + jets[:, 0] + jets[:, 1]).mass, 'mass_threeobject_subleadlep'),
-            ('NCand_Lepton_1_Pt', (leptons[:, 1] + jets[:, 0] + jets[:, 1]).pt, 'pt_threeobject_subleadlep'),
             ('WRCand_Mass', (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1]).mass, 'mass_fourobject'),
-            ('WRCand_Pt', (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1]).pt, 'pt_fourobject'),
             ('ZCand_Mass', (leptons[:, 0] + leptons[:, 1]).mass, 'mass_dileptons'),
-            ('ZCand_Pt', (leptons[:, 0] + leptons[:, 1]).pt, 'pt_dileptons'),
+
         ]
 
         # Loop over variables and fill corresponding histograms
@@ -112,7 +113,7 @@ class WrAnalysis(processor.ProcessorABC):
         dataset = metadata["dataset"]
         isRealData = not hasattr(events, "genWeight")
         isMC = hasattr(events, "genWeight")
-
+        
         output['mc_campaign'] = mc_campaign
         output['process'] = process
         output['dataset'] = dataset
@@ -150,7 +151,7 @@ class WrAnalysis(processor.ProcessorABC):
         # Trigger selections
         if isMC:
             # Apply triggers for MC
-            if mc_campaign == "Run2Summer20UL18":
+            if mc_campaign == "Run2Summer20UL18" or mc_campaign == "Run2Autumn18":
                 eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
                 muTrig = events.HLT.Mu50 | events.HLT.OldMu100 | events.HLT.TkMu100
                 selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
@@ -165,7 +166,10 @@ class WrAnalysis(processor.ProcessorABC):
 
             # Use genWeight for MC
             eventWeight = events.genWeight
-            output['sumw'] = events.metadata["genEventSumw"]
+            if process == "Signal":
+                output['sumw'] = ak.sum(eventWeight)
+            else:
+                output['sumw'] = events.metadata["genEventSumw"]
         elif isRealData:
             # Fill the data weights with one
             eventWeight = abs(np.sign(events.event)) # Find a better way to do this
@@ -186,11 +190,6 @@ class WrAnalysis(processor.ProcessorABC):
 
         # Define analysis regions
         regions = {
-            'WR_EE_Resolved_DYCR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'eejj'],
-            'WR_MuMu_Resolved_DYCR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'mumujj'],
-            'WR_EE_Resolved_DYSR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'eejj'],
-            'WR_MuMu_Resolved_DYSR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'mumujj'],
-            'WR_EMu_Resolved_Sideband': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'emujj'],
             'WR_EE_150mll': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '150mll', 'eejj'],
             'WR_MuMu_150mll': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '150mll', 'mumujj'],
             'WR_EMu_150mll': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '150mll', 'emujj'],
@@ -199,18 +198,47 @@ class WrAnalysis(processor.ProcessorABC):
         # Blind signal region and remove triggers
         if isRealData:
             # Remove specific regions
-            for region in ['WR_EE_Resolved_DYSR', 'WR_MuMu_Resolved_DYSR', 'WR_EE_150mll', 'WR_MuMu_150mll', 'WR_EMu_150mll']:
+            for region in ['WR_EE_150mll', 'WR_MuMu_150mll', 'WR_EMu_150mll']:
                 regions.pop(region, None)  # Use pop with a default to avoid KeyError
 
             # Remove triggers from all remaining regions
             elements_to_remove = {'mumuTrigger', 'eeTrigger', 'emuTrigger'}  # Use a set for faster lookups
             regions = {key: [item for item in cuts if item not in elements_to_remove] for key, cuts in regions.items()}
 
-        # Fill histograms
+        # Process signal samples
+        if process == "Signal":
+            # Check if the specified mass point is resolved
+            self.check_mass_point_resolved()
+
+            noCuts_selections = PackedSelection()
+
+            # Apply cuts for the specified mass point if found in GenModel fields
+            genmodel_field = f"WRtoNLtoLLJJ_{self._signal_sample}_TuneCP5_13TeV_madgraph_pythia8"
+            if genmodel_field in events.GenModel.fields:
+                selections.add(self._signal_sample, getattr(events.GenModel, genmodel_field) == 1)
+                noCuts_selections.add(self._signal_sample, getattr(events.GenModel, genmodel_field) == 1)
+            else:
+                raise ValueError(f"Mass point '{self._signal_sample}' not found in GenModel fields.")
+
+            noCuts_regions = {
+                'WR_EE_150mll': [self._signal_sample],
+                'WR_MuMu_150mll': [self._signal_sample],
+                'WR_EMu_150mll': [self._signal_sample],
+            }
+
+            # Append the mass point to all region cuts
+            for region, region_cuts in regions.items():
+                region_cuts.append(self._signal_sample)
+
+            for region, cuts in noCuts_regions.items():
+                cut = noCuts_selections.all(*cuts)
+                output['event_weight'].fill(process=process,region=region,event_weight=ak.full_like(weights.weight()[cut], 0.5),weight=weights.weight()[cut])
+
+        # Fill histogram
         for region, cuts in regions.items():
             cut = selections.all(*cuts)
             self.fill_basic_histograms(output, region, cut, process, AK4Jets, tightLeptons, weights)
-#            output['ZCand_WRCand_Mass'].fill(process=process,region=region,mass_dileptons=(tightLeptons[cut][:, 0]+tightLeptons[cut][:, 1]).mass,mass_fourobject=(tightLeptons[cut][:, 0]+tightLeptons[cut][:, 1]+AK4Jets[cut][:, 0]+AK4Jets[cut][:, 1]).mass,weight=weights.weight()[cut])
+            output['ZCand_WRCand_Mass'].fill(process=process,region=region,mass_dileptons=(tightLeptons[cut][:, 0]+tightLeptons[cut][:, 1]).mass,mass_fourobject=(tightLeptons[cut][:, 0]+tightLeptons[cut][:, 1]+AK4Jets[cut][:, 0]+AK4Jets[cut][:, 1]).mass,weight=weights.weight()[cut])
 
         output["weightStats"] = weights.weightStatistics
         return output

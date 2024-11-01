@@ -1,214 +1,149 @@
 from coffea import processor
-import warnings
-from coffea.analysis_tools import Weights
-warnings.filterwarnings("ignore",module="coffea.*")
-import numpy as np
+from coffea.analysis_tools import Weights, PackedSelection
 import awkward as ak
 import hist.dask as dah
 import hist
-import dask.array as da
-import dask_awkward as dak
-from coffea.analysis_tools import PackedSelection
-import time
+import numpy as np
 import re
+import time
+import logging
+import warnings
+warnings.filterwarnings("ignore",module="coffea.*")
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class WrAnalysis(processor.ProcessorABC):
-    def __init__(self, year='2018', mass_point=None):
-        self._year = year
+    def __init__(self, mass_point=None):
         self._signal_sample = mass_point
-        self.make_output = lambda: {
-            'event_weight': dah.hist.Hist(
-                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(1, 0, 1, name='event_weight', label=r'Event count without cuts'),
-                hist.storage.Weight(),
-            ),   
-            'pt_leadlep': dah.hist.Hist(
-                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-#                hist.axis.Regular(200, 0, 2000, name='pt_leadlep', label=r'p_{T} of the leading lepton [GeV]', overflow=True),
-                hist.axis.Regular(200, 0, 500, name='pt_leadlep', label=r'p_{T} of the leading lepton [GeV]', overflow=True),
-                hist.storage.Weight(),
-            ),
-#            'pt_subleadlep': dah.hist.Hist(
-#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-#                hist.axis.Regular(200, 0, 2000, name='pt_subleadlep', label=r'p_{T} of the subleading lepton [GeV]'),
-#                hist.storage.Weight(),
-#            ),
-            'pt_leadjet': dah.hist.Hist(
-                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(200, 0, 2000, name='pt_leadjet', label=r'p_{T} of the leading jet [GeV]'),
-                hist.storage.Weight(),
-            ),
-#            'pt_subleadjet': dah.hist.Hist(
-#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-#                hist.axis.Regular(200, 0, 2000, name='pt_subleadjet', label=r'p_{T} of the subleading jet [GeV]'),
-#                hist.storage.Weight(),
-#            ),
-#            'pt_dileptons': dah.hist.Hist(
-#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-#                hist.axis.Regular(100, 0, 1000, name='pt_dileptons', label=r'p^{T}_{ll} [GeV]'),
-#                hist.storage.Weight(),
-#            ),
-#            'pt_dijets': dah.hist.Hist(
-#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-#                hist.axis.Regular(100, 0, 1000, name='pt_dijets', label=r'p^{T}_{jj} [GeV]'),
-#                hist.storage.Weight(),
-#            ),
-            'eta_leadlep': dah.hist.Hist(
-                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(60, -3, 3, name='eta_leadlep', label=r'#eta of the leading lepton [GeV]'),
-                hist.storage.Weight(),
-            ),
-#            'eta_subleadlep': dah.hist.Hist(
-#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-#                hist.axis.Regular(60, -3, 3, name='eta_subleadlep', label=r'#eta of the subleading lepton [GeV]'),
-#                hist.storage.Weight(),
-#            ),
-            'eta_leadjet': dah.hist.Hist(
-                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(60, -3, 3, name='eta_leadjet', label=r'#eta of the leading jet [GeV]'),
-                hist.storage.Weight(),
-            ),
-#            'eta_subleadjet': dah.hist.Hist(
-#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-#                hist.axis.Regular(60, -3, 3, name='eta_subleadjet', label=r'#eta of the subleading jet [GeV]'),
-#                hist.storage.Weight(),
-#            ),
 
-            'phi_leadlep': dah.hist.Hist(
-                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(80, -4, 4, name='phi_leadlep', label=r'#phi of the leading lepton [GeV]'),
-                hist.storage.Weight(),
-            ),
-#            'phi_subleadlep': dah.hist.Hist(
-#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-#                hist.axis.Regular(80, -4, 4, name='phi_subleadlep', label=r'#phi of the subleading lepton [GeV]'),
-#                hist.storage.Weight(),
-#            ),
-            'phi_leadjet': dah.hist.Hist(
-                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(80, -4, 4, name='phi_leadjet', label=r'#phi of the leading jet [GeV]'),
-                hist.storage.Weight(),
-            ),
-#            'phi_subleadjet': dah.hist.Hist(
-#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-#                hist.axis.Regular(80, -4, 4, name='phi_subleadjet', label=r'#phi of the subleading jet [GeV]'),
-#                hist.storage.Weight(),
-#            ),
-            'mass_dileptons': dah.hist.Hist(
-                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(800, 0, 8000, name='mass_dileptons', label=r'm_{ll} [GeV]'),
-                hist.storage.Weight(),
-            ),
-#            'mass_dijets': dah.hist.Hist(
-#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-#                hist.axis.Regular(500, 0, 5000, name='mass_dijets', label=r'm_{jj} [GeV]'),
-#                hist.storage.Weight(),
-#            ),
-#            'mass_threeobject_leadlep': dah.hist.Hist(
-#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-#                hist.axis.Regular(800, 0, 8000, name='mass_threeobject_leadlep', label=r'm_{ljj} [GeV]'),
-#                hist.storage.Weight(),
-#            ),
-#            'mass_threeobject_subleadlep': dah.hist.Hist(
-#                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-#                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-#                hist.axis.Regular(800, 0, 8000, name='mass_threeobject_subleadlep', label=r'm_{ljj} [GeV]'),
-#                hist.storage.Weight(),
-#            ),
-            'mass_fourobject': dah.hist.Hist(
-                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(800, 0, 8000, name='mass_fourobject', label=r'm_{lljj} [GeV]'),
-                hist.storage.Weight(),
-            ),
-            'mass_dileptons_fourobject': dah.hist.Hist(
-                hist.axis.StrCategory([], name="process", label="Process", growth=True),
-                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-                hist.axis.Regular(800, 0, 8000, name='mass_dileptons', label=r'm_{ll} [GeV]'),
-                hist.axis.Regular(800, 0, 8000, name='mass_fourobject', label=r'm_{lljj} [GeV]'),
-                hist.storage.Weight(),
-            ),
+        self.make_output = lambda: {
+            'Jet_0_Pt': self.create_hist('pt_leadjet', 'process', 'region', (200, 0, 2000), r'p_{T} of the leading jet [GeV]'),
+            'Jet_1_Pt': self.create_hist('pt_subleadjet', 'process', 'region', (200, 0, 2000), r'p_{T} of the subleading jet [GeV]'),
+            'Lepton_0_Eta': self.create_hist('eta_leadlep', 'process', 'region', (60, -3, 3), r'#eta of the leading lepton'),
+            'Lepton_0_Pt': self.create_hist('pt_leadlep', 'process', 'region', (200, 0, 2000), r'p_{T} of the leading lepton [GeV]'),
+            'Lepton_1_Eta': self.create_hist('eta_subleadlep', 'process', 'region', (60, -3, 3), r'#eta of the subleading lepton'),
+            'Lepton_1_Pt': self.create_hist('pt_subleadlep', 'process', 'region', (200, 0, 2000), r'p_{T} of the subleading lepton [GeV]'),
+            'NCand_Lepton_0_Mass': self.create_hist('mass_threeobject_leadlep', 'process', 'region', (800, 0, 8000), r'm_{ljj} [GeV]'),
+            'NCand_Lepton_0_Pt': self.create_hist('pt_threeobject_leadlep', 'process', 'region', (800, 0, 8000), r'p^{T}_{ljj} [GeV]'),
+            'NCand_Lepton_1_Mass': self.create_hist('mass_threeobject_subleadlep', 'process', 'region', (800, 0, 8000), r'm_{ljj} [GeV]'),
+            'NCand_Lepton_1_Pt': self.create_hist('pt_threeobject_subleadlep', 'process', 'region', (800, 0, 8000), r'p^{T}_{ljj} [GeV]'),
+            'WRCand_Mass': self.create_hist('mass_fourobject', 'process', 'region', (800, 0, 8000), r'm_{lljj} [GeV]'),
+            'WRCand_Pt': self.create_hist('pt_fourobject', 'process', 'region', (800, 0, 8000), r'p^{T}_{lljj} [GeV]'),
+            'ZCand_Mass': self.create_hist('mass_dileptons', 'process', 'region', (5000, 0, 5000), r'm_{ll} [GeV]'),
+            'ZCand_Pt': self.create_hist('pt_dileptons', 'process', 'region', (200, 0, 2000), r'p^{T}_{ll} [GeV]'),
         }
+
+    def create_hist(self, name, process, region, bins, label):
+        """Helper function to create histograms."""
+        return dah.hist.Hist(
+            hist.axis.StrCategory([], name="process", label="Process", growth=True),
+            hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+            hist.axis.Regular(*bins, name=name, label=label),
+            hist.storage.Weight(),
+        )
+
+    def selectElectrons(self, events):
+        """Select tight and loose electrons."""
+        tight_electrons = (events.Electron.pt > 53) & (np.abs(events.Electron.eta) < 2.4) & (events.Electron.cutBased_HEEP)
+        loose_electrons = (events.Electron.pt > 53) & (np.abs(events.Electron.eta) < 2.4) & (events.Electron.cutBased == 2)
+        return events.Electron[tight_electrons], events.Electron[loose_electrons]
+
+    def selectMuons(self, events):
+        """Select tight and loose muons."""
+        tight_muons = (events.Muon.pt > 53) & (np.abs(events.Muon.eta) < 2.4) & (events.Muon.highPtId == 2) & (events.Muon.tkRelIso < 0.1)
+        loose_muons= (events.Muon.pt > 53) & (np.abs(events.Muon.eta) < 2.4) & (events.Muon.highPtId == 2)
+        return events.Muon[tight_muons], events.Muon[loose_muons]
+
+    def selectJets(self, events):
+        """Select AK4 and AK8 jets."""
+        ak4_jets = (events.Jet.pt > 40) & (np.abs(events.Jet.eta) < 2.4) & (events.Jet.isTightLeptonVeto)
+        ak8_jets = (events.FatJet.pt > 200) & (np.abs(events.FatJet.eta) < 2.4) & (events.FatJet.jetId == 2) & (events.FatJet.msoftdrop > 40)
+        return events.Jet[ak4_jets], events.FatJet[ak8_jets]
+
+    def check_mass_point_resolved(self):
+        """Check if the specified mass point is a resolved sample.
+
+        Raises:
+            NotImplementedError: If MN/MWR is less than 0.2, indicating an unresolved sample.
+            ValueError: If the mass point format in _signal_sample is invalid.
+        """
+        match = re.match(r"MWR(\d+)_MN(\d+)", self._signal_sample)
+        if match:
+            mwr, mn = int(match.group(1)), int(match.group(2))
+            ratio = mn / mwr
+            if ratio < 0.2:
+                raise NotImplementedError(
+                    f"Choose a resolved sample (MN/MWR > 0.2). For this sample, MN/MWR = {ratio:.2f}."
+                )
+        else:
+            raise ValueError(f"Invalid mass point format: {self._signal_sample}")
+
+    def add_resolved_selections(self, selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2):
+        selections.add("twoTightLeptons", (ak.num(tightElectrons) + ak.num(tightMuons)) == 2)
+        selections.add("minTwoAK4Jets", ak.num(AK4Jets) >= 2)
+        selections.add("leadTightLeptonPt60", (ak.any(tightElectrons.pt > 60, axis=1) | ak.any(tightMuons.pt > 60, axis=1)))
+        selections.add("mlljj>800", mlljj > 800)
+        selections.add("dr>0.4", (dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4))
+
+    def fill_basic_histograms(self, output, region, cut,  process, jets, leptons, weights):
+        """Helper function to fill histograms dynamically."""
+        # Define a list of variables and their corresponding histograms
+        variables = [
+            ('Jet_0_Pt', jets[:, 0].pt, 'pt_leadjet'),
+            ('Jet_1_Pt', jets[:, 1].pt, 'pt_subleadjet'),
+            ('Lepton_0_Eta', leptons[:, 0].eta, 'eta_leadlep'),
+            ('Lepton_0_Pt', leptons[:, 0].pt, 'pt_leadlep'),
+            ('Lepton_1_Eta', leptons[:, 1].eta, 'eta_subleadlep'),
+            ('Lepton_1_Pt', leptons[:, 1].pt, 'pt_subleadlep'),
+            ('NCand_Lepton_0_Mass', (leptons[:, 0] + jets[:, 0] + jets[:, 1]).mass, 'mass_threeobject_leadlep'),
+            ('NCand_Lepton_0_Pt', (leptons[:, 0] + jets[:, 0] + jets[:, 1]).pt, 'pt_threeobject_leadlep'),
+            ('NCand_Lepton_1_Mass', (leptons[:, 1] + jets[:, 0] + jets[:, 1]).mass, 'mass_threeobject_subleadlep'),
+            ('NCand_Lepton_1_Pt', (leptons[:, 1] + jets[:, 0] + jets[:, 1]).pt, 'pt_threeobject_subleadlep'),
+            ('WRCand_Mass', (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1]).mass, 'mass_fourobject'),
+            ('WRCand_Pt', (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1]).pt, 'pt_fourobject'),
+            ('ZCand_Mass', (leptons[:, 0] + leptons[:, 1]).mass, 'mass_dileptons'),
+            ('ZCand_Pt', (leptons[:, 0] + leptons[:, 1]).pt, 'pt_dileptons'),
+        ]
+
+        # Loop over variables and fill corresponding histograms
+        for hist_name, values, axis_name in variables:
+            output[hist_name].fill(
+                process=process,
+                region=region,
+                **{axis_name: values[cut]},
+                weight=weights.weight()[cut]
+            )
 
     def process(self, events): 
         output = self.make_output()
-
+        
+        metadata = events.metadata
+        mc_campaign = metadata["mc_campaign"]
+        process = metadata["process"]
+        dataset = metadata["dataset"]
         isRealData = not hasattr(events, "genWeight")
-
-        output['mc_campaign'] = events.metadata["mc_campaign"]
-
-        if not isRealData:
-            output['x_sec'] = events.metadata["xsec"]
-
-        process = events.metadata["process"]
-        output['process'] = process
-
-        dataset = events.metadata["dataset"]
-        output['dataset'] = dataset
-
         isMC = hasattr(events, "genWeight")
+        
+        output['mc_campaign'] = mc_campaign
+        output['process'] = process
+        output['dataset'] = dataset
+        if not isRealData:
+            output['x_sec'] = events.metadata["xsec"] 
 
-        if process == "Signal":
-            print(f"Analyzing {dataset} events.")
-        elif process in {"SingleMuon", "EGamma"}:
-            print(f"Analyzing {len(events)} {process} {dataset} events.")
-        else:
-            print(f"Analyzing {len(events)} {dataset} events.")
-
-        ####################
-        # OBJECT SELECTION #
-        ####################
-
-        # muon and electron selections are broken out into standalone functions
-        tightElectrons, looseElectrons = selectElectrons(events)
+        logger.info(f"Analyzing {len(events)} {dataset} events.")
+    
+        # Object selection
+        tightElectrons, _  = self.selectElectrons(events)
         nTightElectrons = ak.num(tightElectrons)
 
-        tightMuons, looseMuons = selectMuons(events)
+        tightMuons, _ = self.selectMuons(events)
         nTightMuons = ak.num(tightMuons)
 
-        AK4Jets, AK8Jets = selectJets(events)
+        AK4Jets, _ = self.selectJets(events)
         nAK4Jets = ak.num(AK4Jets)
 
-        ###########
-        # WEIGHTS #
-        ###########
-
-        weights = Weights(size=None, storeIndividual=True)
-        if not isRealData:
-            eventWeight = events.genWeight
-#            eventWeight = np.sign(events.genWeight)
-        else:
-            eventWeight = abs(np.sign(events.event))
-
-        #Only fill histogram with event specific weights
-        weights.add("event_weight", weight=eventWeight)
-
-        if not isRealData:
-#            output['sumw'] = events.metadata["genEventSumw"]
-            output['sumw'] = ak.sum(eventWeight)
-
-        ###################
-        # EVENT VARIABLES #
-        ###################
-
+        # Event variables
         tightLeptons = ak.with_name(ak.concatenate((tightElectrons, tightMuons), axis=1), 'PtEtaPhiMCandidate')
         tightLeptons = ak.pad_none(tightLeptons[ak.argsort(tightLeptons.pt, axis=1, ascending=False)], 2, axis=1)
         AK4Jets = ak.pad_none(AK4Jets, 2, axis=1)
@@ -220,325 +155,92 @@ class WrAnalysis(processor.ProcessorABC):
         dr_j1j2 = ak.fill_none(AK4Jets[:,0].delta_r(AK4Jets[:,1]), False)
         dr_l1l2 = ak.fill_none(tightLeptons[:,0].delta_r(tightLeptons[:,1]), False)
 
-
-        ###################
-        # EVENT SELECTION #
-        ###################
-
+        # Event selections
         selections = PackedSelection()
+        self.add_resolved_selections(selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2)
 
-        # Resolved Selections
-        selections.add("twoTightLeptons", (nTightElectrons + nTightMuons) == 2)
-        selections.add("minTwoAK4Jets", (nAK4Jets >= 2))
-        selections.add("leadTightLeptonPt60", ((ak.any(tightElectrons.pt > 60, axis=1)) | (ak.any(tightMuons.pt > 60, axis=1))))
-        selections.add("mlljj>800", (mlljj > 800))
-        selections.add("dr>0.4", (dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4))
+        # Trigger selections
+        if isMC:
+            # Apply triggers for MC
+            if mc_campaign == "Run2Summer20UL18" or mc_campaign == "Run2Autumn18":
+                eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
+                muTrig = events.HLT.Mu50 | events.HLT.OldMu100 | events.HLT.TkMu100
+                selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
+                selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
+                selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
+            elif mc_campaign == "Run3Summer22":
+                eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
+                muTrig = events.HLT.Mu50 | events.HLT.HighPtTkMu100
+                selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
+                selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
+                selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
 
-        # Trigger Selections
+            # Use genWeight for MC
+            eventWeight = events.genWeight
+            if process == "Signal":
+                output['sumw'] = ak.sum(eventWeight)
+            else:
+                output['sumw'] = events.metadata["genEventSumw"]
+        elif isRealData:
+            # Fill the data weights with one
+            eventWeight = abs(np.sign(events.event)) # Find a better way to do this
 
-        if not isRealData:
-            eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
-#            muTrig = events.HLT.Mu50 | events.HLT.OldMu100 | events.HLT.TkMu100
-            muTrig = events.HLT.Mu50
-            selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
-            selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
-            selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
+        # Weights
+        weights = Weights(size=None, storeIndividual=True)
+        weights.add("event_weight", weight=eventWeight)
 
-        # Flavor Selections
+        # Channel selections
         selections.add("eejj", ((nTightElectrons == 2) & (nTightMuons == 0)))
         selections.add("mumujj", ((nTightElectrons == 0) & (nTightMuons == 2)))
         selections.add("emujj", ((nTightElectrons == 1) & (nTightMuons == 1)))
 
-        # mll Selections
+        # mll selections
         selections.add("60mll150", ((mll > 60) & (mll < 150)))
-        selections.add("150mll400", ((mll > 150) & (mll < 400)))
         selections.add("400mll", (mll > 400))
         selections.add("150mll", (mll > 150))
 
+        # Define analysis regions
         regions = {
-#            'eejj_60mll150': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'eejj'],
-#            'mumujj_60mll150': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'mumujj'],
-#            'emujj_60mll150': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'emujj'],
-#            'eejj_150mll400': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '150mll400', 'eejj'],
-#            'mumujj_150mll400': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '150mll400', 'mumujj'],
-#            'emujj_150mll400': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '150mll400', 'emujj'],
-#            'eejj_400mll': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'eejj'],
-#            'mumujj_400mll': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'mumujj'],
-#            'emujj_400mll': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'emujj'],
-            'eejj_150mll': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '150mll', 'eejj'],
-            'mumujj_150mll': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '150mll', 'mumujj'],
-            'emujj_150mll': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '150mll', 'emujj'],
+            'WR_EE_Resolved_DYCR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'eejj'],
+            'WR_MuMu_Resolved_DYCR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'mumujj'],
+            'WR_EE_Resolved_DYSR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'eejj'],
+            'WR_MuMu_Resolved_DYSR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'mumujj'],
+            'WR_EMu_Resolved_SR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'emujj'],
         }
 
-        #######################
-        # BLIND SIGNAL REGION #
-        #######################
-
+        # Blind signal region and remove triggers
         if isRealData:
-            for region in ['eejj_400mll', 'mumujj_400mll', 'emujj_400mll', 'eejj_150mll400', 'mumujj_150mll400', 'emujj_150mll400', 'eejj_150mll', 'mumujj_150mll', 'emujj_150mll']:
-                if region in regions:
-                    del regions[region]
-#            print(regions)
-            elements_to_remove = ['mumuTrigger']
+            # Remove specific regions
+            for region in ['WR_EE_Resolved_DYSR', 'WR_MuMu_Resolved_DYSR']:
+                regions.pop(region, None)  # Use pop with a default to avoid KeyError
 
-            # Iterate over the dictionary and filter out the unwanted elements
-            for key in regions:
-                regions[key] = [item for item in regions[key] if item not in elements_to_remove]
-#            print(regions)
+            # Remove triggers from all remaining regions
+            elements_to_remove = {'mumuTrigger', 'eeTrigger', 'emuTrigger'}  # Use a set for faster lookups
+            regions = {key: [item for item in cuts if item not in elements_to_remove] for key, cuts in regions.items()}
 
-        ##################
-        # SIGNAL SAMPLES #
-        ##################
-
+        # Process signal samples
         if process == "Signal":
-            # Check if the specified mass point is resolved.
-            match = re.search(r'MWR(\d+)_MN(\d+)', self._signal_sample)
-            if match:
-                mwr = int(match.group(1))
-                mn = int(match.group(2))
-                ratio = mn / mwr
-                if ratio < 0.2:
-                    raise NotImplementedError(f"Choose a resolved sample (MN/MWR > 0.2). MN/MWR = {ratio:.2f} for this sample.")
+            # Check if the specified mass point is resolved
+            self.check_mass_point_resolved()
 
-            ###################
-            # EVENT SELECTION #
-             ###################
+            # Apply cuts for the specified mass point if found in GenModel fields
+            genmodel_field = f"WRtoNLtoLLJJ_{self._signal_sample}_TuneCP5_13TeV_madgraph_pythia8"
+            if genmodel_field in events.GenModel.fields:
+                selections.add(self._signal_sample, getattr(events.GenModel, genmodel_field) == 1)
+            else:
+                raise ValueError(f"Mass point '{self._signal_sample}' not found in GenModel fields.")
 
-            no_selections = PackedSelection()
-            nocutregions = {
-                'eejj_150mll': [],
-                'mumujj_150mll': [],
-                'emujj_150mll': [],
-            }
-            # Add the cut to the specified mass point.
-            for mass_point in events.GenModel.fields:
-                if self._signal_sample in mass_point:
-                    selections.add(f"{self._signal_sample}", eval(f"events.GenModel.WRtoNLtoLLJJ_{self._signal_sample}_TuneCP5_13TeV_madgraph_pythia8==1"))
-                    no_selections.add(f"{self._signal_sample}", eval(f"events.GenModel.WRtoNLtoLLJJ_{self._signal_sample}_TuneCP5_13TeV_madgraph_pythia8==1"))
-                    break
+            # Append the mass point to all region cuts
+            for region, region_cuts in regions.items():
+                region_cuts.append(self._signal_sample)
 
-            for region in regions:
-                regions[region].append(self._signal_sample)
-
-            for region in nocutregions:
-                nocutregions[region].append(self._signal_sample)
-
-            # For S over root B study we only need mll150
-            for region in ['eejj_60mll150', 'mumujj_60mll150', 'emujj_60mll150', 'emujj_150mll400', 'emujj_150mll', 'emujj_400mll']:
-                if region in regions:
-                    del regions[region]
-
-            process = dataset #Not sure why I did this 
-
-        ###################
-        # FILL HISTOGRAMS #
-        ###################
-
-            for region, cuts in nocutregions.items():
-                print("region", region)
-                print("cuts", cuts)
-                cut = no_selections.all(*cuts)
-                print("cut", cut)
-#                print(weights.weight()[cut].compute())
-                output['event_weight'].fill(
-                    process=process,
-                    region=region,
-                    event_weight=ak.full_like(weights.weight()[cut], 0.5),
-                    weight=weights.weight()[cut],
-                )
-
+        # Fill histogram
         for region, cuts in regions.items():
             cut = selections.all(*cuts)
-#            output['pt_leadlep'].fill(
-#                process=process,
-#                region=region,
-#                pt_leadlep=tightLeptons[cut][:, 0].pt,
-#                weight=weights.weight()[cut],
-#            )
-#            output['pt_subleadlep'].fill(
-#                process=process,
-#                region=region,
-#                pt_subleadlep=tightLeptons[cut][:, 1].pt,
-#                weight=weights.weight()[cut],
-#            )
-#            output['pt_leadjet'].fill(
-#                process=process,
-#                region=region,
-#                pt_leadjet=AK4Jets[cut][:, 0].pt,
-#                weight=weights.weight()[cut],
-#            )
-#            output['pt_subleadjet'].fill(
-#                process=process,
-#                region=region,
-#                pt_subleadjet=AK4Jets[cut][:, 1].pt,
-#                weight=weights.weight()[cut],
-#            )
-#            output['pt_dileptons'].fill(
-#                process=process,
-#                region=region,
-#                pt_dileptons=(tightLeptons[cut][:, 0]+tightLeptons[cut][:, 1]).pt,
-#                weight=weights.weight()[cut],
-#            )
-#            output['pt_dijets'].fill(
-#                process=process,
-#                region=region,
-#                pt_dijets=(AK4Jets[cut][:, 0]+AK4Jets[cut][:, 1]).pt,
-#                weight=weights.weight()[cut],
-#            )
-#            output['eta_leadlep'].fill(
-#                process=process,
-#                region=region,
-#                eta_leadlep=tightLeptons[cut][:, 0].eta,
-#                weight=weights.weight()[cut],
-#            )
-#            output['eta_subleadlep'].fill(
-#                process=process,
-#                region=region,
-#                eta_subleadlep=tightLeptons[cut][:, 1].eta,
-#                weight=weights.weight()[cut],
-#            )
-#            output['eta_leadjet'].fill(
-#                process=process,
-#                region=region,
-#                eta_leadjet=AK4Jets[cut][:, 0].eta,
-#                weight=weights.weight()[cut],
-#            )
-#            output['eta_subleadjet'].fill(
-#                process=process,
-#                region=region,
-#                eta_subleadjet=AK4Jets[cut][:, 1].eta,
-#                weight=weights.weight()[cut],
-#            )
-#            output['phi_leadlep'].fill(
-#                process=process,
-#                region=region,
-#                phi_leadlep=tightLeptons[cut][:, 0].phi,
-#                weight=weights.weight()[cut],
-#            )
-#            output['phi_subleadlep'].fill(
-#                process=process,
-#                region=region,
-#                phi_subleadlep=tightLeptons[cut][:, 1].phi,
-#                weight=weights.weight()[cut],
-#            )
-#            output['phi_leadjet'].fill(
-#                process=process,
-#                region=region,
-#                phi_leadjet=AK4Jets[cut][:, 0].phi,
-#                weight=weights.weight()[cut],
-#            )
-#            output['phi_subleadjet'].fill(
-#                process=process,
-#                region=region,
-#                phi_subleadjet=AK4Jets[cut][:, 1].phi,
-#                weight=weights.weight()[cut],
-#            )
-#            output['mass_dileptons'].fill(
-#                process=process,
-#                region=region,
-#                mass_dileptons=(tightLeptons[cut][:, 0]+tightLeptons[cut][:, 1]).mass,
-#                weight=weights.weight()[cut],
-#            )
-#            output['mass_dijets'].fill(
-#                process=process,
-#                region=region,
-#                mass_dijets=(AK4Jets[cut][:, 0]+AK4Jets[cut][:, 1]).mass,
-#                weight=weights.weight()[cut],
-#            )
-#            output['mass_threeobject_leadlep'].fill(
-#                process=process,
-#                region=region,
-#                mass_threeobject_leadlep=(tightLeptons[cut][:, 0]+AK4Jets[cut][:, 0]+AK4Jets[cut][:, 1]).mass,
-#                weight=weights.weight()[cut],
-#            )
-#            output['mass_threeobject_subleadlep'].fill(
-#                process=process,
-#                region=region,
-#                mass_threeobject_subleadlep=(tightLeptons[cut][:, 1]+AK4Jets[cut][:, 0]+AK4Jets[cut][:, 1]).mass,
-#                weight=weights.weight()[cut],
-#            )
-            output['mass_fourobject'].fill(
-                process=process,
-                region=region,
-                mass_fourobject=(tightLeptons[cut][:, 0]+tightLeptons[cut][:, 1]+AK4Jets[cut][:, 0]+AK4Jets[cut][:, 1]).mass,
-                weight=weights.weight()[cut],
-            )
-#            output['mass_dileptons_fourobject'].fill(
-#                process=process,
-#                region=region,
-#                mass_dileptons=(tightLeptons[cut][:, 0]+tightLeptons[cut][:, 1]).mass,
-#                mass_fourobject=(tightLeptons[cut][:, 0]+tightLeptons[cut][:, 1]+AK4Jets[cut][:, 0]+AK4Jets[cut][:, 1]).mass,
-#                weight=weights.weight()[cut],
-#3            )
-#            output['mass_dileptons_fourobject_nocuts'].fill(
-#                process=process,
-#                region=region,
-#                mass_dileptons=(tightLeptons[:, 0]+tightLeptons[:, 1]).mass,
-#                mass_fourobject=(tightLeptons[:, 0]+tightLeptons[:, 1]+AK4Jets[:, 0]+AK4Jets[:, 1]).mass,
-#                weight=weights.weight(),
-#            )
+            self.fill_basic_histograms(output, region, cut, process, AK4Jets, tightLeptons, weights)
 
-#        output["weightStats"] = weights.weightStatistics
-#        print("sumw", output["weightStats"]["event_weight"]["sumw"].compute())
-#        print("minw", output["weightStats"]["event_weight"]["minw"].compute())
-#        print("maxw", output["weightStats"]["event_weight"]["maxw"].compute())
-#        print("sumw", output['sumw'].compute())
+        output["weightStats"] = weights.weightStatistics
         return output
 
     def postprocess(self, accumulator):
         return accumulator
-
-def selectElectrons(events):
-    # select tight electrons
-    electronSelectTight = (
-            (events.Electron.pt > 53)
-            & (np.abs(events.Electron.eta) < 2.4)
-            & (events.Electron.cutBased_HEEP)
-    )
-
-    # select loose electrons
-    electronSelectLoose = (
-            (events.Electron.pt > 53)
-            & (np.abs(events.Electron.eta) < 2.4)
-            & (events.Electron.cutBased == 2)
-
-    )
-    return events.Electron[electronSelectTight], events.Electron[electronSelectLoose]
-
-def selectMuons(events):
-    # select tight muons
-    muonSelectTight = (
-            (events.Muon.pt > 53)
-            & (np.abs(events.Muon.eta) < 2.4)
-            & (events.Muon.highPtId == 2)
-            & (events.Muon.tkRelIso < 0.1)
-    )
-
-    # select loose muons
-    muonSelectLoose = (
-            (events.Muon.pt > 53) 
-            & (np.abs(events.Muon.eta) < 2.4) 
-            & (events.Muon.highPtId == 2)
-    )
-
-    return events.Muon[muonSelectTight], events.Muon[muonSelectLoose] 
-
-def selectJets(events):
-    # select AK4 jets
-#    hem_issue = ((-3.0 < events.Jet.eta < -1.3) & (-1.57 < events.Jet.phi < -0.87))
-
-    jetSelectAK4 = (
-            (events.Jet.pt > 40)
-             & (np.abs(events.Jet.eta) < 2.4)
-            & (events.Jet.isTightLeptonVeto)
-    )
-
-    # select AK8 jets (need to add LSF cut)
-    jetSelectAK8 = (
-            (events.FatJet.pt > 200)
-            & (np.abs(events.FatJet.eta) < 2.4)
-            & (events.FatJet.jetId == 2)
-            & (events.FatJet.msoftdrop > 40)
-    )
-
-    return events.Jet[jetSelectAK4], events.FatJet[jetSelectAK8]

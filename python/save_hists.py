@@ -6,10 +6,36 @@ from dask.distributed import progress
 import hist
 from hist import Hist
 
-def save_histograms(my_histograms, sample, run):
-    output_dir = f"root_files/{run}/"
+def save_histograms(my_histograms, args):
+    run = args.run
+    sample = args.sample
+    hnwr_mass= args.mass
+    
+    working_dir = "/uscms/home/bjackson/nobackup/WrCoffea/WR_Plotter"
+    
+    if args.run == "Run3Summer22":
+        dataset = "Run3"
+        year = "2022"
+    elif args.run == "Run2Summer20UL18":
+        dataset = "Run2UltraLegacy"
+        year = "2018"
+    elif args.run == "Run2Autumn18":
+        dataset = "Run2Legacy"
+        year = "2018"
+    output_dir = working_dir+'/rootfiles/'+dataset+'/Regions/'+year
+
+    Filename_prefix = "WRAnalyzer"
+    Filename_suffix = ""
+    Filename_skim = "_SkimTree_LRSMHighPt"
+
     os.makedirs(output_dir, exist_ok=True)
-    output_file = os.path.join(output_dir, f"WRAnalyzer_SkimTree_LRSMHighPt_{sample}.root")
+
+    if "EGamma" in sample or "SingleMuon" in sample:
+        output_file = os.path.join(output_dir, f"{Filename_prefix}{Filename_skim}_data_{sample}.root")
+    elif sample == "Signal":
+        output_file = os.path.join(output_dir, f"{Filename_prefix}{Filename_skim}_signal_{hnwr_mass}.root")
+    else:
+        output_file= os.path.join(output_dir, f"{Filename_prefix}{Filename_skim}_{sample}.root")
 
     my_histograms = scale_hists(my_histograms)
     summed_hist = sum_hists(my_histograms)

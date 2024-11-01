@@ -17,7 +17,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../pyth
 # Add the parent directory (project_root) to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from analyzer_test import WrAnalysis
+from analyzer_mll import WrAnalysis
 
 from dask.distributed import Client
 from dask.diagnostics import ProgressBar
@@ -46,7 +46,7 @@ def load_masses_from_csv(file_path):
                 if len(row) >= 2:  # Ensure the row has at least two columns
                     wr_mass = row[0].strip()
                     n_mass = row[1].strip()
-                    mass_choice = f"WRtoNLtoLLJJ_WR{wr_mass}_N{n_mass}"
+                    mass_choice = f"MWR{wr_mass}_MN{n_mass}"
                     mass_choices.append(mass_choice)
         logging.info(f"Loaded {len(mass_choices)} mass points from {file_path}")
     except FileNotFoundError:
@@ -61,6 +61,8 @@ def load_json(sample, run, skimmed=False):
     """Load the appropriate JSON file based on sample, run, and year."""
     if "EGamma" in sample or "SingleMuon" in sample:
         filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_data_skimmed.json"
+    elif "Signal" in sample:
+        filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_sig_processed.json"
     else:
         if skimmed:
             filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_bkg_skimmed.json"
@@ -124,22 +126,22 @@ def run_analysis(args, preprocessed_fileset):
         logging.info("Computing histograms...")
         with ProgressBar():
             (histograms,) = dask.compute(to_compute)
-        python.save_hists.save_histograms(histograms, args.sample, args.run)
+        python.save_hists.save_histograms(histograms, args)
 
     exec_time = time.monotonic() - t0
     logging.info(f"Execution took {exec_time/60:.2f} minutes")
 
 if __name__ == "__main__":
     # Load mass choices from the CSV file
-    file_path = Path('/uscms/home/bjackson/nobackup/WrCoffea/data/Run2Legacy_2018_mass_points.csv')
+    file_path = Path('/uscms/home/bjackson/nobackup/WrCoffea/data/Run2Autumn18_mass_points.csv')
     MASS_CHOICES = load_masses_from_csv(file_path)
 
     # Initialize argparse
     parser = argparse.ArgumentParser(description="Processing script for WR analysis.")
 
     # Required arguments
-    parser.add_argument("run", type=str, choices=["Run2Legacy", "Run2Summer20UL18", "Run3Summer22", "Run3Summer22EE"], help="Campaign to analyze.")
-    parser.add_argument("sample", type=str, choices=["DYJets", "tt+tW", "tt_semileptonic", "WJets", "Diboson", "Triboson", "ttX", "SingleTop", "AllBackgrounds", "Signal", "EGamma", "SingleMuon"],
+    parser.add_argument("run", type=str, choices=["Run2Autumn18", "Run2Summer20UL18", "Run3Summer22"], help="Campaign to analyze.")
+    parser.add_argument("sample", type=str, choices=["DYJets", "tt+tW", "tt_semileptonic", "WJets", "Diboson", "Triboson", "ttX", "SingleTop", "Signal", "EGamma", "SingleMuon"],
                         help="MC sample to analyze (e.g., Signal, DYJets).")
 
     # Optional arguments

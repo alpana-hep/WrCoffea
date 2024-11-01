@@ -1852,7 +1852,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "WJets",
+            "process": "Nonprompt",
             "dataset": "WJetsToLNu_HT-70To100",
             "xsec": 1637.1,
             "genEventSumw": 66220256.0
@@ -1895,7 +1895,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "WJets",
+            "process": "Nonprompt",
             "dataset": "WJetsToLNu_HT-100To200",
             "xsec": 1627.45,
             "genEventSumw": 51408967.0
@@ -1994,7 +1994,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "WJets",
+            "process": "Nonprompt",
             "dataset": "WJetsToLNu_HT-200To400",
             "xsec": 435.237,
             "genEventSumw": 58225632.0
@@ -2037,7 +2037,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "WJets",
+            "process": "Nonprompt",
             "dataset": "WJetsToLNu_HT-400To600",
             "xsec": 59.1811,
             "genEventSumw": 7444030.0
@@ -2096,7 +2096,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "WJets",
+            "process": "Nonprompt",
             "dataset": "WJetsToLNu_HT-600To800",
             "xsec": 14.5805,
             "genEventSumw": 7718765.0
@@ -2167,7 +2167,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "WJets",
+            "process": "Nonprompt",
             "dataset": "WJetsToLNu_HT-800To1200",
             "xsec": 6.65621,
             "genEventSumw": 7306187.0
@@ -2261,7 +2261,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "WJets",
+            "process": "Nonprompt",
             "dataset": "WJetsToLNu_HT-1200To2500",
             "xsec": 1.60809,
             "genEventSumw": 6481518.0
@@ -2324,7 +2324,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "WJets",
+            "process": "Nonprompt",
             "dataset": "WJetsToLNu_HT-2500ToInf",
             "xsec": 0.0389136,
             "genEventSumw": 2097648.0
@@ -2351,7 +2351,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "Diboson",
+            "process": "Other",
             "dataset": "WW",
             "xsec": 118.7,
             "genEventSumw": 15679110.0
@@ -2374,7 +2374,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "Diboson",
+            "process": "Other",
             "dataset": "WZ",
             "xsec": 47.13,
             "genEventSumw": 7940000.0
@@ -2397,7 +2397,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "Diboson",
+            "process": "Other",
             "dataset": "ZZ",
             "xsec": 16.523,
             "genEventSumw": 3526000.0
@@ -2420,7 +2420,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "Triboson",
+            "process": "Other",
             "dataset": "WWW",
             "xsec": 0.2086,
             "genEventSumw": 51635.0
@@ -2443,7 +2443,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "Triboson",
+            "process": "Other",
             "dataset": "WWZ",
             "xsec": 0.1651,
             "genEventSumw": 42308.0
@@ -2466,7 +2466,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "Triboson",
+            "process": "Other",
             "dataset": "WZZ",
             "xsec": 0.05565,
             "genEventSumw": 17115.0
@@ -2489,7 +2489,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "Triboson",
+            "process": "Other",
             "dataset": "ZZZ",
             "xsec": 0.01398,
             "genEventSumw": 3683.0
@@ -2635,7 +2635,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "ttX",
+            "process": "Other",
             "dataset": "ttWJets",
             "xsec": 0.4611,
             "genEventSumw": 27686862.0
@@ -2808,7 +2808,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "ttX",
+            "process": "Other",
             "dataset": "ttZJets",
             "xsec": 0.5407,
             "genEventSumw": 32793815.0
@@ -2839,7 +2839,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "SingleTop",
+            "process": "Nonprompt",
             "dataset": "ST_s-channel",
             "xsec": 3.36,
             "genEventSumw": 68767074.0
@@ -2882,7 +2882,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "SingleTop",
+            "process": "Nonprompt",
             "dataset": "ST_t-channel_antitop",
             "xsec": 80.95,
             "genEventSumw": 7098544478.0
@@ -2953,7 +2953,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "SingleTop",
+            "process": "Nonprompt",
             "dataset": "ST_t-channel_top",
             "xsec": 136.02,
             "genEventSumw": 23318589799.0
@@ -3752,7 +3752,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "tt_semileptonic",
+            "process": "Nonprompt",
             "dataset": "TTToSemiLeptonic",
             "xsec": 365.34,
             "genEventSumw": 143354137322.0
