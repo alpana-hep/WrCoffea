@@ -1,0 +1,1926 @@
+{
+    "/SingleMuon/Run2018A-UL2018_MiniAODv2_NanoAODv9-v2/NANOAOD": {
+        "files": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018A/SingleMuon2018RunA_files1-30.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        103114
+                    ],
+                    [
+                        103114,
+                        206228
+                    ],
+                    [
+                        206228,
+                        309342
+                    ],
+                    [
+                        309342,
+                        412456
+                    ],
+                    [
+                        412456,
+                        515570
+                    ],
+                    [
+                        515570,
+                        618684
+                    ],
+                    [
+                        618684,
+                        721798
+                    ],
+                    [
+                        721798,
+                        824912
+                    ],
+                    [
+                        824912,
+                        928026
+                    ],
+                    [
+                        928026,
+                        1031140
+                    ],
+                    [
+                        1031140,
+                        1134250
+                    ]
+                ],
+                "num_entries": 1134250,
+                "uuid": "f1579ae6-540e-11ef-9dc5-8dbee183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018A/SingleMuon2018RunA_files31-60.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        97484
+                    ],
+                    [
+                        97484,
+                        194968
+                    ],
+                    [
+                        194968,
+                        292452
+                    ],
+                    [
+                        292452,
+                        389936
+                    ],
+                    [
+                        389936,
+                        487420
+                    ],
+                    [
+                        487420,
+                        584904
+                    ],
+                    [
+                        584904,
+                        682388
+                    ],
+                    [
+                        682388,
+                        779872
+                    ],
+                    [
+                        779872,
+                        877356
+                    ],
+                    [
+                        877356,
+                        974840
+                    ],
+                    [
+                        974840,
+                        1072324
+                    ],
+                    [
+                        1072324,
+                        1169808
+                    ],
+                    [
+                        1169808,
+                        1267292
+                    ],
+                    [
+                        1267292,
+                        1364776
+                    ],
+                    [
+                        1364776,
+                        1462260
+                    ],
+                    [
+                        1462260,
+                        1559744
+                    ],
+                    [
+                        1559744,
+                        1657228
+                    ],
+                    [
+                        1657228,
+                        1754712
+                    ],
+                    [
+                        1754712,
+                        1852190
+                    ]
+                ],
+                "num_entries": 1852190,
+                "uuid": "8329d096-5410-11ef-8852-8dbee183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018A/SingleMuon2018RunA_files61-92.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        101073
+                    ],
+                    [
+                        101073,
+                        202146
+                    ],
+                    [
+                        202146,
+                        303219
+                    ],
+                    [
+                        303219,
+                        404292
+                    ],
+                    [
+                        404292,
+                        505365
+                    ],
+                    [
+                        505365,
+                        606438
+                    ],
+                    [
+                        606438,
+                        707511
+                    ],
+                    [
+                        707511,
+                        808584
+                    ],
+                    [
+                        808584,
+                        909657
+                    ],
+                    [
+                        909657,
+                        1010730
+                    ],
+                    [
+                        1010730,
+                        1111803
+                    ],
+                    [
+                        1111803,
+                        1212876
+                    ],
+                    [
+                        1212876,
+                        1313941
+                    ]
+                ],
+                "num_entries": 1313941,
+                "uuid": "a0b855a4-5426-11ef-ba29-8dbee183beef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "Run2Summer20UL18",
+            "process": "SingleMuon",
+            "dataset": "SingleMuon_Run2018A"
+        },
+        "form": null
+    },
+    "/SingleMuon/Run2018B-UL2018_MiniAODv2_NanoAODv9-v2/NANOAOD": {
+        "files": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018B/SingleMuon2018RunB_files1-25.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        99675
+                    ],
+                    [
+                        99675,
+                        199350
+                    ],
+                    [
+                        199350,
+                        299025
+                    ],
+                    [
+                        299025,
+                        398700
+                    ],
+                    [
+                        398700,
+                        498375
+                    ],
+                    [
+                        498375,
+                        598050
+                    ],
+                    [
+                        598050,
+                        697725
+                    ],
+                    [
+                        697725,
+                        797400
+                    ],
+                    [
+                        797400,
+                        897069
+                    ]
+                ],
+                "num_entries": 897069,
+                "uuid": "1ba8a066-54e0-11ef-a235-95bee183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018B/SingleMuon2018RunB_files26-51.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        102017
+                    ],
+                    [
+                        102017,
+                        204034
+                    ],
+                    [
+                        204034,
+                        306051
+                    ],
+                    [
+                        306051,
+                        408068
+                    ],
+                    [
+                        408068,
+                        510085
+                    ],
+                    [
+                        510085,
+                        612102
+                    ],
+                    [
+                        612102,
+                        714119
+                    ],
+                    [
+                        714119,
+                        816136
+                    ],
+                    [
+                        816136,
+                        918153
+                    ],
+                    [
+                        918153,
+                        1020170
+                    ],
+                    [
+                        1020170,
+                        1122187
+                    ],
+                    [
+                        1122187,
+                        1224204
+                    ]
+                ],
+                "num_entries": 1224204,
+                "uuid": "3291d2ca-54e0-11ef-a5c2-95bee183beef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "Run2Summer20UL18",
+            "process": "SingleMuon",
+            "dataset": "SingleMuon_Run2018B"
+        },
+        "form": null
+    },
+    "/SingleMuon/Run2018C-UL2018_MiniAODv2_NanoAODv9-v2/NANOAOD": {
+        "files": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018C/SingleMuon2018RunC_files1-28.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        99939
+                    ],
+                    [
+                        99939,
+                        199878
+                    ],
+                    [
+                        199878,
+                        299817
+                    ],
+                    [
+                        299817,
+                        399756
+                    ],
+                    [
+                        399756,
+                        499695
+                    ],
+                    [
+                        499695,
+                        599634
+                    ],
+                    [
+                        599634,
+                        699573
+                    ],
+                    [
+                        699573,
+                        799512
+                    ],
+                    [
+                        799512,
+                        899451
+                    ],
+                    [
+                        899451,
+                        999390
+                    ],
+                    [
+                        999390,
+                        1099329
+                    ],
+                    [
+                        1099329,
+                        1199268
+                    ],
+                    [
+                        1199268,
+                        1299207
+                    ],
+                    [
+                        1299207,
+                        1399146
+                    ],
+                    [
+                        1399146,
+                        1499075
+                    ]
+                ],
+                "num_entries": 1499075,
+                "uuid": "d321a228-5748-11ef-8274-60bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018C/SingleMuon2018RunC_files29-56.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        99467
+                    ],
+                    [
+                        99467,
+                        198934
+                    ],
+                    [
+                        198934,
+                        298401
+                    ],
+                    [
+                        298401,
+                        397868
+                    ],
+                    [
+                        397868,
+                        497335
+                    ],
+                    [
+                        497335,
+                        596802
+                    ],
+                    [
+                        596802,
+                        696269
+                    ],
+                    [
+                        696269,
+                        795736
+                    ],
+                    [
+                        795736,
+                        895203
+                    ],
+                    [
+                        895203,
+                        994670
+                    ],
+                    [
+                        994670,
+                        1094128
+                    ]
+                ],
+                "num_entries": 1094128,
+                "uuid": "eb951ad8-5748-11ef-b317-60bfe183beef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "Run2Summer20UL18",
+            "process": "SingleMuon",
+            "dataset": "SingleMuon_Run2018C"
+        },
+        "form": null
+    },
+    "/SingleMuon/Run2018D-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD": {
+        "files": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018D/SingleMuon2018RunD_files1-30.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        103346
+                    ],
+                    [
+                        103346,
+                        206692
+                    ],
+                    [
+                        206692,
+                        310038
+                    ],
+                    [
+                        310038,
+                        413384
+                    ],
+                    [
+                        413384,
+                        516730
+                    ],
+                    [
+                        516730,
+                        620076
+                    ],
+                    [
+                        620076,
+                        723422
+                    ],
+                    [
+                        723422,
+                        826768
+                    ],
+                    [
+                        826768,
+                        930114
+                    ],
+                    [
+                        930114,
+                        1033460
+                    ],
+                    [
+                        1033460,
+                        1136806
+                    ],
+                    [
+                        1136806,
+                        1240144
+                    ]
+                ],
+                "num_entries": 1240144,
+                "uuid": "8b0cda58-54e0-11ef-9b4f-95bee183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018D/SingleMuon2018RunD_files121-150.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        100039
+                    ],
+                    [
+                        100039,
+                        200078
+                    ],
+                    [
+                        200078,
+                        300117
+                    ],
+                    [
+                        300117,
+                        400156
+                    ],
+                    [
+                        400156,
+                        500195
+                    ],
+                    [
+                        500195,
+                        600234
+                    ],
+                    [
+                        600234,
+                        700273
+                    ],
+                    [
+                        700273,
+                        800312
+                    ],
+                    [
+                        800312,
+                        900351
+                    ],
+                    [
+                        900351,
+                        1000390
+                    ],
+                    [
+                        1000390,
+                        1100429
+                    ],
+                    [
+                        1100429,
+                        1200468
+                    ],
+                    [
+                        1200468,
+                        1300507
+                    ],
+                    [
+                        1300507,
+                        1400546
+                    ],
+                    [
+                        1400546,
+                        1500585
+                    ],
+                    [
+                        1500585,
+                        1600610
+                    ]
+                ],
+                "num_entries": 1600610,
+                "uuid": "30b03320-5526-11ef-b947-46bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018D/SingleMuon2018RunD_files151-194.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        97231
+                    ],
+                    [
+                        97231,
+                        194462
+                    ],
+                    [
+                        194462,
+                        291693
+                    ],
+                    [
+                        291693,
+                        388924
+                    ],
+                    [
+                        388924,
+                        486155
+                    ],
+                    [
+                        486155,
+                        583386
+                    ],
+                    [
+                        583386,
+                        680617
+                    ],
+                    [
+                        680617,
+                        777848
+                    ],
+                    [
+                        777848,
+                        875075
+                    ]
+                ],
+                "num_entries": 875075,
+                "uuid": "2e451d74-5749-11ef-ba22-60bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018D/SingleMuon2018RunD_files31-55.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        106792
+                    ],
+                    [
+                        106792,
+                        213584
+                    ],
+                    [
+                        213584,
+                        320376
+                    ]
+                ],
+                "num_entries": 320376,
+                "uuid": "e4230d60-54e0-11ef-8f61-95bee183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018D/SingleMuon2018RunD_files56-90.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        99648
+                    ],
+                    [
+                        99648,
+                        199296
+                    ],
+                    [
+                        199296,
+                        298944
+                    ],
+                    [
+                        298944,
+                        398592
+                    ],
+                    [
+                        398592,
+                        498240
+                    ],
+                    [
+                        498240,
+                        597888
+                    ],
+                    [
+                        597888,
+                        697536
+                    ],
+                    [
+                        697536,
+                        797184
+                    ],
+                    [
+                        797184,
+                        896832
+                    ],
+                    [
+                        896832,
+                        996480
+                    ],
+                    [
+                        996480,
+                        1096128
+                    ],
+                    [
+                        1096128,
+                        1195776
+                    ],
+                    [
+                        1195776,
+                        1295424
+                    ],
+                    [
+                        1295424,
+                        1395072
+                    ],
+                    [
+                        1395072,
+                        1494720
+                    ],
+                    [
+                        1494720,
+                        1594368
+                    ],
+                    [
+                        1594368,
+                        1694016
+                    ],
+                    [
+                        1694016,
+                        1793664
+                    ],
+                    [
+                        1793664,
+                        1893312
+                    ],
+                    [
+                        1893312,
+                        1992959
+                    ]
+                ],
+                "num_entries": 1992959,
+                "uuid": "102445c6-54e3-11ef-ad76-95bee183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/SingleMuon_Run2018D/SingleMuon2018RunD_files91-120.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        100780
+                    ],
+                    [
+                        100780,
+                        201560
+                    ],
+                    [
+                        201560,
+                        302340
+                    ],
+                    [
+                        302340,
+                        403120
+                    ],
+                    [
+                        403120,
+                        503900
+                    ],
+                    [
+                        503900,
+                        604680
+                    ],
+                    [
+                        604680,
+                        705460
+                    ],
+                    [
+                        705460,
+                        806240
+                    ],
+                    [
+                        806240,
+                        907019
+                    ]
+                ],
+                "num_entries": 907019,
+                "uuid": "300285b0-54e3-11ef-b4cb-95bee183beef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "Run2Summer20UL18",
+            "process": "SingleMuon",
+            "dataset": "SingleMuon_Run2018D"
+        },
+        "form": null
+    },
+    "/EGamma/Run2018A-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD": {
+        "files": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018A/EGamma2018RunA_files1-30.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        101585
+                    ],
+                    [
+                        101585,
+                        203170
+                    ],
+                    [
+                        203170,
+                        304755
+                    ],
+                    [
+                        304755,
+                        406340
+                    ],
+                    [
+                        406340,
+                        507925
+                    ],
+                    [
+                        507925,
+                        609510
+                    ],
+                    [
+                        609510,
+                        711091
+                    ]
+                ],
+                "num_entries": 711091,
+                "uuid": "e7e147ae-5be4-11ef-ae65-63bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018A/EGamma2018RunA_files121-150.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        100939
+                    ],
+                    [
+                        100939,
+                        201878
+                    ],
+                    [
+                        201878,
+                        302817
+                    ],
+                    [
+                        302817,
+                        403756
+                    ],
+                    [
+                        403756,
+                        504695
+                    ],
+                    [
+                        504695,
+                        605634
+                    ],
+                    [
+                        605634,
+                        706573
+                    ],
+                    [
+                        706573,
+                        807512
+                    ],
+                    [
+                        807512,
+                        908451
+                    ],
+                    [
+                        908451,
+                        1009384
+                    ]
+                ],
+                "num_entries": 1009384,
+                "uuid": "1b4e9420-5be5-11ef-904c-63bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018A/EGamma2018RunA_files151-180.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        99007
+                    ],
+                    [
+                        99007,
+                        198014
+                    ],
+                    [
+                        198014,
+                        297021
+                    ],
+                    [
+                        297021,
+                        396028
+                    ],
+                    [
+                        396028,
+                        495035
+                    ],
+                    [
+                        495035,
+                        594042
+                    ],
+                    [
+                        594042,
+                        693049
+                    ],
+                    [
+                        693049,
+                        792056
+                    ],
+                    [
+                        792056,
+                        891063
+                    ],
+                    [
+                        891063,
+                        990065
+                    ]
+                ],
+                "num_entries": 990065,
+                "uuid": "27020856-5be5-11ef-9918-63bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018A/EGamma2018RunA_files181-226.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        98244
+                    ],
+                    [
+                        98244,
+                        196488
+                    ],
+                    [
+                        196488,
+                        294732
+                    ],
+                    [
+                        294732,
+                        392976
+                    ],
+                    [
+                        392976,
+                        491220
+                    ],
+                    [
+                        491220,
+                        589464
+                    ],
+                    [
+                        589464,
+                        687708
+                    ],
+                    [
+                        687708,
+                        785952
+                    ],
+                    [
+                        785952,
+                        884196
+                    ],
+                    [
+                        884196,
+                        982440
+                    ],
+                    [
+                        982440,
+                        1080683
+                    ]
+                ],
+                "num_entries": 1080683,
+                "uuid": "3d5b862c-5be5-11ef-b31d-63bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018A/EGamma2018RunA_files31-60.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        104124
+                    ],
+                    [
+                        104124,
+                        208248
+                    ],
+                    [
+                        208248,
+                        312372
+                    ],
+                    [
+                        312372,
+                        416496
+                    ],
+                    [
+                        416496,
+                        520620
+                    ],
+                    [
+                        520620,
+                        624744
+                    ],
+                    [
+                        624744,
+                        728868
+                    ],
+                    [
+                        728868,
+                        832992
+                    ],
+                    [
+                        832992,
+                        937114
+                    ]
+                ],
+                "num_entries": 937114,
+                "uuid": "f3be8d48-5be4-11ef-bec1-63bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018A/EGamma2018RunA_files61-90.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        102017
+                    ],
+                    [
+                        102017,
+                        204034
+                    ],
+                    [
+                        204034,
+                        306051
+                    ],
+                    [
+                        306051,
+                        408068
+                    ],
+                    [
+                        408068,
+                        510085
+                    ],
+                    [
+                        510085,
+                        612102
+                    ],
+                    [
+                        612102,
+                        714119
+                    ],
+                    [
+                        714119,
+                        816136
+                    ]
+                ],
+                "num_entries": 816136,
+                "uuid": "03ee6fb2-5be5-11ef-a84e-63bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018A/EGamma2018RunA_files91-120.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        96392
+                    ],
+                    [
+                        96392,
+                        192784
+                    ],
+                    [
+                        192784,
+                        289176
+                    ],
+                    [
+                        289176,
+                        385568
+                    ],
+                    [
+                        385568,
+                        481960
+                    ],
+                    [
+                        481960,
+                        578352
+                    ],
+                    [
+                        578352,
+                        674744
+                    ],
+                    [
+                        674744,
+                        771136
+                    ],
+                    [
+                        771136,
+                        867522
+                    ]
+                ],
+                "num_entries": 867522,
+                "uuid": "0f66cb8c-5be5-11ef-9e12-63bfe183beef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "Run2Summer20UL18",
+            "process": "EGamma",
+            "dataset": "EGamma_Run2018A"
+        },
+        "form": null
+    },
+    "/EGamma/Run2018B-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD": {
+        "files": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018B/EGamma2018RunB_files1-37.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        100448
+                    ],
+                    [
+                        100448,
+                        200896
+                    ],
+                    [
+                        200896,
+                        301344
+                    ],
+                    [
+                        301344,
+                        401792
+                    ],
+                    [
+                        401792,
+                        502240
+                    ],
+                    [
+                        502240,
+                        602688
+                    ],
+                    [
+                        602688,
+                        703136
+                    ],
+                    [
+                        703136,
+                        803584
+                    ],
+                    [
+                        803584,
+                        904032
+                    ],
+                    [
+                        904032,
+                        1004480
+                    ],
+                    [
+                        1004480,
+                        1104918
+                    ]
+                ],
+                "num_entries": 1104918,
+                "uuid": "6c12f388-5be5-11ef-b2fa-63bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018B/EGamma2018RunB_files38-74.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        99985
+                    ],
+                    [
+                        99985,
+                        199970
+                    ],
+                    [
+                        199970,
+                        299955
+                    ],
+                    [
+                        299955,
+                        399940
+                    ],
+                    [
+                        399940,
+                        499925
+                    ],
+                    [
+                        499925,
+                        599910
+                    ],
+                    [
+                        599910,
+                        699895
+                    ],
+                    [
+                        699895,
+                        799880
+                    ],
+                    [
+                        799880,
+                        899865
+                    ],
+                    [
+                        899865,
+                        999850
+                    ],
+                    [
+                        999850,
+                        1099835
+                    ],
+                    [
+                        1099835,
+                        1199820
+                    ],
+                    [
+                        1199820,
+                        1299805
+                    ],
+                    [
+                        1299805,
+                        1399790
+                    ],
+                    [
+                        1399790,
+                        1499775
+                    ],
+                    [
+                        1499775,
+                        1599760
+                    ],
+                    [
+                        1599760,
+                        1699745
+                    ],
+                    [
+                        1699745,
+                        1799718
+                    ]
+                ],
+                "num_entries": 1799718,
+                "uuid": "7c8be92c-5be5-11ef-a421-63bfe183beef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "Run2Summer20UL18",
+            "process": "EGamma",
+            "dataset": "EGamma_Run2018B"
+        },
+        "form": null
+    },
+    "/EGamma/Run2018C-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD": {
+        "files": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018C/EGamma2018RunC_files1-30.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        98049
+                    ],
+                    [
+                        98049,
+                        196098
+                    ],
+                    [
+                        196098,
+                        294147
+                    ],
+                    [
+                        294147,
+                        392196
+                    ],
+                    [
+                        392196,
+                        490245
+                    ],
+                    [
+                        490245,
+                        588294
+                    ],
+                    [
+                        588294,
+                        686343
+                    ],
+                    [
+                        686343,
+                        784392
+                    ],
+                    [
+                        784392,
+                        882441
+                    ],
+                    [
+                        882441,
+                        980490
+                    ],
+                    [
+                        980490,
+                        1078539
+                    ],
+                    [
+                        1078539,
+                        1176588
+                    ],
+                    [
+                        1176588,
+                        1274637
+                    ],
+                    [
+                        1274637,
+                        1372686
+                    ],
+                    [
+                        1372686,
+                        1470735
+                    ],
+                    [
+                        1470735,
+                        1568784
+                    ]
+                ],
+                "num_entries": 1568784,
+                "uuid": "215fa3a4-5578-11ef-a89e-62bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018C/EGamma2018RunC_files31-60.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        104036
+                    ],
+                    [
+                        104036,
+                        208072
+                    ],
+                    [
+                        208072,
+                        312108
+                    ],
+                    [
+                        312108,
+                        416144
+                    ],
+                    [
+                        416144,
+                        520180
+                    ],
+                    [
+                        520180,
+                        624216
+                    ],
+                    [
+                        624216,
+                        728252
+                    ],
+                    [
+                        728252,
+                        832288
+                    ],
+                    [
+                        832288,
+                        936324
+                    ],
+                    [
+                        936324,
+                        1040360
+                    ],
+                    [
+                        1040360,
+                        1144386
+                    ]
+                ],
+                "num_entries": 1144386,
+                "uuid": "33e97dd8-5578-11ef-8a9a-62bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018C/EGamma2018RunC_files61-83.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        104815
+                    ],
+                    [
+                        104815,
+                        209630
+                    ],
+                    [
+                        209630,
+                        314445
+                    ],
+                    [
+                        314445,
+                        419260
+                    ],
+                    [
+                        419260,
+                        524075
+                    ],
+                    [
+                        524075,
+                        628890
+                    ],
+                    [
+                        628890,
+                        733705
+                    ],
+                    [
+                        733705,
+                        838520
+                    ]
+                ],
+                "num_entries": 838520,
+                "uuid": "48df9c04-5578-11ef-9ce4-62bfe183beef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "Run2Summer20UL18",
+            "process": "EGamma",
+            "dataset": "EGamma_Run2018C"
+        },
+        "form": null
+    },
+    "/EGamma/Run2018D-UL2018_MiniAODv2_NanoAODv9-v3/NANOAOD": {
+        "files": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018D/EGamma_Run2018D_skims141to200.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        101210
+                    ],
+                    [
+                        101210,
+                        202420
+                    ],
+                    [
+                        202420,
+                        303630
+                    ],
+                    [
+                        303630,
+                        404840
+                    ],
+                    [
+                        404840,
+                        506050
+                    ],
+                    [
+                        506050,
+                        607260
+                    ],
+                    [
+                        607260,
+                        708470
+                    ],
+                    [
+                        708470,
+                        809680
+                    ],
+                    [
+                        809680,
+                        910890
+                    ],
+                    [
+                        910890,
+                        1012100
+                    ],
+                    [
+                        1012100,
+                        1113310
+                    ],
+                    [
+                        1113310,
+                        1214520
+                    ],
+                    [
+                        1214520,
+                        1315730
+                    ],
+                    [
+                        1315730,
+                        1416940
+                    ],
+                    [
+                        1416940,
+                        1518150
+                    ],
+                    [
+                        1518150,
+                        1619360
+                    ],
+                    [
+                        1619360,
+                        1720570
+                    ],
+                    [
+                        1720570,
+                        1821777
+                    ]
+                ],
+                "num_entries": 1821777,
+                "uuid": "fea4e560-8bf3-11ef-a295-52bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018D/EGamma_Run2018D_skims1to30.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        98507
+                    ],
+                    [
+                        98507,
+                        197014
+                    ],
+                    [
+                        197014,
+                        295521
+                    ],
+                    [
+                        295521,
+                        394028
+                    ],
+                    [
+                        394028,
+                        492535
+                    ],
+                    [
+                        492535,
+                        591042
+                    ],
+                    [
+                        591042,
+                        689549
+                    ],
+                    [
+                        689549,
+                        788056
+                    ],
+                    [
+                        788056,
+                        886563
+                    ],
+                    [
+                        886563,
+                        985070
+                    ],
+                    [
+                        985070,
+                        1083577
+                    ],
+                    [
+                        1083577,
+                        1182080
+                    ]
+                ],
+                "num_entries": 1182080,
+                "uuid": "9d09c4d8-8bf3-11ef-aa46-52bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018D/EGamma_Run2018D_skims201to260.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        100682
+                    ],
+                    [
+                        100682,
+                        201364
+                    ],
+                    [
+                        201364,
+                        302046
+                    ],
+                    [
+                        302046,
+                        402728
+                    ],
+                    [
+                        402728,
+                        503410
+                    ],
+                    [
+                        503410,
+                        604092
+                    ],
+                    [
+                        604092,
+                        704774
+                    ],
+                    [
+                        704774,
+                        805456
+                    ],
+                    [
+                        805456,
+                        906138
+                    ],
+                    [
+                        906138,
+                        1006820
+                    ],
+                    [
+                        1006820,
+                        1107502
+                    ],
+                    [
+                        1107502,
+                        1208184
+                    ],
+                    [
+                        1208184,
+                        1308866
+                    ],
+                    [
+                        1308866,
+                        1409548
+                    ],
+                    [
+                        1409548,
+                        1510230
+                    ],
+                    [
+                        1510230,
+                        1610912
+                    ],
+                    [
+                        1610912,
+                        1711594
+                    ],
+                    [
+                        1711594,
+                        1812276
+                    ],
+                    [
+                        1812276,
+                        1912958
+                    ],
+                    [
+                        1912958,
+                        2013640
+                    ],
+                    [
+                        2013640,
+                        2114322
+                    ],
+                    [
+                        2114322,
+                        2215004
+                    ],
+                    [
+                        2215004,
+                        2315686
+                    ],
+                    [
+                        2315686,
+                        2416368
+                    ],
+                    [
+                        2416368,
+                        2517050
+                    ],
+                    [
+                        2517050,
+                        2617732
+                    ],
+                    [
+                        2617732,
+                        2718414
+                    ],
+                    [
+                        2718414,
+                        2819096
+                    ],
+                    [
+                        2819096,
+                        2919762
+                    ]
+                ],
+                "num_entries": 2919762,
+                "uuid": "1cf4046a-8bf4-11ef-a1ab-52bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018D/EGamma_Run2018D_skims261to300.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        98328
+                    ],
+                    [
+                        98328,
+                        196656
+                    ],
+                    [
+                        196656,
+                        294984
+                    ],
+                    [
+                        294984,
+                        393312
+                    ],
+                    [
+                        393312,
+                        491640
+                    ],
+                    [
+                        491640,
+                        589968
+                    ],
+                    [
+                        589968,
+                        688296
+                    ],
+                    [
+                        688296,
+                        786624
+                    ],
+                    [
+                        786624,
+                        884952
+                    ],
+                    [
+                        884952,
+                        983278
+                    ]
+                ],
+                "num_entries": 983278,
+                "uuid": "3aa7fc3c-8bf4-11ef-b5d3-52bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018D/EGamma_Run2018D_skims301to355.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        100829
+                    ],
+                    [
+                        100829,
+                        201658
+                    ],
+                    [
+                        201658,
+                        302487
+                    ],
+                    [
+                        302487,
+                        403316
+                    ],
+                    [
+                        403316,
+                        504145
+                    ],
+                    [
+                        504145,
+                        604974
+                    ],
+                    [
+                        604974,
+                        705803
+                    ],
+                    [
+                        705803,
+                        806632
+                    ],
+                    [
+                        806632,
+                        907461
+                    ],
+                    [
+                        907461,
+                        1008290
+                    ],
+                    [
+                        1008290,
+                        1109119
+                    ],
+                    [
+                        1109119,
+                        1209948
+                    ],
+                    [
+                        1209948,
+                        1310777
+                    ],
+                    [
+                        1310777,
+                        1411606
+                    ],
+                    [
+                        1411606,
+                        1512435
+                    ],
+                    [
+                        1512435,
+                        1613264
+                    ],
+                    [
+                        1613264,
+                        1714080
+                    ]
+                ],
+                "num_entries": 1714080,
+                "uuid": "58149226-8bf4-11ef-9832-52bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018D/EGamma_Run2018D_skims31to80.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        100088
+                    ],
+                    [
+                        100088,
+                        200176
+                    ],
+                    [
+                        200176,
+                        300264
+                    ],
+                    [
+                        300264,
+                        400352
+                    ],
+                    [
+                        400352,
+                        500440
+                    ],
+                    [
+                        500440,
+                        600528
+                    ],
+                    [
+                        600528,
+                        700616
+                    ],
+                    [
+                        700616,
+                        800704
+                    ],
+                    [
+                        800704,
+                        900792
+                    ],
+                    [
+                        900792,
+                        1000880
+                    ],
+                    [
+                        1000880,
+                        1100968
+                    ],
+                    [
+                        1100968,
+                        1201056
+                    ],
+                    [
+                        1201056,
+                        1301144
+                    ],
+                    [
+                        1301144,
+                        1401232
+                    ],
+                    [
+                        1401232,
+                        1501320
+                    ],
+                    [
+                        1501320,
+                        1601408
+                    ],
+                    [
+                        1601408,
+                        1701489
+                    ]
+                ],
+                "num_entries": 1701489,
+                "uuid": "b8fa9118-8bf3-11ef-9ebc-52bfe183beef"
+            },
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Summer20UL18/EGamma_Run2018D/EGamma_Run2018D_skims81to140.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        103093
+                    ],
+                    [
+                        103093,
+                        206186
+                    ],
+                    [
+                        206186,
+                        309279
+                    ],
+                    [
+                        309279,
+                        412372
+                    ],
+                    [
+                        412372,
+                        515465
+                    ],
+                    [
+                        515465,
+                        618558
+                    ],
+                    [
+                        618558,
+                        721651
+                    ],
+                    [
+                        721651,
+                        824744
+                    ],
+                    [
+                        824744,
+                        927837
+                    ],
+                    [
+                        927837,
+                        1030930
+                    ],
+                    [
+                        1030930,
+                        1134023
+                    ],
+                    [
+                        1134023,
+                        1237116
+                    ],
+                    [
+                        1237116,
+                        1340209
+                    ],
+                    [
+                        1340209,
+                        1443302
+                    ],
+                    [
+                        1443302,
+                        1546385
+                    ]
+                ],
+                "num_entries": 1546385,
+                "uuid": "e4715c0a-8bf3-11ef-b485-52bfe183beef"
+            }
+        },
+        "metadata": {
+            "mc_campaign": "Run2Summer20UL18",
+            "process": "EGamma",
+            "dataset": "EGamma_Run2018D"
+        },
+        "form": null
+    }
+}
