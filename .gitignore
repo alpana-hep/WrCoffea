@@ -6,16 +6,10 @@ __pycache__
 *.gz
 *.png
 *.pdf
-plots/
-datasets/.sites_map.json
 .env/
 .local/
 .bashrc
 .condor_config
-old/
 *.png
 wr_env/
 .sites_map.json
-WR_Plotter/
-root_outputs/
-preprocess/jsons
