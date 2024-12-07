@@ -69,9 +69,8 @@ def get_metadata(config, is_data, is_signal):
 def query_datasets(data, run):
     print(f"\nQuerying replica sites")
     ddc = DataDiscoveryCLI()
-    if run == "Run2Summer20UL18":
-#        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_US_Caltech", "T2_US_Vanderbilt", "T2_US_UCSD", "T2_US_Nebraska", "T2_US_Florida", "T2_UK_London_IC"]) #Remove T2_US_Nebraska
-        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_CH_CERN", "T2_UK_London_IC", "T2_US_UCSD", "T2_US_FLORIDA"]) #"T2_FI_HIP"
+#    if run == "Run2Summer20UL18":
+#        ddc.do_allowlist_sites(["T1_US_FNAL_Disk", "T2_US_Wisconsin", "T2_CH_CERN", "T2_UK_London_IC", "T2_US_Vanderbilt", "T2_US_UCSD", "T2_US_FLORIDA"]) #"T2_FI_HIP"
     if run == "Run3Summer22":
         ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_US_Caltech", "T2_US_Vanderbilt", "T2_US_UCSD", "T2_US_Nebraska", "T2_US_Florida", "T2_UK_London_IC"]) #Remove T2_US_Nebraska
     dataset = ddc.load_dataset_definition(dataset_definition = data, query_results_strategy="all", replicas_strategy="first")
@@ -155,7 +154,7 @@ def get_genevents_from_coffea(rootFile):
     filepath = f"{rootFile}"
     try:
         events = NanoEventsFactory.from_root(
-                {filepath: "Runs"},
+                {filepath: "Run"},
                 schemaclass=NanoAODSchema
         ).events()
 
@@ -215,8 +214,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Build input and output file paths based on the arguments
-    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg_test.json"
-    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed.json"
+    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/test/{args.run}_{args.sample}_cfg_test.json"
+    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/test/{args.run}_{args.sample}_preprocessed_test.json"
 
     # Create the Dask client
     client = Client(n_workers=4, threads_per_worker=1, memory_limit='2GB', nanny=False)
@@ -240,8 +239,8 @@ if __name__ == "__main__":
 
     compare_preprocessed(dataset_runnable, dataset_updated)
 
-#    if is_mc:
-#       dataset_runnable = get_sumw(dataset_runnable)
+    if is_mc:
+       dataset_runnable = get_sumw(dataset_runnable)
 
     # Save the datasets to JSON
     save_json(output_file, dataset_runnable)

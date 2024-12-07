@@ -3597,9 +3597,9 @@
         },
         "metadata": {
             "mc_campaign": "Run3Summer22",
-            "process": "tt+tW",
+            "process": "tt",
             "dataset": "TTto2L2Nu",
-            "xsec": 762.1,
+            "xsec": 102.622,
             "genEventSumw": 1912899360.0
         },
         "form": null
@@ -3672,9 +3672,9 @@
         },
         "metadata": {
             "mc_campaign": "Run3Summer22",
-            "process": "tt+tW",
+            "process": "tW",
             "dataset": "TbarWplusto2L2Nu",
-            "xsec": 36.05,
+            "xsec": 19.20,
             "genEventSumw": 9385020.0
         },
         "form": null
@@ -3747,9 +3747,9 @@
         },
         "metadata": {
             "mc_campaign": "Run3Summer22",
-            "process": "tt+tW",
+            "process": "tW",
             "dataset": "TWminusto2L2Nu",
-            "xsec": 35.99,
+            "xsec": 19.20,
             "genEventSumw": 9001607.0
         },
         "form": null

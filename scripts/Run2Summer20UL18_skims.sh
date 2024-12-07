@@ -160,8 +160,28 @@
 #    python3 skim_files.py TTToSemiLeptonic --start $i
 #done
 
-for ((i=341; i<=355; i+=1))
+#for ((i=1; i<=226; i+=1))
+#do
+  # Construct and run the python command
+#  python3 skim_files.py EGamma_Run2018A --start $i
+#done
+
+for ((i=44; i<=74; i+=1))
 do
   # Construct and run the python command
-  python3 skim_files.py EGamma_Run2018D --start $i
+  python3 skim_files.py EGamma_Run2018B --start $i
 done
+
+#for ((i=1; i<=83; i+=1))
+#do
+  # Construct and run the python command
+#  python3 skim_files.py EGamma_Run2018B --start $i
+#done
+
+#for ((i=1; i<=355; i+=1))
+#do
+  # Construct and run the python command
+#  python3 skim_files.py EGamma_Run2018D --start $i
+#done
+
+

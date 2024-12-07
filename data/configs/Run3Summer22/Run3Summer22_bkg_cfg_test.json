@@ -3,103 +3,105 @@
 	"mc_campaign": "Run3Summer22",
 	"process": "DYJets",
         "dataset": "DYto2L-4Jets_MLL-50to120_HT-40to70",
-	"xsec": 315.8
+	"xsec": 315.8,
+	"genEventSumw": 61392443014.0
     },
     "/DYto2L-4Jets_MLL-50to120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v1/NANOAODSIM": {
         "mc_campaign": "Run3Summer22",
         "process": "DYJets",
         "dataset": "DYto2L-4Jets_MLL-50to120_HT-70to100",
-        "xsec": 140.0
+        "xsec": 140.0,
+	"genEventSumw": 26181566419.0
     },
     "/DYto2L-4Jets_MLL-50to120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v1/NANOAODSIM": {
         "mc_campaign": "Run3Summer22",
         "process": "DYJets",
         "dataset": "DYto2L-4Jets_MLL-50to120_HT-100to400",
-        "xsec": 178.7
+        "xsec": 178.7,
+	"genEventSumw": 53273563130.0
     },
     "/DYto2L-4Jets_MLL-50to120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v1/NANOAODSIM": {
         "mc_campaign": "Run3Summer22",
         "process": "DYJets",
         "dataset": "DYto2L-4Jets_MLL-50to120_HT-400to800",
-        "xsec": 6.719
+        "xsec": 6.719,
+        "genEventSumw": 77988340.0
     },
     "/DYto2L-4Jets_MLL-50to120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
         "mc_campaign": "Run3Summer22",
         "process": "DYJets",
         "dataset": "DYto2L-4Jets_MLL-50to120_HT-800to1500",
-        "xsec": 0.6938
+        "xsec": 0.6938,
+	"genEventSumw": 15345379.0
     },
     "/DYto2L-4Jets_MLL-50to120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
         "mc_campaign": "Run3Summer22",
         "process": "DYJets",
         "dataset": "DYto2L-4Jets_MLL-50to120_HT-1500to2500",
-        "xsec": 0.05053
+        "xsec": 0.05053,
+	"genEventSumw": 1135552.0
     },
     "/DYto2L-4Jets_MLL-50to120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v3/NANOAODSIM": {
         "mc_campaign": "Run3Summer22",
         "process": "DYJets",
         "dataset": "DYto2L-4Jets_MLL-50to120_HT-2500",
-        "xsec": 0.003470
+        "xsec": 0.003470,
+	"genEventSumw": 84154.0
     },
     "/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
         "mc_campaign": "Run3Summer22",
         "process": "DYJets",
         "dataset": "DYto2L-4Jets_MLL-120_HT-40to70",
-        "xsec": 4.548
+        "xsec": 4.548,
+	"genEventSumw": 66166865.0
     },
     "/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
         "mc_campaign": "Run3Summer22",
         "process": "DYJets",
         "dataset": "DYto2L-4Jets_MLL-120_HT-70to100",
-        "xsec": 2.220 
+        "xsec": 2.220,
+        "genEventSumw": 30184435.0	
     },
     "/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
         "mc_campaign": "Run3Summer22",
         "process": "DYJets",
         "dataset": "DYto2L-4Jets_MLL-120_HT-100to400",
-        "xsec": 3.330
+        "xsec": 3.330,
+	"genEventSumw": 61512300.0
     },
     "/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
         "mc_campaign": "Run3Summer22",
         "process": "DYJets",
         "dataset": "DYto2L-4Jets_MLL-120_HT-400to800",
-        "xsec": 0.1749
+        "xsec": 0.1749,
+	"genEventSumw": 4306883.0
     },
     "/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
         "mc_campaign": "Run3Summer22",
         "process": "DYJets",
         "dataset": "DYto2L-4Jets_MLL-120_HT-800to1500",
-        "xsec": 0.02102
+        "xsec": 0.02102,
+	"genEventSumw": 473358.0
     },
     "/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
         "mc_campaign": "Run3Summer22",
         "process": "DYJets",
         "dataset": "DYto2L-4Jets_MLL-120_HT-1500to2500",
-        "xsec": 0.001679
+        "xsec": 0.001679,
+	"genEventSumw": 39689.0
     },
     "/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
         "mc_campaign": "Run3Summer22",
         "process": "DYJets",
         "dataset": "DYto2L-4Jets_MLL-120_HT-2500",
-        "xsec": 0.0001238
+        "xsec": 0.0001238,
+	"genEventSumw": 2510.0
     },
     "/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
         "mc_campaign": "Run3Summer22",
         "process": "tt",
         "dataset": "TTto2L2Nu",
-        "xsec": 102.622
-    },
-    "/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
-        "mc_campaign": "Run3Summer22",
-        "process": "tt+tW",
-        "dataset": "TbarWplusto2L2Nu",
-        "xsec": 36.05
-    },
-    "/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
-        "mc_campaign": "Run3Summer22",
-        "process": "tt+tW",
-        "dataset": "TWminusto2L2Nu",
-        "xsec": 35.99
+        "xsec": 102.622,
+	"genEventSumw": 1912899360.0
     }
-
 }
