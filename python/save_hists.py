@@ -12,8 +12,8 @@ def save_histograms(my_histograms, args):
     run = args.run
     sample = args.sample
     hnwr_mass= args.mass
-    
-    working_dir = "/uscms/home/bjackson/nobackup/WrCoffea/WR_Plotter"
+
+    working_dir = "WR_Plotter"
     
     if args.run == "Run3Summer22":
         dataset = "Run3"

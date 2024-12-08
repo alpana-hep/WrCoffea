@@ -12,4 +12,6 @@ __pycache__
 .condor_config
 *.png
 wr_env/
+coffea_env/
+data/jsons
 .sites_map.json
