@@ -40,10 +40,10 @@
 #    python3 skim_files.py DYJetsToLL_M-50_HT-2500toInf --start $i
 #done
 
-#for ((i=6; i<=155; i+=1))
-#do
-#    python3 skim_files.py TTTo2L2Nu --start $i
-#done
+for ((i=1; i<=155; i+=1))
+do
+    python3 skim_files.py TTTo2L2Nu --start $i
+done
 
 #for ((i=1; i<=16; i+=1))
 #do
@@ -166,11 +166,11 @@
 #  python3 skim_files.py EGamma_Run2018A --start $i
 #done
 
-for ((i=44; i<=74; i+=1))
-do
+#for ((i=44; i<=74; i+=1))
+#do
   # Construct and run the python command
-  python3 skim_files.py EGamma_Run2018B --start $i
-done
+#  python3 skim_files.py EGamma_Run2018B --start $i
+#done
 
 #for ((i=1; i<=83; i+=1))
 #do

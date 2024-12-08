@@ -7,26 +7,25 @@ from coffea.dataset_tools import preprocess
 from dask.diagnostics import ProgressBar
 from pathlib import Path
 import difflib
+import os
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-def replace_files_in_json(data, run):
+def replace_files_in_json(data, run, umn):
     """
     Clears 'files' and 'form' entries from the provided JSON data and fetches new file paths.
     """
     for dataset_name, dataset_info in data.items():
-        # Clear existing 'files' key
-        if "files" in dataset_info:
-            dataset_info["files"] = {}
-
-        # Remove 'form' key if it exists
-        if "form" in dataset_info:
-            del dataset_info["form"]
+        dataset_info["files"] = {}
 
         # Get the dataset name from metadata
         dataset = dataset_info["metadata"].get("dataset", "")
-        root_files = get_root_files_from_eos(dataset, run)
+
+        if umn:
+            root_files = get_root_files_from_umn(dataset, run)
+        else:
+            root_files = get_root_files_from_eos(dataset, run)
 
         if root_files:
             for file_path in root_files:
@@ -35,6 +34,22 @@ def replace_files_in_json(data, run):
             logging.warning(f"No ROOT files found for dataset {dataset_name}")
 
     return data
+
+def get_root_files_from_umn(dataset, mc_campaign):
+    base_path = f"/uscms/home/bjackson/nobackup/WrCoffea/skims/{mc_campaign}/{dataset}/"
+    root_files = []
+
+    # Walk through the directory and collect .root files
+    if os.path.exists(base_path):
+        for root, _, files in os.walk(base_path):
+            for file in files:
+                if file.endswith(".root"):
+                    root_files.append(os.path.join(root, file))
+        logging.info(f"Found {len(root_files)} ROOT files for dataset {dataset}")
+    else:
+        print(f"Error: Base path '{base_path}' does not exist.")
+
+    return root_files
 
 def get_root_files_from_eos(dataset, mc_campaign):
     """
@@ -112,7 +127,8 @@ if __name__ == "__main__":
     # Set up argument parsing
     parser = argparse.ArgumentParser(description="Process the JSON configuration file.")
     parser.add_argument("run", type=str, choices=["Run2Summer20UL18", "Run3Summer22"], help="Run (e.g., Run2UltraLegacy)")
-    parser.add_argument("sample", type=str, choices=["bkg", "sig", "data"], help="Sample type (bkg, sig, data)")
+    parser.add_argument("sample", type=str, choices=["bkg"], help="Sample type (bkg, sig, data)")
+    parser.add_argument("--umn", action="store_true", help="Enable UMN mode (default: False)")
     parser.add_argument("--chunks", type=int, default=100_000, help="Chunk size for processing")
     parser.add_argument("--timeout", type=int, default=3600, help="Timeout for uproot file handling")
 
@@ -120,8 +136,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Build input and output file paths based on the arguments
-    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed.json"
-    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_skimmed.json"
+    if not args.umn:
+        input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/Run3Summer22/{args.run}_{args.sample}_cfg.json"
+        output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed_skims.json"
 
     # Load the input JSON file
     try:
@@ -133,7 +150,7 @@ if __name__ == "__main__":
         exit(1)
 
     # Clear the "files" content and update with new ROOT files
-    fileset = replace_files_in_json(fileset, args.run)
+    fileset = replace_files_in_json(fileset, args.run, args.umn)
 
     # Preprocess the updated fileset
     dataset_runnable, dataset_updated = preprocess_json(fileset, chunks=args.chunks, timeout=args.timeout)
