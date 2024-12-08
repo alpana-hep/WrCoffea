@@ -215,7 +215,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Build input and output file paths based on the arguments
-    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg_test.json"
+    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
     output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed.json"
 
     # Create the Dask client
@@ -229,10 +229,10 @@ if __name__ == "__main__":
     is_data = 'data' in args.sample
     is_signal = 'sig' in args.sample
 
-    updated_config = get_metadata(config, is_data, is_signal)
+#    updated_config = get_metadata(config, is_data, is_signal)
 
     if not is_signal:
-        dataset = query_datasets(updated_config, args.run)
+        dataset = query_datasets(config, args.run) #Updated config
     else:
         dataset = get_signal_files(updated_config)
 

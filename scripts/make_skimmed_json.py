@@ -137,7 +137,7 @@ if __name__ == "__main__":
 
     # Build input and output file paths based on the arguments
     if not args.umn:
-        input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/Run3Summer22/{args.run}_{args.sample}_cfg.json"
+        input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
         output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed_skims.json"
 
     # Load the input JSON file
