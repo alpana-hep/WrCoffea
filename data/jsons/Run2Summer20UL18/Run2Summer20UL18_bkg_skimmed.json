@@ -1731,9 +1731,9 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "tt+tW",
+            "process": "tt",
             "dataset": "TTTo2L2Nu",
-            "xsec": 88.29,
+            "xsec": 92.6556,
             "genEventSumw": 10457566629.0
         },
         "form": null
@@ -1774,7 +1774,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "tt+tW",
+            "process": "tW",
             "dataset": "ST_tW_antitop",
             "xsec": 19.2,
             "genEventSumw": 355945888.0
@@ -1817,7 +1817,7 @@
         },
         "metadata": {
             "mc_campaign": "Run2Summer20UL18",
-            "process": "tt+tW",
+            "process": "tW",
             "dataset": "ST_tW_top",
             "xsec": 19.2,
             "genEventSumw": 365675742.0

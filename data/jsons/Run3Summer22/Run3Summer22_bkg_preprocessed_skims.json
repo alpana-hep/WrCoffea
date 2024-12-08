@@ -1,5 +1,12 @@
 {
     "/DYto2L-4Jets_MLL-50to120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v1/NANOAODSIM": {
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-50to120_HT-40to70",
+            "xsec": 315.8,
+            "genEventSumw": 61392443014.0
+        },
         "files": {
             "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer22/DYto2L-4Jets_MLL-50to120_HT-40to70/DYto2L-4Jets_MLL-50to120_HT-40to70_skims1to19.root": {
                 "object_path": "Events",
@@ -679,16 +686,16 @@
                 "uuid": "b29365ac-923d-11ef-b114-91bee183beef"
             }
         },
-        "metadata": {
-            "mc_campaign": "Run3Summer22",
-            "process": "DYJets",
-            "dataset": "DYto2L-4Jets_MLL-50to120_HT-40to70",
-            "xsec": 315.8,
-            "genEventSumw": 61392443014.0
-        },
         "form": null
     },
     "/DYto2L-4Jets_MLL-50to120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v1/NANOAODSIM": {
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-50to120_HT-70to100",
+            "xsec": 140.0,
+            "genEventSumw": 26181566419.0
+        },
         "files": {
             "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer22/DYto2L-4Jets_MLL-50to120_HT-70to100/DYto2L-4Jets_MLL-50to120_HT-70to100_skims13to22.root": {
                 "object_path": "Events",
@@ -1272,16 +1279,16 @@
                 "uuid": "aa0499b2-9240-11ef-8f1a-91bee183beef"
             }
         },
-        "metadata": {
-            "mc_campaign": "Run3Summer22",
-            "process": "DYJets",
-            "dataset": "DYto2L-4Jets_MLL-50to120_HT-70to100",
-            "xsec": 140.0,
-            "genEventSumw": 26181566419.0
-        },
         "form": null
     },
     "/DYto2L-4Jets_MLL-50to120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v1/NANOAODSIM": {
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-50to120_HT-100to400",
+            "xsec": 178.7,
+            "genEventSumw": 53273563130.0
+        },
         "files": {
             "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer22/DYto2L-4Jets_MLL-50to120_HT-100to400/DYto2L-4Jets_MLL-50to120_HT-100to400_skims113to127.root": {
                 "object_path": "Events",
@@ -2091,16 +2098,16 @@
                 "uuid": "bb4b195a-9379-11ef-b618-45bfe183beef"
             }
         },
-        "metadata": {
-            "mc_campaign": "Run3Summer22",
-            "process": "DYJets",
-            "dataset": "DYto2L-4Jets_MLL-50to120_HT-100to400",
-            "xsec": 178.7,
-            "genEventSumw": 53273563130.0
-        },
         "form": null
     },
     "/DYto2L-4Jets_MLL-50to120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v1/NANOAODSIM": {
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-50to120_HT-400to800",
+            "xsec": 6.719,
+            "genEventSumw": 77988340.0
+        },
         "files": {
             "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer22/DYto2L-4Jets_MLL-50to120_HT-400to800/DYto2L-4Jets_MLL-50to120_HT-400to800_skims1to23.root": {
                 "object_path": "Events",
@@ -2142,16 +2149,16 @@
                 "uuid": "60b34f76-937e-11ef-ac35-45bfe183beef"
             }
         },
-        "metadata": {
-            "mc_campaign": "Run3Summer22",
-            "process": "DYJets",
-            "dataset": "DYto2L-4Jets_MLL-50to120_HT-400to800",
-            "xsec": 6.719,
-            "genEventSumw": 77988340.0
-        },
         "form": null
     },
     "/DYto2L-4Jets_MLL-50to120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-50to120_HT-800to1500",
+            "xsec": 0.6938,
+            "genEventSumw": 15345379.0
+        },
         "files": {
             "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer22/DYto2L-4Jets_MLL-50to120_HT-800to1500/DYto2L-4Jets_MLL-800to120_HT-800to1500_skims1to26.root": {
                 "object_path": "Events",
@@ -2228,16 +2235,16 @@
                 "uuid": "c79ef4f6-937e-11ef-87c1-45bfe183beef"
             }
         },
-        "metadata": {
-            "mc_campaign": "Run3Summer22",
-            "process": "DYJets",
-            "dataset": "DYto2L-4Jets_MLL-50to120_HT-800to1500",
-            "xsec": 0.6938,
-            "genEventSumw": 15345379.0
-        },
         "form": null
     },
     "/DYto2L-4Jets_MLL-50to120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-50to120_HT-1500to2500",
+            "xsec": 0.05053,
+            "genEventSumw": 1135552.0
+        },
         "files": {
             "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer22/DYto2L-4Jets_MLL-50to120_HT-1500to2500/DYto2L-4Jets_MLL-50to120_HT-1500to2500_skims1to22.root": {
                 "object_path": "Events",
@@ -2325,16 +2332,16 @@
                 "uuid": "a20951d6-937a-11ef-b52b-45bfe183beef"
             }
         },
-        "metadata": {
-            "mc_campaign": "Run3Summer22",
-            "process": "DYJets",
-            "dataset": "DYto2L-4Jets_MLL-50to120_HT-1500to2500",
-            "xsec": 0.05053,
-            "genEventSumw": 1135552.0
-        },
         "form": null
     },
     "/DYto2L-4Jets_MLL-50to120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v3/NANOAODSIM": {
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-50to120_HT-2500",
+            "xsec": 0.00347,
+            "genEventSumw": 84154.0
+        },
         "files": {
             "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer22/DYto2L-4Jets_MLL-50to120_HT-2500/DYto2L-4Jets_MLL-50to120_HT-2500_skims1to26.root": {
                 "object_path": "Events",
@@ -2431,16 +2438,16 @@
                 "uuid": "2cfcd4a4-937e-11ef-ba8f-45bfe183beef"
             }
         },
-        "metadata": {
-            "mc_campaign": "Run3Summer22",
-            "process": "DYJets",
-            "dataset": "DYto2L-4Jets_MLL-50to120_HT-2500",
-            "xsec": 0.00347,
-            "genEventSumw": 84154.0
-        },
         "form": null
     },
     "/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-40to70",
+            "xsec": 4.548,
+            "genEventSumw": 66166865.0
+        },
         "files": {
             "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer22/DYto2L-4Jets_MLL-120_HT-40to70/DYto2L-4Jets_MLL-120_HT-40to70_skims1to36.root": {
                 "object_path": "Events",
@@ -2514,16 +2521,16 @@
                 "uuid": "97087dde-937f-11ef-a382-45bfe183beef"
             }
         },
-        "metadata": {
-            "mc_campaign": "Run3Summer22",
-            "process": "DYJets",
-            "dataset": "DYto2L-4Jets_MLL-120_HT-40to70",
-            "xsec": 4.548,
-            "genEventSumw": 66166865.0
-        },
         "form": null
     },
     "/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-70to100",
+            "xsec": 2.22,
+            "genEventSumw": 30184435.0
+        },
         "files": {
             "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer22/DYto2L-4Jets_MLL-120_HT-70to100/DYto2L-4Jets_MLL-120_HT-70to100_skims1to35.root": {
                 "object_path": "Events",
@@ -2585,16 +2592,16 @@
                 "uuid": "5fe94e5e-9380-11ef-bf2c-45bfe183beef"
             }
         },
-        "metadata": {
-            "mc_campaign": "Run3Summer22",
-            "process": "DYJets",
-            "dataset": "DYto2L-4Jets_MLL-120_HT-70to100",
-            "xsec": 2.22,
-            "genEventSumw": 30184435.0
-        },
         "form": null
     },
     "/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-100to400",
+            "xsec": 3.33,
+            "genEventSumw": 61512300.0
+        },
         "files": {
             "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer22/DYto2L-4Jets_MLL-120_HT-100to400/DYto2L-4Jets_MLL-120_HT-100to400_skims1to38.root": {
                 "object_path": "Events",
@@ -2656,16 +2663,16 @@
                 "uuid": "52ba9cce-9376-11ef-9a2c-45bfe183beef"
             }
         },
-        "metadata": {
-            "mc_campaign": "Run3Summer22",
-            "process": "DYJets",
-            "dataset": "DYto2L-4Jets_MLL-120_HT-100to400",
-            "xsec": 3.33,
-            "genEventSumw": 61512300.0
-        },
         "form": null
     },
     "/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-400to800",
+            "xsec": 0.1749,
+            "genEventSumw": 4306883.0
+        },
         "files": {
             "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer22/DYto2L-4Jets_MLL-120_HT-400to800/DYto2L-4Jets_MLL-120_HT-400to800_skims18to34.root": {
                 "object_path": "Events",
@@ -2746,16 +2753,16 @@
                 "uuid": "5bb996f8-9377-11ef-a400-45bfe183beef"
             }
         },
-        "metadata": {
-            "mc_campaign": "Run3Summer22",
-            "process": "DYJets",
-            "dataset": "DYto2L-4Jets_MLL-120_HT-400to800",
-            "xsec": 0.1749,
-            "genEventSumw": 4306883.0
-        },
         "form": null
     },
     "/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-800to1500",
+            "xsec": 0.02102,
+            "genEventSumw": 473358.0
+        },
         "files": {
             "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer22/DYto2L-4Jets_MLL-120_HT-800to1500/DYto2L-4Jets_MLL-120_HT-800to1500_skims1to36.root": {
                 "object_path": "Events",
@@ -2829,16 +2836,16 @@
                 "uuid": "dcc71806-9377-11ef-b14b-45bfe183beef"
             }
         },
-        "metadata": {
-            "mc_campaign": "Run3Summer22",
-            "process": "DYJets",
-            "dataset": "DYto2L-4Jets_MLL-120_HT-800to1500",
-            "xsec": 0.02102,
-            "genEventSumw": 473358.0
-        },
         "form": null
     },
     "/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-1500to2500",
+            "xsec": 0.001679,
+            "genEventSumw": 39689.0
+        },
         "files": {
             "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer22/DYto2L-4Jets_MLL-120_HT-1500to2500/DYto2L-4Jets_MLL-120_HT-1500to2500_skims1to45.root": {
                 "object_path": "Events",
@@ -2920,16 +2927,16 @@
                 "uuid": "a2b27436-9376-11ef-9500-45bfe183beef"
             }
         },
-        "metadata": {
-            "mc_campaign": "Run3Summer22",
-            "process": "DYJets",
-            "dataset": "DYto2L-4Jets_MLL-120_HT-1500to2500",
-            "xsec": 0.001679,
-            "genEventSumw": 39689.0
-        },
         "form": null
     },
     "/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-2500",
+            "xsec": 0.0001238,
+            "genEventSumw": 2510.0
+        },
         "files": {
             "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer22/DYto2L-4Jets_MLL-120_HT-2500/DYto2L-4Jets_MLL-120_HT-2500_skims1to30.root": {
                 "object_path": "Events",
@@ -3014,16 +3021,16 @@
                 "uuid": "1795e620-9377-11ef-ab82-45bfe183beef"
             }
         },
-        "metadata": {
-            "mc_campaign": "Run3Summer22",
-            "process": "DYJets",
-            "dataset": "DYto2L-4Jets_MLL-120_HT-2500",
-            "xsec": 0.0001238,
-            "genEventSumw": 2510.0
-        },
         "form": null
     },
     "/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
+        "metadata": {
+            "mc_campaign": "Run3Summer22",
+            "process": "tt",
+            "dataset": "TTto2L2Nu",
+            "xsec": 102.622,
+            "genEventSumw": 1912899360.0
+        },
         "files": {
             "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer22/TTto2L2Nu/TTto2L2Nu_skims16to25.root": {
                 "object_path": "Events",
@@ -3594,163 +3601,6 @@
                 "num_entries": 1093013,
                 "uuid": "ccc86f38-94c4-11ef-a0d9-45bfe183beef"
             }
-        },
-        "metadata": {
-            "mc_campaign": "Run3Summer22",
-            "process": "tt",
-            "dataset": "TTto2L2Nu",
-            "xsec": 102.622,
-            "genEventSumw": 1912899360.0
-        },
-        "form": null
-    },
-    "/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
-        "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer22/TbarWplusto2L2Nu/TbarWplusto2L2Nu_skims1to26.root": {
-                "object_path": "Events",
-                "steps": [
-                    [
-                        0,
-                        100578
-                    ],
-                    [
-                        100578,
-                        201156
-                    ],
-                    [
-                        201156,
-                        301734
-                    ],
-                    [
-                        301734,
-                        402312
-                    ],
-                    [
-                        402312,
-                        502890
-                    ],
-                    [
-                        502890,
-                        603468
-                    ],
-                    [
-                        603468,
-                        704046
-                    ],
-                    [
-                        704046,
-                        804624
-                    ],
-                    [
-                        804624,
-                        905202
-                    ],
-                    [
-                        905202,
-                        1005780
-                    ],
-                    [
-                        1005780,
-                        1106358
-                    ],
-                    [
-                        1106358,
-                        1206936
-                    ],
-                    [
-                        1206936,
-                        1307514
-                    ],
-                    [
-                        1307514,
-                        1408079
-                    ]
-                ],
-                "num_entries": 1408079,
-                "uuid": "58738ddc-94bc-11ef-b755-93bee183beef"
-            }
-        },
-        "metadata": {
-            "mc_campaign": "Run3Summer22",
-            "process": "tW",
-            "dataset": "TbarWplusto2L2Nu",
-            "xsec": 19.20,
-            "genEventSumw": 9385020.0
-        },
-        "form": null
-    },
-    "/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
-        "files": {
-            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer22/TWminusto2L2Nu/TWminusto2L2Nu_skims1to21.root": {
-                "object_path": "Events",
-                "steps": [
-                    [
-                        0,
-                        96783
-                    ],
-                    [
-                        96783,
-                        193566
-                    ],
-                    [
-                        193566,
-                        290349
-                    ],
-                    [
-                        290349,
-                        387132
-                    ],
-                    [
-                        387132,
-                        483915
-                    ],
-                    [
-                        483915,
-                        580698
-                    ],
-                    [
-                        580698,
-                        677481
-                    ],
-                    [
-                        677481,
-                        774264
-                    ],
-                    [
-                        774264,
-                        871047
-                    ],
-                    [
-                        871047,
-                        967830
-                    ],
-                    [
-                        967830,
-                        1064613
-                    ],
-                    [
-                        1064613,
-                        1161396
-                    ],
-                    [
-                        1161396,
-                        1258179
-                    ],
-                    [
-                        1258179,
-                        1354960
-                    ]
-                ],
-                "num_entries": 1354960,
-                "uuid": "a836049e-94bc-11ef-950c-93bee183beef"
-            }
-        },
-        "metadata": {
-            "mc_campaign": "Run3Summer22",
-            "process": "tW",
-            "dataset": "TWminusto2L2Nu",
-            "xsec": 19.20,
-            "genEventSumw": 9001607.0
         },
         "form": null
     }

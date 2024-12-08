@@ -69,8 +69,9 @@ def get_metadata(config, is_data, is_signal):
 def query_datasets(data, run):
     print(f"\nQuerying replica sites")
     ddc = DataDiscoveryCLI()
-#    if run == "Run2Summer20UL18":
-#        ddc.do_allowlist_sites(["T1_US_FNAL_Disk", "T2_US_Wisconsin", "T2_CH_CERN", "T2_UK_London_IC", "T2_US_Vanderbilt", "T2_US_UCSD", "T2_US_FLORIDA"]) #"T2_FI_HIP"
+    if run == "Run2Summer20UL18":
+#        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_US_Caltech", "T2_US_Vanderbilt", "T2_US_UCSD", "T2_US_Nebraska", "T2_US_Florida", "T2_UK_London_IC"]) #Remove T2_US_Nebraska
+        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_CH_CERN", "T2_UK_London_IC", "T2_US_UCSD", "T2_US_FLORIDA"]) #"T2_FI_HIP"
     if run == "Run3Summer22":
         ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_US_Caltech", "T2_US_Vanderbilt", "T2_US_UCSD", "T2_US_Nebraska", "T2_US_Florida", "T2_UK_London_IC"]) #Remove T2_US_Nebraska
     dataset = ddc.load_dataset_definition(dataset_definition = data, query_results_strategy="all", replicas_strategy="first")
@@ -154,7 +155,7 @@ def get_genevents_from_coffea(rootFile):
     filepath = f"{rootFile}"
     try:
         events = NanoEventsFactory.from_root(
-                {filepath: "Run"},
+                {filepath: "Runs"},
                 schemaclass=NanoAODSchema
         ).events()
 
@@ -228,10 +229,10 @@ if __name__ == "__main__":
     is_data = 'data' in args.sample
     is_signal = 'sig' in args.sample
 
-    updated_config = get_metadata(config, is_data, is_signal)
+#    updated_config = get_metadata(config, is_data, is_signal)
 
     if not is_signal:
-        dataset = query_datasets(updated_config, args.run)
+        dataset = query_datasets(config, args.run) #Updated config
     else:
         dataset = get_signal_files(updated_config)
 
@@ -239,8 +240,8 @@ if __name__ == "__main__":
 
     compare_preprocessed(dataset_runnable, dataset_updated)
 
-    if is_mc:
-       dataset_runnable = get_sumw(dataset_runnable)
+#    if is_mc:
+#       dataset_runnable = get_sumw(dataset_runnable)
 
     # Save the datasets to JSON
     save_json(output_file, dataset_runnable)

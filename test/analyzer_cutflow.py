@@ -162,18 +162,17 @@ class WrAnalysis(processor.ProcessorABC):
         # Event variables
         tightLeptons = ak.with_name(ak.concatenate((tightElectrons, tightMuons), axis=1), 'PtEtaPhiMCandidate')
         tightLeptons = ak.pad_none(tightLeptons[ak.argsort(tightLeptons.pt, axis=1, ascending=False)], 2, axis=1)
-        PaddedAK4Jets = ak.pad_none(AK4Jets, 2, axis=1)
+        AK4Jets = ak.pad_none(AK4Jets, 2, axis=1)
 
         mll = ak.fill_none((tightLeptons[:, 0] + tightLeptons[:, 1]).mass, False)
-        mlljj = ak.fill_none((tightLeptons[:, 0] + tightLeptons[:, 1] + PaddedAK4Jets[:, 0] + PaddedAK4Jets[:, 1]).mass, False)
+        mlljj = ak.fill_none((tightLeptons[:, 0] + tightLeptons[:, 1] + AK4Jets[:, 0] + AK4Jets[:, 1]).mass, False)
 
-        dr_jl_min = ak.fill_none(ak.min(PaddedAK4Jets[:,:2].nearest(tightLeptons).delta_r(PaddedAK4Jets[:,:2]), axis=1), False)
-        dr_j1j2 = ak.fill_none(PaddedAK4Jets[:,0].delta_r(PaddedAK4Jets[:,1]), False)
+        dr_jl_min = ak.fill_none(ak.min(AK4Jets[:,:2].nearest(tightLeptons).delta_r(AK4Jets[:,:2]), axis=1), False)
+        dr_j1j2 = ak.fill_none(AK4Jets[:,0].delta_r(AK4Jets[:,1]), False)
         dr_l1l2 = ak.fill_none(tightLeptons[:,0].delta_r(tightLeptons[:,1]), False)
 
         # Event selections
         selections = PackedSelection()
-
         self.add_resolved_selections(selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2)
 
         # Trigger selections
@@ -197,8 +196,7 @@ class WrAnalysis(processor.ProcessorABC):
             if process == "Signal":
                 output['sumw'] = ak.sum(eventWeight)
             else:
-                output['sumw'] = ak.sum(eventWeight)
-#                output['sumw'] = events.metadata["genEventSumw"]
+                output['sumw'] = events.metadata["genEventSumw"]
         elif isRealData:
             # Fill the data weights with one
             eventWeight = abs(np.sign(events.event)) # Find a better way to do this
@@ -216,13 +214,6 @@ class WrAnalysis(processor.ProcessorABC):
         selections.add("60mll150", ((mll > 60) & (mll < 150)))
         selections.add("400mll", (mll > 400))
         selections.add("150mll", (mll > 150))
-
-        selections.add("leadJetPt500", (ak.any(AK4Jets.pt > 500, axis=1)))
-
-        electron_cutflow = selections.cutflow("leadJetPt500", "eejj", "eeTrigger", "minTwoAK4Jets", 'dr>0.4', 'mlljj>800', '400mll')
-        muon_cutflow = selections.cutflow("leadJetPt500", "mumujj", "mumuTrigger", "minTwoAK4Jets", 'dr>0.4', 'mlljj>800', '400mll')
-        print(electron_cutflow.print())
-        print(muon_cutflow.print())
 
         # Define analysis regions
         regions = {
@@ -264,7 +255,7 @@ class WrAnalysis(processor.ProcessorABC):
             cut = selections.all(*cuts)
             self.fill_basic_histograms(output, region, cut, process, AK4Jets, tightLeptons, weights)
 
-#        output["weightStats"] = weights.weightStatistics
+        output["weightStats"] = weights.weightStatistics
         return output
 
     def postprocess(self, accumulator):

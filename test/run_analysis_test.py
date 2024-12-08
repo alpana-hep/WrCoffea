@@ -63,14 +63,14 @@ def load_json(args):
 
     """Load the appropriate JSON file based on sample, run, and year."""
     if "EGamma" in sample or "SingleMuon" in sample:
-        filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_data_skimmed.json"
+        filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/test/{run}_data_skimmed_test.json"
     elif "Signal" in sample:
         filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_sig_processed.json"
     else:
         if skimmed:
             filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_bkg_skimmed.json"
         else:
-            filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_bkg_preprocessed.json"
+            filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_bkg_processed.json"
     try:
         with open(filepath, 'r') as file:
             data = json.load(file)
@@ -118,7 +118,7 @@ def run_analysis(args, preprocessed_fileset):
 
     to_compute = apply_to_fileset(
         data_manipulation=WrAnalysis(mass_point=args.mass),
-        fileset=max_files(max_chunks(filtered_fileset, 2)),
+        fileset=max_files(max_chunks(filtered_fileset)),
         schemaclass=NanoAODSchema,
         uproot_options={"handler": uproot.XRootDSource, "timeout": 3600}
     )
@@ -127,7 +127,7 @@ def run_analysis(args, preprocessed_fileset):
         logging.info("Computing histograms...")
         with ProgressBar():
             (histograms,) = dask.compute(to_compute)
-        python.save_hists.save_histograms(histograms, args)
+        python.save_hists_test.save_histograms(histograms, args)
 
     exec_time = time.monotonic() - t0
     logging.info(f"Execution took {exec_time/60:.2f} minutes")
@@ -142,7 +142,7 @@ if __name__ == "__main__":
 
     # Required arguments
     parser.add_argument("run", type=str, choices=["Run2Autumn18", "Run2Summer20UL18", "Run3Summer22"], help="Campaign to analyze.")
-    parser.add_argument("sample", type=str, choices=["DYJets", "tt", "tW", "Nonprompt", "Other", "EGamma", "SingleMuon", "Signal"],
+    parser.add_argument("sample", type=str, choices=["DYJets", "tt+tW", "Nonprompt", "Other", "EGamma", "SingleMuon", "Signal"],
                         help="MC sample to analyze (e.g., Signal, DYJets).")
 
     # Optional arguments

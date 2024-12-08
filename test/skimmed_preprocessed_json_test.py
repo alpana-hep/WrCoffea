@@ -40,7 +40,7 @@ def get_root_files_from_eos(dataset, mc_campaign):
     """
     Use xrdfs to get the list of ROOT files from EOS for a given dataset.
     """
-    base_path = f"/store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/{mc_campaign}/{dataset}/"
+    base_path = f"/store/user/wijackso/WRAnalyzer/{dataset}/"
     cmd = ["xrdfs", "root://cmseos.fnal.gov", "ls", base_path]
 
     try:
@@ -120,8 +120,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Build input and output file paths based on the arguments
-    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed.json"
-    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_skimmed.json"
+    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/test/{args.run}_{args.sample}_preprocessed_test.json"
+    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/test/{args.run}_{args.sample}_skimmed_test.json"
 
     # Load the input JSON file
     try:
