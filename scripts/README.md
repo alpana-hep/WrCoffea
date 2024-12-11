@@ -51,7 +51,7 @@ After filter: final equivalent lumi for 1M events (1/fb) = 3.159e+00 +- 3.174e-0
 ```
 ### [make_skimmed_json.py](https://github.com/UMN-CMS/WrCoffea/blob/simplify/scripts/skimmed_preprocessed_json.py)
 #### Description
-* Takes in the `JSON` file from the output of [preprocessed_json.py](https://github.com/UMN-CMS/WrCoffea/blob/simplify/scripts/preprocessed_json.py) and replaces the file paths with those of the skimmed files on EOS. It then preprocesses them and saves the output `JSON` [file](https://github.com/UMN-CMS/WrCoffea/blob/simplify/data/jsons/Run3Summer22/Run3Summer22_bkg_skimmed.json).
+* TBD
 #### Example usage
 ```
 python3 skimmed_preprocessed_json.py Run3Summer22 bkg
