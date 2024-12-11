@@ -139,8 +139,8 @@ if __name__ == "__main__":
         input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
         output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed_skims.json"
     else:
-        input_file = f"/local/cms/user/jack1851/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
-        output_file = f"/local/cms/user/jack1851/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed_skims.json"
+        input_file = f"data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
+        output_file = f"data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed_skims.json"
 
     # Load the input JSON file
     try:
