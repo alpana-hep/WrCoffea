@@ -6,6 +6,21 @@ Begin by cloning the repository,
 git clone git@github.com:UMN-CMS/WrCoffea.git
 cd WrCoffea
 ```
+Then source the appropriate LGC release. For example,
+```
+source /cvmfs/sft.cern.ch/lcg/views/LCG_104/x86_64-el9-gcc11-opt/setup.sh (LPC)
+source /cvmfs/sft.cern.ch/lcg/views/LCG_104/x86_64-centos8-gcc11-opt/setup.sh (UMN)
+```
+Create and source a virtual python environment,
+```
+python3 -m venv coffea-cvfms-env
+source coffea-cvfms-env/bin/activate
+```
+Install the appropriate packages,
+```
+python3 -m pip install -r requirements.txt
+```
+
 ## Running the analyzer
 ### Each week if using LPC:
 To set up a grid UI
