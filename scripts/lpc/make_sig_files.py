@@ -9,18 +9,15 @@ import subprocess
 import re
 import uproot
 import numpy as np
-import awkward as ak
 import multiprocessing
 from pathlib import Path
 from coffea.nanoevents import NanoEventsFactory, NanoAODSchema
-from coffea.dataset_tools import rucio_utils, preprocess, max_files, max_chunks
-from coffea.dataset_tools.dataset_query import print_dataset_query, DataDiscoveryCLI
 from rich.console import Console
 from rich.table import Table
 from dask.diagnostics import ProgressBar
-from dask.distributed import Client
 import os
 import ROOT
+import time
 NanoAODSchema.warn_missing_crossrefs = False
 NanoAODSchema.error_missing_event_ids = False
 
@@ -83,7 +80,6 @@ def get_signal_files(cfg,run):
     result = subprocess.run(['dasgoclient', '-query', f'file dataset=/WRtoNLtoLLJJ_MWR500to3500_TuneCP5-madgraph-pythia8/RunIIAutumn18NanoAODv7-Nano02Apr2020_rpscan_102X_upgrade2018_realistic_v21-v1/NANOAODSIM'], capture_output=True, text=True)
     file_contents += result.stdout
 
-    print(file_contents)
     prepend_string = 'root://eoscms.cern.ch:1094//eos/cms'
     lines = file_contents.strip().split('\n')
     lines = [f'{prepend_string}{line}' for line in lines]
@@ -122,12 +118,31 @@ def get_signal_files(cfg,run):
         except Exception as e:
             print(f"Failed to open file {file_name}: {e}")
 
-    for mass_point, cfg in mwr_mn_files.items():
+#    for mass_point, cfg in mwr_mn_files.items():
+#        output_file_name = f"{run}NanoAODv7_{mass_point}_TuneCP5-madgraph-pythia8.root"
+#        start_time = time.time()  # Start the timer
+#        filter_and_merge_single_dictionary(cfg, output_file_name, mass_point)
+#        end_time = time.time()  # End the timer
+#        elapsed_time = end_time - start_time
+#        print(f"Time taken for {mass_point}: {elapsed_time:.2f} seconds\n")
+#        print()
+
+    total_files = len(mwr_mn_files)  # Total number of iterations
+    for index, (mass_point, cfg) in enumerate(mwr_mn_files.items(), start=1):
         output_file_name = f"{run}NanoAODv7_{mass_point}_TuneCP5-madgraph-pythia8.root"
-        filter_and_merge_single_dictionary(mass_point, output_file_name)
+        
+        print(f"Processing mass point {index}/{total_files}: {mass_point}")
+        start_time = time.time()  # Start the timer
+        
+        filter_and_merge_single_dictionary(cfg, output_file_name, mass_point)
+        
+        end_time = time.time()  # End the timer
+        elapsed_time = end_time - start_time
+        print(f"Time taken for {mass_point}: {elapsed_time:.2f} seconds\n")
+
     return mwr_mn_files
 
-def filter_and_merge_single_dictionary(input_dict, output_file_name):
+def filter_and_merge_single_dictionary(input_dict, output_file_name, point):
     """
     Filters events from ROOT files based on a specified branch and appends the filtered events to a single output ROOT file.
 
@@ -144,7 +159,6 @@ def filter_and_merge_single_dictionary(input_dict, output_file_name):
     metadata = input_dict.get('metadata', {})
 
     print(f"Processing metadata: {metadata}")
-
     for file_path, tree_name in files.items():
         print(f"Processing file: {file_path}")
 
@@ -161,7 +175,13 @@ def filter_and_merge_single_dictionary(input_dict, output_file_name):
             continue
 
         # Check if the branch exists in the tree
-        branch_name = "GenModel_WRtoNLtoLLJJ_MWR3200_MN600_TuneCP5_13TeV_madgraph_pythia8"
+        # Split the input string into parts
+        base, rest = point.split("_WR")
+        mw, mn = rest.split("_N")
+
+        branch_name = f"GenModel_{base}_MWR{mw}_MN{mn}_TuneCP5_13TeV_madgraph_pythia8"
+
+#        branch_name = "GenModel_WRtoNLtoLLJJ_MWR3200_MN600_TuneCP5_13TeV_madgraph_pythia8"
         if not input_tree.GetBranch(branch_name):
             print(f"Branch '{branch_name}' not found in tree '{tree_name}' of file: {file_path}")
             continue
@@ -179,9 +199,10 @@ def filter_and_merge_single_dictionary(input_dict, output_file_name):
         input_file.Close()
 
     # Write the combined filtered tree to the output file
-    if output_tree:
-        output_tree.Write("", ROOT.TObject.kOverwrite)  # Overwrite the tree in the output file
-        print(f"Filtered events appended to {output_file_name}")
+    if output_tree and output_tree.GetEntries() > 0:
+        output_file.cd()  # Ensure the output file is the current directory
+        output_tree.Write("", ROOT.TObject.kOverwrite)  # Write the tree to the file
+        print(f"Filtered events written to {output_file_name}")
     else:
         print("No events passed the filter criteria.")
 
@@ -283,7 +304,7 @@ if __name__ == "__main__":
     output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed.json"
 
     # Create the Dask client
-    client = Client(n_workers=4, threads_per_worker=1, memory_limit='2GB', nanny=False)
+#    client = Client(n_workers=4, threads_per_worker=1, memory_limit='2GB', nanny=False)
 
     # Load the configuration file
     config = load_config(input_file)
@@ -300,13 +321,13 @@ if __name__ == "__main__":
     else:
         dataset = get_signal_files(config, args.run)
 
-    dataset_runnable, dataset_updated = preprocess_json(dataset)
+#    dataset_runnable, dataset_updated = preprocess_json(dataset)
 
-    compare_preprocessed(dataset_runnable, dataset_updated)
+#    compare_preprocessed(dataset_runnable, dataset_updated)
 
 #    if is_mc:
 #       dataset_runnable = get_sumw(dataset_runnable)
 
     # Save the datasets to JSON
-    save_json(output_file, dataset_runnable)
+#    save_json(output_file, dataset_runnable)
 

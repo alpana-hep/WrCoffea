@@ -40,20 +40,20 @@
 #    python3 skim_files.py DYJetsToLL_M-50_HT-2500toInf --start $i
 #done
 
-for ((i=1; i<=155; i+=1))
+#for ((i=150; i<=155; i+=1))
+#do
+#    python3 skim_files.py TTTo2L2Nu --start $i
+#done
+
+for ((i=1; i<=16; i+=1))
 do
-    python3 skim_files.py TTTo2L2Nu --start $i
+    python3 skim_files.py ST_tW_antitop --start $i
 done
 
-#for ((i=1; i<=16; i+=1))
-#do
-#    python3 skim_files.py ST_tW_antitop --start $i
-#done
-
-#for ((i=1; i<=15; i+=1))
-#do
-#    python3 skim_files.py ST_tW_top --start $i
-#done
+for ((i=1; i<=15; i+=1))
+do
+    python3 skim_files.py ST_tW_top --start $i
+done
 
 #for ((i=1; i<=97; i+=1))
 #do

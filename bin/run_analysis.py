@@ -151,7 +151,7 @@ if __name__ == "__main__":
     optional.add_argument("--skimmed", action='store_true', help="Use the skimmed files.")
     optional.add_argument("--lpc", action='store_true', help="Start an LPC cluster.")
     optional.add_argument("--hists", action='store_true', help="Output histograms.")
-
+    optional.add_argument("--umn", action="store_true", help="Enable UMN mode (default: False)")
     args = parser.parse_args()
 
     # Validate the parsed arguments

@@ -43,7 +43,7 @@ def make_skimmed_events(events):
     """Apply event selection to create skimmed datasets."""
     selected_electrons = events.Electron[(events.Electron.pt > 45)]
     selected_muons = events.Muon[(events.Muon.pt > 45)]
-    selected_jets = events.Jet[(events.Jet.pt > 25)]
+#    selected_jets = events.Jet[(events.Jet.pt > 25)]
     event_filters = (
             ((ak.count(selected_electrons.pt, axis=1) + ak.count(selected_muons.pt, axis=1)) >= 2) 
 #           & (ak.count(selected_jets.pt, axis=1) >= 2)
@@ -86,8 +86,8 @@ def process_file(sliced_dataset, dataset_key, dataset, file_index):
 
     with ProgressBar():
         for dataset_name, skimmed in skimmed_dict.items():
-            skimmed = uproot_writeable(skimmed)
-            uproot.dask_write(skimmed.repartition(rows_per_partition=50000), compute=True, destination=f"/uscms/home/bjackson/nobackup/WrCoffea/test/{dataset}", prefix=f"{dataset}_skim{file_index}", tree_name="Events") #10000
+            conv = uproot_writeable(skimmed)
+            uproot.dask_write(conv.repartition(rows_per_partition=50000), compute=True, destination=f"/uscms/home/bjackson/nobackup/WrCoffea/test/{dataset}", prefix=f"{dataset}_skim{file_index}", tree_name="Events") #10000
 
     gc.collect()
 
@@ -99,7 +99,7 @@ if __name__ == "__main__":
 
     t0 = time.monotonic()
 
-    json_file_path = f'/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/Run2Summer20UL18/Run2Summer20UL18_bkg_preprocessed_new.json'
+    json_file_path = f'/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/Run2Summer20UL18/Run2Summer20UL18_bkg_preprocessed.json'
     with open(json_file_path, 'r') as file:
         fileset = json.load(file)
 
