@@ -75,7 +75,6 @@ To plot a comparison of the Run2 vs. Run3 backgrounds,
 python3 scripts/241120_Run2VSRun3/plot_CR.py
 ```
 
-To plot a comparison of the signal points,
-```
-python3 scripts/241215_N3000_vs_N800/plot_SR.py
-```
+### Extending the Analyzer
+
+The files [bin/run_analysis.py](https://github.com/UMN-CMS/WrCoffea/blob/main/bin/run_analysis.py) and [src/analyzer.py](https://github.com/UMN-CMS/WrCoffea/blob/main/src/analyzer.py) make a standard selection and standard set of histograms. Independent studies where the variables, selections, histograms etc may differ are developed in the [tests](https://github.com/UMN-CMS/WrCoffea/tree/main/test) folder. Once finished, they can be integrated into the main pipeline via the `bin` or `python` or `src` folders.
