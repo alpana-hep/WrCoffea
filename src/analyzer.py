@@ -66,8 +66,8 @@ class WrAnalysis(processor.ProcessorABC):
     def selectJets(self, events):
         """Select AK4 and AK8 jets."""
         ak4_jets = (events.Jet.pt > 40) & (np.abs(events.Jet.eta) < 2.4) & (events.Jet.isTightLeptonVeto)
-        ak8_jets = (events.FatJet.pt > 200) & (np.abs(events.FatJet.eta) < 2.4) & (events.FatJet.jetId == 2) & (events.FatJet.msoftdrop > 40)
-        return events.Jet[ak4_jets], events.FatJet[ak8_jets]
+#        ak8_jets = (events.FatJet.pt > 200) & (np.abs(events.FatJet.eta) < 2.4) & (events.FatJet.jetId == 2) & (events.FatJet.msoftdrop > 40)
+        return events.Jet[ak4_jets]
 
     def check_mass_point_resolved(self):
         """Check if the specified mass point is a resolved sample.
@@ -159,7 +159,7 @@ class WrAnalysis(processor.ProcessorABC):
         tightMuons, _ = self.selectMuons(events)
         nTightMuons = ak.num(tightMuons)
 
-        AK4Jets, _ = self.selectJets(events)
+        AK4Jets = self.selectJets(events)
         nAK4Jets = ak.num(AK4Jets)
 
         # Event variables
