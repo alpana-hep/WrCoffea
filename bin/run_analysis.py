@@ -65,10 +65,7 @@ def load_json(args):
     if "EGamma" in sample or "SingleMuon" in sample:
         filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_data_skimmed.json"
     elif "Signal" in sample:
-        if not umn:
-            filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_sig_preprocessed_skims.json"
-        else:
-            filepath = f"/local/cms/user/jack1851/WrCoffea/data/jsons/{run}/{run}_sig_preprocessed_skims.json"
+        filepath = f"data/jsons/{run}/{run}_sig_preprocessed_skims.json"
     else:
         if skimmed and not umn:
             filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_bkg_skimmed.json"

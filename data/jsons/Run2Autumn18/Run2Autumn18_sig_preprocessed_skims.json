@@ -1,4 +1,26 @@
 {
+    "WRtoNLtoLLJJ_WR3200_N800": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3200_N800",
+            "xsec": 0.01223
+        },
+        "files": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Autumn18/WRtoNLtoLLJJ_WR3200_N800/Run2Autumn18NanoAODv7_WRtoNLtoLLJJ_WR3200_N800_TuneCP5-madgraph-pythia8.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        48600
+                    ]
+                ],
+                "num_entries": 48600,
+                "uuid": "eb31d9a0-ba80-11ef-b281-54bfe183beef"
+            }
+        },
+        "form": null
+    },
     "WRtoNLtoLLJJ_WR3200_N1600": {
         "metadata": {
             "mc_campaign": "Run2Autumn18",
@@ -7,7 +29,7 @@
             "xsec": 0.008364
         },
         "files": {
-            "/uscms/home/bjackson/nobackup/WrCoffea/test/WRtoNLtoLLJJ_WR3200_N1600/Run2Autumn18NanoAODv7_WRtoNLtoLLJJ_WR3200_N1600_TuneCP5-madgraph-pythia8.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Autumn18/WRtoNLtoLLJJ_WR3200_N1600/Run2Autumn18NanoAODv7_WRtoNLtoLLJJ_WR3200_N1600_TuneCP5-madgraph-pythia8.root": {
                 "object_path": "Events",
                 "steps": [
                     [
@@ -29,7 +51,7 @@
             "xsec": 0.0003262
         },
         "files": {
-            "/uscms/home/bjackson/nobackup/WrCoffea/test/WRtoNLtoLLJJ_WR3200_N3000/Run2Autumn18NanoAODv7_WRtoNLtoLLJJ_WR3200_N3000_TuneCP5-madgraph-pythia8.root": {
+            "root://cmseos.fnal.gov:1094//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run2Autumn18/WRtoNLtoLLJJ_WR3200_N3000/Run2Autumn18NanoAODv7_WRtoNLtoLLJJ_WR3200_N3000_TuneCP5-madgraph-pythia8.root": {
                 "object_path": "Events",
                 "steps": [
                     [

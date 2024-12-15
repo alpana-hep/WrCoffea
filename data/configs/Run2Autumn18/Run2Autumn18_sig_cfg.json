@@ -1,4 +1,12 @@
 {
+    "WRtoNLtoLLJJ_WR3200_N800": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3200_N800",
+            "xsec": 0.01223
+        }
+    },
     "WRtoNLtoLLJJ_WR3200_N1600": {
         "metadata": {
             "mc_campaign": "Run2Autumn18",
