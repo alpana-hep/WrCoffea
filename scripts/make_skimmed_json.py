@@ -36,8 +36,8 @@ def replace_files_in_json(data, run, umn):
     return data
 
 def get_root_files_from_umn(dataset, mc_campaign):
-    base_path = f"/uscms/home/bjackson/nobackup/WrCoffea/test/{dataset}/"
-#    base_path = f"/local/cms/user/jack1851/skims/{mc_campaign}/{dataset}/"
+#    base_path = f"/uscms/home/bjackson/nobackup/WrCoffea/test/{dataset}/"
+    base_path = f"/local/cms/user/jack1851/skims/{mc_campaign}/{dataset}/"
     root_files = []
 
     # Walk through the directory and collect .root files
@@ -93,6 +93,9 @@ def save_json(output_file, data, data_all):
     throw an error and output the differences. If they are the same, save only data.
     """
     output_path = Path(output_file)
+
+    # Ensure the directories for the output file exist
+    output_path.parent.mkdir(parents=True, exist_ok=True)
 
     # Compare the contents of data and data_all
     if data != data_all:
