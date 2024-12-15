@@ -13,7 +13,7 @@ source wr-env/bin/activate
 ```
 Install the appropriate packages,
 ```
-python3 -m pip install --ignore-installed --no-cache-dir -r requirements.txt
+python3 -m pip install -r requirements.txt
 ```
 
 ## Running the analyzer
@@ -21,6 +21,10 @@ python3 -m pip install --ignore-installed --no-cache-dir -r requirements.txt
 To set up a grid UI
 ```
 voms-proxy-init --rfc --voms cms -valid 192:00
+```
+Source LGC release
+```
+source /cvmfs/sft.cern.ch/lcg/views/LCG_106/x86_64-el9-gcc13-opt/setup.sh
 ```
 ### Basic analysis
 To run a basic analysis, 
@@ -31,7 +35,7 @@ More information can be found in the `README.md` file in other folders.
 
 ## Running at UMN
 ### Preprocess
-To preprocess the background datasets (only needs to be done once),
+To preprocess the background datasets (needs to be done if a file in `configs/` is updated),
 ```
 python3 scripts/make_skimmed_json.py Run2Summer20UL18 bkg --umn
 ```
@@ -45,15 +49,15 @@ python3 scripts/make_skimmed_json.py Run2Autumn18 sig --umn
 ### Basic analysis
 To run a basic analysis at UMN, 
 ```
-python3.11 bin/run_analysis.py Run2Summer20UL18 DYJets --skimmed --umn --hists
+python3 bin/run_analysis.py Run2Summer20UL18 DYJets --skimmed --umn --hists
 ```
-where the sample can be either `DYJets` or `tt`.
+where the run is given by `Run2Summer20UL18` or `Run3Summer22`, and the process `DYJets` or `tt`.
 
 To run over signal samples,
 ```
 python3 bin/run_analysis.py Run2Autumn18 Signal --mass WR3200_N800 --umn --hists
 ```
-where `--mass` can be `WR3200_N3000`, `WR3200_N1600`, `WR3200_N400` etc.
+where the possible signal points are given by [Run2Autumn18_mass_points.csv](https://github.com](https://github.com/UMN-CMS/WrCoffea/blob/main/data/Run2Autumn18_mass_points.csv))
 
 ### Plotting
 Plotting is handled in the `WR_Plotter` submodule,
@@ -61,13 +65,17 @@ Plotting is handled in the `WR_Plotter` submodule,
 cd WR_Plotter
 ```
 
-Then source the appropriate LGC release. For example,
+Source the appropriate LGC release. For example,
 ```
-source /cvmfs/sft.cern.ch/lcg/views/LCG_106/x86_64-el9-gcc13-opt/setup.sh (LPC)
-source /cvmfs/sft.cern.ch/lcg/views/LCG_104/x86_64-centos8-gcc11-opt/setup.sh (UMN)
+source /cvmfs/sft.cern.ch/lcg/views/LCG_104/x86_64-centos8-gcc11-opt/setup.sh
 ```
 
-Then plot with
+To plot a comparison of the Run2 vs. Run3 backgrounds,
 ```
 python3 scripts/241120_Run2VSRun3/plot_CR.py
+```
+
+To plot a comparison of the signal points,
+```
+python3 scripts/241215_N3000_vs_N800/plot_SR.py
 ```
