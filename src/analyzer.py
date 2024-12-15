@@ -217,8 +217,8 @@ class WrAnalysis(processor.ProcessorABC):
         selections.add("400mll", (mll > 400))
         selections.add("150mll", (mll > 150))
 
-#        selections.add("leadJetPt500", (ak.any(AK4Jets.pt > 500, axis=1)))
-
+        # Cutflow Tables
+        selections.add("leadJetPt500", (ak.any(AK4Jets.pt > 500, axis=1)))
         electron_cutflow = selections.cutflow("leadJetPt500", "eejj", "eeTrigger", "minTwoAK4Jets", 'dr>0.4', 'mlljj>800', '400mll')
         muon_cutflow = selections.cutflow("leadJetPt500", "mumujj", "mumuTrigger", "minTwoAK4Jets", 'dr>0.4', 'mlljj>800', '400mll')
 #        print(electron_cutflow.print())

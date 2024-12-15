@@ -89,7 +89,7 @@ def make_skimmed_events(events, dataset_key):
     # Return the filtered events
     return skimmed_dropped
 
-def extract_data(dataset_dict, dataset, config_path="/uscms/home/bjackson/nobackup/WrCoffea/data/configs/Run2Autumn18/Run2Autumn18_sig_cfg_full.json"):
+def extract_data(dataset_dict, dataset, config_path="/uscms/home/bjackson/nobackup/WrCoffea/data/configs/Run2Autumn18/Run2Autumn18_sig_cfg_all.json"):
     """Extract data for the given dataset and year from the JSON config."""
     with open(config_path, 'r') as f:
         dataset_mapping = json.load(f)

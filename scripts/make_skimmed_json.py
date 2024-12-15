@@ -36,8 +36,8 @@ def replace_files_in_json(data, run, umn):
     return data
 
 def get_root_files_from_umn(dataset, mc_campaign):
-#    base_path = f"/uscms/home/bjackson/nobackup/WrCoffea/skims/{mc_campaign}/{dataset}/"
-    base_path = f"/local/cms/user/jack1851/skims/{mc_campaign}/{dataset}/"
+    base_path = f"/uscms/home/bjackson/nobackup/WrCoffea/test/{dataset}/"
+#    base_path = f"/local/cms/user/jack1851/skims/{mc_campaign}/{dataset}/"
     root_files = []
 
     # Walk through the directory and collect .root files
@@ -135,13 +135,8 @@ if __name__ == "__main__":
     # Parse the arguments
     args = parser.parse_args()
 
-    # Build input and output file paths based on the arguments
-    if not args.umn:
-        input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
-        output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed_skims.json"
-    else:
-        input_file = f"data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
-        output_file = f"data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed_skims.json"
+    input_file = f"data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
+    output_file = f"data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed_skims.json"
 
     # Load the input JSON file
     try:
@@ -152,15 +147,8 @@ if __name__ == "__main__":
         logging.error(f"Input file {input_file} not found!")
         exit(1)
 
-    if args.sample == "sig":
-        is_signal = True
-    else:
-        is_signal = False
-
     # Clear the "files" content and update with new ROOT files
     fileset = replace_files_in_json(fileset, args.run, args.umn)
-
-    print("FILESET", fileset)
 
     # Preprocess the updated fileset
     dataset_runnable, dataset_updated = preprocess_json(fileset, chunks=args.chunks, timeout=args.timeout)

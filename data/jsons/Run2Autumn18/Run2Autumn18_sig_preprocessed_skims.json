@@ -1,4 +1,26 @@
 {
+    "WRtoNLtoLLJJ_WR3200_N1600": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3200_N1600",
+            "xsec": 0.008364
+        },
+        "files": {
+            "/uscms/home/bjackson/nobackup/WrCoffea/test/WRtoNLtoLLJJ_WR3200_N1600/Run2Autumn18NanoAODv7_WRtoNLtoLLJJ_WR3200_N1600_TuneCP5-madgraph-pythia8.root": {
+                "object_path": "Events",
+                "steps": [
+                    [
+                        0,
+                        49005
+                    ]
+                ],
+                "num_entries": 49005,
+                "uuid": "bf6a9612-ba7c-11ef-bd59-54bfe183beef"
+            }
+        },
+        "form": null
+    },
     "WRtoNLtoLLJJ_WR3200_N3000": {
         "metadata": {
             "mc_campaign": "Run2Autumn18",
