@@ -155,10 +155,6 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    # Load mass choices from the CSV file
-    file_path = Path('data/Run2Autumn18_mass_points.csv')
-    MASS_CHOICES = load_masses_from_csv(file_path)
-
     # Validate the parsed arguments
     validate_arguments(args)
 
