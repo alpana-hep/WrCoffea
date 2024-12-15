@@ -19,3 +19,4 @@ data/Run2Autumn18_mass_points_full.csv
 data/configs/Run2Autumn18/Run2Autumn18_sig_cfg_all.json
 data/configs/Run2Summer20UL18/Run2Summer20UL18_bkg_cfg_full.json
 *.nfs*
+WR_Plotter/
