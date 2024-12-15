@@ -6,11 +6,6 @@ Begin by cloning the repository,
 git clone git@github.com:UMN-CMS/WrCoffea.git
 cd WrCoffea
 ```
-Then source the appropriate LGC release. For example,
-```
-source /cvmfs/sft.cern.ch/lcg/views/LCG_106/x86_64-el9-gcc13-opt/setup.sh (LPC)
-source /cvmfs/sft.cern.ch/lcg/views/LCG_104/x86_64-centos8-gcc11-opt/setup.sh (UMN)
-```
 Create and source a virtual python environment,
 ```
 python3 -m venv wr-env
@@ -64,4 +59,15 @@ where `--mass` can be `WR3200_N3000`, `WR3200_N1600`, `WR3200_N400` etc.
 Plotting is handled in the `WR_Plotter` submodule,
 ```
 cd WR_Plotter
+```
+
+Then source the appropriate LGC release. For example,
+```
+source /cvmfs/sft.cern.ch/lcg/views/LCG_106/x86_64-el9-gcc13-opt/setup.sh (LPC)
+source /cvmfs/sft.cern.ch/lcg/views/LCG_104/x86_64-centos8-gcc11-opt/setup.sh (UMN)
+```
+
+Then plot with
+```
+python3 scripts/241120_Run2VSRun3/plot_CR.py
 ```
