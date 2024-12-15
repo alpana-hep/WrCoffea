@@ -36,7 +36,8 @@ def replace_files_in_json(data, run, umn):
     return data
 
 def get_root_files_from_umn(dataset, mc_campaign):
-    base_path = f"/local/cms/user/jack1851/skims/{mc_campaign}/{dataset}/"
+    base_path = f"/uscms/home/bjackson/nobackup/WrCoffea/test/{dataset}/"
+#    base_path = f"/local/cms/user/jack1851/skims/{mc_campaign}/{dataset}/"
     root_files = []
 
     # Walk through the directory and collect .root files
@@ -125,8 +126,8 @@ def save_json(output_file, data, data_all):
 if __name__ == "__main__":
     # Set up argument parsing
     parser = argparse.ArgumentParser(description="Process the JSON configuration file.")
-    parser.add_argument("run", type=str, choices=["Run2Summer20UL18", "Run3Summer22"], help="Run (e.g., Run2UltraLegacy)")
-    parser.add_argument("sample", type=str, choices=["bkg"], help="Sample type (bkg, sig, data)")
+    parser.add_argument("run", type=str, choices=["Run2Autumn18", "Run2Summer20UL18", "Run3Summer22"], help="Run (e.g., Run2UltraLegacy)")
+    parser.add_argument("sample", type=str, choices=["bkg", "sig"], help="Sample type (bkg, sig, data)")
     parser.add_argument("--umn", action="store_true", help="Enable UMN mode (default: False)")
     parser.add_argument("--chunks", type=int, default=100_000, help="Chunk size for processing")
     parser.add_argument("--timeout", type=int, default=3600, help="Timeout for uproot file handling")
@@ -134,13 +135,8 @@ if __name__ == "__main__":
     # Parse the arguments
     args = parser.parse_args()
 
-    # Build input and output file paths based on the arguments
-    if not args.umn:
-        input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
-        output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed_skims.json"
-    else:
-        input_file = f"data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
-        output_file = f"data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed_skims.json"
+    input_file = f"data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
+    output_file = f"data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed_skims.json"
 
     # Load the input JSON file
     try:

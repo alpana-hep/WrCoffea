@@ -70,5 +70,14 @@
             "xsec": 0.00438495,
             "genEventSumw": 1978203.0
         }
+    },
+    "/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM": {
+        "metadata": {
+            "mc_campaign": "Run2Summer20UL18",
+            "process": "tt",
+            "dataset": "TTTo2L2Nu",
+            "xsec": 92.6556,
+            "genEventSumw": 10457566629.0
+        }
     }
 }

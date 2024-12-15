@@ -1,7 +1,0 @@
-{
-    "/EGamma/Run2018B-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD": {
-	    "mc_campaign": "Run2Summer20UL18", 
-	    "process": "EGamma", 
-	    "dataset": "EGamma_Run2018B"
-    }
-}

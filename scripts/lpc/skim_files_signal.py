@@ -39,21 +39,57 @@ def uproot_writeable(events):
             )
     return out_event
 
-def make_skimmed_events(events):
-    """Apply event selection to create skimmed datasets."""
-    selected_electrons = events.Electron[(events.Electron.pt > 45)]
-    selected_muons = events.Muon[(events.Muon.pt > 45)]
-#    selected_jets = events.Jet[(events.Jet.pt > 25)]
-    event_filters = (
-            ((ak.count(selected_electrons.pt, axis=1) + ak.count(selected_muons.pt, axis=1)) >= 2) 
-#           & (ak.count(selected_jets.pt, axis=1) >= 2)
-            )
+def make_skimmed_events(events, dataset_key):
+    """Apply event selection to create skimmed datasets based on a specific branch."""
+    # Adjust dataset_key to match the actual format
+    base, rest = dataset_key.split("_WR")
+    wr, n = rest.split("_N")
+    branch_name = f"WRtoNLtoLLJJ_MWR{wr}_MN{n}_TuneCP5_13TeV_madgraph_pythia8"
 
+    # Debugging: Check GenModel and subfields
+    if "GenModel" not in events.fields:
+        raise ValueError("'GenModel' field not found in the events dataset")
+    
+    # Check if the branch exists under GenModel
+    if branch_name not in events.GenModel.fields:
+        raise ValueError(f"Branch '{branch_name}' not found in GenModel subfields")
+
+    # Access the branch under GenModel
+    branch_data = events.GenModel[branch_name]
+    
+    # Debug: Print the type and content of branch_data
+
+    # Convert branch_data to boolean if necessary
+    if hasattr(branch_data, "astype"):
+        event_filters = branch_data.astype(bool)
+    else:
+        # Handle case where branch_data is not directly boolean-compatible
+        try:
+            event_filters = branch_data == True  # Explicit comparison if possible
+        except Exception as e:
+            raise ValueError(f"Cannot convert branch_data to boolean: {e}")
+
+    # Apply the filter to the events
     skimmed = events[event_filters]
-    skimmed_dropped = skimmed[list(set(x for x in skimmed.fields if x in ["Electron", "Muon", "Jet", "FatJet", "HLT", "event", "run", "luminosityBlock", "genWeight"]))]
+
+    # Define the fields to keep
+    keep_fields = [
+        "Electron", "Muon", "Jet", "FatJet", 
+        "HLT", "event", "run", "luminosityBlock", 
+        "genWeight"
+    ]
+
+    # Add the specific branch to the list of fields to keep
+#    if branch_name not in keep_fields:
+#        keep_fields.append(f"GenModel.{branch_name}")
+
+    # Create skimmed_dropped with selected fields
+    skimmed_dropped = skimmed[list(set(x for x in skimmed.fields if x in keep_fields))]
+
+    # Return the filtered events
     return skimmed_dropped
 
-def extract_data(dataset_dict, dataset, config_path="/uscms/home/bjackson/nobackup/WrCoffea/data/configs/Run2Summer20UL18/Run2Summer20UL18_bkg_cfg.json"):
+def extract_data(dataset_dict, dataset, config_path="/uscms/home/bjackson/nobackup/WrCoffea/data/configs/Run2Autumn18/Run2Autumn18_sig_cfg_all.json"):
     """Extract data for the given dataset and year from the JSON config."""
     with open(config_path, 'r') as f:
         dataset_mapping = json.load(f)
@@ -74,20 +110,25 @@ def process_file(sliced_dataset, dataset_key, dataset, file_index):
     # Access the list of files for the dataset
     file_names = sliced_dataset[dataset_key]['files']
     # Print the file name being processed
-    print(f"Processing file: {file_names.keys()}")
-
+    print(f"Processing files: {file_names.keys()}")
     """Process and skim individual files."""
     skimmed_dict = apply_to_fileset(
-        make_skimmed_events,
+        lambda events: make_skimmed_events(events, dataset_key),    
         sliced_dataset,
         schemaclass=NanoAODSchema,
-        uproot_options={"handler": uproot.XRootDSource, "timeout": 3600, "step_size": 10000}}
+        uproot_options={"handler": uproot.XRootDSource, "timeout": 3600},
     )
 
     with ProgressBar():
         for dataset_name, skimmed in skimmed_dict.items():
             conv = uproot_writeable(skimmed)
-            uproot.dask_write(conv.repartition(rows_per_partition=50000), compute=True, destination=f"/uscms/home/bjackson/nobackup/WrCoffea/test/{dataset}", prefix=f"{dataset}_skim{file_index}", tree_name="Events") #10000
+            uproot.dask_write(
+                    conv.repartition(rows_per_partition=25000), 
+                    compute=True, 
+                    destination=f"/uscms/home/bjackson/nobackup/WrCoffea/test/{dataset}", 
+                    prefix=f"{dataset}_file{file_index}", 
+                    tree_name="Events"
+            ) #10000
 
     gc.collect()
 
@@ -97,9 +138,10 @@ if __name__ == "__main__":
     parser.add_argument('--start', type=int, default=1, help='File number at which to start')
     args = parser.parse_args()
 
+#    client = Client(memory_limit="4GB")
     t0 = time.monotonic()
 
-    json_file_path = f'/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/Run2Summer20UL18/Run2Summer20UL18_bkg_preprocessed.json'
+    json_file_path = f'Run2Autumn18_full_preprocessed.json'
     with open(json_file_path, 'r') as file:
         fileset = json.load(file)
 

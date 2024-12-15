@@ -100,7 +100,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Build input and output file paths based on the arguments
-    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_template.json"
+    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_template_full.json"
     output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
 
     # Create the Dask client
