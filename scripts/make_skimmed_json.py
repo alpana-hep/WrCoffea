@@ -36,7 +36,8 @@ def replace_files_in_json(data, run, umn):
     return data
 
 def get_root_files_from_umn(dataset, mc_campaign):
-    base_path = f"/uscms/home/bjackson/nobackup/WrCoffea/skims/{mc_campaign}/{dataset}/"
+#    base_path = f"/uscms/home/bjackson/nobackup/WrCoffea/skims/{mc_campaign}/{dataset}/"
+    base_path = f"/uscms/home/bjackson/nobackup/WrCoffea/test/{dataset}/"
     root_files = []
 
     # Walk through the directory and collect .root files
@@ -126,8 +127,8 @@ def save_json(output_file, data, data_all):
 if __name__ == "__main__":
     # Set up argument parsing
     parser = argparse.ArgumentParser(description="Process the JSON configuration file.")
-    parser.add_argument("run", type=str, choices=["Run2Summer20UL18", "Run3Summer22"], help="Run (e.g., Run2UltraLegacy)")
-    parser.add_argument("sample", type=str, choices=["bkg"], help="Sample type (bkg, sig, data)")
+    parser.add_argument("run", type=str, choices=["Run2Autumn18", "Run2Summer20UL18", "Run3Summer22"], help="Run (e.g., Run2UltraLegacy)")
+    parser.add_argument("sample", type=str, choices=["bkg", "sig"], help="Sample type (bkg, sig, data)")
     parser.add_argument("--umn", action="store_true", help="Enable UMN mode (default: False)")
     parser.add_argument("--chunks", type=int, default=100_000, help="Chunk size for processing")
     parser.add_argument("--timeout", type=int, default=3600, help="Timeout for uproot file handling")
@@ -136,9 +137,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Build input and output file paths based on the arguments
-    if not args.umn:
-        input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
-        output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed_skims.json"
+    input_file = f"data/configs/{args.run}/{args.run}_{args.sample}_cfg_test.json"
+    output_file = f"data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed_skims.json"
 
     # Load the input JSON file
     try:
@@ -149,8 +149,15 @@ if __name__ == "__main__":
         logging.error(f"Input file {input_file} not found!")
         exit(1)
 
+    if args.sample == "sig":
+        is_signal = True
+    else:
+        is_signal = False
+
     # Clear the "files" content and update with new ROOT files
     fileset = replace_files_in_json(fileset, args.run, args.umn)
+
+    print("FILESET", fileset)
 
     # Preprocess the updated fileset
     dataset_runnable, dataset_updated = preprocess_json(fileset, chunks=args.chunks, timeout=args.timeout)

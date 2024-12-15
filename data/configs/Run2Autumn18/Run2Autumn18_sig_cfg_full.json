@@ -1,4 +1,76 @@
 {
+    "WRtoNLtoLLJJ_WR600_N100": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR600_N100",
+            "xsec": 45.97
+        }
+    },
+    "WRtoNLtoLLJJ_WR600_N200": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR600_N200",
+            "xsec": 40.29
+        }
+    },
+    "WRtoNLtoLLJJ_WR600_N400": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR600_N400",
+            "xsec": 19.83
+        }
+    },
+    "WRtoNLtoLLJJ_WR600_N500": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR600_N500",
+            "xsec": 7.149
+        }
+    },
+    "WRtoNLtoLLJJ_WR800_N100": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR800_N100",
+            "xsec": 15.51
+        }
+    },
+    "WRtoNLtoLLJJ_WR800_N200": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR800_N200",
+            "xsec": 14.46
+        }
+    },
+    "WRtoNLtoLLJJ_WR800_N400": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR800_N400",
+            "xsec": 10.41
+        }
+    },
+    "WRtoNLtoLLJJ_WR800_N600": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR800_N600",
+            "xsec": 4.351
+        }
+    },
+    "WRtoNLtoLLJJ_WR800_N700": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR800_N700",
+            "xsec": 1.473
+        }
+    },
     "WRtoNLtoLLJJ_WR1000_N100": {
         "metadata": {
             "mc_campaign": "Run2Autumn18",
@@ -839,6 +911,38 @@
             "xsec": 0.0003928
         }
     },
+    "WRtoNLtoLLJJ_WR3000_N100": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3000_N100",
+            "xsec": 0.02376
+        }
+    },
+    "WRtoNLtoLLJJ_WR3000_N200": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3000_N200",
+            "xsec": 0.02301
+        }
+    },
+    "WRtoNLtoLLJJ_WR3000_N400": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3000_N400",
+            "xsec": 0.02166
+        }
+    },
+    "WRtoNLtoLLJJ_WR3000_N600": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3000_N600",
+            "xsec": 0.02042
+        }
+    },
     "WRtoNLtoLLJJ_WR3000_N800": {
         "metadata": {
             "mc_campaign": "Run2Autumn18",
@@ -925,6 +1029,182 @@
             "process": "Signal",
             "dataset": "WRtoNLtoLLJJ_WR3000_N2800",
             "xsec": 0.0005913
+        }
+    },
+    "WRtoNLtoLLJJ_WR3200_N100": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3200_N100",
+            "xsec": 0.01545
+        }
+    },
+    "WRtoNLtoLLJJ_WR3200_N200": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3200_N200",
+            "xsec": 0.01486
+        }
+    },
+    "WRtoNLtoLLJJ_WR3200_N400": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3200_N400",
+            "xsec": 0.01391
+        }
+    },
+    "WRtoNLtoLLJJ_WR3200_N600": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3200_N600",
+            "xsec": 0.01308
+        }
+    },
+    "WRtoNLtoLLJJ_WR3200_N800": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3200_N800",
+            "xsec": 0.01223
+        }
+    },
+    "WRtoNLtoLLJJ_WR3200_N1000": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3200_N1000",
+            "xsec": 0.01134
+        }
+    },
+    "WRtoNLtoLLJJ_WR3200_N1200": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3200_N1200",
+            "xsec": 0.01044
+        }
+    },
+    "WRtoNLtoLLJJ_WR3200_N1400": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3200_N1400",
+            "xsec": 0.009417
+        }
+    },
+    "WRtoNLtoLLJJ_WR3200_N1600": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3200_N1600",
+            "xsec": 0.008364
+        }
+    },
+    "WRtoNLtoLLJJ_WR3200_N1800": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3200_N1800",
+            "xsec": 0.007143
+        }
+    },
+    "WRtoNLtoLLJJ_WR3200_N2000": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3200_N2000",
+            "xsec": 0.005881
+        }
+    },
+    "WRtoNLtoLLJJ_WR3200_N2200": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3200_N2200",
+            "xsec": 0.004585
+        }
+    },
+    "WRtoNLtoLLJJ_WR3200_N2400": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3200_N2400",
+            "xsec": 0.003303
+        }
+    },
+    "WRtoNLtoLLJJ_WR3200_N2600": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3200_N2600",
+            "xsec": 0.002092
+        }
+    },
+    "WRtoNLtoLLJJ_WR3200_N2800": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3200_N2800",
+            "xsec": 0.001055
+        }
+    },
+    "WRtoNLtoLLJJ_WR3200_N3000": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3200_N3000",
+            "xsec": 0.0003262
+        }
+    },
+    "WRtoNLtoLLJJ_WR3400_N100": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3400_N100",
+            "xsec": 0.01017
+        }
+    },
+    "WRtoNLtoLLJJ_WR3400_N200": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3400_N200",
+            "xsec": 0.009756
+        }
+    },
+    "WRtoNLtoLLJJ_WR3400_N400": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3400_N400",
+            "xsec": 0.009058
+        }
+    },
+    "WRtoNLtoLLJJ_WR3400_N600": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3400_N600",
+            "xsec": 0.008478
+        }
+    },
+    "WRtoNLtoLLJJ_WR3400_N800": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3400_N800",
+            "xsec": 0.007946
+        }
+    },
+    "WRtoNLtoLLJJ_WR3400_N1000": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR3400_N1000",
+            "xsec": 0.007375
         }
     },
     "WRtoNLtoLLJJ_WR3400_N1200": {

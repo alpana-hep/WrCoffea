@@ -14,6 +14,8 @@ from pathlib import Path
 from coffea.nanoevents import NanoEventsFactory, NanoAODSchema
 from dask.diagnostics import ProgressBar
 import os
+import uproot
+import ROOT
 import time
 NanoAODSchema.warn_missing_crossrefs = False
 NanoAODSchema.error_missing_event_ids = False
@@ -55,18 +57,17 @@ def get_signal_files(cfg,run):
                     key = f"WRtoNLtoLLJJ_WR{mwr}_N{mn}"
                     for dataset_name, metadata in cfg.items():
                         if key == dataset_name:
-                            print(key)
                             if key not in mwr_mn_files:
+#                                print(mwr_mn_files[key])
                                 mwr_mn_files[key] = {
-                                "files": {},
-                                "metadata": {
-                                    "mc_campaign": metadata["metadata"]["mc_campaign"],
-                                    "process": metadata["metadata"]["process"],
-                                    "dataset": metadata["metadata"]["dataset"],
-                                    "xsec": metadata["metadata"]["xsec"]
+                                    "files": {},
+                                    "metadata": {
+                                        "mc_campaign": metadata["mc_campaign"],
+                                        "process": metadata["process"],
+                                        "dataset": metadata["dataset"],
+                                        "xsec": metadata["xsec"]
+                                    }
                                 }
-                            }
-
                             mwr_mn_files[key]["files"][file_name] = "Events"
 
         except Exception as e:
@@ -81,18 +82,18 @@ def get_signal_files(cfg,run):
 #        print(f"Time taken for {mass_point}: {elapsed_time:.2f} seconds\n")
 #        print()
 
-#    total_files = len(mwr_mn_files)  # Total number of iterations
-#    for index, (mass_point, cfg) in enumerate(mwr_mn_files.items(), start=1):
-#        output_file_name = f"{run}/{mass_point}/{run}NanoAODv7_{mass_point}_TuneCP5-madgraph-pythia8.root"
+    total_files = len(mwr_mn_files)  # Total number of iterations
+    for index, (mass_point, cfg) in enumerate(mwr_mn_files.items(), start=1):
+        output_file_name = f"{run}NanoAODv7_{mass_point}_TuneCP5-madgraph-pythia8.root"
         
-#        print(f"Processing mass point {index}/{total_files}: {mass_point}")
-#        start_time = time.time()  # Start the timer
+        print(f"Processing mass point {index}/{total_files}: {mass_point}")
+        start_time = time.time()  # Start the timer
         
-#        filter_and_merge_single_dictionary(cfg, output_file_name, mass_point)
+        filter_and_merge_single_dictionary(cfg, output_file_name, mass_point)
         
-#        end_time = time.time()  # End the timer
-#        elapsed_time = end_time - start_time
-#        print(f"Time taken for {mass_point}: {elapsed_time:.2f} seconds\n")
+        end_time = time.time()  # End the timer
+        elapsed_time = end_time - start_time
+        print(f"Time taken for {mass_point}: {elapsed_time:.2f} seconds\n")
 
     return mwr_mn_files
 
@@ -104,58 +105,62 @@ def filter_and_merge_single_dictionary(input_dict, output_file_name, point):
     - input_dict: Dictionary containing file paths and metadata.
     - output_file_name: Name of the output ROOT file to append filtered events.
     """
+    # Open or create the output ROOT file
+    output_file_mode = "UPDATE" if os.path.exists(output_file_name) else "RECREATE"
+    output_file = ROOT.TFile(output_file_name, output_file_mode)
+    output_tree = None
+
     files = input_dict['files']
     metadata = input_dict.get('metadata', {})
 
     print(f"Processing metadata: {metadata}")
-
-    # Define the branch name based on the `point` parameter
-    base, rest = point.split("_WR")
-    mw, mn = rest.split("_N")
-    branch_name = f"GenModel_{base}_MWR{mw}_MN{mn}_TuneCP5_13TeV_madgraph_pythia8"
-
-    # Initialize an empty dictionary to store arrays for the output file
-    output_data = {}
-
     for file_path, tree_name in files.items():
         print(f"Processing file: {file_path}")
 
-        # Open the input ROOT file and access the tree
-        try:
-            with uproot.open(file_path) as file:
-                if tree_name not in file:
-                    print(f"Tree '{tree_name}' not found in file: {file_path}")
-                    continue
-
-                tree = file[tree_name]
-
-                # Check if the branch exists in the tree
-                if branch_name not in tree.keys():
-                    print(f"Branch '{branch_name}' not found in tree '{tree_name}' of file: {file_path}")
-                    continue
-
-                # Read the branch as a NumPy array
-                branch_data = tree[branch_name].array(library="np")
-
-                # Filter the events where the branch value is True
-                mask = branch_data.astype(bool)
-                for key, array in tree.arrays(library="np").items():
-                    if key not in output_data:
-                        output_data[key] = array[mask]
-                    else:
-                        output_data[key] = np.concatenate((output_data[key], array[mask]))
-        except Exception as e:
-            print(f"Error processing file {file_path}: {e}")
+        # Open the input ROOT file
+        input_file = ROOT.TFile.Open(file_path)
+        if not input_file or input_file.IsZombie():
+            print(f"Error opening file: {file_path}")
             continue
 
-    # Write the filtered data to the output file
-    if output_data:
-        mode = "update" if os.path.exists(output_file_name) else "recreate"
-        with uproot.recreate(output_file_name, mode=mode) as output_file:
-            output_file[tree_name] = output_data
+        # Get the tree from the file
+        input_tree = input_file.Get(tree_name)
+        if not input_tree:
+            print(f"Tree '{tree_name}' not found in file: {file_path}")
+            continue
+
+        # Check if the branch exists in the tree
+        # Split the input string into parts
+        base, rest = point.split("_WR")
+        mw, mn = rest.split("_N")
+
+        branch_name = f"GenModel_{base}_MWR{mw}_MN{mn}_TuneCP5_13TeV_madgraph_pythia8"
+
+        if not input_tree.GetBranch(branch_name):
+            print(f"Branch '{branch_name}' not found in tree '{tree_name}' of file: {file_path}")
+            continue
+
+        # Create a new tree structure in the output file on first pass
+        if output_tree is None:
+            output_file.cd()
+            output_tree = input_tree.CloneTree(0)  # Clone structure but no entries
+
+        for event in input_tree:
+            # Ensure the branch exists and explicitly equals 1
+            if hasattr(event, branch_name) and getattr(event, branch_name) == 1:
+                output_tree.Fill()
+
+        input_file.Close()
+
+    # Write the combined filtered tree to the output file
+    if output_tree and output_tree.GetEntries() > 0:
+        output_file.cd()  # Ensure the output file is the current directory
+        output_tree.Write("", ROOT.TObject.kOverwrite)  # Write the tree to the file
         print(f"Filtered events written to {output_file_name}")
     else:
         print("No events passed the filter criteria.")
+
+    output_file.Close()
 
 if __name__ == "__main__":
     multiprocessing.set_start_method("spawn", force=True)
@@ -169,22 +174,28 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Build input and output file paths based on the arguments
-    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
-    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/{args.run}_{args.sample}.json"
-#    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}.json"
+#    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
+    input_file = "filtered_ordered.json" 
+#    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed.json"
 
     # Load the configuration file
-    config = load_config(input_file)
+    mwr_mn_files = load_config(input_file)
 
-    dataset = get_signal_files(config, args.run)
+    total_files = len(mwr_mn_files)  # Total number of iterations
+    for index, (mass_point, cfg) in enumerate(mwr_mn_files.items(), start=1):
+        output_file_name = f"{args.run}NanoAODv7_{mass_point}_TuneCP5-madgraph-pythia8.root"
 
-    print(dataset)
+        print(f"Processing mass point {index}/{total_files}: {mass_point}")
+        start_time = time.time()  # Start the timer
 
-    # Save the dataset to the output JSON file
-    os.makedirs(os.path.dirname(output_file), exist_ok=True)  # Ensure output directory exists
-    try:
-        with open(output_file, "w") as f:
-            json.dump(dataset, f, indent=4)
-        print(f"Processed dataset saved to {output_file}")
-    except Exception as e:
-        print(f"Error: Failed to save JSON to {output_file}: {e}")
+        filter_and_merge_single_dictionary(cfg, output_file_name, mass_point)
+
+        end_time = time.time()  # End the timer
+        elapsed_time = end_time - start_time
+        print(f"Time taken for {mass_point}: {elapsed_time:.2f} seconds\n")
+
+ #   return mwr_mn_files
+
+#    dataset = get_signal_files(config, args.run)
+
+

@@ -45,7 +45,7 @@ def load_masses_from_csv(file_path):
                 if len(row) >= 2:  # Ensure the row has at least two columns
                     wr_mass = row[0].strip()
                     n_mass = row[1].strip()
-                    mass_choice = f"MWR{wr_mass}_MN{n_mass}"
+                    mass_choice = f"WR{wr_mass}_N{n_mass}"
                     mass_choices.append(mass_choice)
         logging.info(f"Loaded {len(mass_choices)} mass points from {file_path}")
     except FileNotFoundError:
@@ -65,7 +65,7 @@ def load_json(args):
     if "EGamma" in sample or "SingleMuon" in sample:
         filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_data_skimmed.json"
     elif "Signal" in sample:
-        filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_sig_processed.json"
+        filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_sig_preprocessed_skims.json"
     else:
         if skimmed:
             filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_bkg_skimmed.json"
@@ -88,7 +88,9 @@ def filter_by_process(fileset, desired_process, mass=None):
     if desired_process == "Data":
         return fileset
     elif desired_process == "Signal":
-        return {ds: data for ds, data in fileset.items() if data['metadata']['dataset'] == mass}
+        print("mass", mass)
+        print(fileset)
+        return {ds: data for ds, data in fileset.items() if mass in  data['metadata']['dataset']}
     else:
         return {ds: data for ds, data in fileset.items() if data['metadata']['process'] == desired_process}
 

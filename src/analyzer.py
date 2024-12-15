@@ -15,6 +15,7 @@ logger = logging.getLogger(__name__)
 
 class WrAnalysis(processor.ProcessorABC):
     def __init__(self, mass_point=None):
+        print("MASS", mass_point)
         self._signal_sample = mass_point
 
         self.make_output = lambda: {
@@ -76,7 +77,7 @@ class WrAnalysis(processor.ProcessorABC):
             NotImplementedError: If MN/MWR is less than 0.2, indicating an unresolved sample.
             ValueError: If the mass point format in _signal_sample is invalid.
         """
-        match = re.match(r"MWR(\d+)_MN(\d+)", self._signal_sample)
+        match = re.match(r"WR(\d+)_N(\d+)", self._signal_sample)
         if match:
             mwr, mn = int(match.group(1)), int(match.group(2))
             ratio = mn / mwr
@@ -148,7 +149,10 @@ class WrAnalysis(processor.ProcessorABC):
             output['x_sec'] = events.metadata["xsec"] 
 
         logger.info(f"Analyzing {len(events)} {dataset} events.")
-    
+   
+        # Process signal samples
+        if process == "Signal": self.check_mass_point_resolved()
+
         # Object selection
         tightElectrons, _  = self.selectElectrons(events)
         nTightElectrons = ak.num(tightElectrons)
@@ -194,11 +198,8 @@ class WrAnalysis(processor.ProcessorABC):
 
             # Use genWeight for MC
             eventWeight = events.genWeight
-            if process == "Signal":
-                output['sumw'] = ak.sum(eventWeight)
-            else:
-                output['sumw'] = ak.sum(eventWeight)
-#                output['sumw'] = events.metadata["genEventSumw"]
+            output['sumw'] = ak.sum(eventWeight) if process == "Signal" else events.metadata["genEventSumw"]
+
         elif isRealData:
             # Fill the data weights with one
             eventWeight = abs(np.sign(events.event)) # Find a better way to do this
@@ -221,8 +222,8 @@ class WrAnalysis(processor.ProcessorABC):
 
         electron_cutflow = selections.cutflow("leadJetPt500", "eejj", "eeTrigger", "minTwoAK4Jets", 'dr>0.4', 'mlljj>800', '400mll')
         muon_cutflow = selections.cutflow("leadJetPt500", "mumujj", "mumuTrigger", "minTwoAK4Jets", 'dr>0.4', 'mlljj>800', '400mll')
-        print(electron_cutflow.print())
-        print(muon_cutflow.print())
+#        print(electron_cutflow.print())
+#        print(muon_cutflow.print())
 
         # Define analysis regions
         regions = {
@@ -242,22 +243,6 @@ class WrAnalysis(processor.ProcessorABC):
             # Remove triggers from all remaining regions
             elements_to_remove = {'mumuTrigger', 'eeTrigger', 'emuTrigger'}  # Use a set for faster lookups
             regions = {key: [item for item in cuts if item not in elements_to_remove] for key, cuts in regions.items()}
-
-        # Process signal samples
-        if process == "Signal":
-            # Check if the specified mass point is resolved
-            self.check_mass_point_resolved()
-
-            # Apply cuts for the specified mass point if found in GenModel fields
-            genmodel_field = f"WRtoNLtoLLJJ_{self._signal_sample}_TuneCP5_13TeV_madgraph_pythia8"
-            if genmodel_field in events.GenModel.fields:
-                selections.add(self._signal_sample, getattr(events.GenModel, genmodel_field) == 1)
-            else:
-                raise ValueError(f"Mass point '{self._signal_sample}' not found in GenModel fields.")
-
-            # Append the mass point to all region cuts
-            for region, region_cuts in regions.items():
-                region_cuts.append(self._signal_sample)
 
         # Fill histogram
         for region, cuts in regions.items():

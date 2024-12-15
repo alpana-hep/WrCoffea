@@ -33,50 +33,6 @@ def load_config(filepath):
     with open(filepath, 'r') as file:
         return json.load(file)
 
-def get_metadata(config, is_data, is_signal):
-    data = {}
-
-    print("Creating json file...")
-    for dataset_name, metadata in config.items():
-
-        # If it's data, limit the metadata fields
-        if is_data:
-            metadata = {
-                "mc_campaign": metadata["mc_campaign"],
-                "process": metadata["process"],
-                "dataset": metadata["dataset"],
-            }
-        elif is_signal:
-            metadata = {
-                "mc_campaign": metadata["mc_campaign"],
-                "process": metadata["process"],
-                "dataset": metadata["dataset"],
-                "xsec": metadata["xsec"],
-            }
-        else:
-            metadata = {
-                "mc_campaign": metadata["mc_campaign"],
-                "process": metadata["process"],
-                "dataset": metadata["dataset"],
-                "xsec": metadata["xsec"],
-                "genEventSumw": 0.0,
-            }
-
-        data[dataset_name] = metadata
-
-    return data
-
-def query_datasets(data, run):
-    print(f"\nQuerying replica sites")
-    ddc = DataDiscoveryCLI()
-    if run == "Run2Summer20UL18":
-#        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_US_Caltech", "T2_US_Vanderbilt", "T2_US_UCSD", "T2_US_Nebraska", "T2_US_Florida", "T2_UK_London_IC"]) #Remove T2_US_Nebraska
-        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_CH_CERN", "T2_UK_London_IC", "T2_US_UCSD", "T2_US_FLORIDA"]) #"T2_FI_HIP"
-    if run == "Run3Summer22":
-        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_US_Caltech", "T2_US_Vanderbilt", "T2_US_UCSD", "T2_US_Nebraska", "T2_US_Florida", "T2_UK_London_IC"]) #Remove T2_US_Nebraska
-    dataset = ddc.load_dataset_definition(dataset_definition = data, query_results_strategy="all", replicas_strategy="first")
-    return dataset
-
 def preprocess_json(fileset):
     chunks = 100_000
 
@@ -87,7 +43,6 @@ def preprocess_json(fileset):
             step_size=chunks,
             skip_bad_files=False,
             uproot_options={"handler": uproot.XRootDSource, "timeout": 60}
-#            uproot_options={"handler": uproot.XRootDSource, "timeout": 3600}
         )
 
     print("Preprocessing completed.\n")
@@ -143,22 +98,18 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Build input and output file paths based on the arguments
-    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
-    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed.json"
+    input_file = f"Run2Autumn18_sig_sorted.json"
+    output_file = f"Run2Autumn18_full_preprocessed.json"
 
     # Create the Dask client
     client = Client(n_workers=4, threads_per_worker=1, memory_limit='2GB', nanny=False)
 
     # Load the configuration file
-    config = load_config(input_file)
+    dataset = load_config(input_file)
 
     # Determine if the input is 'data' based on the file name
     is_mc = 'bkg' in args.sample
     is_data = 'data' in args.sample
-
-#    updated_config = get_metadata(config, is_data, is_signal)
-
-    dataset = query_datasets(config, args.run) #Updated config
 
     dataset_runnable, dataset_updated = preprocess_json(dataset)
 

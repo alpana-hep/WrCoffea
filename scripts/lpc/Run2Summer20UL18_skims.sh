@@ -40,35 +40,35 @@
 #    python3 skim_files.py DYJetsToLL_M-50_HT-2500toInf --start $i
 #done
 
-#for ((i=150; i<=155; i+=1))
+#for ((i=1; i<=155; i+=1))
 #do
 #    python3 skim_files.py TTTo2L2Nu --start $i
 #done
 
-for ((i=1; i<=16; i+=1))
+#for ((i=13; i<=16; i+=1))
+#do
+#    python3 skim_files.py ST_tW_antitop --start $i
+#done
+
+#for ((i=1; i<=15; i+=1))
+#do
+#    python3 skim_files.py ST_tW_top --start $i
+#done
+
+for ((i=37; i<=97; i+=1))
 do
-    python3 skim_files.py ST_tW_antitop --start $i
+    python3 skim_files.py WJetsToLNu_HT-70To100 --start $i
 done
 
-for ((i=1; i<=15; i+=1))
+for ((i=1; i<=57; i+=1))
 do
-    python3 skim_files.py ST_tW_top --start $i
+    python3 skim_files.py WJetsToLNu_HT-100To200 --start $i
 done
 
-#for ((i=1; i<=97; i+=1))
-#do
-#    python3 skim_files.py WJetsToLNu_HT-70To100 --start $i
-#done
-
-#for ((i=1; i<=57; i+=1))
-#do
-#    python3 skim_files.py WJetsToLNu_HT-100To200 --start $i
-#done
-
-#for ((i=1; i<=101; i+=1))
-#do
-#    python3 skim_files.py WJetsToLNu_HT-200To400 --start $i
-#done
+for ((i=1; i<=101; i+=1))
+do
+    python3 skim_files.py WJetsToLNu_HT-200To400 --start $i
+done
 
 #for ((i=1; i<=44; i+=1))
 #do
