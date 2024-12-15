@@ -37,7 +37,7 @@ def replace_files_in_json(data, run, umn):
 
 def get_root_files_from_umn(dataset, mc_campaign):
 #    base_path = f"/uscms/home/bjackson/nobackup/WrCoffea/skims/{mc_campaign}/{dataset}/"
-    base_path = f"/uscms/home/bjackson/nobackup/WrCoffea/test/{dataset}/"
+    base_path = f"/local/cms/user/jack1851/skims/{mc_campaign}/{dataset}/"
     root_files = []
 
     # Walk through the directory and collect .root files
@@ -81,7 +81,6 @@ def preprocess_json(fileset, chunks=100_000, timeout=3600):
             fileset=fileset,
             step_size=chunks,
             skip_bad_files=False,
-            uproot_options={"handler": uproot.XRootDSource, "timeout": timeout}
         )
 
     logging.info("Preprocessing completed.")
@@ -137,8 +136,12 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Build input and output file paths based on the arguments
-    input_file = f"data/configs/{args.run}/{args.run}_{args.sample}_cfg_test.json"
-    output_file = f"data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed_skims.json"
+    if not args.umn:
+        input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
+        output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed_skims.json"
+    else:
+        input_file = f"data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
+        output_file = f"data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed_skims.json"
 
     # Load the input JSON file
     try:

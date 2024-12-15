@@ -60,15 +60,17 @@ def load_json(args):
     sample = args.sample
     run = args.run 
     skimmed = args.skimmed
-
+    umn = args.umn
     """Load the appropriate JSON file based on sample, run, and year."""
     if "EGamma" in sample or "SingleMuon" in sample:
         filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_data_skimmed.json"
     elif "Signal" in sample:
         filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_sig_preprocessed_skims.json"
     else:
-        if skimmed:
+        if skimmed and not umn:
             filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_bkg_skimmed.json"
+        elif skimmed and umn:
+            filepath = f"/local/cms/user/jack1851/WrCoffea/data/jsons/{run}/{run}_bkg_preprocessed_skims.json" 
         else:
             filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_bkg_preprocessed.json"
     try:
@@ -88,8 +90,6 @@ def filter_by_process(fileset, desired_process, mass=None):
     if desired_process == "Data":
         return fileset
     elif desired_process == "Signal":
-        print("mass", mass)
-        print(fileset)
         return {ds: data for ds, data in fileset.items() if mass in  data['metadata']['dataset']}
     else:
         return {ds: data for ds, data in fileset.items() if data['metadata']['process'] == desired_process}
@@ -120,9 +120,8 @@ def run_analysis(args, preprocessed_fileset):
 
     to_compute = apply_to_fileset(
         data_manipulation=WrAnalysis(mass_point=args.mass),
-        fileset=max_files(max_chunks(filtered_fileset, 2)),
+        fileset=max_files(max_chunks(filtered_fileset)),
         schemaclass=NanoAODSchema,
-        uproot_options={"handler": uproot.XRootDSource, "timeout": 3600}
     )
 
     if args.hists:
@@ -135,10 +134,6 @@ def run_analysis(args, preprocessed_fileset):
     logging.info(f"Execution took {exec_time/60:.2f} minutes")
 
 if __name__ == "__main__":
-    # Load mass choices from the CSV file
-    file_path = Path('/uscms/home/bjackson/nobackup/WrCoffea/data/Run2Autumn18_mass_points.csv')
-    MASS_CHOICES = load_masses_from_csv(file_path)
-
     # Initialize argparse
     parser = argparse.ArgumentParser(description="Processing script for WR analysis.")
 
@@ -149,11 +144,25 @@ if __name__ == "__main__":
 
     # Optional arguments
     optional = parser.add_argument_group("Optional arguments")
-    optional.add_argument("--mass", type=str, default=None, choices=MASS_CHOICES, help="Signal mass point to analyze.")
     optional.add_argument("--skimmed", action='store_true', help="Use the skimmed files.")
     optional.add_argument("--lpc", action='store_true', help="Start an LPC cluster.")
     optional.add_argument("--hists", action='store_true', help="Output histograms.")
     optional.add_argument("--umn", action="store_true", help="Enable UMN mode (default: False)")
+<<<<<<< HEAD
+=======
+
+    args = parser.parse_args()
+
+    # Load mass choices from the CSV file
+    if not args.umn:
+        file_path = Path('/uscms/home/bjackson/nobackup/WrCoffea/data/Run2Autumn18_mass_points.csv')
+    else:
+        file_path = Path('/local/cms/user/jack1851/WrCoffea/data/Run2Autumn18_mass_points.csv')
+
+    MASS_CHOICES = load_masses_from_csv(file_path)
+    optional.add_argument("--mass", type=str, default=None, choices=MASS_CHOICES, help="Signal mass point to analyze.")
+
+>>>>>>> 0650aa227e65ff1b6530ae3eaf54f11bf36def8d
     args = parser.parse_args()
 
     # Validate the parsed arguments
