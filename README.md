@@ -72,9 +72,14 @@ source /cvmfs/sft.cern.ch/lcg/views/LCG_104/x86_64-centos8-gcc11-opt/setup.sh
 
 To plot a comparison of the Run2 vs. Run3 backgrounds,
 ```
-python3 scripts/241120_Run2VSRun3/plot_CR.py
+python3 scripts/241120_Run2VSRun3/plot_CR.py --umn
+```
+
+To plot a comparison of the signal masses,
+```
+python3 scripts/241215_N3200_vs_N800/plot_SR.py --umn
 ```
 
 ### Extending the Analyzer
 
-The files [bin/run_analysis.py](https://github.com/UMN-CMS/WrCoffea/blob/main/bin/run_analysis.py) and [src/analyzer.py](https://github.com/UMN-CMS/WrCoffea/blob/main/src/analyzer.py) make a standard selection and standard set of histograms. Independent studies where the variables, selections, histograms etc may differ are developed in the [tests](https://github.com/UMN-CMS/WrCoffea/tree/main/test) folder. Once finished, they can be integrated into the main pipeline via the `bin` or `python` or `src` folders.
+The files [bin/run_analysis.py](https://github.com/UMN-CMS/WrCoffea/blob/main/bin/run_analysis.py) and [src/analyzer.py](https://github.com/UMN-CMS/WrCoffea/blob/main/src/analyzer.py) make a standard selection and standard set of histograms. Independent studies where the variables, selections, histograms etc may differ are developed in the [tests](https://github.com/UMN-CMS/WrCoffea/tree/main/test) folder. It is usually easiest to copy the files and start from there. Once finished, new studies can integrated into the main pipeline via the `bin` or `python` or `src` folders.
