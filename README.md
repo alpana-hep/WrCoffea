@@ -13,12 +13,12 @@ source /cvmfs/sft.cern.ch/lcg/views/LCG_104/x86_64-centos8-gcc11-opt/setup.sh (U
 ```
 Create and source a virtual python environment,
 ```
-python3 -m venv coffea-cvfms-env
-source coffea-cvfms-env/bin/activate
+python3 -m venv wr-env
+source wr-env/bin/activate
 ```
 Install the appropriate packages,
 ```
-python3 -m pip install -r requirements.txt
+python3 -m pip install --ignore-installed --no-cache-dir -r requirements.txt
 ```
 
 ## Running the analyzer
