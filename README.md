@@ -57,7 +57,7 @@ To run over signal samples,
 ```
 python3 bin/run_analysis.py Run2Autumn18 Signal --mass WR3200_N800 --umn --hists
 ```
-where the possible signal points are given by [Run2Autumn18_mass_points.csv](https://github.com](https://github.com/UMN-CMS/WrCoffea/blob/main/data/Run2Autumn18_mass_points.csv))
+where the possible signal points are given by [Run2Autumn18_mass_points.csv](https://github.com/UMN-CMS/WrCoffea/blob/main/data/Run2Autumn18_mass_points.csv)
 
 ### Plotting
 Plotting is handled in the `WR_Plotter` submodule,
