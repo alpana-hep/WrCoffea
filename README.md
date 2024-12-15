@@ -8,7 +8,7 @@ cd WrCoffea
 ```
 Then source the appropriate LGC release. For example,
 ```
-source /cvmfs/sft.cern.ch/lcg/views/LCG_104/x86_64-el9-gcc11-opt/setup.sh (LPC)
+source /cvmfs/sft.cern.ch/lcg/views/LCG_106/x86_64-el9-gcc13-opt/setup.sh (LPC)
 source /cvmfs/sft.cern.ch/lcg/views/LCG_104/x86_64-centos8-gcc11-opt/setup.sh (UMN)
 ```
 Create and source a virtual python environment,
