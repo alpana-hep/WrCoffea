@@ -20,17 +20,17 @@
 #    python3 skim_files_signal.py WRtoNLtoLLJJ_WR1200_N1100 --start $i
 #done
 
-for ((i=7; i<=21; i+=1))
-do
-    python3 skim_files_signal.py WRtoNLtoLLJJ_WR1200_N600 --start $i
-done
+#for ((i=7; i<=21; i+=1))
+#do
+#    python3 skim_files_signal.py WRtoNLtoLLJJ_WR1200_N600 --start $i
+#done
 
-for ((i=1; i<=24; i+=1))
-do
-    python3 skim_files_signal.py WRtoNLtoLLJJ_WR1200_N200 --start $i
-done
+#for ((i=1; i<=22; i+=1))
+#do
+#    python3 skim_files_signal.py WRtoNLtoLLJJ_WR1200_N200 --start $i
+#done
 
-for ((i=1; i<=26; i+=1))
+for ((i=23; i<=26; i+=1))
 do
     python3 skim_files_signal.py WRtoNLtoLLJJ_WR2400_N2300 --start $i
 done

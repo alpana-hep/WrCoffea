@@ -15,7 +15,6 @@ logger = logging.getLogger(__name__)
 
 class WrAnalysis(processor.ProcessorABC):
     def __init__(self, mass_point=None):
-        print("MASS", mass_point)
         self._signal_sample = mass_point
 
         self.make_output = lambda: {
@@ -81,9 +80,9 @@ class WrAnalysis(processor.ProcessorABC):
         if match:
             mwr, mn = int(match.group(1)), int(match.group(2))
             ratio = mn / mwr
-            if ratio < 0.2:
+            if ratio < 0.1:
                 raise NotImplementedError(
-                    f"Choose a resolved sample (MN/MWR > 0.2). For this sample, MN/MWR = {ratio:.2f}."
+                    f"Choose a resolved sample (MN/MWR > 0.1). For this sample, MN/MWR = {ratio:.2f}."
                 )
         else:
             raise ValueError(f"Invalid mass point format: {self._signal_sample}")

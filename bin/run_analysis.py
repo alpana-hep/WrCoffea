@@ -117,7 +117,6 @@ def run_analysis(args, preprocessed_fileset):
     """Run the main analysis logic."""
     t0 = time.monotonic()
     filtered_fileset = filter_by_process(preprocessed_fileset, args.sample, args.mass)
-
     to_compute = apply_to_fileset(
         data_manipulation=WrAnalysis(mass_point=args.mass),
         fileset=max_files(max_chunks(filtered_fileset)),

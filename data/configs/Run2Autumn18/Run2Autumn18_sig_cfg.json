@@ -1,4 +1,28 @@
 {
+    "WRtoNLtoLLJJ_WR1200_N200": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR1200_N200",
+            "xsec": 2.867
+        }
+    },
+    "WRtoNLtoLLJJ_WR1200_N600": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR1200_N600",
+            "xsec": 1.947
+        }
+    },
+    "WRtoNLtoLLJJ_WR1200_N1100": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR1200_N1100",
+            "xsec": 0.1406
+        }
+    },
     "WRtoNLtoLLJJ_WR3200_N800": {
         "metadata": {
             "mc_campaign": "Run2Autumn18",
