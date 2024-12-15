@@ -23,6 +23,14 @@
             "xsec": 0.1406
         }
     },
+    "WRtoNLtoLLJJ_WR2400_N2300": {
+        "metadata": {
+            "mc_campaign": "Run2Autumn18",
+            "process": "Signal",
+            "dataset": "WRtoNLtoLLJJ_WR2400_N2300",
+            "xsec": 0.001352
+        }
+    },
     "WRtoNLtoLLJJ_WR3200_N800": {
         "metadata": {
             "mc_campaign": "Run2Autumn18",
