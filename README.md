@@ -83,7 +83,7 @@ python3 scripts/241120_Run2VSRun3/plot_CR.py --umn
 
 To plot a comparison of the signal masses,
 ```
-python3 scripts/241215_N3200_vs_N800/plot_SR.py --umn
+python3 scripts/241215_N3000_vs_N800/plot_SR.py --umn
 ```
 
 ### Extending the Analyzer
