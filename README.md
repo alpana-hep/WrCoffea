@@ -59,6 +59,12 @@ python3 bin/run_analysis.py Run2Autumn18 Signal --mass WR3200_N800 --umn --hists
 ```
 where the possible signal points are given by [Run2Autumn18_mass_points.csv](https://github.com/UMN-CMS/WrCoffea/blob/main/data/Run2Autumn18_mass_points.csv)
 
+To make histograms for all signal samples, use the script
+```
+./bin/analyze_signals.sh
+```
+which executes  `run_analysis.py` in a loop with all of the signal points.
+
 ### Plotting
 Plotting is handled in the `WR_Plotter` submodule,
 ```
@@ -77,7 +83,7 @@ python3 scripts/241120_Run2VSRun3/plot_CR.py --umn
 
 To plot a comparison of the signal masses,
 ```
-python3 scripts/241215_N3200_vs_N800/plot_SR.py --umn
+python3 scripts/241215_N3000_vs_N800/plot_SR.py --umn
 ```
 
 ### Extending the Analyzer
