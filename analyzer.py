@@ -29,6 +29,49 @@ class WrAnalysis(processor.ProcessorABC):
         }
 
         self.make_output = lambda: {
+################################################################################################################################################################################
+            #p_x:p_trans
+            'px2pt_leadlep': dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(2000, -2, 2, name='px2pt_leadlep', label='px/pt leadlep'),
+                hist.storage.Weight(),
+            ),
+            'px2pt_subleadlep': dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(2000, -2, 2, name='px2pt_subleadlep', label='px/pt subleadlep'),
+                hist.storage.Weight(),
+            ),
+################################################################################################################################################################################
+            #p_y:p_trans
+            'py2pt_leadlep': dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(2000, -2, 2, name='py2pt_leadlep', label='py/pt leadlep'),
+                hist.storage.Weight(),
+            ),
+            'py2pt_subleadlep': dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(2000, -2, 2, name='py2pt_subleadlep', label='py/pt subleadlep'),
+                hist.storage.Weight(),
+            ),
+################################################################################################################################################################################
+            #(p_x^2 + p_y^2):p_trans^2
+            'pt2pt_leadlep': dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(2000, -2, 2, name='pt2pt_leadlep', label='pt/pt leadlep'),
+                hist.storage.Weight(),
+            ),
+            'pt2pt_subleadlep': dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(2000, -2, 2, name='pt2pt_subleadlep', label='pt/pt subleadlep'),
+                hist.storage.Weight(),
+            ),
+################################################################################################################################################################################
             'pt_leadlep': dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
@@ -667,6 +710,52 @@ class WrAnalysis(processor.ProcessorABC):
         for region, cuts in regions.items():
             cut = selections.all(*cuts)
 
+################################################################################################################################################################################
+            #p_x:p_trans
+            output['px2pt_leadlep'].fill(
+                process=process,
+                region=region,
+                px2pt_leadlep=tightLeptons[cut][:,0].px/tightLeptons[cut][:,0].pt,
+                weight=weights.weight()[cut],
+            )
+
+            output['px2pt_subleadlep'].fill(
+                process=process,
+                region=region,
+                px2pt_subleadlep=tightLeptons[cut][:,1].px/tightLeptons[cut][:,1].pt,
+                weight=weights.weight()[cut],
+            )
+################################################################################################################################################################################
+            #p_y:p_trans
+            output['py2pt_leadlep'].fill(
+                process=process,
+                region=region,
+                py2pt_leadlep=tightLeptons[cut][:,0].py/tightLeptons[cut][:,0].pt,
+                weight=weights.weight()[cut],
+            )
+
+            output['py2pt_subleadlep'].fill(
+                process=process,
+                region=region,
+                py2pt_subleadlep=tightLeptons[cut][:,1].py/tightLeptons[cut][:,1].pt,
+                weight=weights.weight()[cut],
+            )
+################################################################################################################################################################################
+            #(p_x^2 + p_y^2):p_trans^2
+            output['pt2pt_leadlep'].fill(
+                process=process,
+                region=region,
+                pt2pt_leadlep=(tightLeptons[cut][:,0].px**2 + tightLeptons[cut][:,0].py**2)/tightLeptons[cut][:,0].pt**2,
+                weight=weights.weight()[cut],
+            )
+
+            output['pt2pt_subleadlep'].fill(
+                process=process,
+                region=region,
+                pt2pt_subleadlep=(tightLeptons[cut][:,1].px**2 + tightLeptons[cut][:,1].py**2)/tightLeptons[cut][:,1].pt**2,
+                weight=weights.weight()[cut],
+            )
+################################################################################################################################################################################
             output['pt_leadlep'].fill(
                 process=process,
                 region=region,
@@ -1225,47 +1314,49 @@ def primed_shift (tightElectrons, looseElectrons, tightMuons, looseMuons, AK4Jet
     AK4Jets = dak.map_partitions(jet_padding, AK4Jets)
 
     #create the gamma field in the tightLeptons column
-    #gamma is the angle between the nonneutrino lepton's xy momentum vector and the positive CMS x-axis
-    #tightLeptons[:,0].gamma will give gamma the values assuming that the nonneutrino lepton is the lead lepton
+    #x' axis is always aligned with the W lepton
+    #gamma is the angle between the W lepton's xy momentum vector and the positive CMS x-axis
+    #tightLeptons[:,0].gamma will give the gamma values assuming that the W lepton is the lead lepton
+    #tightLeptons[:,1].gamma will give the gamma values assuming that the W lepton is the sublead lepton
     tightLeptons = dak.with_field(tightLeptons, ak.where(tightLeptons.px > 0,
         np.arctan(tightLeptons.py/tightLeptons.px),
         np.arctan(tightLeptons.py/tightLeptons.px) + np.pi),
         where='gamma')
 
-    #create the primed px of the leptons as a field of the tightLeptons column assuming the neutrino lepton is the sublead lepton
+    #create the primed px of the leptons as a field of the tightLeptons column assuming the N lepton is the sublead lepton
     tightLeptons = dak.with_field(tightLeptons,
             np.cos(tightLeptons[:,0].gamma)*tightLeptons.px + np.sin(tightLeptons[:,0].gamma)*tightLeptons.py,
             where='px_prime_subleadlep')
-    #create the primed py of the leptons as a field of the tightLeptons column assuming the neutrino lepton is the sublead lepton
+    #create the primed py of the leptons as a field of the tightLeptons column assuming the N lepton is the sublead lepton
     tightLeptons = dak.with_field(tightLeptons,
             np.sin(tightLeptons[:,0].gamma)*tightLeptons.px*(-1) + np.cos(tightLeptons[:,0].gamma)*tightLeptons.py,
             where='py_prime_subleadlep')
 
-    #create the primed px of the jets as a field of the AK4Jets column assuming the neutrino lepton is the sublead lepton
+    #create the primed px of the jets as a field of the AK4Jets column assuming the N lepton is the sublead lepton
     AK4Jets = dak.with_field(AK4Jets,
             np.cos(tightLeptons[:,0].gamma)*AK4Jets.px + np.sin(tightLeptons[:,0].gamma)*AK4Jets.py,
             where='px_prime_subleadlep')
-    #create the primed py of the jets as a field of the AK4Jets column assuming the neutrino lepton is the sublead lepton
+    #create the primed py of the jets as a field of the AK4Jets column assuming the N lepton is the sublead lepton
     AK4Jets = dak.with_field(AK4Jets,
             np.sin(tightLeptons[:,0].gamma)*AK4Jets.px*(-1) + np.cos(tightLeptons[:,0].gamma)*AK4Jets.py,
             where='py_prime_subleadlep')
 
 
 
-    #create the primed px of the leptons as a field of the tightLeptons column assuming the neutrino lepton is the lead lepton
+    #create the primed px of the leptons as a field of the tightLeptons column assuming the N lepton is the lead lepton
     tightLeptons = dak.with_field(tightLeptons,
             np.cos(tightLeptons[:,1].gamma)*tightLeptons.px + np.sin(tightLeptons[:,1].gamma)*tightLeptons.py,
             where='px_prime_leadlep')
-    #create the primed py of the leptons as a field of the tightLeptons column assuming the neutrino lepton is the lead lepton
+    #create the primed py of the leptons as a field of the tightLeptons column assuming the N lepton is the lead lepton
     tightLeptons = dak.with_field(tightLeptons,
             np.sin(tightLeptons[:,1].gamma)*tightLeptons.px*(-1) + np.cos(tightLeptons[:,1].gamma)*tightLeptons.py,
             where='py_prime_leadlep')
 
-    #create the primed px of the jets as a field of the AK4Jets column assuming the neutrino lepton is the lead lepton
+    #create the primed px of the jets as a field of the AK4Jets column assuming the N lepton is the lead lepton
     AK4Jets = dak.with_field(AK4Jets,
             np.cos(tightLeptons[:,1].gamma)*AK4Jets.px + np.sin(tightLeptons[:,1].gamma)*AK4Jets.py,
             where='px_prime_leadlep')
-    #create the primed py of the jets as a field of the AK4Jets column assuming the neutrino lepton is the lead lepton
+    #create the primed py of the jets as a field of the AK4Jets column assuming the N lepton is the lead lepton
     AK4Jets = dak.with_field(AK4Jets,
             np.sin(tightLeptons[:,1].gamma)*AK4Jets.px*(-1) + np.cos(tightLeptons[:,1].gamma)*AK4Jets.py,
             where='py_prime_leadlep')
