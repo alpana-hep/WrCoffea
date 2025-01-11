@@ -128,8 +128,20 @@ def split_hists(summed_hists):
         process_axis = sum_hist.axes['process']
         regions_axis = sum_hist.axes['region']
 
+#        print()
+#        print(str(hist_name) + 'axes -------------> ' + str(sum_hist.axes))
+#        print()
+
+#        print('\n\n')
+#        print(str(hist_name) + ' process_axis -----------> ' + str(process_axis))
+#        print(str(hist_name) + ' regions_axis -----------> ' + str(regions_axis))
+
         unique_processes = [process_axis.value(i) for i in range(process_axis.size)]
         unique_regions = [regions_axis.value(i) for i in range(regions_axis.size)]
+
+#        print(str(hist_name) + ' unique_processes -----------> ' + str(unique_processes))
+#        print(str(hist_name) + ' unique_regions -----------> ' + str(unique_regions))
+#        print('\n\n')
 
         for process in unique_processes:
             for region in unique_regions:
