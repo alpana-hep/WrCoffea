@@ -10,16 +10,6 @@ __pycache__
 .local/
 .bashrc
 .condor_config
-<<<<<<< HEAD
-requirements.txt
-datasets/2018_signal_prelegacy/
-.shell
-shell
-<<<<<<< HEAD
-wr_env/
-=======
->>>>>>> 2d31a9e53d5d6f79c3909379929c1672ccc3b2f5
-=======
 *.png
 wr_env/
 coffea_env/
@@ -30,4 +20,3 @@ data/configs/Run2Autumn18/Run2Autumn18_sig_cfg_all.json
 data/configs/Run2Summer20UL18/Run2Summer20UL18_bkg_cfg_full.json
 *.nfs*
 WR_Plotter/
->>>>>>> main
