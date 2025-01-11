@@ -3,17 +3,14 @@ __pycache__
 *.pyc
 *.root
 *.tgz
-datasets/.sites_map.json
-datasets/2016
-datasets/2017
-datasets/2018
-histograms/
-plotting/
+*.gz
+*.png
+*.pdf
 .env/
 .local/
 .bashrc
-shell/
 .condor_config
+<<<<<<< HEAD
 requirements.txt
 datasets/2018_signal_prelegacy/
 .shell
@@ -22,3 +19,15 @@ shell
 wr_env/
 =======
 >>>>>>> 2d31a9e53d5d6f79c3909379929c1672ccc3b2f5
+=======
+*.png
+wr_env/
+coffea_env/
+data/jsons
+.sites_map.json
+data/Run2Autumn18_mass_points_full.csv
+data/configs/Run2Autumn18/Run2Autumn18_sig_cfg_all.json
+data/configs/Run2Summer20UL18/Run2Summer20UL18_bkg_cfg_full.json
+*.nfs*
+WR_Plotter/
+>>>>>>> main
