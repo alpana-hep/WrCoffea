@@ -77,6 +77,9 @@ class WrAnalysis(processor.ProcessorABC):
             'WRCand_Px': self.create_hist('px_fourobject', 'process', 'region', (1600, -8000, 8000), r'p^{x}_{lljj} [GeV]'),
             'WRCand_Py': self.create_hist('py_fourobject', 'process', 'region', (1600, -8000, 8000), r'p^{y}_{lljj} [GeV]'),
             'WRCand_Pz': self.create_hist('pz_fourobject', 'process', 'region', (1600, -8000, 8000), r'p^{z}_{lljj} [GeV]'),
+
+            'NCand_Lepton_0_Mass_prime': self.create_hist('mass_threeobject_leadlep_prime', 'process', 'region', (800, 0, 8000), r'm_{ljj} [GeV]'),
+            'NCand_Lepton_1_Mass_prime': self.create_hist('mass_threeobject_subleadlep_prime', 'process', 'region', (800, 0, 8000), r'm_{ljj} [GeV]'),
         }
 
     def create_hist(self, name, process, region, bins, label):
@@ -192,6 +195,15 @@ class WrAnalysis(processor.ProcessorABC):
             ('WRCand_Px', (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1]).px, 'px_fourobject'),
             ('WRCand_Py', (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1]).py, 'py_fourobject'),
             ('WRCand_Pz', (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1]).pz, 'pz_fourobject'),
+
+            ('NCand_Lepton_0_Mass_prime', (((leptons[:, 0] + jets[:, 0] + jets[:, 1]).energy)**2 -
+                   ((leptons[:, 0].px_prime_leadlep + jets[:, 0].px_prime_leadlep + jets[:, 1].px_prime_leadlep)**2 +
+                    (leptons[:, 0].py_prime_leadlep + jets[:, 0].py_prime_leadlep + jets[:, 1].py_prime_leadlep)**2 +
+                    (leptons[:, 0].pz               + jets[:, 0].pz               + jets[:, 1].pz              )**2))**0.5, 'mass_threeobject_leadlep_prime'),
+            ('NCand_Lepton_1_Mass_prime', (((leptons[:, 1] + jets[:, 0] + jets[:, 1]).energy)**2 -
+                   ((leptons[:, 1].px_prime_subleadlep + jets[:, 0].px_prime_subleadlep + jets[:, 1].px_prime_subleadlep)**2 +
+                    (leptons[:, 1].py_prime_subleadlep + jets[:, 0].py_prime_subleadlep + jets[:, 1].py_prime_subleadlep)**2 +
+                    (leptons[:, 1].pz                  + jets[:, 0].pz                  + jets[:, 1].pz                 )**2))**0.5, 'mass_threeobject_subleadlep_prime'),
         ]
 
         # Loop over variables and fill corresponding histograms
@@ -257,94 +269,151 @@ class WrAnalysis(processor.ProcessorABC):
         AK4Jets = ak.pad_none(AK4Jets, 2, axis=1)
 
 
-#        #create the gamma field in the tightLeptons column
-#        #x' axis is always aligned with the W lepton
-#        #gamma is the angle between the W lepton's xy momentum vector and the positive CMS x-axis
-#        #tightLeptons[:,0].gamma will give the gamma values assuming that the W lepton is the lead lepton
-#        #tightLeptons[:,1].gamma will give the gamma values assuming that the W lepton is the sublead lepton
-#        tightLeptons = ak.with_field(tightLeptons, ak.where(tightLeptons.px > 0,
-#            np.arctan(tightLeptons.py/tightLeptons.px),
-#            np.arctan(tightLeptons.py/tightLeptons.px) + np.pi),
-#            where='gamma')
-#
-#
-#        #create the primed px of the leptons as a field of the tightLeptons column assuming the N lepton is the sublead lepton
-#        tightLeptons = ak.with_field(tightLeptons,
-#                np.cos(tightLeptons[:,0].gamma)*tightLeptons.px + np.sin(tightLeptons[:,0].gamma)*tightLeptons.py,
-#                where='px_prime_subleadlep')
-#        #create the primed py of the leptons as a field of the tightLeptons column assuming the N lepton is the sublead lepton
-#        tightLeptons = ak.with_field(tightLeptons,
-#                np.sin(tightLeptons[:,0].gamma)*tightLeptons.px*(-1) + np.cos(tightLeptons[:,0].gamma)*tightLeptons.py,
-#                where='py_prime_subleadlep')
-#
-#        #create the primed px of the jets as a field of the AK4Jets column assuming the N lepton is the sublead lepton
-#        AK4Jets = ak.with_field(AK4Jets,
-#                np.cos(tightLeptons[:,0].gamma)*AK4Jets.px + np.sin(tightLeptons[:,0].gamma)*AK4Jets.py,
-#                where='px_prime_subleadlep')
-#        #create the primed py of the jets as a field of the AK4Jets column assuming the N lepton is the sublead lepton
-#        AK4Jets = ak.with_field(AK4Jets,
-#                np.sin(tightLeptons[:,0].gamma)*AK4Jets.px*(-1) + np.cos(tightLeptons[:,0].gamma)*AK4Jets.py,
-#                where='py_prime_subleadlep')
-#
-#
-#        #create the primed px of the leptons as a field of the tightLeptons column assuming the N lepton is the lead lepton
-#        tightLeptons = ak.with_field(tightLeptons,
-#                np.cos(tightLeptons[:,1].gamma)*tightLeptons.px + np.sin(tightLeptons[:,1].gamma)*tightLeptons.py,
-#                where='px_prime_leadlep')
-#        #create the primed py of the leptons as a field of the tightLeptons column assuming the N lepton is the lead lepton
-#        tightLeptons = ak.with_field(tightLeptons,
-#                np.sin(tightLeptons[:,1].gamma)*tightLeptons.px*(-1) + np.cos(tightLeptons[:,1].gamma)*tightLeptons.py,
-#                where='py_prime_leadlep')
-#
-#        #create the primed px of the jets as a field of the AK4Jets column assuming the N lepton is the lead lepton
-#        AK4Jets = ak.with_field(AK4Jets,
-#                np.cos(tightLeptons[:,1].gamma)*AK4Jets.px + np.sin(tightLeptons[:,1].gamma)*AK4Jets.py,
-#                where='px_prime_leadlep')
-#        #create the primed py of the jets as a field of the AK4Jets column assuming the N lepton is the lead lepton
-#        AK4Jets = ak.with_field(AK4Jets,
-#                np.sin(tightLeptons[:,1].gamma)*AK4Jets.px*(-1) + np.cos(tightLeptons[:,1].gamma)*AK4Jets.py,
-#                where='py_prime_leadlep')
+        #create the gamma field in tightLeptons
+        #x' axis is always aligned with the W lepton
+        #gamma is the angle between the W lepton's xy momentum vector and the positive CMS x-axis
+        #tightLeptons[:,0].gamma will give the gamma values assuming that the W lepton is the lead lepton
+        #tightLeptons[:,1].gamma will give the gamma values assuming that the W lepton is the sublead lepton
+        tightLeptons = ak.with_field(tightLeptons, ak.where(tightLeptons.px > 0,
+            np.arctan(tightLeptons.py/tightLeptons.px),
+            np.arctan(tightLeptons.py/tightLeptons.px) + np.pi),
+            where='gamma')
 
 
-        tightLeptonz = dask.compute(tightLeptons)
+        #create the primed px of the leptons as a field of the tightLeptons column assuming the N lepton is the sublead lepton
+        tightLeptons = ak.with_field(tightLeptons,
+                np.cos(tightLeptons[:,0].gamma)*tightLeptons.px + np.sin(tightLeptons[:,0].gamma)*tightLeptons.py,
+                where='px_prime_subleadlep')
+        #create the primed py of the leptons as a field of the tightLeptons column assuming the N lepton is the sublead lepton
+        tightLeptons = ak.with_field(tightLeptons,
+                np.sin(tightLeptons[:,0].gamma)*tightLeptons.px*(-1) + np.cos(tightLeptons[:,0].gamma)*tightLeptons.py,
+                where='py_prime_subleadlep')
+
+        #create the primed px of the jets as a field of the AK4Jets column assuming the N lepton is the sublead lepton
+        AK4Jets = ak.with_field(AK4Jets,
+                np.cos(tightLeptons[:,0].gamma)*AK4Jets.px + np.sin(tightLeptons[:,0].gamma)*AK4Jets.py,
+                where='px_prime_subleadlep')
+        #create the primed py of the jets as a field of the AK4Jets column assuming the N lepton is the sublead lepton
+        AK4Jets = ak.with_field(AK4Jets,
+                np.sin(tightLeptons[:,0].gamma)*AK4Jets.px*(-1) + np.cos(tightLeptons[:,0].gamma)*AK4Jets.py,
+                where='py_prime_subleadlep')
+
+
+        #create the primed px of the leptons as a field of the tightLeptons column assuming the N lepton is the lead lepton
+        tightLeptons = ak.with_field(tightLeptons,
+                np.cos(tightLeptons[:,1].gamma)*tightLeptons.px + np.sin(tightLeptons[:,1].gamma)*tightLeptons.py,
+                where='px_prime_leadlep')
+        #create the primed py of the leptons as a field of the tightLeptons column assuming the N lepton is the lead lepton
+        tightLeptons = ak.with_field(tightLeptons,
+                np.sin(tightLeptons[:,1].gamma)*tightLeptons.px*(-1) + np.cos(tightLeptons[:,1].gamma)*tightLeptons.py,
+                where='py_prime_leadlep')
+
+        #create the primed px of the jets as a field of the AK4Jets column assuming the N lepton is the lead lepton
+        AK4Jets = ak.with_field(AK4Jets,
+                np.cos(tightLeptons[:,1].gamma)*AK4Jets.px + np.sin(tightLeptons[:,1].gamma)*AK4Jets.py,
+                where='px_prime_leadlep')
+        #create the primed py of the jets as a field of the AK4Jets column assuming the N lepton is the lead lepton
+        AK4Jets = ak.with_field(AK4Jets,
+                np.sin(tightLeptons[:,1].gamma)*AK4Jets.px*(-1) + np.cos(tightLeptons[:,1].gamma)*AK4Jets.py,
+                where='py_prime_leadlep')
+
+
+#        tightLeptonz = dask.compute(tightLeptons)
+#
+#        print(f'\nlen(tightLeptons[0]): {len(tightLeptonz[0])}\n')
+#
+#        three_count = 0
+#        two_count = 0
+#        one_count = 0
+#        zero_count = 0
+#
+#        for ind in range(0, len(tightLeptonz[0])):
+##            print(f'ind: {ind}              type: {type(tightLeptonz[0][ind])}')
+#            if str(type(tightLeptonz[0][ind])) != "<class 'NoneType'>":
+#                if len(tightLeptonz[0][ind]) >= 3:
+#                    three_count += 1
+#                if (len(tightLeptonz[0][ind]) == 2) and (str(type(tightLeptonz[0][ind][1])) != "<class 'NoneType'>"):
+#                    two_count += 1
+#                elif (len(tightLeptonz[0][ind]) == 2) and (str(type(tightLeptonz[0][ind][0])) != "<class 'NoneType'>") and (str(type(tightLeptonz[0][ind][1])) == "<class 'NoneType'>"):
+#                    one_count += 1
+#                elif (len(tightLeptonz[0][ind]) == 2) and (str(type(tightLeptonz[0][ind][0])) == "<class 'NoneType'>") and (str(type(tightLeptonz[0][ind][1])) == "<class 'NoneType'>"):
+#                    zero_count += 1
+#            else:
+#                zero_count += 1
+#        print(f'\nNo. events w/ 3 or more leps: {three_count}\n')
+#        print(f'\nNo. events w/ 2 leps: {two_count}\n')
+#        print(f'\nNo. events w/ 1 lep: {one_count}\n')
+#        print(f'\nNo. events w/ 0 leps: {zero_count}\n')
         
-        for ind in range(0,10):
-#            if (hasattr(tightLeptonz[0][ind][0], 'deltaEtaSC') and hasattr(tightLeptonz[0][ind][1], 'tkRelIso')) or (hasattr(tightLeptonz[0][ind][1], 'deltaEtaSC') and hasattr(tightLeptonz[0][ind][0], 'tkRelIso')):
-
-                print(f'>>>>>>>>>>>>>>>>>> Event No. {ind} <<<<<<<<<<<<<<<<<<<<<')
-
-                print('\ntype(tightLeptons) uncomputed:\n' + str(type(tightLeptons)) + '\n')
-                print('\ntightLeptons uncomputed:\n' + str(tightLeptons) + '\n')
-
-                print('\ntype(tightLeptons):\n' + str(type(tightLeptonz)) + '\n')
-                print('\ntightLeptons:\n' + str(tightLeptonz) + '\n')
-
-                print('\ntype(tightLeptons[0]):\n' + str(type(tightLeptonz[0])) + '\n')
-                print('\ntightLeptons[0]:\n' + str(tightLeptonz[0]) + '\n')
-
-                print(f'\ntightLeptons[0][{ind}]:\n' + str(tightLeptonz[0][ind]) + '\n')
-
-                for particle in tightLeptonz[0][ind]:
-                    print('\ntype(particle): ' + str(type(particle)) + '\n')
-
-                for particle in tightLeptonz[0][ind]:
-                    if str(type(particle)) != "<class 'NoneType'>":
-                        print('\nparticle.fields: ' + str(particle.fields) + '\n')
-                    else:
-                        print('particle.fields: no fields\n')
-
-                for particle in tightLeptonz[0][ind]:
-                    if str(type(particle)) != "<class 'NoneType'>":
-                        for field in particle.fields:
-                            print(f"{field}: " + str(particle[str(field)]))
-                        print()
-                    else:
-                        print('no fields: no data\n')
-
-                print('---------------------------------------------------------------------------------------------------')
+#        for ind in range(0,10):
+##            if (hasattr(tightLeptonz[0][ind][0], 'deltaEtaSC') and hasattr(tightLeptonz[0][ind][1], 'tkRelIso')) or (hasattr(tightLeptonz[0][ind][1], 'deltaEtaSC') and hasattr(tightLeptonz[0][ind][0], 'tkRelIso')):
+#
+#                print(f'>>>>>>>>>>>>>>>>>> Event No. {ind} <<<<<<<<<<<<<<<<<<<<<')
+#
+#                print('\ntype(tightLeptons) uncomputed:\n' + str(type(tightLeptons)) + '\n')
+#                print('\ntightLeptons uncomputed:\n' + str(tightLeptons) + '\n')
+#
+#                print('\ntype(tightLeptons):\n' + str(type(tightLeptonz)) + '\n')
+#                print('\ntightLeptons:\n' + str(tightLeptonz) + '\n')
+#
+#                print('\ntype(tightLeptons[0]):\n' + str(type(tightLeptonz[0])) + '\n')
+#                print('\ntightLeptons[0]:\n' + str(tightLeptonz[0]) + '\n')
+#
+#                print(f'\ntightLeptons[0][{ind}]:\n' + str(tightLeptonz[0][ind]) + '\n')
+#
+#                if str(type(tightLeptonz[0][ind])) != "<class 'NoneType'>":
+#                    for particle in tightLeptonz[0][ind]:
+#                        print('\ntype(particle): ' + str(type(particle)) + '\n')
+#
+##                   for particle in tightLeptonz[0][ind]:
+##                       if str(type(particle)) != "<class 'NoneType'>":
+##                           print('\nparticle.fields: ' + str(particle.fields) + '\n')
+##                       else:
+##                           print('particle.fields: no fields\n')
+#
+#                    for particle in tightLeptonz[0][ind]:
+#                        if str(type(particle)) != "<class 'NoneType'>":
+#                            for field in particle.fields:
+#                                print(f"{field}: " + str(particle[str(field)]))
+#                            if particle.px >= 0:
+#                                print('gamma (calc): ' + str(np.arctan(particle.py/particle.px)))
+#                            else:
+#                                print('gamma (calc): ' + str(np.arctan(particle.py/particle.px) + np.pi))
+#                            print()
+#                        else:
+#                            print('no fields: no data\n')
+#                else:
+#                    print('no leptons in this event')
+#
+#                print('---------------------------------------------------------------------------------------------------')
 
 #        AK4Jetz = dask.compute(AK4Jets)
 #
+#        print(f'\nlen(AK4Jets[0]): {len(AK4Jetz[0])}\n')
+#
+#        three_count = 0
+#        two_count = 0
+#        one_count = 0
+#        zero_count = 0
+#
+#        for ind in range(0, len(AK4Jetz[0])):
+##            print(f'ind: {ind}              type: {type(AK4Jetz[0][ind])}')
+#            if str(type(AK4Jetz[0][ind])) != "<class 'NoneType'>":
+#                if len(AK4Jetz[0][ind]) >= 3:
+#                    three_count += 1
+#                if (len(AK4Jetz[0][ind]) == 2) and (str(type(AK4Jetz[0][ind][1])) != "<class 'NoneType'>"):
+#                    two_count += 1
+#                elif (len(AK4Jetz[0][ind]) == 2) and (str(type(AK4Jetz[0][ind][0])) != "<class 'NoneType'>") and (str(type(AK4Jetz[0][ind][1])) == "<class 'NoneType'>"):
+#                    one_count += 1
+#                elif (len(AK4Jetz[0][ind]) == 2) and (str(type(AK4Jetz[0][ind][0])) == "<class 'NoneType'>") and (str(type(AK4Jetz[0][ind][1])) == "<class 'NoneType'>"):
+#                    zero_count += 1
+#            else:
+#                zero_count += 1
+#        print(f'\nNo. events w/ 3 or more jets: {three_count}\n')
+#        print(f'\nNo. events w/ 2 jets: {two_count}\n')
+#        print(f'\nNo. events w/ 1 jet: {one_count}\n')
+#        print(f'\nNo. events w/ 0 jets: {zero_count}\n')
+
 #        for ind in range(0,5):
 #
 #                print(f'>>>>>>>>>>>>>>>>>> Event No. {ind} <<<<<<<<<<<<<<<<<<<<<')
@@ -360,22 +429,25 @@ class WrAnalysis(processor.ProcessorABC):
 #
 #                print(f'\nAK4Jets[0][{ind}]:\n' + str(AK4Jetz[0][ind]) + '\n')
 #
-#                for particle in AK4Jetz[0][ind]:
-#                    print('\ntype(particle): ' + str(type(particle)) + '\n')
+#                if str(type(AK4Jetz[0][ind])) != "<class 'NoneType'>":
+#                    for particle in AK4Jetz[0][ind]:
+#                        print('\ntype(particle): ' + str(type(particle)) + '\n')
 #
-#                for particle in AK4Jetz[0][ind]:
-#                    if str(type(particle)) != "<class 'NoneType'>":
-#                        print('\nparticle.fields: ' + str(particle.fields) + '\n')
-#                    else:
-#                        print('particle.fields: no fields\n')
+##                   for particle in AK4Jetz[0][ind]:
+##                       if str(type(particle)) != "<class 'NoneType'>":
+##                           print('\nparticle.fields: ' + str(particle.fields) + '\n')
+##                       else:
+##                           print('particle.fields: no fields\n')
 #
-#                for particle in AK4Jetz[0][ind]:
-#                    if str(type(particle)) != "<class 'NoneType'>":
-#                        for field in particle.fields:
-#                            print(f"{field}: " + str(particle[str(field)]))
-#                        print()
-#                    else:
-#                        print('no fields: no data\n')
+#                    for particle in AK4Jetz[0][ind]:
+#                        if str(type(particle)) != "<class 'NoneType'>":
+#                            for field in particle.fields:
+#                                print(f"{field}: " + str(particle[str(field)]))
+#                            print()
+#                        else:
+#                            print('no fields: no data\n')
+#                else:
+#                    print("no jets in this event")
 #
 #                print('---------------------------------------------------------------------------------------------------')
 
