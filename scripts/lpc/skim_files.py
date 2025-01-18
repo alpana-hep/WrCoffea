@@ -81,7 +81,7 @@ def process_file(sliced_dataset, dataset_key, dataset, file_index):
         make_skimmed_events,
         sliced_dataset,
         schemaclass=NanoAODSchema,
-        uproot_options={"handler": uproot.XRootDSource, "timeout": 3600, "step_size": 10000}}
+        uproot_options={"handler": uproot.XRootDSource, "timeout": 3600, "step_size": 10000}
     )
 
     with ProgressBar():
