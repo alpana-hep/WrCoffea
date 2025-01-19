@@ -1,0 +1,31 @@
+19-Jan-2025 15:15:44 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/DYJetsToLL_M-50_HT-100to200_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v1/280000/906E5A21-BF93-194D-994A-A7CC9C3356CF.root
+     53.974120      0.761949      0.142671             1
+    419.332400      2.089465      0.142671             3
+    261.584600      2.002299      0.142671             2
+    348.120600      1.556385      0.142671             4
+ 
+19-Jan-2025 15:15:54 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/DYJetsToLL_M-50_HT-100to200_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v1/280000/906E5A21-BF93-194D-994A-A7CC9C3356CF.root
+
+------------------------------------
+GenXsecAnalyzer:
+------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Overall cross-section summary 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Process		xsec_before [pb]		passed	nposw	nnegw	tried	nposw	nnegw 	xsec_match [pb]			accepted [%]	 event_eff [%]
+0		5.475e+01 +/- 2.414e-02		125624	125624	0	396877	396877	0	1.733e+01 +/- 4.114e-02		31.7 +/- 0.1	31.7 +/- 0.1
+1		2.569e+02 +/- 6.233e-02		421734	421734	0	1854149	1854149	0	5.843e+01 +/- 8.035e-02		22.7 +/- 0.0	22.7 +/- 0.0
+2		4.159e+02 +/- 6.396e-02		320021	320021	0	2956139	2956139	0	4.503e+01 +/- 7.548e-02		10.8 +/- 0.0	10.8 +/- 0.0
+3		3.462e+02 +/- 4.588e-02		133453	133453	0	2453119	2453119	0	1.883e+01 +/- 5.020e-02		5.4 +/- 0.0	5.4 +/- 0.0
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Total		1.074e+03 +/- 1.033e-01		1000832	1000832	0	7660284	7660284	0	1.403e+02 +/- 1.314e-01		13.1 +/- 0.0	13.1 +/- 0.0
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Before matching: total cross section = 1.074e+03 +- 1.033e-01 pb
+After matching: total cross section = 1.403e+02 +- 1.314e-01 pb
+Matching efficiency = 0.1 +/- 0.0   [TO BE USED IN MCM]
+Filter efficiency (taking into account weights)= (1.00083e+06) / (1.00083e+06) = 1.000e+00 +- 0.000e+00
+Filter efficiency (event-level)= (1.00083e+06) / (1.00083e+06) = 1.000e+00 +- 0.000e+00    [TO BE USED IN MCM]
+
+After filter: final cross section = 1.403e+02 +- 1.314e-01 pb
+After filter: final fraction of events with negative weights = 0.000e+00 +- 0.000e+00
+After filter: final equivalent lumi for 1M events (1/fb) = 7.128e+00 +- 9.768e-03
