@@ -101,7 +101,7 @@
         "mc_campaign": "Run3Summer22",
         "process": "tt",
         "dataset": "TTto2L2Nu",
-        "xsec": 102.622,
+        "xsec": 84.6778,
 	"genEventSumw": 0.0
     }
 }
