@@ -39,8 +39,12 @@ def query_datasets(data, run):
     if run == "Run2Summer20UL18":
 #        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_US_Caltech", "T2_US_Vanderbilt", "T2_US_UCSD", "T2_US_Nebraska", "T2_US_Florida", "T2_UK_London_IC"]) #Remove T2_US_Nebraska
         ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_CH_CERN", "T2_UK_London_IC", "T2_US_UCSD", "T2_US_FLORIDA"]) #"T2_FI_HIP"
-    if run == "Run3Summer22":
+    elif run == "Run3Summer22":
         ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_US_Caltech", "T2_US_Vanderbilt", "T2_US_UCSD", "T2_US_Nebraska", "T2_US_Florida", "T2_UK_London_IC"]) #Remove T2_US_Nebraska
+    elif run == "Run3Summer23":
+        ddc.do_blocklist_sites(["T2_US_MIT", "T2_PL_Cyfronet"]) # Gave error
+    elif run == "Run3Summer23BPix": # GOOD
+        ddc.do_blocklist_sites(["T2_US_MIT"]) # Gave error
     dataset = ddc.load_dataset_definition(dataset_definition = data, query_results_strategy="all", replicas_strategy="first")
     return dataset
 
@@ -93,14 +97,14 @@ if __name__ == "__main__":
 
     # Set up argument parsing
     parser = argparse.ArgumentParser(description="Process the JSON configuration file.")
-    parser.add_argument("run", type=str, choices=["Run2Summer20UL18", "Run3Summer22"], help="MC Campaign")
+    parser.add_argument("run", type=str, choices=["Run2Summer20UL18", "Run3Summer22", "Run3Summer22EE", "Run3Summer23", "Run3Summer23BPix"], help="MC Campaign")
     parser.add_argument("sample", type=str, choices=["bkg"], help="Sample type (bkg, sig, data)")
 
     # Parse the arguments
     args = parser.parse_args()
 
     # Build input and output file paths based on the arguments
-    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_template_full.json"
+    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_template.json"
     output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
 
     # Create the Dask client
