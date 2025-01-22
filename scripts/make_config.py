@@ -37,10 +37,13 @@ def query_datasets(data, run):
     print(f"\nQuerying replica sites")
     ddc = DataDiscoveryCLI()
     if run == "Run2Summer20UL18":
+        ddc.do_blocklist_sites(["T2_US_MIT"]) # Gave error
 #        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_US_Caltech", "T2_US_Vanderbilt", "T2_US_UCSD", "T2_US_Nebraska", "T2_US_Florida", "T2_UK_London_IC"]) #Remove T2_US_Nebraska
-        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_CH_CERN", "T2_UK_London_IC", "T2_US_UCSD", "T2_US_FLORIDA"]) #"T2_FI_HIP"
+#        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_CH_CERN", "T2_UK_London_IC", "T2_US_UCSD", "T2_US_FLORIDA"]) #"T2_FI_HIP"
     elif run == "Run3Summer22":
-        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_US_Caltech", "T2_US_Vanderbilt", "T2_US_UCSD", "T2_US_Nebraska", "T2_US_Florida", "T2_UK_London_IC"]) #Remove T2_US_Nebraska
+        ddc.do_blocklist_sites(["T2_PL_Cyfronet"]) # Gave error
+    elif run == "Run3Summer22EE":
+        ddc.do_blocklist_sites(["T2_US_MIT", "T2_PL_Cyfronet"]) # Gave error
     elif run == "Run3Summer23":
         ddc.do_blocklist_sites(["T2_US_MIT", "T2_PL_Cyfronet"]) # Gave error
     elif run == "Run3Summer23BPix": # GOOD
