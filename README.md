@@ -82,11 +82,11 @@ python3 scripts/241215_N3200_vs_N800/plot_SR.py --umn
 
 ### Extending the Analyzer
 
-The files [bin/run_analysis.py](https://github.com/UMN-CMS/WrCoffea/blob/main/bin/run_analysis.py) and [src/analyzer.py](https://github.com/UMN-CMS/WrCoffea/blob/main/src/analyzer.py) make a standard selection and standard set of histograms. Independent studies where the variables, selections, histograms etc may differ are developed in the [tests](https://github.com/UMN-CMS/WrCoffea/tree/main/test) folder. It is usually easiest to copy the files and start from there. Once finished, new studies can integrated into the main pipeline via the `bin` or `python` or `src` folders.
+* The files [bin/run_analysis.py](https://github.com/UMN-CMS/WrCoffea/blob/main/bin/run_analysis.py) and [src/analyzer.py](https://github.com/UMN-CMS/WrCoffea/blob/main/src/analyzer.py) make a standard selection and standard set of histograms. Independent studies where the variables, selections, histograms etc may differ are developed in the [tests](https://github.com/UMN-CMS/WrCoffea/tree/main/test) folder. It is usually easiest to copy the files and start from there. Once finished, new studies can integrated into the main pipeline via the `bin` or `python` or `src` folders.
 
 ## Full Workflow
 
-The following offers more detail on how to add a new MC campaign to the analyzer by way of example. 
+* The following offers more detail on how to add a new MC campaign to the analyzer by way of example. 
 
 ### Cross-section Computation
 #### Find MINIAOD files
@@ -96,7 +96,7 @@ The following offers more detail on how to add a new MC campaign to the analyzer
 cd scripts
 python3 miniaod_files_for_xsec.py Run3Summer23BPix
 ```
-The output `.txt` files are saved in `data/miniaod/Run3Summer23BPix`. For example, see [data/miniaod/Run3Summer23BPix/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_MINIAOD_files.txt](https://github.com/UMN-CMS/WrCoffea/blob/add_skims/data/miniaod/Run3Summer23BPix/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_MINIAOD_files.txt).
+* The output `.txt` files are saved in `data/miniaod/Run3Summer23BPix`. For example, see [data/miniaod/Run3Summer23BPix/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_MINIAOD_files.txt](https://github.com/UMN-CMS/WrCoffea/blob/add_skims/data/miniaod/Run3Summer23BPix/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_MINIAOD_files.txt).
 
 #### Compute the cross-section
 *To compute the cross section go a `cmssw` environment,
@@ -134,7 +134,7 @@ After filter: final cross section = 3.170e+02 +- 1.926e-01 pb
 After filter: final fraction of events with negative weights = 0.000e+00 +- 0.000e+00
 After filter: final equivalent lumi for 1M events (1/fb) = 3.155e+00 +- 3.691e-03
 ```
-The cross section to be used is `After filter: final cross section = 3.170e+02 +- 1.926e-01 pb`
+* The cross section to be used is `After filter: final cross section = 3.170e+02 +- 1.926e-01 pb`
 
 #### Save the cross-section log file 
 
@@ -152,6 +152,17 @@ The cross section to be used is `After filter: final cross section = 3.170e+02 +
 
 * To compute the sum of the weights, run the script
 ```
-python3 make_config.py Run3Summer23BPix bkg
+python3 scripts/make_config.py Run3Summer23BPix bkg
 ```
-This script takes in the `JSON` template file, computes the sum of the event weights (which needs to be tracked if the datasets are to be skimmed), and outputs the same `JSON` file with the sum of the weights included. For example, see 
+* This script takes in the `JSON` template file, computes the sum of the event weights (which needs to be tracked if the datasets are to be skimmed), and outputs the same `JSON` file with the sum of the weights included. For example, see [data/configs/Run3Summer23BPix
+/Run3Summer23BPix_bkg_cfg.json](https://github.com/UMN-CMS/WrCoffea/blob/add_skims/data/configs/Run3Summer23BPix/Run3Summer23BPix_bkg_cfg.json)
+
+### Preprocess Events
+
+* The next step is to preprocess events, which takes in the `JSON` configuration file from above and uses Coffeas' built in DataDiscoveryCLI class to create a list of all available file replicas. It then preprocesses them using Coffeas' preprocess function.
+```
+python3 scripts/preprocessed_json.py Run3Summer23BPix bkg
+```
+* The preprocessed file information is stored in an output `JSON` file in the directory `data/jsons`. This output `JSON` file can either then be given to the skimmer, or directly to the analyzer if skimming is not needed. For example, see [data/jsons/Run3Summer23BPix/Run3Summer23BPix_bkg_preprocessed.json](https://github.com/UMN-CMS/WrCoffea/blob/add_skims/data/jsons/Run3Summer23BPix/Run3Summer23BPix_bkg_preprocessed.json)
+
+
