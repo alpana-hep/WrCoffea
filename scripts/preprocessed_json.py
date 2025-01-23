@@ -33,47 +33,21 @@ def load_config(filepath):
     with open(filepath, 'r') as file:
         return json.load(file)
 
-def get_metadata(config, is_data, is_signal):
-    data = {}
-
-    print("Creating json file...")
-    for dataset_name, metadata in config.items():
-
-        # If it's data, limit the metadata fields
-        if is_data:
-            metadata = {
-                "mc_campaign": metadata["mc_campaign"],
-                "process": metadata["process"],
-                "dataset": metadata["dataset"],
-            }
-        elif is_signal:
-            metadata = {
-                "mc_campaign": metadata["mc_campaign"],
-                "process": metadata["process"],
-                "dataset": metadata["dataset"],
-                "xsec": metadata["xsec"],
-            }
-        else:
-            metadata = {
-                "mc_campaign": metadata["mc_campaign"],
-                "process": metadata["process"],
-                "dataset": metadata["dataset"],
-                "xsec": metadata["xsec"],
-                "genEventSumw": 0.0,
-            }
-
-        data[dataset_name] = metadata
-
-    return data
-
 def query_datasets(data, run):
     print(f"\nQuerying replica sites")
     ddc = DataDiscoveryCLI()
     if run == "Run2Summer20UL18":
+        ddc.do_blocklist_sites(["T2_US_MIT"])
 #        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_US_Caltech", "T2_US_Vanderbilt", "T2_US_UCSD", "T2_US_Nebraska", "T2_US_Florida", "T2_UK_London_IC"]) #Remove T2_US_Nebraska
-        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_CH_CERN", "T2_UK_London_IC", "T2_US_UCSD", "T2_US_FLORIDA"]) #"T2_FI_HIP"
-    if run == "Run3Summer22":
-        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_US_Caltech", "T2_US_Vanderbilt", "T2_US_UCSD", "T2_US_Nebraska", "T2_US_Florida", "T2_UK_London_IC"]) #Remove T2_US_Nebraska
+#        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_CH_CERN", "T2_UK_London_IC", "T2_US_UCSD", "T2_US_FLORIDA"]) #"T2_FI_HIP"
+    elif run == "Run3Summer22":
+        ddc.do_blocklist_sites(["T2_PL_Cyfronet"])
+    elif run == "Run3Summer22EE":
+        ddc.do_blocklist_sites(["T2_US_MIT", "T2_PL_Cyfronet"])
+    elif run == "Run3Summer23":
+        ddc.do_blocklist_sites(["T2_PL_Cyfronet", "T2_US_MIT", "T2_TW_NCHC"])
+    elif run == "Run3Summer23BPix": # GOOD
+        ddc.do_blocklist_sites(["T2_US_MIT"])
     dataset = ddc.load_dataset_definition(dataset_definition = data, query_results_strategy="all", replicas_strategy="first")
     return dataset
 
@@ -117,10 +91,13 @@ def compare_preprocessed(data, data_all):
 
 def save_json(output_file, data):
     """
-    Save the processed JSON data to a file. If data and data_all are different,
-    throw an error and output the differences. If they are the same, save only data.
+    Save the processed JSON data to a file. If the directories for the output file 
+    do not exist, create them. If the file already exists, warn about overwriting it.
     """
     output_path = Path(output_file)
+
+    # Create parent directories if they don't exist
+    output_path.parent.mkdir(parents=True, exist_ok=True)
 
     # Check if the file already exists and warn if it will be overwritten
     if output_path.exists():
@@ -143,7 +120,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Build input and output file paths based on the arguments
-    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg_full.json"
+    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
     output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed.json"
 
     # Create the Dask client
@@ -151,12 +128,6 @@ if __name__ == "__main__":
 
     # Load the configuration file
     config = load_config(input_file)
-
-    # Determine if the input is 'data' based on the file name
-    is_mc = 'bkg' in args.sample
-    is_data = 'data' in args.sample
-
-#    updated_config = get_metadata(config, is_data, is_signal)
 
     dataset = query_datasets(config, args.run) #Updated config
 
