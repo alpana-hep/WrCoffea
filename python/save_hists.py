@@ -72,10 +72,12 @@ def scale_hists(data):
                     # Debugging print statements
                     print("Scaled cutflow[0]:", cutflow_0)
                     print("Scaled cutflow[1]:", cutflow_1)
+                    print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
                     
                 elif isinstance(value, Hist):
                     # Scale the histogram directly
-                    value *= sf
+#                    value *= sf
+                    value = value
 
     return data
 
