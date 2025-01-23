@@ -18,6 +18,9 @@ def save_histograms(my_histograms, args):
     if args.run == "Run3Summer22":
         dataset = "Run3"
         year = "2022"
+    elif args.run == "Run3Summer23BPix":
+        dataset = "Run3"
+        year = "2023"
     elif args.run == "Run2Summer20UL18":
         dataset = "Run2UltraLegacy"
         year = "2018"

@@ -6,14 +6,14 @@ import csv
 from pathlib import Path
 from coffea.nanoevents import NanoAODSchema
 from coffea.dataset_tools import apply_to_fileset, max_chunks, max_files
-
 import sys
 import os
 
-# Add the src/ directory to sys.path
+# Add the src/, data/, and python/ directories to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../data')))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../python`')))
+
 # Add the parent directory (project_root) to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
@@ -119,7 +119,7 @@ def run_analysis(args, preprocessed_fileset):
     filtered_fileset = filter_by_process(preprocessed_fileset, args.sample, args.mass)
     to_compute = apply_to_fileset(
         data_manipulation=WrAnalysis(mass_point=args.mass),
-        fileset=max_files(max_chunks(filtered_fileset)),
+        fileset=max_files(max_chunks(filtered_fileset, 1), 1),
         schemaclass=NanoAODSchema,
     )
 
@@ -141,7 +141,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Processing script for WR analysis.")
 
     # Required arguments
-    parser.add_argument("run", type=str, choices=["Run2Autumn18", "Run2Summer20UL18", "Run3Summer22"], help="Campaign to analyze.")
+    parser.add_argument("run", type=str, choices=["Run2Autumn18", "Run2Summer20UL18", "Run3Summer22", "Run3Summer22EE", "Run3Summer23", "Run3Summer23BPix"], help="Campaign to analyze.")
     parser.add_argument("sample", type=str, choices=["DYJets", "tt", "tW", "Nonprompt", "Other", "EGamma", "SingleMuon", "Signal"],
                         help="MC sample to analyze (e.g., Signal, DYJets).")
 

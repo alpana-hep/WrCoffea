@@ -2950,13 +2950,11 @@
             }
         },
         "metadata": {
-            "metadata": {
-                "mc_campaign": "Run3Summer23BPix",
-                "process": "DYJets",
-                "dataset": "DYto2L-4Jets_MLL-50to120_HT-40to70",
-                "xsec": 315.9,
-                "genEventSumw": 55088206483.0
-            }
+            "mc_campaign": "Run3Summer23BPix",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-50to120_HT-40to70",
+            "xsec": 315.9,
+            "genEventSumw": 55088206483.0
         },
         "form": null
     },
@@ -6091,13 +6089,11 @@
             }
         },
         "metadata": {
-            "metadata": {
-                "mc_campaign": "Run3Summer23BPix",
-                "process": "DYJets",
-                "dataset": "DYto2L-4Jets_MLL-50to120_HT-70to100",
-                "xsec": 140.4,
-                "genEventSumw": 26018475178.0
-            }
+            "mc_campaign": "Run3Summer23BPix",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-50to120_HT-70to100",
+            "xsec": 140.4,
+            "genEventSumw": 26018475178.0
         },
         "form": null
     },
@@ -9907,13 +9903,11 @@
             }
         },
         "metadata": {
-            "metadata": {
-                "mc_campaign": "Run3Summer23BPix",
-                "process": "DYJets",
-                "dataset": "DYto2L-4Jets_MLL-50to120_HT-100to400",
-                "xsec": 179.4,
-                "genEventSumw": 55027693051.0
-            }
+            "mc_campaign": "Run3Summer23BPix",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-50to120_HT-100to400",
+            "xsec": 179.4,
+            "genEventSumw": 55027693051.0
         },
         "form": null
     },
@@ -10179,13 +10173,11 @@
             }
         },
         "metadata": {
-            "metadata": {
-                "mc_campaign": "Run3Summer23BPix",
-                "process": "DYJets",
-                "dataset": "DYto2L-4Jets_MLL-50to120_HT-400to800",
-                "xsec": 6.74,
-                "genEventSumw": 79339707.0
-            }
+            "mc_campaign": "Run3Summer23BPix",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-50to120_HT-400to800",
+            "xsec": 6.74,
+            "genEventSumw": 79339707.0
         },
         "form": null
     },
@@ -10690,13 +10682,11 @@
             }
         },
         "metadata": {
-            "metadata": {
-                "mc_campaign": "Run3Summer23BPix",
-                "process": "DYJets",
-                "dataset": "DYto2L-4Jets_MLL-50to120_HT-800to1500",
-                "xsec": 0.7002,
-                "genEventSumw": 15604681.0
-            }
+            "mc_campaign": "Run3Summer23BPix",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-50to120_HT-800to1500",
+            "xsec": 0.7002,
+            "genEventSumw": 15604681.0
         },
         "form": null
     },
@@ -11425,13 +11415,11 @@
             }
         },
         "metadata": {
-            "metadata": {
-                "mc_campaign": "Run3Summer23BPix",
-                "process": "DYJets",
-                "dataset": "DYto2L-4Jets_MLL-50to120_HT-1500to2500",
-                "xsec": 0.05059,
-                "genEventSumw": 1196807.0
-            }
+            "mc_campaign": "Run3Summer23BPix",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-50to120_HT-1500to2500",
+            "xsec": 0.05059,
+            "genEventSumw": 1196807.0
         },
         "form": null
     },
@@ -12070,13 +12058,11 @@
             }
         },
         "metadata": {
-            "metadata": {
-                "mc_campaign": "Run3Summer23BPix",
-                "process": "DYJets",
-                "dataset": "DYto2L-4Jets_MLL-50to120_HT-2500",
-                "xsec": 0.003455,
-                "genEventSumw": 78521.0
-            }
+            "mc_campaign": "Run3Summer23BPix",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-50to120_HT-2500",
+            "xsec": 0.003455,
+            "genEventSumw": 78521.0
         },
         "form": null
     },
@@ -12340,13 +12326,11 @@
             }
         },
         "metadata": {
-            "metadata": {
-                "mc_campaign": "Run3Summer23BPix",
-                "process": "DYJets",
-                "dataset": "DYto2L-4Jets_MLL-120_HT-40to70",
-                "xsec": 4.575,
-                "genEventSumw": 70140296.0
-            }
+            "mc_campaign": "Run3Summer23BPix",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-40to70",
+            "xsec": 4.575,
+            "genEventSumw": 70140296.0
         },
         "form": null
     },
@@ -12844,13 +12828,11 @@
             }
         },
         "metadata": {
-            "metadata": {
-                "mc_campaign": "Run3Summer23BPix",
-                "process": "DYJets",
-                "dataset": "DYto2L-4Jets_MLL-120_HT-70to100",
-                "xsec": 2.198,
-                "genEventSumw": 29687897.0
-            }
+            "mc_campaign": "Run3Summer23BPix",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-70to100",
+            "xsec": 2.198,
+            "genEventSumw": 29687897.0
         },
         "form": null
     },
@@ -13212,13 +13194,11 @@
             }
         },
         "metadata": {
-            "metadata": {
-                "mc_campaign": "Run3Summer23BPix",
-                "process": "DYJets",
-                "dataset": "DYto2L-4Jets_MLL-120_HT-100to400",
-                "xsec": 3.35,
-                "genEventSumw": 59778898.0
-            }
+            "mc_campaign": "Run3Summer23BPix",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-100to400",
+            "xsec": 3.35,
+            "genEventSumw": 59778898.0
         },
         "form": null
     },
@@ -13967,13 +13947,11 @@
             }
         },
         "metadata": {
-            "metadata": {
-                "mc_campaign": "Run3Summer23BPix",
-                "process": "DYJets",
-                "dataset": "DYto2L-4Jets_MLL-120_HT-400to800",
-                "xsec": 0.1753,
-                "genEventSumw": 4146266.0
-            }
+            "mc_campaign": "Run3Summer23BPix",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-400to800",
+            "xsec": 0.1753,
+            "genEventSumw": 4146266.0
         },
         "form": null
     },
@@ -14774,13 +14752,11 @@
             }
         },
         "metadata": {
-            "metadata": {
-                "mc_campaign": "Run3Summer23BPix",
-                "process": "DYJets",
-                "dataset": "DYto2L-4Jets_MLL-120_HT-800to1500",
-                "xsec": 0.02092,
-                "genEventSumw": 495453.0
-            }
+            "mc_campaign": "Run3Summer23BPix",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-800to1500",
+            "xsec": 0.02092,
+            "genEventSumw": 495453.0
         },
         "form": null
     },
@@ -15724,13 +15700,11 @@
             }
         },
         "metadata": {
-            "metadata": {
-                "mc_campaign": "Run3Summer23BPix",
-                "process": "DYJets",
-                "dataset": "DYto2L-4Jets_MLL-120_HT-1500to2500",
-                "xsec": 0.001684,
-                "genEventSumw": 39609.0
-            }
+            "mc_campaign": "Run3Summer23BPix",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-1500to2500",
+            "xsec": 0.001684,
+            "genEventSumw": 39609.0
         },
         "form": null
     },
@@ -16168,13 +16142,11 @@
             }
         },
         "metadata": {
-            "metadata": {
-                "mc_campaign": "Run3Summer23BPix",
-                "process": "DYJets",
-                "dataset": "DYto2L-4Jets_MLL-120_HT-2500",
-                "xsec": 0.0001246,
-                "genEventSumw": 2743.0
-            }
+            "mc_campaign": "Run3Summer23BPix",
+            "process": "DYJets",
+            "dataset": "DYto2L-4Jets_MLL-120_HT-2500",
+            "xsec": 0.0001246,
+            "genEventSumw": 2743.0
         },
         "form": null
     },
@@ -18328,13 +18300,11 @@
             }
         },
         "metadata": {
-            "metadata": {
-                "mc_campaign": "Run3Summer23BPix",
-                "process": "tt",
-                "dataset": "TTto2L2Nu",
-                "xsec": 84.6778,
-                "genEventSumw": 1982966432.0
-            }
+            "mc_campaign": "Run3Summer23BPix",
+            "process": "tt",
+            "dataset": "TTto2L2Nu",
+            "xsec": 84.6778,
+            "genEventSumw": 1982966432.0
         },
         "form": null
     }

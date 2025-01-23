@@ -188,7 +188,7 @@ class WrAnalysis(processor.ProcessorABC):
                 selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
                 selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
                 selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
-            elif mc_campaign == "Run3Summer22":
+            elif mc_campaign == "Run3Summer22" or mc_campaign == "Run3Summer23BPix":
                 eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
                 muTrig = events.HLT.Mu50 | events.HLT.HighPtTkMu100
                 selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))

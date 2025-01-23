@@ -38,8 +38,6 @@ def query_datasets(data, run):
     ddc = DataDiscoveryCLI()
     if run == "Run2Summer20UL18":
         ddc.do_blocklist_sites(["T2_US_MIT"]) # Gave error
-#        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_US_Caltech", "T2_US_Vanderbilt", "T2_US_UCSD", "T2_US_Nebraska", "T2_US_Florida", "T2_UK_London_IC"]) #Remove T2_US_Nebraska
-#        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_CH_CERN", "T2_UK_London_IC", "T2_US_UCSD", "T2_US_FLORIDA"]) #"T2_FI_HIP"
     elif run == "Run3Summer22":
         ddc.do_blocklist_sites(["T2_PL_Cyfronet"]) # Gave error
     elif run == "Run3Summer22EE":
@@ -49,6 +47,7 @@ def query_datasets(data, run):
     elif run == "Run3Summer23BPix": # GOOD
         ddc.do_blocklist_sites(["T2_US_MIT"]) # Gave error
     dataset = ddc.load_dataset_definition(dataset_definition = data, query_results_strategy="all", replicas_strategy="first")
+
     return dataset
 
 def get_sumw(dataset_runnable):
@@ -60,7 +59,11 @@ def get_sumw(dataset_runnable):
             genEventSumw = get_genevents_from_coffea(file_path)
             data["metadata"]["genEventSumw"] += genEventSumw
 
+        # Remove 'files' key from the dictionary
         del data['files']
+
+        # This gets rid of the parent 'metadata' that comes from DataDiscoveryCLI()
+        dataset_runnable[dataset_name] = data['metadata']
     print()
     return dataset_runnable
 
