@@ -11,6 +11,7 @@ import warnings
 import json
 import dask
 import dask_awkward as dak
+from scipy.stats import truncnorm
 warnings.filterwarnings("ignore",module="coffea.*")
 
 logging.basicConfig(level=logging.INFO)
@@ -200,23 +201,27 @@ class WrAnalysis(processor.ProcessorABC):
             ('WRCand_Py', (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1]).py, 'py_fourobject'),
             ('WRCand_Pz', (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1]).pz, 'pz_fourobject'),
 
-            ('NCand_Lepton_0_Mass_Wprime', (((leptons[:, 0] + jets[:, 0] + jets[:, 1]).energy)**2 -
-                   ((leptons[:, 0].px_Wprime_leadlep + jets[:, 0].px_Wprime_leadlep + jets[:, 1].px_Wprime_leadlep)**2 +
-                    (leptons[:, 0].py_Wprime_leadlep + jets[:, 0].py_Wprime_leadlep + jets[:, 1].py_Wprime_leadlep)**2 +
-                    (leptons[:, 0].pz                + jets[:, 0].pz                + jets[:, 1].pz               )**2))**0.5, 'mass_threeobject_leadlep_Wprime'),
-            ('NCand_Lepton_1_Mass_Wprime', (((leptons[:, 1] + jets[:, 0] + jets[:, 1]).energy)**2 -
-                   ((leptons[:, 1].px_Wprime_subleadlep + jets[:, 0].px_Wprime_subleadlep + jets[:, 1].px_Wprime_subleadlep)**2 +
-                    (leptons[:, 1].py_Wprime_subleadlep + jets[:, 0].py_Wprime_subleadlep + jets[:, 1].py_Wprime_subleadlep)**2 +
-                    (leptons[:, 1].pz                   + jets[:, 0].pz                   + jets[:, 1].pz                  )**2))**0.5, 'mass_threeobject_subleadlep_Wprime'),
+            ('NCand_Lepton_0_Mass_Wprime',
+                    ((leptons[:, 0].energy            + jets[:, 0].energy            + jets[:, 1].energy           )**2 -
+                    ((leptons[:, 0].px_Wprime_leadlep + jets[:, 0].px_Wprime_leadlep + jets[:, 1].px_Wprime_leadlep)**2 +
+                     (leptons[:, 0].py_Wprime_leadlep + jets[:, 0].py_Wprime_leadlep + jets[:, 1].py_Wprime_leadlep)**2 +
+                     (leptons[:, 0].pz                + jets[:, 0].pz                + jets[:, 1].pz               )**2))**0.5, 'mass_threeobject_leadlep_Wprime'),
+            ('NCand_Lepton_1_Mass_Wprime',
+                    ((leptons[:, 1].energy               + jets[:, 0].energy               + jets[:, 1].energy              )**2 -
+                    ((leptons[:, 1].px_Wprime_subleadlep + jets[:, 0].px_Wprime_subleadlep + jets[:, 1].px_Wprime_subleadlep)**2 +
+                     (leptons[:, 1].py_Wprime_subleadlep + jets[:, 0].py_Wprime_subleadlep + jets[:, 1].py_Wprime_subleadlep)**2 +
+                     (leptons[:, 1].pz                   + jets[:, 0].pz                   + jets[:, 1].pz                  )**2))**0.5, 'mass_threeobject_subleadlep_Wprime'),
 
-            ('NCand_Lepton_0_Mass_threeprime', (((leptons[:, 0] + jets[:, 0] + jets[:, 1]).energy)**2 -
-                   ((leptons[:, 0].px_threeprime_leadlep + jets[:, 0].px_threeprime_leadlep + jets[:, 1].px_threeprime_leadlep)**2 +
-                    (leptons[:, 0].py_threeprime_leadlep + jets[:, 0].py_threeprime_leadlep + jets[:, 1].py_threeprime_leadlep)**2 +
-                    (leptons[:, 0].pz                    + jets[:, 0].pz                    + jets[:, 1].pz                   )**2))**0.5, 'mass_threeobject_leadlep_threeprime'),
-            ('NCand_Lepton_1_Mass_threeprime', (((leptons[:, 1] + jets[:, 0] + jets[:, 1]).energy)**2 -
-                   ((leptons[:, 1].px_threeprime_subleadlep + jets[:, 0].px_threeprime_subleadlep + jets[:, 1].px_threeprime_subleadlep)**2 +
-                    (leptons[:, 1].py_threeprime_subleadlep + jets[:, 0].py_threeprime_subleadlep + jets[:, 1].py_threeprime_subleadlep)**2 +
-                    (leptons[:, 1].pz                       + jets[:, 0].pz                       + jets[:, 1].pz                      )**2))**0.5, 'mass_threeobject_subleadlep_threeprime'),
+            ('NCand_Lepton_0_Mass_threeprime',
+                    ((leptons[:, 0].energy                + jets[:, 0].energy                + jets[:, 1].energy               )**2 -
+                    ((leptons[:, 0].px_threeprime_leadlep + jets[:, 0].px_threeprime_leadlep + jets[:, 1].px_threeprime_leadlep)**2 +
+                     (leptons[:, 0].py_threeprime_leadlep + jets[:, 0].py_threeprime_leadlep + jets[:, 1].py_threeprime_leadlep)**2 +
+                     (leptons[:, 0].pz                    + jets[:, 0].pz                    + jets[:, 1].pz                   )**2))**0.5, 'mass_threeobject_leadlep_threeprime'),
+            ('NCand_Lepton_1_Mass_threeprime',
+                    ((leptons[:, 1].energy                   + jets[:, 0].energy                   + jets[:, 1].energy                  )**2 -
+                    ((leptons[:, 1].px_threeprime_subleadlep + jets[:, 0].px_threeprime_subleadlep + jets[:, 1].px_threeprime_subleadlep)**2 +
+                     (leptons[:, 1].py_threeprime_subleadlep + jets[:, 0].py_threeprime_subleadlep + jets[:, 1].py_threeprime_subleadlep)**2 +
+                     (leptons[:, 1].pz                       + jets[:, 0].pz                       + jets[:, 1].pz                      )**2))**0.5, 'mass_threeobject_subleadlep_threeprime'),
         ]
 
         # Loop over variables and fill corresponding histograms
@@ -280,6 +285,13 @@ class WrAnalysis(processor.ProcessorABC):
         tightLeptons = ak.with_name(ak.concatenate((tightElectrons, tightMuons), axis=1), 'PtEtaPhiMCandidate')
         tightLeptons = ak.pad_none(tightLeptons[ak.argsort(tightLeptons.pt, axis=1, ascending=False)], 2, axis=1)
         AK4Jets = ak.pad_none(AK4Jets, 2, axis=1)
+
+#        mll = ak.fill_none((tightLeptons[:, 0] + tightLeptons[:, 1]).mass, False)  #tried to calcuate these before the AK4Jets gauss stuff
+#        mlljj = ak.fill_none((tightLeptons[:, 0] + tightLeptons[:, 1] + AK4Jets[:, 0] + AK4Jets[:, 1]).mass, False)
+#
+#        dr_jl_min = ak.fill_none(ak.min(AK4Jets[:,:2].nearest(tightLeptons).delta_r(AK4Jets[:,:2]), axis=1), False)
+#        dr_j1j2 = ak.fill_none(AK4Jets[:,0].delta_r(AK4Jets[:,1]), False)
+#        dr_l1l2 = ak.fill_none(tightLeptons[:,0].delta_r(tightLeptons[:,1]), False)
 
 
         #calculate Wgamma
@@ -379,16 +391,33 @@ class WrAnalysis(processor.ProcessorABC):
                 np.sin(threegamma_subleadlep)*AK4Jets.px*(-1) + np.cos(threegamma_subleadlep)*AK4Jets.py,
                 where='py_threeprime_subleadlep')
 
-        def generate_factors_partition(partition, sigma):
-            sizes = ak.to_numpy(partition)
-            result = [
-                    [np.random.normal(loc=1.0, scale=sigma) for j in range(2)]
-                    for size in sizes
-                    for i in range(size)
-                    ]
-                    
-            return ak.Array(result)
+        
+        def truncated_normal_sample(mean, std, lower_bound, size):
+            lower_bound_std = (lower_bound - mean)/std
+            upper_bound_std = np.inf
 
+            return truncnorm.rvs(lower_bound_std, upper_bound_std, loc=mean, scale=std, size=size)
+
+
+        def generate_factors_partition(partition, sigma): #tried to make factors a dask_awkward array that could be multiplied by AK4Jets but could not figure it out
+            # Check if the partition is a typetracer
+            if "typetracer" in str(partition.layout.form):
+                # Return an empty array with the correct structure for typetracers
+                return ak.Array(
+                    ak.contents.ListOffsetArray(
+                        ak.index.Index64([0]),  # No offsets, indicating an empty array
+                        ak.contents.NumpyArray(np.empty((0, 2), dtype=np.float64))  # Empty data
+                    )
+                )
+
+            # For real data, process the partition normally
+            sizes = partition.to_list()  # Safely convert partition sizes to a Python list
+            result = [
+                truncated_normal_sample(mean=1.0, std=sigma, lower_bound=1.0, size=2)
+                for size in sizes
+                for i in range(size)
+            ]
+            return ak.Array(result)
 
         num_events = dask.compute(dak.num(AK4Jets, axis=0))[0]
 #        print(f'num_events (AK4Jets) -------------------------------------------> {num_events}')
@@ -416,83 +445,161 @@ class WrAnalysis(processor.ProcessorABC):
 #        print(f'\nlen(dask.compute(factors)[0]):\n{len(factorz[0])}\n')
 #        print(f'\ndask.compute(factors)[0][0]:\n{factorz[0][0]}\n')
 #        print(f'\nlen(dask.compute(factors)[0][0]):\n{len(factorz[0][0])}\n')
+#
+#        print(f'\ndask.compute(factors)[0][:, 0]:\n{factorz[0][:, 0]}\n')
 
-        AK4Jets = ak.with_field(
-                AK4Jets,
-                ak.where(
-                    ak.num(AK4Jets, axis=1) >= 2,
-                    AK4Jets[:, 0].px_threeprime_leadlep*factors[:, 0],
-                    None
-                    ),
-                where = "px_threeprime_leadlep_gauss"
-                )
-        AK4Jets = ak.with_field(
-                AK4Jets,
-                ak.where(
-                    ak.num(AK4Jets, axis=1) >= 2,
-                    AK4Jets[:, 0].py_threeprime_leadlep*factors[:, 0],
-                    None
-                    ),
-                where = "py_threeprime_leadlep_gauss"
-                )
+#        factors = factors.repartition(AK4Jets.npartitions)
 
-        AK4Jets = ak.with_field(
-                AK4Jets,
-                ak.where(
-                    ak.num(AK4Jets, axis=1) >= 2,
-                    AK4Jets[:, 0].px_threeprime_subleadlep*factors[:, 0],
-                    None
-                    ),
-                where = "px_threeprime_subleadlep_gauss"
-                )
-        AK4Jets = ak.with_field(
-                AK4Jets,
-                ak.where(
-                    ak.num(AK4Jets, axis=1) >= 2,
-                    AK4Jets[:, 0].py_threeprime_subleadlep*factors[:, 0],
-                    None
-                    ),
-                where = "py_threeprime_subleadlep_gauss"
-                )
+        factors = ak.Array(dask.compute(factors)[0]) #just using factors array as a regular array for now (not dask_awkward)
+
+#        print(f'\nfactors: {factors}\n')
+#        print(f'\nfactors[:, 0]: {factors[:, 0]}\n')
+#        print(f'\nfactors[:, 1]: {factors[:, 1]}\n')
+
+#        max_ind = 20
+#
+#        print('\n>>>>>>>>>>>>>>>>>> factors[:,0] values <<<<<<<<<<<<<<<<<<<<<<<<<<<')
+#        for ind in range(0,max_ind):
+#            print(f'factors[:, 0][{ind}]: {factors[:, 0][ind]}')
+#
+#        print('\n>>>>>>>>>>>>>>>>>> factors[:,1] values <<<<<<<<<<<<<<<<<<<<<<<<<<<')
+#        for ind in range(0,max_ind):
+#            print(f'factors[:, 1][{ind}]: {factors[:, 1][ind]}')
 
 
-        AK4Jets = ak.with_field(
-                AK4Jets,
-                ak.where(
-                    ak.num(AK4Jets, axis=1) >= 2,
-                    AK4Jets[:, 1].px_threeprime_leadlep*factors[:, 1],
-                    None
-                    ),
-                where = "px_threeprime_leadlep_gauss"
-                )
-        AK4Jets = ak.with_field(
-                AK4Jets,
-                ak.where(
-                    ak.num(AK4Jets, axis=1) >= 2,
-                    AK4Jets[:, 1].py_threeprime_leadlep*factors[:, 1],
-                    None
-                    ),
-                where = "py_threeprime_leadlep_gauss"
-                )
+        AK4Jets_0 = AK4Jets[:, 0]
+        AK4Jets_1 = AK4Jets[:, 1]
 
-        AK4Jets = ak.with_field(
-                AK4Jets,
-                ak.where(
-                    ak.num(AK4Jets, axis=1) >= 2,
-                    AK4Jets[:, 1].px_threeprime_subleadlep*factors[:, 1],
-                    None
-                    ),
-                where = "px_threeprime_subleadlep_gauss"
-                )
-        AK4Jets = ak.with_field(
-                AK4Jets,
-                ak.where(
-                    ak.num(AK4Jets, axis=1) >= 2,
-                    AK4Jets[:, 1].py_threeprime_subleadlep*factors[:, 1],
-                    None
-                    ),
-                where = "py_threeprime_subleadlep_gauss"
-                )
+        AK4Jets_0 = ak.with_field(AK4Jets_0, AK4Jets_0.py_threeprime_leadlep*factors[:, 0], where = 'py_gauss_threeprime_leadlep')
+        AK4Jets_0 = ak.with_field(AK4Jets_0, AK4Jets_0.py_threeprime_subleadlep*factors[:, 0], where = 'py_gauss_threeprime_subleadlep')
+
+        AK4Jets_1 = ak.with_field(AK4Jets_1, AK4Jets_1.py_threeprime_leadlep*factors[:, 1], where = 'py_gauss_threeprime_leadlep')
+        AK4Jets_1 = ak.with_field(AK4Jets_1, AK4Jets_1.py_threeprime_subleadlep*factors[:, 1], where = 'py_gauss_threeprime_subleadlep')
+
+#        AK4Jetz_0 = dask.compute(AK4Jets_0)
+#        AK4Jetz_1 = dask.compute(AK4Jets_1)
+#
+#        print(f'\nlen(dask.compute(AK4Jets[:, 0])[0]): {len(AK4Jetz_0[0])}\n')
+#        print(f'\ndask.compute(AK4Jets[:, 0])[0]: {AK4Jetz_0[0]}\n')
+#        print(f'\nlen(dask.compute(AK4Jets[:, 1])[0]): {len(AK4Jetz_1[0])}\n')
+#        print(f'\ndask.compute(AK4Jets[:, 1])[0]: {AK4Jetz_1[0]}\n')
+
+#        print('>>>>>>>>>>>>>>>>>> AK4Jets_0 fields <<<<<<<<<<<<<<<<<<<<<<<<<<<'')
+#        for ind in range(0,5):
+#            if str(type(AK4Jetz_0[0][ind])) != "<class 'NoneType'>":
+#                print(f'\ndask.compute(AK4Jets[:, 0])[0][{ind}].fields:\n{AK4Jetz_0[0][ind].fields}\n')
+#            else:
+#                print('\nNo jet in this spot\n')
+#
+#        print('>>>>>>>>>>>>>>>>>> AK4Jets_1 fields <<<<<<<<<<<<<<<<<<<<<<<<<<<'')
+#        for ind in range(0,5):
+#            if str(type(AK4Jetz_1[0][ind])) != "<class 'NoneType'>":
+#                print(f'\ndask.compute(AK4Jets[:, 1])[0][{ind}].fields:\n{AK4Jetz_1[0][ind].fields}\n')
+#            else:
+#                print('\nNo jet in this spot\n')
+
+#        print('>>>>>>>>>>>>>>>>>> AK4Jets_0 px and px_gauss values <<<<<<<<<<<<<<<<<<<<<<<<<<<')
+#        for ind in range(0,max_ind):
+#            if str(type(AK4Jetz_0[0][ind])) != "<class 'NoneType'>":
+#                print(f'\ndask.compute(AK4Jets[:, 0])[0][{ind}].px: {AK4Jetz_0[0][ind].px}\n')
+#                print(f'\ndask.compute(AK4Jets[:, 0])[0][{ind}].px_gauss: {AK4Jetz_0[0][ind].px_gauss}\n')
+#            else:
+#                print('\nNo jet in this spot\n')
+#
+#        print('>>>>>>>>>>>>>>>>>> AK4Jets_1 px and px_gauss values <<<<<<<<<<<<<<<<<<<<<<<<<<<')
+#        for ind in range(0,max_ind):
+#            if str(type(AK4Jetz_1[0][ind])) != "<class 'NoneType'>":
+#                print(f'\ndask.compute(AK4Jets[:, 1])[0][{ind}].px: {AK4Jetz_1[0][ind].px}\n')
+#                print(f'\ndask.compute(AK4Jets[:, 1])[0][{ind}].px_gauss: {AK4Jetz_1[0][ind].px_gauss}\n')
+#            else:
+#                print('\nNo jet in this spot\n')
+
+
+#        AK4Jets_0_nonecount = 0
+#        AK4Jets_0_jetcount = 0
+#        AK4Jets_1_nonecount = 0
+#        AK4Jets_1_jetcount = 0
+#
+#        for ind in range(len(AK4Jetz_0[0])):
+#            if str(type(AK4Jetz_0[0][ind])) == "<class 'NoneType'>":
+#                AK4Jets_0_nonecount += 1
+#            if str(type(AK4Jetz_0[0][ind])) == "<class 'coffea.nanoevents.methods.nanoaod.JetRecord'>":
+#                AK4Jets_0_jetcount += 1
+#
+#        print(f'\nAK4Jets_0_nonecount: {AK4Jets_0_nonecount}\n')
+#        print(f'\nAK4Jets_0_jetcount: {AK4Jets_0_jetcount}\n')
+#
+#        for ind in range(len(AK4Jetz_1[0])):
+#            if str(type(AK4Jetz_1[0][ind])) == "<class 'NoneType'>":
+#                AK4Jets_1_nonecount += 1
+#            if str(type(AK4Jetz_1[0][ind])) == "<class 'coffea.nanoevents.methods.nanoaod.JetRecord'>":
+#                AK4Jets_1_jetcount += 1
+#
+#        print(f'\nAK4Jets_1_nonecount: {AK4Jets_1_nonecount}\n')
+#        print(f'\nAK4Jets_1_jetcount: {AK4Jets_1_jetcount}\n')
+    
+
+        AK4Jets_0 = ak.Array(dask.compute(AK4Jets_0)[0])
+        AK4Jets_1 = ak.Array(dask.compute(AK4Jets_1)[0])
+
+        pt_threeobj_leadlep    = (tightLeptons[:, 0] + AK4Jets[:, 0] + AK4Jets[:, 1]).pt
+        pt_threeobj_subleadlep = (tightLeptons[:, 1] + AK4Jets[:, 0] + AK4Jets[:, 1]).pt
+
+        py2pt_threeobj_leadlep_Wprime    = (tightLeptons[:, 0].py_Wprime_leadlep +
+                                                 AK4Jets[:, 0].py_Wprime_leadlep +
+                                                 AK4Jets[:, 1].py_Wprime_leadlep)/pt_threeobj_leadlep
+
+        py2pt_threeobj_subleadlep_Wprime = (tightLeptons[:, 1].py_Wprime_subleadlep +
+                                                 AK4Jets[:, 0].py_Wprime_subleadlep +
+                                                 AK4Jets[:, 1].py_Wprime_subleadlep)/pt_threeobj_subleadlep
+
+        py2pt_threeobj_leadlep_threeprime    = (tightLeptons[:, 0].py_threeprime_leadlep +
+                                                     AK4Jets[:, 0].py_threeprime_leadlep +
+                                                     AK4Jets[:, 1].py_threeprime_leadlep)/pt_threeobj_leadlep
+
+        py2pt_threeobj_subleadlep_threeprime = (tightLeptons[:, 1].py_threeprime_subleadlep +
+                                                     AK4Jets[:, 0].py_threeprime_subleadlep +
+                                                     AK4Jets[:, 1].py_threeprime_subleadlep)/pt_threeobj_subleadlep
+
+        py2pt_gauss_threeobj_leadlep_threeprime    = (tightLeptons[:, 0].py_threeprime_leadlep +
+                                                               AK4Jets_0.py_gauss_threeprime_leadlep +
+                                                               AK4Jets_1.py_gauss_threeprime_leadlep)/pt_threeobj_leadlep
+
+        py2pt_gauss_threeobj_subleadlep_threeprime = (tightLeptons[:, 1].py_threeprime_subleadlep +
+                                                               AK4Jets_0.py_gauss_threeprime_subleadlep +
+                                                               AK4Jets_1.py_gauss_threeprime_subleadlep)/pt_threeobj_subleadlep
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#        pt_threeobj_leadlep    = ak.Array(dask.compute(pt_threeobj_leadlep)[0])
+#        pt_threeobj_subleadlep = ak.Array(dask.compute(pt_threeobj_subleadlep)[0])
+
+        py2pt_threeobj_leadlep_Wprime    = ak.Array(dask.compute(py2pt_threeobj_leadlep_Wprime)[0])
+        py2pt_threeobj_subleadlep_Wprime = ak.Array(dask.compute(py2pt_threeobj_subleadlep_Wprime)[0])
+
+        py2pt_threeobj_leadlep_threeprime    = ak.Array(dask.compute(py2pt_threeobj_leadlep_threeprime)[0])
+        py2pt_threeobj_subleadlep_threeprime = ak.Array(dask.compute(py2pt_threeobj_subleadlep_threeprime)[0])
+
+        py2pt_gauss_threeobj_leadlep_threeprime    = ak.Array(dask.compute(py2pt_gauss_threeobj_leadlep_threeprime)[0])
+        py2pt_gauss_threeobj_subleadlep_threeprime = ak.Array(dask.compute(py2pt_gauss_threeobj_subleadlep_threeprime)[0])
+
+        print(f'\npy2pt_threeobj_leadlep_Wprime: {py2pt_threeobj_leadlep_Wprime}  length: {len(py2pt_threeobj_leadlep_Wprime)}\n')
+        print(f'\npy2pt_threeobj_subleadlep_Wprime: {py2pt_threeobj_subleadlep_Wprime}  length: {len(py2pt_threeobj_subleadlep_Wprime)}\n')
+
+        print(f'\npy2pt_threeobj_leadlep_threeprime: {py2pt_threeobj_leadlep_threeprime}  length: {len(py2pt_threeobj_leadlep_threeprime)}\n')
+        print(f'\npy2pt_threeobj_subleadlep_threeprime: {py2pt_threeobj_subleadlep_threeprime}  length: {len(py2pt_threeobj_subleadlep_threeprime)}\n')
+
+        print(f'\npy2pt_gauss_threeobj_leadlep_threeprime: {py2pt_gauss_threeobj_leadlep_threeprime}  length: {len(py2pt_gauss_threeobj_leadlep_threeprime)}\n')
+        print(f'\npy2pt_gauss_threeobj_subleadlep_threeprime: {py2pt_gauss_threeobj_subleadlep_threeprime}  length: {len(py2pt_gauss_threeobj_subleadlep_threeprime)}\n')
+
+
+#        AK4Jetss_0 = ak.Array([[x] if x is not None else [None] for x in AK4Jets_0])
+#        AK4Jetss_1 = ak.Array([[x] if x is not None else [None] for x in AK4Jets_1])
+#
+#        print(f'\nAK4Jetss_0: {AK4Jetss_0}\n')
+#        print(f'\nAK4Jetss_1: {AK4Jetss_1}\n')
+#
+#        AK4Jets = ak.concatenate((AK4Jetss_0, AK4Jetss_1), axis=1)
+
+#        print(f'AK4Jets: {AK4Jets}')
 
 
 #        tightLeptonz = dask.compute(tightLeptons)
@@ -533,13 +640,10 @@ class WrAnalysis(processor.ProcessorABC):
 #                print('\ntype(tightLeptons) uncomputed:\n' + str(type(tightLeptons)) + '\n')
 #                print('\ntightLeptons uncomputed:\n' + str(tightLeptons) + '\n')
 #
-#                print('\ntype(tightLeptons):\n' + str(type(tightLeptonz)) + '\n')
-#                print('\ntightLeptons:\n' + str(tightLeptonz) + '\n')
+#                print('\ntype(tightLeptons):\n' + str(type(tightLeptonz[0])) + '\n')
+#                print('\ntightLeptons:\n' + str(tightLeptonz[0]) + '\n')
 #
-#                print('\ntype(tightLeptons[0]):\n' + str(type(tightLeptonz[0])) + '\n')
-#                print('\ntightLeptons[0]:\n' + str(tightLeptonz[0]) + '\n')
-#
-#                print(f'\ntightLeptons[0][{ind}]:\n' + str(tightLeptonz[0][ind]) + '\n')
+#                print(f'\ntightLeptons[{ind}]:\n' + str(tightLeptonz[0][ind]) + '\n')
 #
 #                if str(type(tightLeptonz[0][ind])) != "<class 'NoneType'>":
 #                    for particle in tightLeptonz[0][ind]:
@@ -567,6 +671,7 @@ class WrAnalysis(processor.ProcessorABC):
 #
 #                print('---------------------------------------------------------------------------------------------------')
 
+
 #        AK4Jetz = dask.compute(AK4Jets)
 #
 #        print(f'\nlen(AK4Jets[0]): {len(AK4Jetz[0])}\n')
@@ -593,21 +698,19 @@ class WrAnalysis(processor.ProcessorABC):
 #        print(f'\nNo. events w/ 2 jets: {two_count}\n')
 #        print(f'\nNo. events w/ 1 jet: {one_count}\n')
 #        print(f'\nNo. events w/ 0 jets: {zero_count}\n')
-
-#        for ind in range(0,2):
+#
+#        for ind in range(0,5):
 #
 #                print(f'>>>>>>>>>>>>>>>>>> Event No. {ind} <<<<<<<<<<<<<<<<<<<<<')
 #
 #                print('\ntype(AK4Jets) uncomputed:\n' + str(type(AK4Jets)) + '\n')
 #                print('\nAK4Jets uncomputed:\n' + str(AK4Jets) + '\n')
+#                print('\ndask.compute(AK4Jets):\n' + str(AK4Jetz) + '\n')
 #
-#                print('\ntype(AK4Jets):\n' + str(type(AK4Jetz)) + '\n')
-#                print('\nAK4Jets:\n' + str(AK4Jetz) + '\n')
+#                print('\ntype(AK4Jets):\n' + str(type(AK4Jetz[0])) + '\n')
+#                print('\nAK4Jets:\n' + str(AK4Jetz[0]) + '\n')
 #
-#                print('\ntype(AK4Jets[0]):\n' + str(type(AK4Jetz[0])) + '\n')
-#                print('\nAK4Jets[0]:\n' + str(AK4Jetz[0]) + '\n')
-#
-#                print(f'\nAK4Jets[0][{ind}]:\n' + str(AK4Jetz[0][ind]) + '\n')
+#                print(f'\nAK4Jets[{ind}]:\n' + str(AK4Jetz[0][ind]) + '\n')
 #
 #                if str(type(AK4Jetz[0][ind])) != "<class 'NoneType'>":
 #                    for particle in AK4Jetz[0][ind]:
@@ -634,6 +737,19 @@ class WrAnalysis(processor.ProcessorABC):
 
         mll = ak.fill_none((tightLeptons[:, 0] + tightLeptons[:, 1]).mass, False)
         mlljj = ak.fill_none((tightLeptons[:, 0] + tightLeptons[:, 1] + AK4Jets[:, 0] + AK4Jets[:, 1]).mass, False)
+
+#        dilep_mass = ((tightLeptons[:, 0].energy + tightLeptons[:, 1].energy)**2 -  #attempted workaround to nonbroadcastable fields problem that arose after AK4Jets reconcatenation
+#                     ((tightLeptons[:, 0].px     + tightLeptons[:, 1].px    )**2 +
+#                      (tightLeptons[:, 0].py     + tightLeptons[:, 1].py    )**2 +
+#                      (tightLeptons[:, 0].pz     + tightLeptons[:, 1].pz    )**2))**0.5
+#
+#        fourobj_mass = ((tightLeptons[:, 0].energy + tightLeptons[:, 1].energy + AK4Jets[:, 0].energy + AK4Jets[:, 1].energy)**2 -
+#                       ((tightLeptons[:, 0].px     + tightLeptons[:, 1].px     + AK4Jets[:, 0].px     + AK4Jets[:, 1].px    )**2 +
+#                        (tightLeptons[:, 0].py     + tightLeptons[:, 1].py     + AK4Jets[:, 0].py     + AK4Jets[:, 1].py    )**2 +
+#                        (tightLeptons[:, 0].pz     + tightLeptons[:, 1].pz     + AK4Jets[:, 0].pz     + AK4Jets[:, 1].pz    )**2))**0.5
+#
+#        mll = ak.fill_none(dilep_mass, False)
+#        mlljj = ak.fill_none(fourobj_mass, False)
 
         dr_jl_min = ak.fill_none(ak.min(AK4Jets[:,:2].nearest(tightLeptons).delta_r(AK4Jets[:,:2]), axis=1), False)
         dr_j1j2 = ak.fill_none(AK4Jets[:,0].delta_r(AK4Jets[:,1]), False)
