@@ -72,7 +72,7 @@ def load_json(args):
         elif umn:
             filepath = f"/local/cms/user/jack1851/WrCoffea/data/jsons/{run}/{run}_bkg_preprocessed_skims.json" 
         else:
-            filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_bkg_preprocessed.json"
+            filepath = f"data/jsons/{run}/{run}_bkg_preprocessed.json"
     try:
         with open(filepath, 'r') as file:
             data = json.load(file)
@@ -107,8 +107,14 @@ def validate_arguments(args):
 def setup_lpc_cluster():
     """Set up LPC cluster and return the client."""
     from lpcjobqueue import LPCCondorCluster
-    cluster = LPCCondorCluster(cores=1, memory='8GB', log_directory='/uscms/home/bjackson/logs')
-    cluster.scale(200)
+    cluster = LPCCondorCluster(
+            cores=4, 
+            memory='2GB',
+            disk="20GB",
+            job_extra_directives={"x509userproxy": "/uscms/home/bjackson/x509up_u24705"}
+    )
+#    cluster = LPCCondorCluster(cores=1, memory='2GB', log_directory='/uscms/home/bjackson/logs')
+    cluster.scale(10)
     client = Client(cluster)
     logging.info("LPC Cluster started.")
     return client, cluster
@@ -127,7 +133,7 @@ def run_analysis(args, preprocessed_fileset):
         logging.info("Computing histograms...")
         with ProgressBar():
             (histograms,) = dask.compute(to_compute)
-        python.save_hists.save_histograms(histograms, args)
+        python.save_hists_250123.save_histograms(histograms, args)
 
     exec_time = time.monotonic() - t0
     logging.info(f"Execution took {exec_time/60:.2f} minutes")

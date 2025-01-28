@@ -37,17 +37,24 @@ def query_datasets(data, run):
     print(f"\nQuerying replica sites")
     ddc = DataDiscoveryCLI()
     if run == "Run2Summer20UL18":
-        ddc.do_blocklist_sites(["T2_US_MIT"])
-#        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_US_Caltech", "T2_US_Vanderbilt", "T2_US_UCSD", "T2_US_Nebraska", "T2_US_Florida", "T2_UK_London_IC"]) #Remove T2_US_Nebraska
-#        ddc.do_allowlist_sites(["T2_US_Wisconsin", "T2_CH_CERN", "T2_UK_London_IC", "T2_US_UCSD", "T2_US_FLORIDA"]) #"T2_FI_HIP"
+        ddc.do_blocklist_sites(["T2_US_MIT", "T1_US_FNAL_Disk"])
     elif run == "Run3Summer22":
         ddc.do_blocklist_sites(["T2_PL_Cyfronet"])
     elif run == "Run3Summer22EE":
-        ddc.do_blocklist_sites(["T2_US_MIT", "T2_PL_Cyfronet"])
+        ddc.do_blocklist_sites(["T2_US_MIT", "T2_PL_Cyfronet", "T1_US_FNAL_Disk", "T1_DE_KIT_Disk"])
     elif run == "Run3Summer23":
-        ddc.do_blocklist_sites(["T2_PL_Cyfronet", "T2_US_MIT", "T2_TW_NCHC"])
+        ddc.do_blocklist_sites(["T2_PL_Cyfronet", "T2_US_MIT", "T2_TW_NCHC", "T1_DE_KIT_Disk"])
     elif run == "Run3Summer23BPix": # GOOD
-        ddc.do_blocklist_sites(["T2_US_MIT"])
+        ddc.do_allowlist_sites([
+            "T1_US_FNAL_Disk",
+            "T2_US_Nebraska",
+            "T2_US_Vanderbilt",
+            "T2_US_Caltech",
+            "T2_US_Florida",
+            "T2_US_Wisconsin",
+            "T2_US_UCSD"
+        ])
+        ddc.do_blocklist_sites(["T2_US_MIT", "T1_DE_KIT_Disk", "T2_US_Purdue"]) # Gave error
     dataset = ddc.load_dataset_definition(dataset_definition = data, query_results_strategy="all", replicas_strategy="first")
     return dataset
 

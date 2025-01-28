@@ -9,26 +9,37 @@ from hist import Hist
 def save_histograms(my_histograms, args):
 #    print("my histograms", my_histograms)
 
-    run = args.run
+    mc_campaign = args.run
     sample = args.sample
     hnwr_mass= args.mass
 
     working_dir = "WR_Plotter"
     
-    if args.run == "Run3Summer22":
-        dataset = "Run3"
-        year = "2022"
-    elif args.run == "Run3Summer23BPix":
-        dataset = "Run3"
-        year = "2023"
-    elif args.run == "Run2Summer20UL18":
-        dataset = "Run2UltraLegacy"
+    if mc_campaign == "Run2Summer20UL18":
+        run = "Run2"
         year = "2018"
-    elif args.run == "Run2Autumn18":
+        dataset = "Summer20UL18"
+    elif mc_campaign == "Run3Summer22":
+        run = "Run3"
+        year = "2022"
+        dataset = "Summer22"
+    elif mc_campaign == "Run3Summer22EE":
+        run = "Run3"
+        year = "2022"
+        dataset = "Summer22EE"
+    elif mc_campaign == "Run3Summer23":
+        run = "Run3"
+        year = "2023"
+        dataset = "Summer23"
+    elif mc_campaign == "Run3Summer23BPix":
+        run = "Run3"
+        year = "2023"
+        dataset = "Summer23BPix"
+    elif mc_campaign == "Run2Autumn18":
         dataset = "Run2Legacy"
         year = "2018"
 
-    output_dir = working_dir+'/rootfiles/'+dataset+'/Regions/'+year
+    output_dir = working_dir+'/rootfiles/'+run+'/'+year+'/'+dataset
 
     Filename_prefix = "WRAnalyzer"
     Filename_suffix = ""
