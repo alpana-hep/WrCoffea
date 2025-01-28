@@ -58,7 +58,7 @@ if __name__ == "__main__":
             # Run the command with retries
             result = run_command_with_retries(
                 ['dasgoclient', '-query', f'file dataset={dataset}'],
-                retries=5,
+                retries=10,
                 delay=5,
                 timeout=10
             )
