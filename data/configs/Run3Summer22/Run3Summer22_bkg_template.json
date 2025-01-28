@@ -108,21 +108,21 @@
         "mc_campaign": "Run3Summer22",
         "process": "tW",
         "dataset": "TbarWplusto2L2Nu",
-        "xsec": 0.0,
+        "xsec": 36.05,
         "genEventSumw": 0.0
     },
     "/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM": {
         "mc_campaign": "Run3Summer22",
         "process": "tW",
         "dataset": "TWminusto2L2Nu",
-        "xsec": 0.0,
+        "xsec": 35.99,
         "genEventSumw": 0.0
     },
     "/WtoLNu-4Jets_MLNu-0to120_HT-40to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v3/NANOAODSIM": {
         "mc_campaign": "Run3Summer22",
         "process": "WJets",
         "dataset": "WtoLNu-4Jets_MLNu-0to120_HT-40to100",
-        "xsec": 0.0,
+        "xsec": 4264.0,
         "genEventSumw": 0.0
     },
     "/WtoLNu-4Jets_MLNu-0to120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v3/NANOAODSIM": {

@@ -1,0 +1,24 @@
+28-Jan-2025 14:29:54 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2530000/1372985c-bb35-4f55-a211-f97518c6ae08.root
+     35.986179      0.025845      1.000000         10000
+ 
+28-Jan-2025 14:29:55 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2530000/1372985c-bb35-4f55-a211-f97518c6ae08.root
+
+------------------------------------
+GenXsecAnalyzer:
+------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Overall cross-section summary 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Process		xsec_before [pb]		passed	nposw	nnegw	tried	nposw	nnegw 	xsec_match [pb]			accepted [%]	 event_eff [%]
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Total		3.599e+01 +/- 1.292e-02		2000412	2000370	42	2000412	2000370	42	3.599e+01 +/- 1.292e-02		100.0 +/- 0.0	100.0 +/- 0.0
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Before matching: total cross section = 3.599e+01 +- 1.292e-02 pb
+After matching: total cross section = 3.599e+01 +- 1.292e-02 pb
+Matching efficiency = 1.0 +/- 0.0   [TO BE USED IN MCM]
+Filter efficiency (taking into account weights)= (3.80083e+06) / (3.80083e+06) = 1.000e+00 +- 0.000e+00
+Filter efficiency (event-level)= (1.00057e+06) / (1.00057e+06) = 1.000e+00 +- 0.000e+00    [TO BE USED IN MCM]
+
+After filter: final cross section = 3.599e+01 +- 1.292e-02 pb
+After filter: final fraction of events with negative weights = 2.099e-05 +- 1.892e-12
+After filter: final equivalent lumi for 1M events (1/fb) = 2.779e+01 +- 2.952e-02
