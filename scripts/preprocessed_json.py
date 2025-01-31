@@ -43,7 +43,18 @@ def query_datasets(data, run):
     elif run == "Run3Summer22EE":
         ddc.do_blocklist_sites(["T2_US_MIT", "T2_PL_Cyfronet", "T1_US_FNAL_Disk", "T1_DE_KIT_Disk"])
     elif run == "Run3Summer23":
-        ddc.do_blocklist_sites(["T2_PL_Cyfronet", "T2_US_MIT", "T2_TW_NCHC", "T1_DE_KIT_Disk"])
+        ddc.do_allowlist_sites([
+            "T1_US_FNAL_Disk",
+            "T2_US_Nebraska",
+            "T2_UK_London_IC",
+            "T2_US_Caltech",
+#            "T2_US_Florida",
+            "T2_US_Wisconsin",
+            "T2_US_UCSD",
+            "T2_CH_CERN",
+            "T2_CH_CSCS"
+        ])
+#        ddc.do_blocklist_sites(["T2_PL_Cyfronet", "T2_US_MIT", "T2_TW_NCHC", "T1_DE_KIT_Disk"])
     elif run == "Run3Summer23BPix": # GOOD
         ddc.do_allowlist_sites([
             "T1_US_FNAL_Disk",

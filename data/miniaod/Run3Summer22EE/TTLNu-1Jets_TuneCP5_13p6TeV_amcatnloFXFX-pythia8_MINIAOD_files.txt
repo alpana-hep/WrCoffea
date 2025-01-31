@@ -1,0 +1,10 @@
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer22EEMiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_postEE_v6-v4/50000/b10added-dfbd-4b20-87f8-332be7fbf444.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer22EEMiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_postEE_v6-v4/50000/37ef3ecc-62cf-4e17-9c09-215dab3835ba.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer22EEMiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_postEE_v6-v4/50000/c15a29bb-9970-4430-9a7b-cc010cc66101.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer22EEMiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_postEE_v6-v4/50000/3d539b15-7b45-4220-9b53-71d2dae1d742.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer22EEMiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_postEE_v6-v4/50000/92e28626-9cb4-440a-9058-59984d575176.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer22EEMiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_postEE_v6-v4/50000/d28e5bb4-7cc9-4752-9b48-ec44f0185dcb.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer22EEMiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_postEE_v6-v4/50000/9aef1ab7-c0af-429f-a8fb-10d10c6a5d4f.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer22EEMiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_postEE_v6-v4/50000/30edf5f1-7cf8-4103-8b8b-6c547f5a22eb.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer22EEMiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_postEE_v6-v4/50000/4893ba52-5fc1-420e-93ab-a38892adfdaa.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer22EEMiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_postEE_v6-v4/50000/2c55f785-b13e-46ab-b07e-f7b22e685332.root

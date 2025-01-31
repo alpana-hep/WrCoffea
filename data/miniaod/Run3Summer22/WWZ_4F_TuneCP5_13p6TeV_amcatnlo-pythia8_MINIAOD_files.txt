@@ -34,6 +34,7 @@ root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV
 root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/30000/38b921e2-40e3-4d08-a153-c60d44ccf57a.root
 root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/30000/d3f63105-6c01-4546-8274-84c1a067c95e.root
 root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/40000/161a4d1f-a459-49af-ac56-7fc044dc7cb1.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/a84a81df-f95d-48ba-989e-5ebc99889737.root
 root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/40000/3e80ba70-65f3-4d6a-83c4-38122c3fa596.root
 root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/6213c282-6a46-4788-9305-7eec8d0e181a.root
 root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/40000/135ff351-7d01-4ce9-b1f7-6bea51187d4d.root
@@ -42,6 +43,8 @@ root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV
 root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/40000/850c3feb-2cc7-427e-897d-74804a6682d6.root
 root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/20387a83-a495-49e4-9de1-fa76e56b2040.root
 root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2530000/5798418b-8391-428d-8b26-0cdda85f08d1.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/339af196-fdb8-43c6-8c9f-2a5c53e0d197.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/4782f889-abf4-493a-ab03-50147b814252.root
 root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2520000/cb9cd253-0021-4b82-af57-8cbebf68e9a1.root
 root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2520000/7064b443-d754-4bfc-807e-7e8022668c3e.root
 root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2530000/e303370f-755a-4ee5-91da-63e2d43b7a1a.root
@@ -54,6 +57,3 @@ root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV
 root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/40000/a866e17a-c47f-4b1d-aaf1-4b2decc26970.root
 root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/30000/270418ba-2f83-4e9d-907e-64624f860574.root
 root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/30000/5e0f828d-15b5-4882-a41e-8dc52584b87b.root
-root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/4782f889-abf4-493a-ab03-50147b814252.root
-root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/a84a81df-f95d-48ba-989e-5ebc99889737.root
-root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/339af196-fdb8-43c6-8c9f-2a5c53e0d197.root

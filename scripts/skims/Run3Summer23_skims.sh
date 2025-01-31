@@ -1,19 +1,19 @@
 #!/bin/bash
 
-#for ((i=36; i<=79; i+=1))
+#for ((i=1; i<=368; i+=1))
 #do
-#    python3 skim_files.py DYto2L-4Jets_MLL-50to120_HT-40to70 --start $i
+#    python3 skim_files.py Run3Summer23 DYto2L-4Jets_MLL-50to120_HT-40to70 --start $i
 #done
 
-#for ((i=1; i<=72; i+=1))
+#for ((i=1; i<=381; i+=1))
 #do
-#    python3 skim_files.py DYto2L-4Jets_MLL-50to120_HT-70to100 --start $i
+#    python3 skim_files.py Run3Summer23 DYto2L-4Jets_MLL-50to120_HT-70to100 --start $i
 #done
 
-#for ((i=81; i<=127; i+=1))
-#do
-#    python3 skim_files.py DYto2L-4Jets_MLL-50to120_HT-100to400 --start $i
-#done
+for ((i=177; i<=437; i+=1))
+do
+    python3 skim_files.py Run3Summer23 DYto2L-4Jets_MLL-50to120_HT-100to400 --start $i
+done
 
 #for ((i=1; i<=23; i+=1))
 #do
