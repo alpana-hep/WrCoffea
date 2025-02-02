@@ -1,0 +1,22 @@
+01-Feb-2025 17:29:01 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer23BPixMiniAODv4/TbarBtoLminusNuB-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2023_realistic_postBPix_v6-v2/80000/d7f51087-79d2-4137-b184-a8049499cd52.root
+
+------------------------------------
+GenXsecAnalyzer:
+------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Overall cross-section summary 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Process		xsec_before [pb]		passed	nposw	nnegw	tried	nposw	nnegw 	xsec_match [pb]			accepted [%]	 event_eff [%]
+0		1.430e+00 +/- 6.541e-05		784000	633959	150041	784000	633959	150041	1.430e+00 +/- 6.541e-05		100.0 +/- 0.0	100.0 +/- 0.0
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Total		1.430e+00 +/- 6.541e-05		784000	633959	150041	784000	633959	150041	1.430e+00 +/- 6.541e-05		100.0 +/- 0.0	100.0 +/- 0.0
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Before matching: total cross section = 1.430e+00 +- 6.541e-05 pb
+After matching: total cross section = 1.430e+00 +- 6.541e-05 pb
+Matching efficiency = 1.0 +/- 0.0   [TO BE USED IN MCM]
+Filter efficiency (taking into account weights)= (1.12248e+06) / (1.12248e+06) = 1.000e+00 +- 0.000e+00
+Filter efficiency (event-level)= (784000) / (784000) = 1.000e+00 +- 0.000e+00    [TO BE USED IN MCM]
+
+After filter: final cross section = 1.430e+00 +- 6.541e-05 pb
+After filter: final fraction of events with negative weights = 1.914e-01 +- 3.768e-05
+After filter: final equivalent lumi for 1M events (1/fb) = 2.664e+02 +- 1.694e-01

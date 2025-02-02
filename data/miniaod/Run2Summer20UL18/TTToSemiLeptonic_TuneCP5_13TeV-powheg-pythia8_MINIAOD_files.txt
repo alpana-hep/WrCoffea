@@ -9780,9 +9780,6 @@ root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_
 root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/270000/9FA5A486-0C17-C442-8091-74A880B36E5F.root
 root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/270000/6756DCAE-ED5D-B647-9BAC-BFE28CAA1731.root
 root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/120000/4B67D006-577F-EA49-B09D-780A9E594C3A.root
-root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/120000/E953F965-07DB-F849-8444-C3A0B90ABDDF.root
-root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/120000/A6FD9003-4807-2940-8559-F422DDBF7DCE.root
-root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/120000/1E515E9A-24D5-F647-BB9A-6DC2EDDCE7ED.root
 root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/270000/ECD23E31-6BB3-0B4E-9F31-FA74C9F90B0E.root
 root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/270000/E2C3E1E8-FC49-0349-BEFA-E727025EF8BF.root
 root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/270000/740212E3-1933-804C-9C7E-57BB2287BBF8.root
@@ -9904,8 +9901,11 @@ root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_
 root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/120002/46F15B26-A561-1C49-953A-646CB0F5769A.root
 root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/120002/00733EA9-D1A8-9843-A9E8-E06D5C0208C9.root
 root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/120002/C6E35284-1B13-AC41-8D00-9ECB22018FD4.root
-root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/130000/1A628C93-66C1-904E-8F2F-CF6BA7865CD4.root
 root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/130000/BF7FCA09-00B1-E349-9D26-1984FF4BA24D.root
+root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/120000/E953F965-07DB-F849-8444-C3A0B90ABDDF.root
+root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/120000/A6FD9003-4807-2940-8559-F422DDBF7DCE.root
+root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/120000/1E515E9A-24D5-F647-BB9A-6DC2EDDCE7ED.root
+root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/130000/1A628C93-66C1-904E-8F2F-CF6BA7865CD4.root
 root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/130000/2667EE44-DD9D-ED43-B1F7-AADDE2943E19.root
 root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/130000/7E7ABF4B-0E65-6448-B26B-FA21127BC0E8.root
 root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/130000/F0373103-275C-BF4B-A10D-DCA64D3621C0.root

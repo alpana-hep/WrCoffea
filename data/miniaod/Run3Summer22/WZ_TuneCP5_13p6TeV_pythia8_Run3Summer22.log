@@ -1,0 +1,87 @@
+01-Feb-2025 18:20:38 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/b9e62ed8-0f01-417f-a2d9-6fd03b896816.root
+01-Feb-2025 18:20:43 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/b9e62ed8-0f01-417f-a2d9-6fd03b896816.root
+Begin processing the 1st record. Run 1, Event 5358965, LumiSection 7332 on stream 0 at 01-Feb-2025 18:20:45.412 CST
+01-Feb-2025 18:20:45 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/b9e62ed8-0f01-417f-a2d9-6fd03b896816.root
+01-Feb-2025 18:20:45 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/cb178630-d6d0-4f74-bbe4-3d91aae3e838.root
+01-Feb-2025 18:20:48 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/cb178630-d6d0-4f74-bbe4-3d91aae3e838.root
+01-Feb-2025 18:20:50 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/cb178630-d6d0-4f74-bbe4-3d91aae3e838.root
+01-Feb-2025 18:20:50 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/e9a4b066-34c7-4f2d-a52b-8751166eae07.root
+01-Feb-2025 18:20:52 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/e9a4b066-34c7-4f2d-a52b-8751166eae07.root
+01-Feb-2025 18:20:54 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/e9a4b066-34c7-4f2d-a52b-8751166eae07.root
+01-Feb-2025 18:20:54 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2520000/5c99fe56-1115-4a85-a44c-d052f4a7f9f9.root
+01-Feb-2025 18:20:56 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2520000/5c99fe56-1115-4a85-a44c-d052f4a7f9f9.root
+Begin processing the 100001st record. Run 1, Event 3453096, LumiSection 4724 on stream 0 at 01-Feb-2025 18:20:59.262 CST
+01-Feb-2025 18:20:59 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2520000/5c99fe56-1115-4a85-a44c-d052f4a7f9f9.root
+01-Feb-2025 18:20:59 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2520000/584c373d-02ed-4631-990a-c553d50a712e.root
+01-Feb-2025 18:21:01 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2520000/584c373d-02ed-4631-990a-c553d50a712e.root
+01-Feb-2025 18:21:04 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2520000/584c373d-02ed-4631-990a-c553d50a712e.root
+01-Feb-2025 18:21:04 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2520000/ab7fbda1-b5e8-4312-84f9-bbe27bce4e58.root
+01-Feb-2025 18:21:06 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2520000/ab7fbda1-b5e8-4312-84f9-bbe27bce4e58.root
+Begin processing the 200001st record. Run 1, Event 3842573, LumiSection 5257 on stream 0 at 01-Feb-2025 18:21:08.946 CST
+01-Feb-2025 18:21:08 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2520000/ab7fbda1-b5e8-4312-84f9-bbe27bce4e58.root
+01-Feb-2025 18:21:08 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2520000/c97ae10a-74fc-469a-9803-f68581bb332e.root
+01-Feb-2025 18:21:11 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2520000/c97ae10a-74fc-469a-9803-f68581bb332e.root
+01-Feb-2025 18:21:13 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2520000/c97ae10a-74fc-469a-9803-f68581bb332e.root
+01-Feb-2025 18:21:13 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2520000/6e516503-eca8-41ce-b6a2-5782a17d98e8.root
+01-Feb-2025 18:21:15 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2520000/6e516503-eca8-41ce-b6a2-5782a17d98e8.root
+01-Feb-2025 18:21:18 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2520000/6e516503-eca8-41ce-b6a2-5782a17d98e8.root
+01-Feb-2025 18:21:18 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/93e7a6e4-f5c6-46f3-8034-54487c24191b.root
+01-Feb-2025 18:21:20 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/93e7a6e4-f5c6-46f3-8034-54487c24191b.root
+Begin processing the 300001st record. Run 1, Event 4791993, LumiSection 6556 on stream 0 at 01-Feb-2025 18:21:22.487 CST
+01-Feb-2025 18:21:22 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/93e7a6e4-f5c6-46f3-8034-54487c24191b.root
+01-Feb-2025 18:21:22 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/ec418b6a-ef52-4b4e-92a6-a1bb6440e8de.root
+01-Feb-2025 18:21:25 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/ec418b6a-ef52-4b4e-92a6-a1bb6440e8de.root
+01-Feb-2025 18:21:27 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/ec418b6a-ef52-4b4e-92a6-a1bb6440e8de.root
+01-Feb-2025 18:21:27 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/c3aa8161-37d4-4cc1-8020-c63921786324.root
+01-Feb-2025 18:21:29 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/c3aa8161-37d4-4cc1-8020-c63921786324.root
+Begin processing the 400001st record. Run 1, Event 1813018, LumiSection 2481 on stream 0 at 01-Feb-2025 18:21:32.643 CST
+01-Feb-2025 18:21:32 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/c3aa8161-37d4-4cc1-8020-c63921786324.root
+01-Feb-2025 18:21:32 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/a9529ff4-a696-41a5-8390-be3f638d0d8f.root
+01-Feb-2025 18:21:35 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/a9529ff4-a696-41a5-8390-be3f638d0d8f.root
+01-Feb-2025 18:21:36 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/a9529ff4-a696-41a5-8390-be3f638d0d8f.root
+01-Feb-2025 18:21:36 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/d5a82674-d476-4c5d-836d-5f0be60f7a32.root
+01-Feb-2025 18:21:39 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/d5a82674-d476-4c5d-836d-5f0be60f7a32.root
+01-Feb-2025 18:21:41 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/d5a82674-d476-4c5d-836d-5f0be60f7a32.root
+01-Feb-2025 18:21:41 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/851e5a86-915b-4256-9178-e2c463312143.root
+01-Feb-2025 18:21:43 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/851e5a86-915b-4256-9178-e2c463312143.root
+Begin processing the 500001st record. Run 1, Event 5984694, LumiSection 8187 on stream 0 at 01-Feb-2025 18:21:45.886 CST
+01-Feb-2025 18:21:46 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/851e5a86-915b-4256-9178-e2c463312143.root
+01-Feb-2025 18:21:46 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/489e9174-877f-4642-957c-10b1f41d6c32.root
+01-Feb-2025 18:21:48 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/489e9174-877f-4642-957c-10b1f41d6c32.root
+01-Feb-2025 18:21:51 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/489e9174-877f-4642-957c-10b1f41d6c32.root
+01-Feb-2025 18:21:51 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/e0b84719-ec7a-42f2-b5af-68f85ce9dc22.root
+01-Feb-2025 18:21:53 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/e0b84719-ec7a-42f2-b5af-68f85ce9dc22.root
+Begin processing the 600001st record. Run 1, Event 1278370, LumiSection 1749 on stream 0 at 01-Feb-2025 18:21:56.427 CST
+01-Feb-2025 18:21:56 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/e0b84719-ec7a-42f2-b5af-68f85ce9dc22.root
+01-Feb-2025 18:21:56 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/f0dd732a-76ee-469f-a43b-5b23c5850fc4.root
+01-Feb-2025 18:21:59 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/f0dd732a-76ee-469f-a43b-5b23c5850fc4.root
+Begin processing the 700001st record. Run 1, Event 3034087, LumiSection 4151 on stream 0 at 01-Feb-2025 18:22:02.842 CST
+01-Feb-2025 18:22:02 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/f0dd732a-76ee-469f-a43b-5b23c5850fc4.root
+01-Feb-2025 18:22:02 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/bbfde068-caa2-44b3-86f0-6037d4d53e53.root
+01-Feb-2025 18:22:05 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/bbfde068-caa2-44b3-86f0-6037d4d53e53.root
+01-Feb-2025 18:22:08 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/bbfde068-caa2-44b3-86f0-6037d4d53e53.root
+01-Feb-2025 18:22:08 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/8d9185e6-8dc9-44a4-a171-208d2d172c2d.root
+01-Feb-2025 18:22:10 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/8d9185e6-8dc9-44a4-a171-208d2d172c2d.root
+Begin processing the 800001st record. Run 1, Event 7384119, LumiSection 10102 on stream 0 at 01-Feb-2025 18:22:12.713 CST
+01-Feb-2025 18:22:12 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/8d9185e6-8dc9-44a4-a171-208d2d172c2d.root
+01-Feb-2025 18:22:12 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/e32225f9-64f0-418f-9e97-e1e6b9dea80f.root
+01-Feb-2025 18:22:15 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/e32225f9-64f0-418f-9e97-e1e6b9dea80f.root
+01-Feb-2025 18:22:18 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/e32225f9-64f0-418f-9e97-e1e6b9dea80f.root
+01-Feb-2025 18:22:18 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/f3fa7a42-4a77-45a5-974f-4fb9685b0a67.root
+01-Feb-2025 18:22:20 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/f3fa7a42-4a77-45a5-974f-4fb9685b0a67.root
+Begin processing the 900001st record. Run 1, Event 6183672, LumiSection 8460 on stream 0 at 01-Feb-2025 18:22:23.734 CST
+01-Feb-2025 18:22:24 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/f3fa7a42-4a77-45a5-974f-4fb9685b0a67.root
+01-Feb-2025 18:22:24 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/aeb6a1e3-cb78-4069-b092-f8fb291077c6.root
+01-Feb-2025 18:22:26 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/aeb6a1e3-cb78-4069-b092-f8fb291077c6.root
+01-Feb-2025 18:22:29 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WZ_TuneCP5_13p6TeV_pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/aeb6a1e3-cb78-4069-b092-f8fb291077c6.root
+
+------------------------------------
+GenXsecAnalyzer:
+------------------------------------
+Before Filter: total cross section = 2.916e+01 +- 1.334e-02 pb
+Filter efficiency (taking into account weights)= (1.00001e+06) / (1.00001e+06) = 1.000e+00 +- 0.000e+00
+Filter efficiency (event-level)= (1.00001e+06) / (1.00001e+06) = 1.000e+00 +- 0.000e+00    [TO BE USED IN MCM]
+
+After filter: final cross section = 2.916e+01 +- 1.334e-02 pb
+After filter: final fraction of events with negative weights = 0.000e+00 +- 0.000e+00
+After filter: final equivalent lumi for 1M events (1/fb) = 3.429e+01 +- 3.771e-02

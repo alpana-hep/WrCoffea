@@ -1,0 +1,22 @@
+01-Feb-2025 20:40:09 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22EEMiniAODv4/WWW_4F_TuneCP5_13p6TeV_amcatnlo-madspin-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_postEE_v6-v2/50000/a539df8e-dd81-4941-b28b-9854f0f44bc4.root
+
+------------------------------------
+GenXsecAnalyzer:
+------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Overall cross-section summary 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Process		xsec_before [pb]		passed	nposw	nnegw	tried	nposw	nnegw 	xsec_match [pb]			accepted [%]	 event_eff [%]
+0		2.328e-01 +/- 1.247e-04		1000244	954204	46040	1000244	954204	46040	2.328e-01 +/- 1.247e-04		100.0 +/- 0.0	100.0 +/- 0.0
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Total		2.328e-01 +/- 1.247e-04		1000244	954204	46040	1000244	954204	46040	2.328e-01 +/- 1.247e-04		100.0 +/- 0.0	100.0 +/- 0.0
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Before matching: total cross section = 2.328e-01 +- 1.247e-04 pb
+After matching: total cross section = 2.328e-01 +- 1.247e-04 pb
+Matching efficiency = 1.0 +/- 0.0   [TO BE USED IN MCM]
+Filter efficiency (taking into account weights)= (232789) / (232789) = 1.000e+00 +- 0.000e+00
+Filter efficiency (event-level)= (1.00024e+06) / (1.00024e+06) = 1.000e+00 +- 0.000e+00    [TO BE USED IN MCM]
+
+After filter: final cross section = 2.328e-01 +- 1.247e-04 pb
+After filter: final fraction of events with negative weights = 4.603e-02 +- 2.167e-06
+After filter: final equivalent lumi for 1M events (1/fb) = 3.541e+03 +- 3.648e+00

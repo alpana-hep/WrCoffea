@@ -1,39 +1,39 @@
 #!/bin/bash
 
-for ((i=1; i<=422; i+=1))
+#for ((i=32; i<=422; i+=1))
+#do
+#    python3 skim_files.py Run3Summer22EE DYto2L-4Jets_MLL-50to120_HT-40to70 --start $i
+#done
+
+#for ((i=1; i<=648; i+=1))
+#do
+#    python3 skim_files.py Run3Summer22EE DYto2L-4Jets_MLL-50to120_HT-70to100 --start $i
+#done
+
+for ((i=35; i<=307; i+=1))
 do
-    python3 skim_files.py DYto2L-4Jets_MLL-50to120_HT-40to70 --start $i
+    python3 skim_files.py Run3Summer22EE DYto2L-4Jets_MLL-50to120_HT-100to400 --start $i
 done
 
-for ((i=1; i<=648; i+=1))
+for ((i=1; i<=52; i+=1))
 do
-    python3 skim_files.py DYto2L-4Jets_MLL-50to120_HT-70to100 --start $i
+    python3 skim_files.py Run3Summer22EE DYto2L-4Jets_MLL-50to120_HT-400to800 --start $i
 done
 
-for ((i=1; i<=307; i+=1))
+for ((i=1; i<=129; i+=1))
 do
-    python3 skim_files.py DYto2L-4Jets_MLL-50to120_HT-100to400 --start $i
+    python3 skim_files.py Run3Summer22EE DYto2L-4Jets_MLL-50to120_HT-800to1500 --start $i
 done
 
-#for ((i=1; i<=52; i+=1))
-#do
-#    python3 skim_files.py DYto2L-4Jets_MLL-50to120_HT-400to800 --start $i
-#done
+for ((i=1; i<=170; i+=1))
+do
+    python3 skim_files.py Run3Summer22EE DYto2L-4Jets_MLL-50to120_HT-1500to2500 --start $i
+done
 
-#for ((i=1; i<=129; i+=1))
-#do
-#    python3 skim_files.py DYto2L-4Jets_MLL-50to120_HT-800to1500 --start $i
-#done
-
-#for ((i=1; i<=170; i+=1))
-#do
-#    python3 skim_files.py DYto2L-4Jets_MLL-50to120_HT-1500to2500 --start $i
-#done
-
-#for ((i=1; i<=154; i+=1))
-#do
-#    python3 skim_files.py DYto2L-4Jets_MLL-50to120_HT-2500 --start $i
-#done
+for ((i=1; i<=154; i+=1))
+do
+    python3 skim_files.py Run3Summer22EE DYto2L-4Jets_MLL-50to120_HT-2500 --start $i
+done
 
 #for ((i=1; i<=125; i+=1))
 #do

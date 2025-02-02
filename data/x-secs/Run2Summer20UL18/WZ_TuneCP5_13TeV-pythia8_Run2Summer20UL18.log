@@ -1,0 +1,12 @@
+01-Feb-2025 18:06:57 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/RunIISummer20UL18MiniAODv2/WZ_TuneCP5_13TeV-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v1/230000/BCD47E70-B264-A242-9649-F47C7377FE8E.root
+
+------------------------------------
+GenXsecAnalyzer:
+------------------------------------
+Before Filter: total cross section = 2.758e+01 +- 1.265e-02 pb
+Filter efficiency (taking into account weights)= (1e+06) / (1e+06) = 1.000e+00 +- 0.000e+00
+Filter efficiency (event-level)= (1e+06) / (1e+06) = 1.000e+00 +- 0.000e+00    [TO BE USED IN MCM]
+
+After filter: final cross section = 2.758e+01 +- 1.265e-02 pb
+After filter: final fraction of events with negative weights = 0.000e+00 +- 0.000e+00
+After filter: final equivalent lumi for 1M events (1/fb) = 3.626e+01 +- 3.990e-02

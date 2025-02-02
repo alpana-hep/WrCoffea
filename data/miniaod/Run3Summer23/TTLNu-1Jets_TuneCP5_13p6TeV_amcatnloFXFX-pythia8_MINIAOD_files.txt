@@ -1,0 +1,14 @@
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer23MiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2023_realistic_v15-v2/140000/6a9e20d6-6b64-4e1e-b952-6fdc5b1eefb6.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer23MiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2023_realistic_v15-v2/140000/ba8b4105-c8d4-4849-a7e5-8545d9dd8a9c.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer23MiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2023_realistic_v15-v2/140000/6f285ffd-8255-47c7-ae1e-3c7784235e75.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer23MiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2023_realistic_v15-v2/140000/be584228-aafb-4677-885a-515f658f0d25.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer23MiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2023_realistic_v15-v2/140000/11af6227-f109-4490-9213-8d8de7f0a323.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer23MiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2023_realistic_v15-v2/140000/f92f7157-6fd7-4648-bfc6-0182abe3c4e3.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer23MiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2023_realistic_v15-v2/140000/6833573b-01d3-40a5-a756-a240b204d83c.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer23MiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2023_realistic_v15-v2/140000/7f6ede68-5f0f-4a1d-a87d-2ea9113aaebe.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer23MiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2023_realistic_v15-v2/140000/3cda306e-c2b4-497b-b97b-1caebdde361e.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer23MiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2023_realistic_v15-v2/140000/f23da048-0961-4795-9e36-ce655133bda6.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer23MiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2023_realistic_v15-v2/140000/6e3ac1c1-cf4d-4252-b2db-f04dcaed34aa.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer23MiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2023_realistic_v15-v2/140000/80885bd4-3649-4ba0-9ea8-feb5f4ceec6e.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer23MiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2023_realistic_v15-v2/140000/c4abcb69-eb18-498c-bce4-17643eccb031.root
+root://cmsxrootd.fnal.gov//store/mc/Run3Summer23MiniAODv4/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/MINIAODSIM/130X_mcRun3_2023_realistic_v15-v2/140000/92718ff6-06f8-40fd-9306-c6cfaf6c3c68.root

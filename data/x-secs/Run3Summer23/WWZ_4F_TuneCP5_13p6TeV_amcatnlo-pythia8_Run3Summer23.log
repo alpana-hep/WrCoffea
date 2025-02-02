@@ -1,0 +1,22 @@
+01-Feb-2025 17:53:39 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer23MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2023_realistic_v14-v2/40000/b01b1253-a5e7-4042-a38a-95a014538ef1.root
+
+------------------------------------
+GenXsecAnalyzer:
+------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Overall cross-section summary 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Process		xsec_before [pb]		passed	nposw	nnegw	tried	nposw	nnegw 	xsec_match [pb]			accepted [%]	 event_eff [%]
+0		1.851e-01 +/- 9.482e-05		1000000	954765	45235	1000000	954765	45235	1.851e-01 +/- 9.482e-05		100.0 +/- 0.0	100.0 +/- 0.0
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Total		1.851e-01 +/- 9.482e-05		1000000	954765	45235	1000000	954765	45235	1.851e-01 +/- 9.482e-05		100.0 +/- 0.0	100.0 +/- 0.0
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Before matching: total cross section = 1.851e-01 +- 9.482e-05 pb
+After matching: total cross section = 1.851e-01 +- 9.482e-05 pb
+Matching efficiency = 1.0 +/- 0.0   [TO BE USED IN MCM]
+Filter efficiency (taking into account weights)= (185176) / (185176) = 1.000e+00 +- 0.000e+00
+Filter efficiency (event-level)= (1e+06) / (1e+06) = 1.000e+00 +- 0.000e+00    [TO BE USED IN MCM]
+
+After filter: final cross section = 1.851e-01 +- 9.482e-05 pb
+After filter: final fraction of events with negative weights = 4.523e-02 +- 2.023e-06
+After filter: final equivalent lumi for 1M events (1/fb) = 4.468e+03 +- 4.566e+00

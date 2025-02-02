@@ -1,0 +1,151 @@
+01-Feb-2025 17:28:20 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/62a60566-ee22-4ebf-adf9-e1ca4a9bcbd9.root
+01-Feb-2025 17:28:24 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/62a60566-ee22-4ebf-adf9-e1ca4a9bcbd9.root
+Begin processing the 1st record. Run 1, Event 1379228, LumiSection 1906 on stream 0 at 01-Feb-2025 17:28:25.409 CST
+01-Feb-2025 17:28:25 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/62a60566-ee22-4ebf-adf9-e1ca4a9bcbd9.root
+01-Feb-2025 17:28:25 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/30000/17f36cd7-a2ef-42d1-b0fd-bc9e2679cef1.root
+01-Feb-2025 17:28:27 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/30000/17f36cd7-a2ef-42d1-b0fd-bc9e2679cef1.root
+01-Feb-2025 17:28:34 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/30000/17f36cd7-a2ef-42d1-b0fd-bc9e2679cef1.root
+01-Feb-2025 17:28:34 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/7e34abbc-94aa-4f0b-b851-6b4506a4633d.root
+01-Feb-2025 17:28:36 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/7e34abbc-94aa-4f0b-b851-6b4506a4633d.root
+Begin processing the 100001st record. Run 1, Event 1255508, LumiSection 1735 on stream 0 at 01-Feb-2025 17:28:46.170 CST
+01-Feb-2025 17:28:46 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/7e34abbc-94aa-4f0b-b851-6b4506a4633d.root
+01-Feb-2025 17:28:46 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/a462a201-eda7-46ca-8dd3-8641d837f465.root
+01-Feb-2025 17:28:48 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/a462a201-eda7-46ca-8dd3-8641d837f465.root
+01-Feb-2025 17:29:00 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/a462a201-eda7-46ca-8dd3-8641d837f465.root
+01-Feb-2025 17:29:00 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/0b9e5fbd-e3d2-4460-8a24-4a0b90d96058.root
+01-Feb-2025 17:29:03 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/0b9e5fbd-e3d2-4460-8a24-4a0b90d96058.root
+Begin processing the 200001st record. Run 1, Event 1284550, LumiSection 1775 on stream 0 at 01-Feb-2025 17:29:22.485 CST
+01-Feb-2025 17:29:22 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/0b9e5fbd-e3d2-4460-8a24-4a0b90d96058.root
+01-Feb-2025 17:29:22 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/8e38363e-e77a-45ca-ae69-62b9230f02db.root
+01-Feb-2025 17:29:24 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/8e38363e-e77a-45ca-ae69-62b9230f02db.root
+01-Feb-2025 17:29:49 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/8e38363e-e77a-45ca-ae69-62b9230f02db.root
+01-Feb-2025 17:29:49 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/b3cd86d7-1598-4484-9333-432a73dba9c4.root
+01-Feb-2025 17:29:51 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/b3cd86d7-1598-4484-9333-432a73dba9c4.root
+Begin processing the 300001st record. Run 1, Event 548335, LumiSection 758 on stream 0 at 01-Feb-2025 17:30:23.196 CST
+01-Feb-2025 17:30:23 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/b3cd86d7-1598-4484-9333-432a73dba9c4.root
+01-Feb-2025 17:30:23 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/65856501-5d78-4308-9122-59ab5bf6f5de.root
+01-Feb-2025 17:30:25 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/65856501-5d78-4308-9122-59ab5bf6f5de.root
+01-Feb-2025 17:31:13 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/65856501-5d78-4308-9122-59ab5bf6f5de.root
+01-Feb-2025 17:31:13 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/2fa02c74-a60d-4612-8e80-7437b330de80.root
+01-Feb-2025 17:31:15 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/2fa02c74-a60d-4612-8e80-7437b330de80.root
+Begin processing the 400001st record. Run 1, Event 1916060, LumiSection 2647 on stream 0 at 01-Feb-2025 17:31:58.038 CST
+01-Feb-2025 17:31:58 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/2fa02c74-a60d-4612-8e80-7437b330de80.root
+01-Feb-2025 17:31:58 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/046cb621-7482-4dca-a231-fffb5132a16b.root
+01-Feb-2025 17:32:00 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/046cb621-7482-4dca-a231-fffb5132a16b.root
+01-Feb-2025 17:32:44 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/046cb621-7482-4dca-a231-fffb5132a16b.root
+01-Feb-2025 17:32:44 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/01c9ad2b-50e0-4b44-b4be-1996cca049ec.root
+01-Feb-2025 17:32:46 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/01c9ad2b-50e0-4b44-b4be-1996cca049ec.root
+01-Feb-2025 17:33:05 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/2540000/01c9ad2b-50e0-4b44-b4be-1996cca049ec.root
+01-Feb-2025 17:33:05 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/a3ef925d-7a99-40e3-ad75-ab6b9da0d4cb.root
+01-Feb-2025 17:33:07 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/a3ef925d-7a99-40e3-ad75-ab6b9da0d4cb.root
+[2025-02-01 17:33:49.316787 -0600][Error  ][PostMaster        ] [eos-d02.cms.rcac.purdue.edu:1102] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:33:49.823323 -0600][Error  ][PostMaster        ] [eos-z00.cms.rcac.purdue.edu:1102] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:34:01.613801 -0600][Error  ][PostMaster        ] [eos-a00.cms.rcac.purdue.edu:1101] Forcing error on disconnect: [ERROR] Operation interrupted.
+Begin processing the 500001st record. Run 1, Event 1465508, LumiSection 2025 on stream 0 at 01-Feb-2025 17:34:09.618 CST
+01-Feb-2025 17:34:09 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/a3ef925d-7a99-40e3-ad75-ab6b9da0d4cb.root
+01-Feb-2025 17:34:09 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/0bef6e95-d677-4d5a-b865-9476af7904f5.root
+%MSG-w XrdAdaptorInternal:  file_open 01-Feb-2025 17:34:11 CST PostProcessEvent
+Failed to open file at URL root://eos-c01.cms.rcac.purdue.edu:1102//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/0bef6e95-d677-4d5a-b865-9476af7904f5.root?cap.msg=LZQstdodNHagq1gzAIYXamJo9xP8FMpFl28AEX3cCyIY4DZX/rqymaD06/1V9/8owV7bTScuADPENiREEDHR3/LbfGjjb24IKqsW+0PcyrX61ssUADCZodr+ohbr9jjoREnMQcryagHVVDt1pqCIB/gaPes3lHTPgeorOLgIy1ynWwHW4UZ6DgFYsyjVsAvUdAZMVCecFk0+vvvaZEQx+U8KBjMSnxme+T3KLXLp6wiJ4CuaNQxZThTDR3QEcvKY3xNTMCB5Tcmc7U5XVxFkQGCTKZJ8sKEimgWa8TFWyPdxsonosdGDf9NsUO8HvaHaz/KGa3vcwy6GbgwC5ak0cepyuq/3Euls4RB16qxWokw17T/VU3RvO7uyBIGkllBzAD/RwkKX5D6U88KyDOdNIEZx8pMcx7/VlMSZSEq/IpiWDDtdmHL2TiKO4tvimh4mp6h3VjV2XcfCQHtz7TAvLxeCQNP1sYky/xfvsifVwwb8h/6ZS0Ux6sdlSgWMJGUvzFfFdw1BxGaz1AyKTC9pPsCYAbRPzjRdeckLbtJ+ALCtG0HyfiskcbtqWhVq+cI+y1hKzmq5pUFrpFpixMXw8IhRIRwA7jxvEMszQzLXSZNrfxHZgoouT1oKj8eYRWGftQfz6Kayfp9W/5R0i1GMCLa8vEv2WfFXOQ6IRCs1LUJhLMGqIlfvz+kOhmk0zfnlL2MfYLd2BzOigwYwGQTxFLpugfWNT0ntOUppJnqoFS5anKIWuMB8J1urgRVJRVDnLQnGqxnYyksfUI9iEo8oycb7oopfKaR5oGEmgjYsMg+Icasmq/kZz+T3cT6CyHWiZ7e1rYJblp1fJMKn8dsswCHj88qyilRZFSZuGz2UC2iyTdIFDlhSLfNsGdmuRoNI&cap.sym=aszWoh0CI9mITkIE2ISvoOJzQY0=&eos.clientinfo=zbase64:MDAwMDAwNmZ4nBXIQQrDMAwF0avkAhF2CF0YdJhE+qaGNjayRentE+/eTG24kg0OtL+WUtP543LlqS5vKIfJ8W/g03OGQedoVior8uGfMfvZxSCDUfsqIZJ8O5kcQs1NHQT1FGPYbobnJuM=&mgm.blockchecksum=ignore&mgm.id=023ce389&mgm.logid=09eed9ca-e0f5-11ef-aaab-bc2411272cf6&mgm.mtime=1696354335&mgm.replicahead=0&mgm.replicaindex=0&xrdcl.requuid=937d9f64-b359-4185-8135-dfcf650d020c.
+%MSG
+01-Feb-2025 17:34:12 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/0bef6e95-d677-4d5a-b865-9476af7904f5.root
+[2025-02-01 17:34:37.070768 -0600][Error  ][PostMaster        ] [eos-a00.cms.rcac.purdue.edu:1102] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:34:37.756938 -0600][Error  ][PostMaster        ] [k004.cms.rcac.purdue.edu:1101] Forcing error on disconnect: [ERROR] Operation interrupted.
+01-Feb-2025 17:34:48 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/0bef6e95-d677-4d5a-b865-9476af7904f5.root
+01-Feb-2025 17:34:48 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/29d7f808-fd69-4e49-a85c-7eb610d9cdf0.root
+01-Feb-2025 17:34:50 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/29d7f808-fd69-4e49-a85c-7eb610d9cdf0.root
+[2025-02-01 17:35:04.123692 -0600][Error  ][PostMaster        ] [eos-z01.cms.rcac.purdue.edu:1101] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:35:38.702418 -0600][Error  ][PostMaster        ] [eos-z00.cms.rcac.purdue.edu:1101] Forcing error on disconnect: [ERROR] Operation interrupted.
+Begin processing the 600001st record. Run 1, Event 1212910, LumiSection 1676 on stream 0 at 01-Feb-2025 17:35:49.761 CST
+01-Feb-2025 17:35:49 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/29d7f808-fd69-4e49-a85c-7eb610d9cdf0.root
+01-Feb-2025 17:35:49 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/5736f027-73b2-4f65-ac74-6610bc7c75a6.root
+01-Feb-2025 17:35:52 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/5736f027-73b2-4f65-ac74-6610bc7c75a6.root
+01-Feb-2025 17:35:58 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/5736f027-73b2-4f65-ac74-6610bc7c75a6.root
+01-Feb-2025 17:35:58 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/9ed12ab3-9962-40e5-b7da-41bca72f3914.root
+01-Feb-2025 17:36:00 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/9ed12ab3-9962-40e5-b7da-41bca72f3914.root
+01-Feb-2025 17:36:13 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/9ed12ab3-9962-40e5-b7da-41bca72f3914.root
+01-Feb-2025 17:36:13 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/bfc3a0ef-4088-4886-84a8-076ee9fb2d92.root
+01-Feb-2025 17:36:15 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/bfc3a0ef-4088-4886-84a8-076ee9fb2d92.root
+[2025-02-01 17:36:28.689375 -0600][Error  ][PostMaster        ] [eos-d01.cms.rcac.purdue.edu:1101] Forcing error on disconnect: [ERROR] Operation interrupted.
+01-Feb-2025 17:36:57 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/bfc3a0ef-4088-4886-84a8-076ee9fb2d92.root
+01-Feb-2025 17:36:57 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/45d7824b-27ef-4011-ba5a-af3f5f1f9db3.root
+01-Feb-2025 17:37:00 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/45d7824b-27ef-4011-ba5a-af3f5f1f9db3.root
+[2025-02-01 17:37:13.038683 -0600][Error  ][PostMaster        ] [eos-d02.cms.rcac.purdue.edu:1103] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:37:13.094736 -0600][Error  ][PostMaster        ] [m001.cms.rcac.purdue.edu:1101] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:37:59.299679 -0600][Error  ][PostMaster        ] [eos-d00.cms.rcac.purdue.edu:1101] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:38:19.788452 -0600][Error  ][PostMaster        ] [eos-c01.cms.rcac.purdue.edu:1101] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:38:20.162692 -0600][Error  ][PostMaster        ] [eos-d02.cms.rcac.purdue.edu:1101] Forcing error on disconnect: [ERROR] Operation interrupted.
+Begin processing the 700001st record. Run 1, Event 591091, LumiSection 817 on stream 0 at 01-Feb-2025 17:38:38.370 CST
+01-Feb-2025 17:38:38 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/45d7824b-27ef-4011-ba5a-af3f5f1f9db3.root
+01-Feb-2025 17:38:38 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/f3a1a7dc-33db-4f82-8329-eee89c5196c7.root
+01-Feb-2025 17:38:40 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/f3a1a7dc-33db-4f82-8329-eee89c5196c7.root
+[2025-02-01 17:39:25.366790 -0600][Error  ][PostMaster        ] [eos-d00.cms.rcac.purdue.edu:1102] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:39:47.104141 -0600][Error  ][PostMaster        ] [eos-c01.cms.rcac.purdue.edu:1102] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:40:03.704508 -0600][Error  ][PostMaster        ] [eos-d02.cms.rcac.purdue.edu:1102] Forcing error on disconnect: [ERROR] Operation interrupted.
+01-Feb-2025 17:40:36 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/f3a1a7dc-33db-4f82-8329-eee89c5196c7.root
+01-Feb-2025 17:40:36 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/30000/91a5f17e-05ff-4c49-90fc-118e35d0d6ba.root
+01-Feb-2025 17:40:38 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/30000/91a5f17e-05ff-4c49-90fc-118e35d0d6ba.root
+[2025-02-01 17:41:05.665740 -0600][Error  ][PostMaster        ] [eos-c00.cms.rcac.purdue.edu:1101] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:41:13.658881 -0600][Error  ][PostMaster        ] [j002.cms.rcac.purdue.edu:1101] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:41:13.673681 -0600][Error  ][PostMaster        ] [k005.cms.rcac.purdue.edu:1101] Forcing error on disconnect: [ERROR] Operation interrupted.
+Begin processing the 800001st record. Run 1, Event 1519348, LumiSection 2099 on stream 0 at 01-Feb-2025 17:41:16.861 CST
+01-Feb-2025 17:41:16 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/30000/91a5f17e-05ff-4c49-90fc-118e35d0d6ba.root
+01-Feb-2025 17:41:16 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/40000/3e7cc84f-94bb-477e-9fb7-a539a6cbe0aa.root
+01-Feb-2025 17:41:19 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/40000/3e7cc84f-94bb-477e-9fb7-a539a6cbe0aa.root
+01-Feb-2025 17:41:24 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/40000/3e7cc84f-94bb-477e-9fb7-a539a6cbe0aa.root
+01-Feb-2025 17:41:24 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/40000/3da19541-2ca3-421d-95d1-9cc673434efd.root
+01-Feb-2025 17:41:26 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/40000/3da19541-2ca3-421d-95d1-9cc673434efd.root
+[2025-02-01 17:41:29.402922 -0600][Error  ][PostMaster        ] [k003.cms.rcac.purdue.edu:1101] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:41:29.785900 -0600][Error  ][PostMaster        ] [eos-a01.cms.rcac.purdue.edu:1101] Forcing error on disconnect: [ERROR] Operation interrupted.
+01-Feb-2025 17:41:31 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/40000/3da19541-2ca3-421d-95d1-9cc673434efd.root
+01-Feb-2025 17:41:31 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/9f0516c9-3402-40d6-b1c5-5990d15ee492.root
+01-Feb-2025 17:41:33 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/9f0516c9-3402-40d6-b1c5-5990d15ee492.root
+01-Feb-2025 17:41:58 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/9f0516c9-3402-40d6-b1c5-5990d15ee492.root
+01-Feb-2025 17:41:58 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/4a7a4afd-f984-425e-b474-86f7e422d84d.root
+01-Feb-2025 17:42:00 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/4a7a4afd-f984-425e-b474-86f7e422d84d.root
+[2025-02-01 17:42:13.712445 -0600][Error  ][PostMaster        ] [k008.cms.rcac.purdue.edu:1101] Forcing error on disconnect: [ERROR] Operation interrupted.
+01-Feb-2025 17:42:53 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/4a7a4afd-f984-425e-b474-86f7e422d84d.root
+01-Feb-2025 17:42:53 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/30000/e9ba8ae8-515e-49dd-9003-011efce6b758.root
+01-Feb-2025 17:42:55 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/30000/e9ba8ae8-515e-49dd-9003-011efce6b758.root
+[2025-02-01 17:43:53.470710 -0600][Error  ][PostMaster        ] [eos-c00.cms.rcac.purdue.edu:1102] Forcing error on disconnect: [ERROR] Operation interrupted.
+Begin processing the 900001st record. Run 1, Event 1063315, LumiSection 1469 on stream 0 at 01-Feb-2025 17:44:39.136 CST
+01-Feb-2025 17:44:39 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/30000/e9ba8ae8-515e-49dd-9003-011efce6b758.root
+01-Feb-2025 17:44:39 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/07fceef2-bf6a-416f-8c9f-da3621b08923.root
+01-Feb-2025 17:44:41 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/07fceef2-bf6a-416f-8c9f-da3621b08923.root
+[2025-02-01 17:45:51.261496 -0600][Error  ][PostMaster        ] [eos-a00.cms.rcac.purdue.edu:1101] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:45:51.281137 -0600][Error  ][PostMaster        ] [eos-d01.cms.rcac.purdue.edu:1101] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:46:32.283970 -0600][Error  ][PostMaster        ] [eos-a00.cms.rcac.purdue.edu:1102] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:46:40.273302 -0600][Error  ][PostMaster        ] [eos-z00.cms.rcac.purdue.edu:1101] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:46:40.312178 -0600][Error  ][PostMaster        ] [eos-d02.cms.rcac.purdue.edu:1101] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:46:47.163722 -0600][Error  ][PostMaster        ] [eos-d01.cms.rcac.purdue.edu:1102] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:46:47.855798 -0600][Error  ][PostMaster        ] [eos-z00.cms.rcac.purdue.edu:1102] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:47:14.585645 -0600][Error  ][PostMaster        ] [eos-z01.cms.rcac.purdue.edu:1102] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:47:14.614630 -0600][Error  ][PostMaster        ] [eos-d02.cms.rcac.purdue.edu:1103] Forcing error on disconnect: [ERROR] Operation interrupted.
+01-Feb-2025 17:47:30 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/07fceef2-bf6a-416f-8c9f-da3621b08923.root
+01-Feb-2025 17:47:30 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/cb3e916f-23d9-4098-b22a-cb6794532fb8.root
+01-Feb-2025 17:47:32 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/cb3e916f-23d9-4098-b22a-cb6794532fb8.root
+[2025-02-01 17:48:08.872729 -0600][Error  ][PostMaster        ] [eos-d00.cms.rcac.purdue.edu:1103] Forcing error on disconnect: [ERROR] Operation interrupted.
+[2025-02-01 17:48:08.912783 -0600][Error  ][PostMaster        ] [eos-b00.cms.rcac.purdue.edu:1102] Forcing error on disconnect: [ERROR] Operation interrupted.
+      0.185134      0.000190      0.203595             0
+ 
+01-Feb-2025 17:49:51 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/Run3Summer22MiniAODv4/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/MINIAODSIM/130X_mcRun3_2022_realistic_v5-v2/50000/cb3e916f-23d9-4098-b22a-cb6794532fb8.root
+
+------------------------------------
+GenXsecAnalyzer:
+------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Overall cross-section summary 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Process		xsec_before [pb]		passed	nposw	nnegw	tried	nposw	nnegw 	xsec_match [pb]			accepted [%]	 event_eff [%]
+0		1.851e-01 +/- 9.482e-05		1000156	954966	45190	1000156	954966	45190	1.851e-01 +/- 9.482e-05		100.0 +/- 0.0	100.0 +/- 0.0
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Total		1.851e-01 +/- 9.482e-05		1000156	954966	45190	1000156	954966	45190	1.851e-01 +/- 9.482e-05		100.0 +/- 0.0	100.0 +/- 0.0
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Before matching: total cross section = 1.851e-01 +- 9.482e-05 pb
+After matching: total cross section = 1.851e-01 +- 9.482e-05 pb
+Matching efficiency = 1.0 +/- 0.0   [TO BE USED IN MCM]
+Filter efficiency (taking into account weights)= (185226) / (185226) = 1.000e+00 +- 0.000e+00
+Filter efficiency (event-level)= (1.00016e+06) / (1.00016e+06) = 1.000e+00 +- 0.000e+00    [TO BE USED IN MCM]
+
+After filter: final cross section = 1.851e-01 +- 9.482e-05 pb
+After filter: final fraction of events with negative weights = 4.518e-02 +- 2.027e-06
+After filter: final equivalent lumi for 1M events (1/fb) = 4.469e+03 +- 4.568e+00
