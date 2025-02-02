@@ -39,23 +39,13 @@ def query_datasets(data, run):
     if run == "Run2Summer20UL18":
         ddc.do_blocklist_sites(["T2_US_MIT", "T1_US_FNAL_Disk"]) # Gave error
     elif run == "Run3Summer22":
-        ddc.do_blocklist_sites(["T2_PL_Cyfronet"]) # Gave error
+        ddc.do_blocklist_sites(["T2_PL_Cyfronet", "T2_US_Vanderbilt", "T2_TW_NCHC"]) # Gave error
     elif run == "Run3Summer22EE":
-        ddc.do_blocklist_sites(["T2_US_MIT", "T2_PL_Cyfronet", "T1_US_FNAL_Disk", "T1_DE_KIT_Disk"])
+        ddc.do_blocklist_sites(["T2_US_MIT", "T2_PL_Cyfronet", "T1_US_FNAL_Disk", "T1_DE_KIT_Disk", "T2_US_Vanderbilt", "T2_TW_NCHC"])
     elif run == "Run3Summer23":
-        ddc.do_blocklist_sites(["T2_US_MIT", "T2_PL_Cyfronet"]) # Gave error
+        ddc.do_blocklist_sites(["T2_US_MIT", "T2_PL_Cyfronet", "T2_TW_NCHC"]) # Gave error
     elif run == "Run3Summer23BPix": # GOOD
-        ddc.do_allowlist_sites([
-            "T1_US_FNAL_Disk", 
-            "T2_US_Nebraska", 
-            "T2_US_Vanderbilt",
-            "T2_US_Caltech",
-            "T2_US_Florida",
-            "T2_US_Wisconsin",
-            "T2_US_UCSD"
-        ])
-#        ddc.do_blocklist_sites(["T1_DE_KIT_Disk"])
-        ddc.do_blocklist_sites(["T2_US_MIT", "T1_DE_KIT_Disk", "T2_US_Purdue"]) # Gave error
+        ddc.do_blocklist_sites(["T2_US_MIT", "T1_DE_KIT_Disk", "T2_US_Purdue", "T2_PL_Cyfronet", "T2_TW_NCHC"]) # Gave error
     dataset = ddc.load_dataset_definition(dataset_definition = data, query_results_strategy="all", replicas_strategy="first")
 
     return dataset
@@ -85,12 +75,17 @@ def get_genevents_from_coffea(rootFile):
                 schemaclass=NanoAODSchema
         ).events()
 
+        # Check if 'genEventSumw' exists in the file
+        if not hasattr(events, "genEventSumw"):
+            print(f"File {filepath} does not contain 'genEventSumw'. Skipping...", file=sys.stderr)
+            return 0  # Return 0 so that it doesn't affect the sum
+
         genEventSumw = int(events.genEventSumw.compute()[0])
         return genEventSumw
 
     except Exception as e:
         print(f"Exception occurred while processing file {filepath}: {e}", file=sys.stderr)
-        return 0, 0.0, 0.0
+        return 0  # Return 0 on error
 
 def save_json(output_file, data):
     """
@@ -119,8 +114,11 @@ if __name__ == "__main__":
     # Parse the arguments
     args = parser.parse_args()
 
-    # Build input and output file paths based on the arguments
-    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_template.json"
+    if args.run == "Run2Summer20UL18":
+        input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_genxsec_template.json"
+    else:
+        # Build input and output file paths based on the arguments
+        input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_template.json"
     output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
 
     # Create the Dask client
