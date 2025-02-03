@@ -29,23 +29,49 @@ warnings.filterwarnings("ignore", category=RuntimeWarning, module="coffea.*")
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+
+def filter_by_process(data, process_name):
+    """
+    Filters the dictionary to return only entries where the "process" matches the given process_name.
+
+    :param data: The dictionary containing dataset information
+    :param process_name: The process name to filter by
+    :return: A dictionary with filtered entries
+    """
+    return {key: value for key, value in data.items() if value.get("process") == process_name}
+
 def load_config(filepath):
     with open(filepath, 'r') as file:
         return json.load(file)
 
 def query_datasets(data, run):
+
+    for key, value in data.items():
+        process = value.get('process')
+
     print(f"\nQuerying replica sites")
     ddc = DataDiscoveryCLI()
-    if run == "Run2Summer20UL18":
-        ddc.do_blocklist_sites(["T2_US_MIT", "T1_US_FNAL_Disk"]) # Gave error
-    elif run == "Run3Summer22":
-        ddc.do_blocklist_sites(["T2_PL_Cyfronet", "T2_US_Vanderbilt", "T2_TW_NCHC"]) # Gave error
-    elif run == "Run3Summer22EE":
-        ddc.do_blocklist_sites(["T2_US_MIT", "T2_PL_Cyfronet", "T1_US_FNAL_Disk", "T1_DE_KIT_Disk", "T2_US_Vanderbilt", "T2_TW_NCHC"])
-    elif run == "Run3Summer23":
-        ddc.do_blocklist_sites(["T2_US_MIT", "T2_PL_Cyfronet", "T2_TW_NCHC"]) # Gave error
-    elif run == "Run3Summer23BPix": # GOOD
-        ddc.do_blocklist_sites(["T2_US_MIT", "T1_DE_KIT_Disk", "T2_US_Purdue", "T2_PL_Cyfronet", "T2_TW_NCHC"]) # Gave error
+
+#    if process == "DYJets":
+#        if run == "Run2Summer20UL18":
+#             ddc.do_allowlist_sites([])
+#        elif run == "Run3Summer22":
+#        elif run == "Run3Summer22EE":
+#        elif run == "Run3Summer23":
+#        elif run == "Run2Summer23BPix":
+#    elif process == "TTBar":
+#        if run == "Run2Summer20UL18":
+#        elif run == "Run3Summer22":
+#        elif run == "Run3Summer22EE":  
+#        elif run == "Run3Summer23":
+#        elif run == "Run2Summer23BPix":
+#    elif process == "tW":
+#        if run == "Run2Summer20UL18":
+#        elif run == "Run3Summer22":
+#        elif run == "Run3Summer22EE":  
+#        elif run == "Run3Summer23":
+#        elif run == "Run2Summer23BPix":
+
     dataset = ddc.load_dataset_definition(dataset_definition = data, query_results_strategy="all", replicas_strategy="first")
 
     return dataset
@@ -110,6 +136,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process the JSON configuration file.")
     parser.add_argument("run", type=str, choices=["Run2Summer20UL18", "Run3Summer22", "Run3Summer22EE", "Run3Summer23", "Run3Summer23BPix"], help="MC Campaign")
     parser.add_argument("sample", type=str, choices=["bkg"], help="Sample type (bkg, sig, data)")
+    parser.add_argument("dataset", type=str, help="Dataset process to filter")  # New argument
 
     # Parse the arguments
     args = parser.parse_args()
@@ -119,17 +146,33 @@ if __name__ == "__main__":
     else:
         # Build input and output file paths based on the arguments
         input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_template.json"
+
     output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
 
     # Create the Dask client
     client = Client(n_workers=4, threads_per_worker=1, memory_limit='2GB', nanny=False)
 
-    # Load the configuration file
-    config = load_config(input_file)
+    try:
+        # Load the configuration file
+        config = load_config(input_file)
 
-    dataset = query_datasets(config, args.run)
+        # Filter configuration based on process name
+        filtered_config = filter_by_process(config, args.dataset)
 
-    sumw_dataset = get_sumw(dataset)
+        # Query datasets
+        dataset = query_datasets(filtered_config, args.run)
 
-    # Save the datasets to JSON
-    save_json(output_file, sumw_dataset)
+        # Compute sumw values
+        sumw_dataset = get_sumw(dataset)
+
+        # Update original config with sumw values
+        for key, value in sumw_dataset.items():
+            if key in config:
+                config[key]["genEventSumw"] = value.get("genEventSumw", 0.0)
+
+        # Save the updated configuration
+        save_json(output_file, config)
+
+    finally:
+        # Ensure the Dask client is properly closed
+        client.close()
