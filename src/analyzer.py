@@ -737,7 +737,7 @@ class WrAnalysis(processor.ProcessorABC):
 
         # Get cut events for ee channel
         ee_cuts = regions['WR_EE_Resolved_SR']
-        ee_cut = selections.all(*ee_cuts)
+        ee_cut = selections.all(*ee_cuts)                # both ee and mumu cuts have ~150 more True values than the number of events in the final ROOT histograms
         mumu_cuts = regions['WR_MuMu_Resolved_SR']
         mumu_cut = selections.all(*mumu_cuts)
 
@@ -758,6 +758,18 @@ class WrAnalysis(processor.ProcessorABC):
         AK4Jetz_mumu = dask.compute(AK4Jets_mumu)[0]
         tightLeptonz_ee   = dask.compute(tightLeptons_ee)[0]
         tightLeptonz_mumu = dask.compute(tightLeptons_mumu)[0]
+
+#        def check_for_extras(array):
+#            extra_count = 0
+#            for event in array:
+#                if len(event) >= 3:
+#                    extra_count += 1
+#            return extra_count
+#
+#        print(f'AK4Jets_ee extra count: {check_for_extras(AK4Jetz_ee)}\n')
+#        print(f'AK4Jets_mumu extra count: {check_for_extras(AK4Jetz_mumu)}\n')
+#        print(f'tightLeptons_ee extra count: {check_for_extras(tightLeptonz_ee)}\n')
+#        print(f'tightLeptons_mumu extra count: {check_for_extras(tightLeptonz_mumu)}\n')
 
 #        print(f'len(AK4Jets_ee): {len(AK4Jetz_ee)}')
 #        print(f'len(AK4Jets_mumu): {len(AK4Jetz_mumu)}')
