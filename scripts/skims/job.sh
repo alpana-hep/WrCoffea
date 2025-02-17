@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Exit on error
+set -e
+
+FILE_NUM=$1
+CAMPAIGN=$2
+PROCESS=$3
+DATASET=$4
+RUN=${CAMPAIGN:0:4}
+
+echo "-------------------------------------------"
+tar -xzf WrCoffea.tar.gz
+cd WrCoffea
+source venv/bin/activate
+
+echo "-------------------------------------------"
+echo "### **Start of Job**"
+echo "**MC Campaign:** $CAMPAIGN"
+echo "**Process:** $PROCESS"
+echo "**Dataset:** $DATASET"
+echo "-------------------------------------------"
+
+export PATH="/srv/WrCoffea/venv/bin:$PATH"
+export PYTHONPATH="/srv/WrCoffea/venv/lib/python3.9/site-packages:$PYTHONPATH"
+python3 scripts/skims/skim_files.py $CAMPAIGN $PROCESS $DATASET --start $FILE_NUM
+
+cd scripts/skims/$RUN/$CAMPAIGN
+cd $DATASET
+echo "### **Output Files Generated**"
+echo "-------------------------------------------"
+echo "**Directory:** $(pwd)"
+echo "**Files**"
+echo "|------------| User |--------| Size |----------------------------------| Filename |-----------------------------------|"
+echo "$(ls -lrth)"
+
+cd ..
+tar -czf "${DATASET}_skim$((FILE_NUM - 1)).tar.gz" "$DATASET"
+
+# Move the tarball to `/srv/` for Condor to detect it
+mv "${DATASET}_skim$((FILE_NUM - 1)).tar.gz" /srv/
+echo "### **End of Job**"
+echo "-------------------------------------------"
+echo "✅ Job completed successfully! 🚀"
+
+# Debugging
+#echo "Using Python: $(which python3)"
+#echo "Python version: $(python3 --version)"
+#echo "Python Path: $PYTHONPATH"
+
+#echo "Now the contents of the directory is:"
+#echo "pwd: $(pwd)"
+#echo "ls: $(ls -lrt)"
