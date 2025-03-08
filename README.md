@@ -1,20 +1,12 @@
-# WrCoffea
+# WrCoffea Documentation
 
-# Project Documentation
-
-Welcome to the documentation for the WR analysis. This repository contains tools for running the analyzer and making histograms, as well as scripts used to compile all of the setup files.
+Welcome to the WR analyzer. The following links contain documentation for how to run the analyzer and make histograms, as well as how to add new MC campaigns.
 
 ## Table of Contents
-- [Running the Analysis](run_analysis.md) – How to execute `run_analysis.py`.
-- [Workflow Overview](workflow.md) – Overview of the full analysis process.
-- [Code Structure](#code-structure) – How the repository is organized.
-
-## Getting Started
-To begin using this repository:
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-
+- [Running the Analyzer](docs/run_analysis.md) – How to execute `run_analysis.py`.
+- [Workflow Overview](docs/workflow.md) – Overview of the full workflow from scratch.
+- [Plotting](docs/plotting.md) – Documentation for plotting.
+- [Code Structure](docs/#code-structure) – How the repository is organized.
 
 ## Getting Started
 Begin by cloning the repository,
