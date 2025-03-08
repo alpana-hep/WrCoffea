@@ -8,8 +8,6 @@ Welcome to the WR analyzer. The following links contain documentation for how to
 - [Plotting](docs/plotting.md) – Documentation for plotting.
 - [Code Structure](docs/#code-structure) – How the repository is organized.
 
-[Go to Documentation](docs/index.md)
-
 ## Getting Started
 Begin by cloning the repository,
 ```
