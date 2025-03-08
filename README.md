@@ -8,7 +8,7 @@ Welcome to the WR analyzer. The following links contain documentation for how to
 - [Plotting](docs/plotting.md) – Documentation for plotting.
 - [Code Structure](README.md#-code-structure) – How the repository is organized.
 - [Getting Started](README.md#getting-started) – How the repository is organized.   
-## 📂 code-structure
+## 📂 Code Structure
 This repository follows a structured layout to separate executable scripts, core analysis logic, and supporting documentation.
 
 ### **📂 `bin/` – Executable Scripts**
