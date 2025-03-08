@@ -1,75 +1,69 @@
 # WrCoffea Documentation
 
-Welcome to the WR analyzer. The following links contain documentation for how to run the analyzer and make histograms, as well as how to add new MC campaigns.
+Welcome to the WR analyzer! This repository contains tools for analyzing and processing WR background, data and signal events. Below, you’ll find instructions on setting up the environment, running the analysis, and extending the framework.
 
 ## Table of Contents
-- [Running the Analyzer](docs/run_analysis.md) – How to execute `run_analysis.py`.
-- [Workflow Overview](docs/workflow.md) – Overview of the full workflow from scratch.
-- [Plotting](docs/plotting.md) – Documentation for plotting.
-- [Code Structure](README.md#-code-structure) – How the repository is organized.
-- [Getting Started](README.md#getting-started) – How the repository is organized.   
-## 📂 Code Structure
-This repository follows a structured layout to separate executable scripts, core analysis logic, and supporting documentation.
+- [Running the Analyzer](docs/run_analysis.md) – How to execute `run_analysis.py` to perform the analysis.
+- [Workflow Overview](docs/workflow.md) – A detailed guide on the full data processing pipeline.
+- [Plotting](docs/plotting.md) – Instructions for generating plots from the histogram ROOT files.
+- [Code Structure](README.md#-code-structure) – Explanation of the repository organization.
+- [Getting Started](README.md#getting-started) – Instructions for installing and setting up the analyzer.
+---
+## 📂 Repo Structure
+This repository is structured to separate executable scripts, core analysis logic, and documentation.
 
-### **📂 `bin/` – Executable Scripts**
-This directory contains **high-level scripts** meant to be executed directly:
-- `run_analysis.py` – The main script that orchestrates the analysis pipeline.
-
-### **📂 `docs/` – Documentation**
-Contains Markdown documentation files:
-- `workflow.md` – Overview of the analysis process.
-- `run_analysis.md` – How to run the analyzer.
-- `save_hists.md` – Explanation of histogram processing.
-
-### **📂 `src/` – Core Analysis Code**
-Contains the main physics analysis scripts:
-- `analyzer.py` – Core physics analysis logic.
-
-### **📂 `scripts/` – Helper Scripts**
-This directory contains supporting scripts that are **not executed directly** but are used in workflows:
-- `save_hists.py` – Processes and saves histograms.
-
-### **📂 `data/` (Optional) – Input/Output Data**
-If your analysis relies on data files (e.g., ROOT files, CSVs), you can store them here.
-
-### **📂 `python/` (Optional) – Reusable Modules**
-If you have Python helper functions or physics utilities, store them here for easy importing:
-- `data_utils.py` – Functions for handling data.
-- `hist_utils.py` – Functions for managing histograms.
-
-### **📂 `test/` (Optional) – Unit Testing**
-If you add automated tests, place them here using `pytest` or another framework.
-
+```
+bin/       # Contains the run_analysis.py script to execute the analysis.
+docs/      # Documentation files
+src/       # Contains main analyzer code
+scripts/   # Helper scripts for pre- and post-processing
+data/      # Input/output datasets
+python/    # Reusable Python modules
+test/      # Test and developmental scripts
+```
+---
 ## Getting Started
 Begin by cloning the repository,
-```
+```bash
 git clone git@github.com:UMN-CMS/WrCoffea.git
 cd WrCoffea
 ```
 Create and source a virtual python environment,
-```
+```bash
 python3 -m venv wr-env
 source wr-env/bin/activate
 ```
 Install the appropriate packages,
-```
+```bash
 python3 -m pip install -r requirements.txt
 ```
 
 ### Grid UI
-To set up a grid UI
-```
+To authenticate for accessing grid resources, use:
+```bash
 voms-proxy-init --rfc --voms cms -valid 192:00
 ```
+
 ### ROOT
-To use ROOT, source the appriopriate LGC release. 
-```
+To enable ROOT functionality, source the appropriate LCG release:
+```bash
 source /cvmfs/sft.cern.ch/lcg/views/LCG_106/x86_64-el9-gcc13-opt/setup.sh
 ```
-or at UMN,
-```
+If using UMN’s setup, use:
+```bash
 source /cvmfs/sft.cern.ch/lcg/views/LCG_104/x86_64-centos8-gcc11-opt/setup.sh
 ```
-### Extending the Analyzer
+---
+## Extending the Analyzer
+The files [bin/run_analysis.py](https://github.com/UMN-CMS/WrCoffea/blob/main/bin/run_analysis.py) and [src/analyzer.py](https://github.com/UMN-CMS/WrCoffea/blob/main/src/analyzer.py) define a standard event selection and histogramming process.
 
-* The files [bin/run_analysis.py](https://github.com/UMN-CMS/WrCoffea/blob/main/bin/run_analysis.py) and [src/analyzer.py](https://github.com/UMN-CMS/WrCoffea/blob/main/src/analyzer.py) make a standard selection and standard set of histograms. Independent studies where the variables, selections, histograms etc may differ are developed in the [tests](https://github.com/UMN-CMS/WrCoffea/tree/main/test) folder. It is usually easiest to copy the files and start from there. Once finished, new studies can integrated into the main pipeline via the `bin` or `python` or `src` folders.
+For independent studies with **custom variables, selections, or histograms**, develop your scripts in the [`test/`](https://github.com/UMN-CMS/WrCoffea/tree/main/test) folder.
+
+### Adding a New Study
+1. Copy an existing script from `test/`:
+   ```bash
+   cp src/analyzer.py test/dev_analyzer.py
+   ```
+2. Modify the script to include your custom selections and histograms.
+3. Once finalized, integrate your study into the main pipeline via `bin/`, `python/`, or `src/`.
+---
