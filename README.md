@@ -1,5 +1,7 @@
 # WrCoffea
 
+[Go to Documentation](docs/index.md)
+
 ## Getting Started
 Begin by cloning the repository,
 ```
