@@ -31,7 +31,6 @@ NanoAODSchema.error_missing_event_ids = False
 warnings.filterwarnings("ignore", category=FutureWarning, module="coffea.*")
 warnings.filterwarnings("ignore", category=RuntimeWarning, module="coffea.*")
 
-# Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def load_json(file_path):
@@ -64,7 +63,6 @@ def preprocess_json(fileset):
             step_size=chunks,
             skip_bad_files=False,
             uproot_options={"handler": uproot.MultithreadedXRootDSource, "timeout": 3600}
-#            uproot_options={"handler": uproot.XRootDSource, "timeout": 60}
 #            uproot_options={"handler": uproot.XRootDSource, "timeout": 3600}
         )
 
@@ -164,8 +162,8 @@ if __name__ == "__main__":
     run, year = mapping["run"], mapping["year"]
 
     input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{run}/{year}/{args.era}.json"
-    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{year}/{args.era}/{args.era}_{args.dataset}_preprocessed.json"
-    output_txt_dir = f"/uscms/home/bjackson/nobackup/WrCoffea/data/filepaths/{run}/{year}/{args.era}/"
+    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{year}/{args.era}_{args.dataset}_preprocessed.json"
+    output_txt_dir = f"/uscms/home/bjackson/nobackup/WrCoffea/data/filepaths/{run}/{year}/"
 
     logging.info(f"Loading input file {input_file}.")
     config = load_json(input_file)
@@ -173,25 +171,11 @@ if __name__ == "__main__":
     if config is None:
         raise FileNotFoundError("No valid input or output file found.")
 
-    # Create the Dask client
     client = Client(n_workers=4, threads_per_worker=1, memory_limit='2GB', nanny=False)
 
     filtered_config = filter_by_process(config, args.dataset)
-
-    print(filtered_config)
-
-    dataset = query_datasets(filtered_config) #Updated config
-
-    # Save dataset information as text files
+    dataset = query_datasets(filtered_config)
     save_dataset_txt(dataset, output_txt_dir)
-
     dataset_runnable, dataset_updated = preprocess_json(dataset)
-
     compare_preprocessed(dataset_runnable, dataset_updated)
-
-#    for dataset_name, new_files in dataset_runnable.items():
-#        for config_name, metadata in config.items():
-#            if dataset_name == config_name:
-#                config[config_name] = new_files
-
     save_json(output_file, dataset_runnable)

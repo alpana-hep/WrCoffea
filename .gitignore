@@ -23,4 +23,6 @@ scripts/skims/old
 data/skims
 data/filepaths
 data/jsons
-data/miniaod
+data/miniaod/RunII/2018/RunIISummer20UL18/
+data/miniaod/Run3/2022/Run3Summer22/
+data/miniaod/Run3/2022/Run3Summer22EE/
