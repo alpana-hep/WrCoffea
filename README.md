@@ -1,4 +1,12 @@
-# WrCoffea
+# WrCoffea Documentation
+
+Welcome to the WR analyzer. The following links contain documentation for how to run the analyzer and make histograms, as well as how to add new MC campaigns.
+
+## Table of Contents
+- [Running the Analyzer](docs/run_analysis.md) – How to execute `run_analysis.py`.
+- [Workflow Overview](docs/workflow.md) – Overview of the full workflow from scratch.
+- [Plotting](docs/plotting.md) – Documentation for plotting.
+- [Code Structure](docs/#code-structure) – How the repository is organized.
 
 [Go to Documentation](docs/index.md)
 
@@ -18,15 +26,19 @@ Install the appropriate packages,
 python3 -m pip install -r requirements.txt
 ```
 
-## Running the analyzer
-### Each week if using LPC:
+### If using LPC:
 To set up a grid UI
 ```
 voms-proxy-init --rfc --voms cms -valid 192:00
 ```
-Source LGC release
+To source the LGC release on LPC (e.g. to use a TBrowser)
 ```
 source /cvmfs/sft.cern.ch/lcg/views/LCG_106/x86_64-el9-gcc13-opt/setup.sh
+```
+### UMN
+To source the LGC release at UMN
+```
+source /cvmfs/sft.cern.ch/lcg/views/LCG_104/x86_64-centos8-gcc11-opt/setup.sh
 ```
 ### Basic analysis
 To run a basic analysis, 
@@ -61,6 +73,12 @@ python3 bin/run_analysis.py Run2Autumn18 Signal --mass WR3200_N800 --umn --hists
 ```
 where the possible signal points are given by [Run2Autumn18_mass_points.csv](https://github.com/UMN-CMS/WrCoffea/blob/main/data/Run2Autumn18_mass_points.csv)
 
+To make histograms for all signal samples, use the script
+```
+./bin/analyze_signals.sh
+```
+which executes  `run_analysis.py` in a loop with all of the signal points.
+
 ### Plotting
 Plotting is handled in the `WR_Plotter` submodule,
 ```
@@ -79,7 +97,7 @@ python3 scripts/241120_Run2VSRun3/plot_CR.py --umn
 
 To plot a comparison of the signal masses,
 ```
-python3 scripts/241215_N3200_vs_N800/plot_SR.py --umn
+python3 scripts/241215_N3000_vs_N800/plot_SR.py --umn
 ```
 
 ### Extending the Analyzer

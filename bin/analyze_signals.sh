@@ -11,7 +11,7 @@ MASS_OPTIONS=(
 )
 
 # Base command
-BASE_COMMAND="python3 bin/run_analysis.py Run2Autumn18 Signal --hists"
+BASE_COMMAND="python3 bin/run_analysis.py Run2Autumn18 Signal --hists --umn" 
 
 # Loop over each --mass option and execute the command
 for MASS in "${MASS_OPTIONS[@]}"; do
