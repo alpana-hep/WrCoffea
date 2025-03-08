@@ -12,6 +12,11 @@ import numpy as np
 import awkward as ak
 import multiprocessing
 from pathlib import Path
+
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning, module="coffea")
+warnings.filterwarnings("ignore", category=RuntimeWarning, module="coffea.*")
+
 from coffea.nanoevents import NanoEventsFactory, NanoAODSchema
 from coffea.dataset_tools import rucio_utils, preprocess, max_files, max_chunks
 from coffea.dataset_tools.dataset_query import print_dataset_query, DataDiscoveryCLI
@@ -23,8 +28,8 @@ from dask.distributed import Client
 NanoAODSchema.warn_missing_crossrefs = False
 NanoAODSchema.error_missing_event_ids = False
 
-warnings.filterwarnings("ignore", category=FutureWarning, module="coffea.*")
-warnings.filterwarnings("ignore", category=RuntimeWarning, module="coffea.*")
+#warnings.filterwarnings("ignore", category=FutureWarning, module="coffea.*")
+#warnings.filterwarnings("ignore", category=RuntimeWarning, module="coffea.*")
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -52,27 +57,7 @@ def query_datasets(data, run):
     print(f"\nQuerying replica sites")
     ddc = DataDiscoveryCLI()
 
-#    if process == "DYJets":
-#        if run == "Run2Summer20UL18":
-#             ddc.do_allowlist_sites([])
-#        elif run == "Run3Summer22":
-#        elif run == "Run3Summer22EE":
-#        elif run == "Run3Summer23":
-#        elif run == "Run2Summer23BPix":
-#    elif process == "TTBar":
-#        if run == "Run2Summer20UL18":
-#        elif run == "Run3Summer22":
-#        elif run == "Run3Summer22EE":  
-#        elif run == "Run3Summer23":
-#        elif run == "Run2Summer23BPix":
-#    elif process == "tW":
-#        if run == "Run2Summer20UL18":
-#        elif run == "Run3Summer22":
-#        elif run == "Run3Summer22EE":  
-#        elif run == "Run3Summer23":
-#        elif run == "Run2Summer23BPix":
-
-    dataset = ddc.load_dataset_definition(dataset_definition = data, query_results_strategy="all", replicas_strategy="first")
+    dataset = ddc.load_dataset_definition(dataset_definition = data, query_results_strategy="all", replicas_strategy="choose")
 
     return dataset
 
@@ -106,7 +91,8 @@ def get_genevents_from_coffea(rootFile):
             print(f"File {filepath} does not contain 'genEventSumw'. Skipping...", file=sys.stderr)
             return 0  # Return 0 so that it doesn't affect the sum
 
-        genEventSumw = int(events.genEventSumw.compute()[0])
+        genEventSumw = events.genEventSumw.compute()[0]
+        print(genEventSumw)
         return genEventSumw
 
     except Exception as e:
@@ -135,19 +121,14 @@ if __name__ == "__main__":
     # Set up argument parsing
     parser = argparse.ArgumentParser(description="Process the JSON configuration file.")
     parser.add_argument("run", type=str, choices=["Run2Summer20UL18", "Run3Summer22", "Run3Summer22EE", "Run3Summer23", "Run3Summer23BPix"], help="MC Campaign")
-    parser.add_argument("sample", type=str, choices=["bkg"], help="Sample type (bkg, sig, data)")
     parser.add_argument("dataset", type=str, help="Dataset process to filter")  # New argument
 
     # Parse the arguments
     args = parser.parse_args()
 
-    if args.run == "Run2Summer20UL18":
-        input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_genxsec_template.json"
-    else:
-        # Build input and output file paths based on the arguments
-        input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_template.json"
+    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run[:4]}/{args.run}/{args.run}_bkg_cfg.json"
 
-    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
+    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run[:4]}/{args.run}/{args.run}_bkg_cfg.json"
 
     # Create the Dask client
     client = Client(n_workers=4, threads_per_worker=1, memory_limit='2GB', nanny=False)

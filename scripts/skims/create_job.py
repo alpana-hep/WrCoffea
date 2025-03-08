@@ -10,9 +10,9 @@ executable = ./{PROCESS}.sh
 should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
 request_memory = 8000
-output = ../../../../../data/skims/{RUN}/{CAMPAIGN}/{PROCESS}/{PROCESS}_out/{PROCESS}_$(ProcId)_$(ClusterId).out
-error = ../../../../../data/skims/{RUN}/{CAMPAIGN}/{PROCESS}/{PROCESS}_err/{PROCESS}_$(ProcId)_$(ClusterId).err
-log = ../../../../../data/skims/{RUN}/{CAMPAIGN}/{PROCESS}/{PROCESS}_log/{PROCESS}_$(ProcId)_$(ClusterId).log
+output = ../../../../../data/skims/{RUN}/{CAMPAIGN}/{PROCESS}/{PROCESS}_out/{PROCESS}_$(ProcId).out
+error = ../../../../../data/skims/{RUN}/{CAMPAIGN}/{PROCESS}/{PROCESS}_err/{PROCESS}_$(ProcId).err
+log = ../../../../../data/skims/{RUN}/{CAMPAIGN}/{PROCESS}/{PROCESS}_log/{PROCESS}_$(ProcId).log
 transfer_input_files = WrCoffea.tar.gz
 transfer_output_files = {PROCESS}_skim$(ProcId).tar.gz
 queue arguments from arguments.txt\
@@ -26,9 +26,12 @@ def mkdir(path):
 def main(campaign, process, dataset):
     print(f"Starting job creation for dataset: {dataset}")
     run = campaign[:4]
+    if campaign == "Run3Summer22" or campaign == "Run3Summer22EE":
+        run = "Run3"
+        year = "2022"
     jobdir = f"/uscms_data/d1/bjackson/WrCoffea/scripts/skims/{run}/{campaign}"
     # Define base directory
-    base_path = Path(f"/uscms_data/d1/bjackson/WrCoffea/data/filepaths/{run}/{campaign}")
+    base_path = Path(f"/uscms_data/d1/bjackson/WrCoffea/data/filepaths/{run}/{year}/{campaign}")
 
     # Ensure base directory exists
     if not base_path.exists():

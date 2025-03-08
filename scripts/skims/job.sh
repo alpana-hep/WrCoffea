@@ -7,7 +7,16 @@ FILE_NUM=$1
 CAMPAIGN=$2
 PROCESS=$3
 DATASET=$4
-RUN=${CAMPAIGN:0:4}
+
+# Determine RUN based on CAMPAIGN content
+if [[ "$CAMPAIGN" == *"RunII"* || "$CAMPAIGN" == *"2018"* ]]; then
+    RUN="RunII"
+elif [[ "$CAMPAIGN" == *"Run3"* ]]; then
+    RUN="Run3"
+else
+    echo "Error: Could not determine RUN from CAMPAIGN ($CAMPAIGN)"
+    exit 1
+fi
 
 echo "-------------------------------------------"
 tar -xzf WrCoffea.tar.gz
@@ -39,6 +48,7 @@ tar -czf "${DATASET}_skim$((FILE_NUM - 1)).tar.gz" "$DATASET"
 
 # Move the tarball to `/srv/` for Condor to detect it
 mv "${DATASET}_skim$((FILE_NUM - 1)).tar.gz" /srv/
+
 echo "### **End of Job**"
 echo "-------------------------------------------"
 echo "✅ Job completed successfully! 🚀"

@@ -1,5 +1,6 @@
 from coffea import processor
 from coffea.analysis_tools import Weights, PackedSelection
+from coffea.lumi_tools import LumiData, LumiMask, LumiList
 import awkward as ak
 import hist.dask as dah
 import hist
@@ -8,6 +9,7 @@ import re
 import time
 import logging
 import warnings
+import dask_awkward as dak
 warnings.filterwarnings("ignore",module="coffea.*")
 
 logging.basicConfig(level=logging.INFO)
@@ -135,19 +137,30 @@ class WrAnalysis(processor.ProcessorABC):
         output = self.make_output()
         
         metadata = events.metadata
-        mc_campaign = metadata["mc_campaign"]
-        process = metadata["process"]
+        mc_campaign = metadata["era"]
+        process = metadata["physics_group"]
         dataset = metadata["dataset"]
         isRealData = not hasattr(events, "genWeight")
         isMC = hasattr(events, "genWeight")
-        
+
+        if isRealData:
+            lumi_mask = LumiMask("Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt")
+            print(f"Number of events before mask: {len(events)}")
+            events = events[lumi_mask(events.run, events.luminosityBlock)]
+#            num_events_after_mask = len(events["run"].compute())  # Compute using a lightweight branch
+#            print(f"Number of events after mask: {num_events_after_mask}")
+#            lumi_list = LumiList(events.run, events.luminosityBlock)
+#            lumi_data = LumiData(f"lumi2018.csv", is_inst_lumi=False)
+#            lumi = lumi_data.get_lumi(lumi_list)
+#            print(lumi.compute())
+
         output['mc_campaign'] = mc_campaign
         output['process'] = process
         output['dataset'] = dataset
         if not isRealData:
             output['x_sec'] = events.metadata["xsec"] 
 
-        logger.info(f"Analyzing {len(events)} {dataset} events.")
+#        logger.info(f"Analyzing {len(events)} {dataset} events.")
    
         # Process signal samples
         if process == "Signal": self.check_mass_point_resolved()
@@ -182,7 +195,7 @@ class WrAnalysis(processor.ProcessorABC):
         # Trigger selections
         if isMC:
             # Apply triggers for MC
-            if mc_campaign == "Run2Summer20UL18" or mc_campaign == "Run2Autumn18":
+            if mc_campaign == "RunIISummer20UL18" or mc_campaign == "Run2Autumn18":
                 eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
                 muTrig = events.HLT.Mu50 | events.HLT.OldMu100 | events.HLT.TkMu100
                 selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
@@ -197,9 +210,17 @@ class WrAnalysis(processor.ProcessorABC):
 
             # Use genWeight for MC
             eventWeight = events.genWeight
-            output['sumw'] = ak.sum(eventWeight) if process == "Signal" else events.metadata["genEventSumw"]
+            unqiue_gensumws = np.unique(events.genEventSumw.compute())
+#            output['sumw'] = ak.sum(eventWeight) if process == "Signal" else events.metadata["genEventSumw"]
+            output['sumw'] = ak.sum(eventWeight) if process == "Signal" else np.sum(unqiue_gensumws)
         elif isRealData:
             # Fill the data weights with one
+            if mc_campaign == "RunIISummer20UL18" or mc_campaign == "Run2Autumn18":
+                eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
+                muTrig = events.HLT.Mu50 | events.HLT.OldMu100 | events.HLT.TkMu100
+                selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
+                selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
+                selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
             eventWeight = abs(np.sign(events.event)) # Find a better way to do this
 
         # Weights
@@ -217,9 +238,9 @@ class WrAnalysis(processor.ProcessorABC):
         selections.add("150mll", (mll > 150))
 
         # Cutflow Tables
-        selections.add("leadJetPt500", (ak.any(AK4Jets.pt > 500, axis=1)))
-        electron_cutflow = selections.cutflow("leadJetPt500", "eejj", "eeTrigger", "minTwoAK4Jets", 'dr>0.4', 'mlljj>800', '400mll')
-        muon_cutflow = selections.cutflow("leadJetPt500", "mumujj", "mumuTrigger", "minTwoAK4Jets", 'dr>0.4', 'mlljj>800', '400mll')
+#        selections.add("leadJetPt500", (ak.any(AK4Jets.pt > 500, axis=1)))
+#        electron_cutflow = selections.cutflow("leadJetPt500", "eejj", "eeTrigger", "minTwoAK4Jets", 'dr>0.4', 'mlljj>800', '400mll')
+#        muon_cutflow = selections.cutflow("leadJetPt500", "mumujj", "mumuTrigger", "minTwoAK4Jets", 'dr>0.4', 'mlljj>800', '400mll')
 #        print(electron_cutflow.print())
 #        print(muon_cutflow.print())
 

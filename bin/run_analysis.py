@@ -58,17 +58,27 @@ def load_masses_from_csv(file_path):
 
 def load_json(args):
     sample = args.sample
-    run = args.run 
+    era = args.run 
     skimmed = args.skimmed
     umn = args.umn
+
+    era_mapping = {
+        "RunIISummer20UL18": {"run": "RunII", "year": "2018"},
+        "Run3Summer22": {"run": "Run3", "year": "2022"},
+    }
+    mapping = era_mapping.get(era)
+    if mapping is None:
+        raise ValueError(f"Unsupported era: {era}")
+    run, year = mapping["run"], mapping["year"]
+
     """Load the appropriate JSON file based on sample, run, and year."""
     if "EGamma" in sample or "SingleMuon" in sample:
-        filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_data_skimmed.json"
+        filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{year}/{era}/{era}_data_preprocessed_skims.json"
     elif "Signal" in sample:
         filepath = f"data/jsons/{run}/{run}_sig_preprocessed_skims.json"
     else:
         if skimmed and not umn:
-            filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{run}_bkg_skimmed.json"
+            filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{year}/{era}/{era}_preprocessed_skims.json"
         elif umn:
             filepath = f"/local/cms/user/jack1851/WrCoffea/data/jsons/{run}/{run}_bkg_preprocessed_skims.json" 
         else:
@@ -92,7 +102,7 @@ def filter_by_process(fileset, desired_process, mass=None):
     elif desired_process == "Signal":
         return {ds: data for ds, data in fileset.items() if mass in  data['metadata']['dataset']}
     else:
-        return {ds: data for ds, data in fileset.items() if data['metadata']['process'] == desired_process}
+        return {ds: data for ds, data in fileset.items() if data['metadata']['physics_group'] == desired_process}
 
 def validate_arguments(args):
     """ Validate signal and mass argument consistency """
@@ -125,7 +135,7 @@ def run_analysis(args, preprocessed_fileset):
     filtered_fileset = filter_by_process(preprocessed_fileset, args.sample, args.mass)
     to_compute = apply_to_fileset(
         data_manipulation=WrAnalysis(mass_point=args.mass),
-        fileset=max_files(max_chunks(filtered_fileset, 1), 1),
+        fileset=max_files(max_chunks(filtered_fileset),),
         schemaclass=NanoAODSchema,
     )
 
@@ -133,7 +143,7 @@ def run_analysis(args, preprocessed_fileset):
         logging.info("Computing histograms...")
         with ProgressBar():
             (histograms,) = dask.compute(to_compute)
-        python.save_hists_250123.save_histograms(histograms, args)
+        python.save_hists.save_histograms(histograms, args)
 
     exec_time = time.monotonic() - t0
     logging.info(f"Execution took {exec_time/60:.2f} minutes")
@@ -147,8 +157,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Processing script for WR analysis.")
 
     # Required arguments
-    parser.add_argument("run", type=str, choices=["Run2Autumn18", "Run2Summer20UL18", "Run3Summer22", "Run3Summer22EE", "Run3Summer23", "Run3Summer23BPix"], help="Campaign to analyze.")
-    parser.add_argument("sample", type=str, choices=["DYJets", "tt", "tW", "Nonprompt", "Other", "EGamma", "SingleMuon", "Signal"],
+    parser.add_argument("run", type=str, choices=["Run2Autumn18", "RunIISummer20UL18", "Run3Summer22", "Run3Summer22EE", "Run3Summer23", "Run3Summer23BPix"], help="Campaign to analyze.")
+    parser.add_argument("sample", type=str, choices=["DYJets", "TTbar", "tW", "WJets", "SingleTop", "TTbarSemileptonic", "TTX", "Diboson", "Triboson", 
+        "Run2018A_EGamma", "Run2018B_EGamma", "Run2018C_EGamma", "Run2018D_EGamma", 
+        "Run2018A_SingleMuon", "Run2018B_SingleMuon", "Run2018C_SingleMuon", "Run2018D_SingleMuon","Signal"],
                         help="MC sample to analyze (e.g., Signal, DYJets).")
 
     # Optional arguments

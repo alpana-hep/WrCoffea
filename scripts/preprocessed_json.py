@@ -12,13 +12,18 @@ import numpy as np
 import awkward as ak
 import multiprocessing
 from pathlib import Path
+
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning, module="coffea")
+warnings.filterwarnings("ignore", category=RuntimeWarning, module="coffea.*")
+
 from coffea.nanoevents import NanoEventsFactory, NanoAODSchema
 from coffea.dataset_tools import rucio_utils, preprocess, max_files, max_chunks
 from coffea.dataset_tools.dataset_query import print_dataset_query, DataDiscoveryCLI
 from rich.console import Console
 from rich.table import Table
 from dask.diagnostics import ProgressBar
-from dask.distributed import Client
+from dask.distributed import Client, progress
 import os
 NanoAODSchema.warn_missing_crossrefs = False
 NanoAODSchema.error_missing_event_ids = False
@@ -29,53 +34,24 @@ warnings.filterwarnings("ignore", category=RuntimeWarning, module="coffea.*")
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-def load_config(filepath):
-    with open(filepath, 'r') as file:
-        return json.load(file)
+def load_json(file_path):
+    """Load JSON data from a file if it exists."""
+    file_path = Path(file_path)
+    if file_path.exists():
+        with open(file_path, 'r') as file:
+            return json.load(file)
+    else:
+        logging.error(f"File {file_path} does not exist.")
+        return None
 
-def query_datasets(data, run):
+def filter_by_process(data, process_name):
+    return {key: value for key, value in data.items() if value.get("physics_group") == process_name}
+
+def query_datasets(data):
     print(f"\nQuerying replica sites")
     ddc = DataDiscoveryCLI()
-    if run == "Run2Summer20UL18":
-        ddc.do_blocklist_sites(["T2_US_MIT", "T1_US_FNAL_Disk"])
-    elif run == "Run3Summer22":
-        ddc.do_blocklist_sites(["T2_PL_Cyfronet"])
-    elif run == "Run3Summer22EE":
-        ddc.do_allowlist_sites([
-            "T2_CH_CERN",  
-            "T2_UK_London_IC",
-            "T2_DE_DESY",
-            "T2_US_Wisconsin",
-            "T2_US_Nebraska",
-            "T2_US_Caltech",
-            "T2_FR_IPHC",
-            "T2_KR_KISTI",
-            "T2_HU_Budapest"
-        ])
-        ddc.do_blocklist_sites(["T2_US_MIT", "T2_PL_Cyfronet", "T1_US_FNAL_Disk", "T1_DE_KIT_Disk"])
-    elif run == "Run3Summer23":
-        ddc.do_allowlist_sites([
-            "T1_US_FNAL_Disk",
-            "T2_US_Nebraska",
-            "T2_UK_London_IC",
-            "T2_US_Caltech",
-            "T2_US_Wisconsin",
-            "T2_US_UCSD",
-            "T2_CH_CERN",
-            "T2_CH_CSCS"
-        ])
-    elif run == "Run3Summer23BPix": # GOOD
-        ddc.do_allowlist_sites([
-            "T1_US_FNAL_Disk",
-            "T2_US_Nebraska",
-            "T2_US_Vanderbilt",
-            "T2_US_Caltech",
-            "T2_US_Florida",
-            "T2_US_Wisconsin",
-            "T2_US_UCSD"
-        ])
-        ddc.do_blocklist_sites(["T2_US_MIT", "T1_DE_KIT_Disk", "T2_US_Purdue"]) # Gave error
-    dataset = ddc.load_dataset_definition(dataset_definition = data, query_results_strategy="all", replicas_strategy="first")
+    ddc.do_blocklist_sites(["T2_US_MIT"])
+    dataset = ddc.load_dataset_definition(dataset_definition = data, query_results_strategy="all", replicas_strategy="choose")
     return dataset
 
 def preprocess_json(fileset):
@@ -87,7 +63,8 @@ def preprocess_json(fileset):
             fileset=max_files(fileset),
             step_size=chunks,
             skip_bad_files=False,
-            uproot_options={"handler": uproot.XRootDSource, "timeout": 60}
+            uproot_options={"handler": uproot.MultithreadedXRootDSource, "timeout": 3600}
+#            uproot_options={"handler": uproot.XRootDSource, "timeout": 60}
 #            uproot_options={"handler": uproot.XRootDSource, "timeout": 3600}
         )
 
@@ -116,6 +93,28 @@ def compare_preprocessed(data, data_all):
 
         raise ValueError("Aborting save due to differences between 'data' and 'data_all'.")
 
+def save_dataset_txt(dataset, output_dir):
+    """
+    Save each dataset to a separate .txt file where each line contains a file path.
+    The filename is derived from the 'dataset' field in metadata.
+    """
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    for dataset_name, dataset_info in dataset.items():
+        # Extract dataset name from metadata
+        metadata = dataset_info.get("metadata", {})
+        dataset_filename = metadata.get("dataset", dataset_name)  # Default to dataset_name if 'dataset' key is missing
+        sanitized_name = dataset_filename.replace(" ", "_")  # Ensure a safe filename
+        
+        dataset_txt_path = output_dir / f"{sanitized_name}.txt"
+
+        with open(dataset_txt_path, 'w') as txt_file:
+            for file_path in dataset_info.get("files", {}):  # `files` is a dictionary, get keys (file paths)
+                txt_file.write(f"{file_path}\n")
+
+        logging.info(f"Saved dataset file list to {dataset_txt_path}")
+
 def save_json(output_file, data):
     """
     Save the processed JSON data to a file. If the directories for the output file 
@@ -138,30 +137,61 @@ def save_json(output_file, data):
 if __name__ == "__main__":
     multiprocessing.set_start_method("spawn", force=True)
 
-    # Set up argument parsing
     parser = argparse.ArgumentParser(description="Process the JSON configuration file.")
-    parser.add_argument("run", type=str, choices=["Run2Autumn18", "Run2Summer20UL18", "Run3Summer22", "Run3Summer22EE", "Run3Summer23", "Run3Summer23BPix"], help="Run (e.g., Run2UltraLegacy)")
-    parser.add_argument("sample", type=str, choices=["bkg", "sig", "data"], help="Sample type (bkg, sig, data)")
-
-    # Parse the arguments
+    parser.add_argument("era", type=str, choices=[
+        "Run2Autumn18", 
+        "RunIISummer20UL18NanoAODv9", 
+        "Run2018A",
+        "Run2018B",
+        "Run2018C",
+        "Run2018D",
+        "Run3Summer22", 
+        "Run3Summer22EE", 
+        "Run3Summer23", 
+        "Run3Summer23BPix"
+        ], help="Run (e.g., Run2UltraLegacy)")
+    parser.add_argument("dataset", type=str, help="Dataset process to filter (e.g. DYJets, TTbar)")
     args = parser.parse_args()
 
-    # Build input and output file paths based on the arguments
-    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
-    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed.json"
+    era_mapping = {
+        "RunIISummer20UL18": {"run": "RunII", "year": "2018"},
+        "Run3Summer22": {"run": "Run3", "year": "2022"},
+        "Run3Summer22EE": {"run": "Run3", "year": "2022"},
+    }
+    mapping = era_mapping.get(args.era)
+    if mapping is None:
+        raise ValueError(f"Unsupported era: {args.era}")
+    run, year = mapping["run"], mapping["year"]
+
+    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{run}/{year}/{args.era}.json"
+    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{year}/{args.era}/{args.era}_{args.dataset}_preprocessed.json"
+    output_txt_dir = f"/uscms/home/bjackson/nobackup/WrCoffea/data/filepaths/{run}/{year}/{args.era}/"
+
+    logging.info(f"Loading input file {input_file}.")
+    config = load_json(input_file)
+
+    if config is None:
+        raise FileNotFoundError("No valid input or output file found.")
 
     # Create the Dask client
     client = Client(n_workers=4, threads_per_worker=1, memory_limit='2GB', nanny=False)
 
-    # Load the configuration file
-    config = load_config(input_file)
+    filtered_config = filter_by_process(config, args.dataset)
 
-    dataset = query_datasets(config, args.run) #Updated config
+    print(filtered_config)
+
+    dataset = query_datasets(filtered_config) #Updated config
+
+    # Save dataset information as text files
+    save_dataset_txt(dataset, output_txt_dir)
 
     dataset_runnable, dataset_updated = preprocess_json(dataset)
 
     compare_preprocessed(dataset_runnable, dataset_updated)
 
-    # Save the datasets to JSON
-    save_json(output_file, dataset_runnable)
+#    for dataset_name, new_files in dataset_runnable.items():
+#        for config_name, metadata in config.items():
+#            if dataset_name == config_name:
+#                config[config_name] = new_files
 
+    save_json(output_file, dataset_runnable)

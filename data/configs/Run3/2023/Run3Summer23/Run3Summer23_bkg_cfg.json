@@ -1,0 +1,310 @@
+{
+    "/DYto2L-4Jets_MLL-50to120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v3/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "DYJets",
+        "dataset": "DYto2L-4Jets_MLL-50to120_HT-40to70",
+        "xsec": 316.8,
+        "genEventSumw": 250474760182.0
+    },
+    "/DYto2L-4Jets_MLL-50to120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "DYJets",
+        "dataset": "DYto2L-4Jets_MLL-50to120_HT-70to100",
+        "xsec": 140.2,
+        "genEventSumw": 101705229042.0
+    },
+    "/DYto2L-4Jets_MLL-50to120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v3/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "DYJets",
+        "dataset": "DYto2L-4Jets_MLL-50to120_HT-100to400",
+        "xsec": 179.7,
+        "genEventSumw": 223121047210.0
+    },
+    "/DYto2L-4Jets_MLL-50to120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v3/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "DYJets",
+        "dataset": "DYto2L-4Jets_MLL-50to120_HT-400to800",
+        "xsec": 6.737,
+        "genEventSumw": 327206218.0
+    },
+    "/DYto2L-4Jets_MLL-50to120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "DYJets",
+        "dataset": "DYto2L-4Jets_MLL-50to120_HT-800to1500",
+        "xsec": 0.7007,
+        "genEventSumw": 63592516.0
+    },
+    "/DYto2L-4Jets_MLL-50to120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "DYJets",
+        "dataset": "DYto2L-4Jets_MLL-50to120_HT-1500to2500",
+        "xsec": 0.05059,
+        "genEventSumw": 4494018.0
+    },
+    "/DYto2L-4Jets_MLL-50to120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "DYJets",
+        "dataset": "DYto2L-4Jets_MLL-50to120_HT-2500",
+        "xsec": 0.003458,
+        "genEventSumw": 286620.0
+    },
+    "/DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "DYJets",
+        "dataset": "DYto2L-4Jets_MLL-120_HT-40to70",
+        "xsec": 4.569,
+        "genEventSumw": 273326206.0
+    },
+    "/DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "DYJets",
+        "dataset": "DYto2L-4Jets_MLL-120_HT-70to100",
+        "xsec": 2.196,
+        "genEventSumw": 118874464.0
+    },
+    "/DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "DYJets",
+        "dataset": "DYto2L-4Jets_MLL-120_HT-100to400",
+        "xsec": 3.364,
+        "genEventSumw": 250585998.0
+    },
+    "/DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "DYJets",
+        "dataset": "DYto2L-4Jets_MLL-120_HT-400to800",
+        "xsec": 0.1757,
+        "genEventSumw": 15641628.0
+    },
+    "/DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "DYJets",
+        "dataset": "DYto2L-4Jets_MLL-120_HT-800to1500",
+        "xsec": 0.021,
+        "genEventSumw": 2063072.0
+    },
+    "/DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "DYJets",
+        "dataset": "DYto2L-4Jets_MLL-120_HT-1500to2500",
+        "xsec": 0.001685,
+        "genEventSumw": 156488.0
+    },
+    "/DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "DYJets",
+        "dataset": "DYto2L-4Jets_MLL-120_HT-2500",
+        "xsec": 0.0001245,
+        "genEventSumw": 11218.0
+    },
+    "/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "TTbar",
+        "dataset": "TTto2L2Nu",
+        "xsec": 97.93,
+        "genEventSumw": 3877699182.0
+    },
+    "/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v4/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "tW",
+        "dataset": "TbarWplusto2L2Nu",
+        "xsec": 19.20,
+        "genEventSumw": 18766345.0
+    },
+    "/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "tW",
+        "dataset": "TWminusto2L2Nu",
+        "xsec": 21.295,
+        "genEventSumw": 18936433.0
+    },
+    "/WtoLNu-4Jets_MLNu-0to120_HT-40to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "WJets",
+        "dataset": "WtoLNu-4Jets_MLNu-0to120_HT-40to100",
+        "xsec": 4231.0,
+        "genEventSumw": 0.0
+    },
+    "/WtoLNu-4Jets_MLNu-0to120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "WJets",
+        "dataset": "WtoLNu-4Jets_MLNu-0to120_HT-100to400",
+        "xsec": 1637.0,
+        "genEventSumw": 0.0
+    },
+    "/WtoLNu-4Jets_MLNu-0to120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "WJets",
+        "dataset": "WtoLNu-4Jets_MLNu-0to120_HT-400to800",
+        "xsec": 60.01,
+        "genEventSumw": 0.0
+    },
+    "/WtoLNu-4Jets_MLNu-0to120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v5/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "WJets",
+        "dataset": "WtoLNu-4Jets_MLNu-0to120_HT-800to1500",
+        "xsec": 6.24,
+        "genEventSumw": 0.0
+    },
+    "/WtoLNu-4Jets_MLNu-0to120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v4/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "WJets",
+        "dataset": "WtoLNu-4Jets_MLNu-0to120_HT-1500to2500",
+        "xsec": 0.4514,
+        "genEventSumw": 0.0
+    },
+    "/WtoLNu-4Jets_MLNu-0to120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v3/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "WJets",
+        "dataset": "WtoLNu-4Jets_MLNu-0to120_HT-2500",
+        "xsec": 0.03099,
+        "genEventSumw": 0.0
+    },
+    "/WtoLNu-4Jets_MLNu-120_HT-40to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v5/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "WJets",
+        "dataset": "WtoLNu-4Jets_MLNu-120_HT-40to100",
+        "xsec": 20.65,
+        "genEventSumw": 0.0
+    },
+    "/WtoLNu-4Jets_MLNu-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v3/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "WJets",
+        "dataset": "WtoLNu-4Jets_MLNu-120_HT-100to400",
+        "xsec": 10.18,
+        "genEventSumw": 0.0
+    },
+    "/WtoLNu-4Jets_MLNu-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v3/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "WJets",
+        "dataset": "WtoLNu-4Jets_MLNu-120_HT-400to800",
+        "xsec": 0.527,
+        "genEventSumw": 0.0
+    },
+    "/WtoLNu-4Jets_MLNu-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v3/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "WJets",
+        "dataset": "WtoLNu-4Jets_MLNu-120_HT-800to1500",
+        "xsec": 0.06287,
+        "genEventSumw": 0.0
+    },
+    "/WtoLNu-4Jets_MLNu-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v4/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "WJets",
+        "dataset": "WtoLNu-4Jets_MLNu-120_HT-1500to2500",
+        "xsec": 0.005079,
+        "genEventSumw": 0.0
+    },
+    "/WtoLNu-4Jets_MLNu-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v4/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "WJets",
+        "dataset": "WtoLNu-4Jets_MLNu-120_HT-2500",
+        "xsec": 0.0003802,
+        "genEventSumw": 0.0
+    },
+    "/TBbartoLplusNuBbar-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "SingleTop",
+        "dataset": "TBbartoLplusNuBbar-s-channel-4FS",
+        "xsec": 2.278,
+        "genEventSumw": 5907847.0
+    },
+    "/TbarBtoLminusNuB-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "SingleTop",
+        "dataset": "TbarBtoLminusNuB-s-channel-4FS",
+        "xsec": 1.43,
+        "genEventSumw": 2286415.0
+    },
+    "/TbarQtoLNu-t-channel_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "SingleTop",
+        "dataset": "TbarQtoLNu-t-channel",
+        "xsec": 78.56,
+        "genEventSumw": 294731309.0
+    },
+    "/TQbartoLNu-t-channel_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "SingleTop",
+        "dataset": "TQbartoLNu-t-channel",
+        "xsec": 130.0,
+        "genEventSumw": 788601370.0
+    },
+    "/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23MiniAODv4-130X_mcRun3_2023_realistic_v14-v2/MINIAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "TTbarSemileptonic",
+        "dataset": "TTtoLNu2Q",
+        "xsec": 761.1,
+        "genEventSumw": 0.0
+    },
+    "/TTLL_MLL-4to50_TuneCP5_13p6TeV_amcatnlo-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "TTX",
+        "dataset": "TTLL_MLL-4to50",
+        "xsec": 0.03949,
+        "genEventSumw": 23181.0
+    },
+    "/TTLL_MLL-50_TuneCP5_13p6TeV_amcatnlo-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "TTX",
+        "dataset": "TTLL_MLL-4to50",
+        "xsec": 0.08646,
+        "genEventSumw": 68497.0
+    },
+    "/TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "TTX",
+        "dataset": "TTLNu-1Jets",
+        "xsec": 0.2504,
+        "genEventSumw": 205677.0
+    },
+    "/WW_TuneCP5_13p6TeV_pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "Diboson",
+        "dataset": "WW",
+        "xsec": 80.23,
+        "genEventSumw": 33504210.0
+    },
+    "/WZ_TuneCP5_13p6TeV_pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "Diboson",
+        "dataset": "WZ",
+        "xsec": 29.19,
+        "genEventSumw": 16770000.0
+    },
+    "/ZZ_TuneCP5_13p6TeV_pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "Diboson",
+        "dataset": "ZZ",
+        "xsec": 12.85,
+        "genEventSumw": 2517000.0
+    },
+    "/WWW_4F_TuneCP5_13p6TeV_amcatnlo-madspin-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "Triboson",
+        "dataset": "WWW_4F",
+        "xsec": 0.2328,
+        "genEventSumw": 217854.0
+    },
+    "/WWZ_4F_TuneCP5_13p6TeV_amcatnlo-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "Triboson",
+        "dataset": "WWZ",
+        "xsec": 0.1851,
+        "genEventSumw": 666954.0
+    },
+    "/WZZ_TuneCP5_13p6TeV_amcatnlo-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "Triboson",
+        "dataset": "WZZ",
+        "xsec": 0.06206,
+        "genEventSumw": 222918.0
+    },
+    "/ZZZ_TuneCP5_13p6TeV_amcatnlo-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2/NANOAODSIM": {
+        "mc_campaign": "Run3Summer23",
+        "process": "Triboson",
+        "dataset": "ZZZ",
+        "xsec": 0.01591,
+        "genEventSumw": 57360.0
+    }
+}

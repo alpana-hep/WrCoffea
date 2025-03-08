@@ -1,20 +1,30 @@
 #!/bin/bash
 
-# Ensure two arguments are provided
-if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 <campaign> <process>"
+# Ensure at least two arguments are provided
+if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
+    echo "Usage: $0 <campaign> <process> [dataset]"
     exit 1
 fi
 
 CAMPAIGN=$1
 PROCESS=$2
+DATASET_FILTER=${3:-""}  # Optional third argument
 
-# Extract the first 4 characters of CAMPAIGN (e.g., "Run2", "Run3")
-RUN=${CAMPAIGN:0:4}
+# Determine RUN based on CAMPAIGN content
+if [[ "$CAMPAIGN" == *"RunII"* ]] || [[ "$CAMPAIGN" == "Run2018A" ]] || [[ "$CAMPAIGN" == "Run2018B" ]] || [[ "$CAMPAIGN" == "Run2018C" ]] || [[ "$CAMPAIGN" == "Run2018D" ]]; then
+    RUN="RunII"
+elif [[ "$CAMPAIGN" == *"Run3"* ]]; then
+    RUN="Run3"
+else
+    echo "Error: Could not determine RUN from CAMPAIGN ($CAMPAIGN)"
+    exit 1
+fi
+
+echo "Using RUN: $RUN"
 
 # Define base directory paths
 BASE_PATH="/uscms_data/d1/bjackson/WrCoffea/scripts/skims/${RUN}/$CAMPAIGN"
-JSON_DIR="/uscms_data/d1/bjackson/WrCoffea/data/jsons/${RUN}/$CAMPAIGN"
+JSON_DIR="/uscms_data/d1/bjackson/WrCoffea/data/jsons/${RUN}/2022/$CAMPAIGN"
 JSON_FILE="${JSON_DIR}/${CAMPAIGN}_${PROCESS}_preprocessed.json"
 
 # Check if JSON file exists
@@ -33,36 +43,42 @@ if [ "${#DATASETS[@]}" -eq 0 ]; then
     exit 1
 fi
 
+# Filter dataset if optional argument is provided
+if [ -n "$DATASET_FILTER" ]; then
+    if [[ ! " ${DATASETS[@]} " =~ " ${DATASET_FILTER} " ]]; then
+        echo "Error: Specified dataset $DATASET_FILTER not found in JSON file"
+        exit 1
+    fi
+    DATASETS=("$DATASET_FILTER")
+fi
+
 mkdir -p $BASE_PATH
 
-#Copy the tarball
+# Copy the tarball
 cd /uscms/home/bjackson/nobackup
 echo "Creating tarball of working directory. Wait approx 30 seconds..."
-tar --exclude=WrCoffea/.git --exclude=WrCoffea/.env --exclude=WrCoffea/WR_Plotter --exclude=WrCoffea/test -czf WrCoffea.tar.gz WrCoffea
+tar  --exclude=WrCoffea/.git --exclude=WrCoffea/.env --exclude=WrCoffea/WR_Plotter --exclude=WrCoffea/scripts/skims/Run3 --exclude=WrCoffea/test -czf WrCoffea.tar.gz WrCoffea
 echo "Tarball created. Submitting scripts."
 
-for DATASET in ${DATASETS[@]}
+for DATASET in "${DATASETS[@]}"
 do
     mkdir -p WrCoffea/scripts/skims/$RUN/$CAMPAIGN/$DATASET
     cp WrCoffea.tar.gz WrCoffea/scripts/skims/$RUN/$CAMPAIGN/$DATASET
-    break
 done
 rm WrCoffea.tar.gz
 
 # Create JDL files and job directories
 cd WrCoffea/scripts/skims
-for DATASET in ${DATASETS[@]}
+for DATASET in "${DATASETS[@]}"
 do
     python3 create_job.py $CAMPAIGN $PROCESS $DATASET
-    break
 done
 
 # Submit jobs
 THIS_PWD=$PWD
-for DATASET in ${DATASETS[@]}
+for DATASET in "${DATASETS[@]}"
 do
     cd $BASE_PATH/$DATASET
     condor_submit job.jdl
     cd $THIS_PWD
-    break
 done

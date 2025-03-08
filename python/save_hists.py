@@ -7,37 +7,31 @@ import hist
 from hist import Hist
 
 def save_histograms(my_histograms, args):
-#    print("my histograms", my_histograms)
 
-    run = args.run
+    era = args.run
     sample = args.sample
     hnwr_mass= args.mass
 
     working_dir = "WR_Plotter"
-    
-    if args.run == "Run3Summer22":
-        dataset = "Run3"
-        year = "2022"
-    elif args.run == "Run3Summer23BPix":
-        dataset = "Run3"
-        year = "2023"
-    elif args.run == "Run2Summer20UL18":
-        dataset = "Run2UltraLegacy"
-        year = "2018"
-    elif args.run == "Run2Autumn18":
-        dataset = "Run2Legacy"
-        year = "2018"
 
-    output_dir = working_dir+'/rootfiles/'+dataset+'/Regions/'+year
+    era_mapping = {
+        "RunIISummer20UL18": {"run": "RunII", "year": "2018"},
+        "Run3Summer22": {"run": "Run3", "year": "2022"},
+    }
+    mapping = era_mapping.get(era)
+    if mapping is None:
+        raise ValueError(f"Unsupported era: {args.era}")
+    run, year = mapping["run"], mapping["year"]
+
+    output_dir = working_dir+'/rootfiles/'+run+'/'+year+'/'+era
 
     Filename_prefix = "WRAnalyzer"
-    Filename_suffix = ""
-    Filename_skim = "_SkimTree_LRSMHighPt"
+    Filename_skim = "_LRSMHighPt"
 
     os.makedirs(output_dir, exist_ok=True)
 
     if "EGamma" in sample or "SingleMuon" in sample:
-        output_file = os.path.join(output_dir, f"{Filename_prefix}{Filename_skim}_data_{sample}.root")
+        output_file = os.path.join(output_dir, f"{Filename_prefix}{Filename_skim}_{sample}.root")
     elif sample == "Signal":
         output_file = os.path.join(output_dir, f"{Filename_prefix}{Filename_skim}_signal_{hnwr_mass}.root")
     else:
@@ -61,26 +55,9 @@ def scale_hists(data):
         if 'x_sec' in dataset_info and 'sumw' in dataset_info:
             sf = dataset_info['x_sec']/dataset_info['sumw']
             for key, value in dataset_info.items():
-                if key == "cutflow":
-                    # Create scaled copies of the histograms
-                    cutflow_0 = value[0].copy()
-                    cutflow_1 = value[1].copy()
-                    
-                    # Apply the scale factor
-                    cutflow_0 *= sf * 59740
-                    cutflow_1 *= sf * 59740
-                    
-                    # Update the tuple with the new scaled histograms
-                    dataset_info[key] = (cutflow_0, cutflow_1, *value[2:])
-                    
-                    # Debugging print statements
-                    print("Scaled cutflow[0]:", cutflow_0)
-                    print("Scaled cutflow[1]:", cutflow_1)
-                    
-                elif isinstance(value, Hist):
+                if isinstance(value, Hist):
                     # Scale the histogram directly
                     value *= sf
-
     return data
 
 def sum_hists(my_hists):
@@ -93,25 +70,9 @@ def sum_hists(my_hists):
         if isinstance(original_histograms[key], Hist)
     }
 
-    # Initialize sum_histograms for "cutflow" if it exists
-    if "cutflow" in original_histograms:
-        sum_histograms["cutflow"] = (
-            original_histograms["cutflow"][0].copy(),  # First histogram in tuple
-            original_histograms["cutflow"][1].copy()   # Second histogram in tuple
-        )
-
     for dataset_info in my_hists.values():
         for key, value in dataset_info.items():
-            if key == "cutflow":
-                # Handle "cutflow" as a tuple
-                cutflow_0, cutflow_1 = sum_histograms["cutflow"]
-                cutflow_0 += value[0]  # Add the first histogram
-                cutflow_1 += value[1]  # Add the second histogram
-
-                # Update the summed "cutflow" in sum_histograms
-                sum_histograms["cutflow"] = (cutflow_0, cutflow_1)
-
-            elif isinstance(value, Hist):
+            if isinstance(value, Hist):
                 # Handle regular histograms
                 hist_name = key
                 hist_data = value

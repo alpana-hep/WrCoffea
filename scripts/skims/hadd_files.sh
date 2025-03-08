@@ -23,52 +23,65 @@ done
 
 cd "$DATASET_NAME"
 
+echo "-------------------------------------------"
+echo "Counting events and merging files..."
+echo "-------------------------------------------"
+
+# Initialize counters
 TOTAL_EVENTS=0
 MERGED_FILE_COUNT=0
 EVENT_THRESHOLD=400000  # Max events per merged file
 CURRENT_EVENT_COUNT=0
 MERGE_LIST=()
 
-echo "-------------------------------------------"
-echo "Counting events in each ROOT file..."
-echo "-------------------------------------------"
-
 # Get all ROOT files and sort by name
-ROOT_FILES=($(ls *.root | sort))
+mapfile -t ROOT_FILES < <(ls *.root 2>/dev/null | sort)
 
+# Declare an associative array to group files by skim number (only for SingleMuon/EGamma)
+declare -A SKIM_GROUPS
+
+# Step 1: Categorize files
 for ROOT_FILE in "${ROOT_FILES[@]}"; do
     if [[ -f "$ROOT_FILE" ]]; then
-        # Count the number of events
+        # Count events in this file
         EVENTS=$(root -l -b -q -e "TFile f(\"$ROOT_FILE\"); TTree *t = (TTree*)f.Get(\"Events\"); if (t) { cout << t->GetEntries() << endl; } else { cout << 0 << endl; }" 2>/dev/null)
 
-        # If adding this file would exceed the limit, merge current files first
-        if [[ $((CURRENT_EVENT_COUNT + EVENTS)) -gt $EVENT_THRESHOLD ]]; then
-            if [[ ${#MERGE_LIST[@]} -gt 0 ]]; then
-                MERGED_FILE="${DATASET_NAME}_${CAMPAIGN}_skim${MERGED_FILE_COUNT}.root"
-                echo "Merging into: $MERGED_FILE"
-                hadd -f "$MERGED_FILE" "${MERGE_LIST[@]}"
+	# Special handling for datasets containing "Muon" or "EGamma"
+	if [[ "$DATASET_NAME" =~ Muon || "$DATASET_NAME" =~ EGamma ]]; then
+	    if [[ "$ROOT_FILE" =~ skim([0-9]+)-part[0-9]+\.root ]]; then
+		SKIM_NUM="${BASH_REMATCH[1]}"
+		SKIM_GROUPS["$SKIM_NUM"]+="$ROOT_FILE "
+	    fi
+        else
+            # Standard merging for other datasets
+            if [[ $((CURRENT_EVENT_COUNT + EVENTS)) -gt $EVENT_THRESHOLD ]]; then
+                if [[ ${#MERGE_LIST[@]} -gt 0 ]]; then
+                    MERGED_FILE="${DATASET_NAME}_skim${MERGED_FILE_COUNT}.root"
+                    echo "Merging into: $MERGED_FILE"
+                    hadd -f "$MERGED_FILE" "${MERGE_LIST[@]}"
 
-                # Remove original files after merging
-                echo "Deleting merged files..."
-                rm -f "${MERGE_LIST[@]}"
+                    # Remove original files after merging
+                    echo "Deleting merged files..."
+                    rm -f "${MERGE_LIST[@]}"
 
-                # Reset merge list and counters
-                MERGE_LIST=()
-                CURRENT_EVENT_COUNT=0
-                ((MERGED_FILE_COUNT++))
+                    # Reset merge list and counters
+                    MERGE_LIST=()
+                    CURRENT_EVENT_COUNT=0
+                    ((MERGED_FILE_COUNT++))
+                fi
             fi
-        fi
 
-        # Add the current file to the merge list
-        MERGE_LIST+=("$ROOT_FILE")
-        CURRENT_EVENT_COUNT=$((CURRENT_EVENT_COUNT + EVENTS))
-        TOTAL_EVENTS=$((TOTAL_EVENTS + EVENTS))
+            # Add file to merge list for standard datasets
+            MERGE_LIST+=("$ROOT_FILE")
+            CURRENT_EVENT_COUNT=$((CURRENT_EVENT_COUNT + EVENTS))
+            TOTAL_EVENTS=$((TOTAL_EVENTS + EVENTS))
+        fi
     fi
 done
 
-# Merge any remaining files (last batch)
+# Step 2: Merge remaining standard dataset files
 if [[ ${#MERGE_LIST[@]} -gt 0 ]]; then
-    MERGED_FILE="${DATASET_NAME}_${CAMPAIGN}_skim${MERGED_FILE_COUNT}.root"
+    MERGED_FILE="${DATASET_NAME}_skim${MERGED_FILE_COUNT}.root"
     echo "Merging leftovers into: $MERGED_FILE"
     hadd -f "$MERGED_FILE" "${MERGE_LIST[@]}"
 
@@ -77,9 +90,24 @@ if [[ ${#MERGE_LIST[@]} -gt 0 ]]; then
     rm -f "${MERGE_LIST[@]}"
 fi
 
+# Step 3: Merge SingleMuon & EGamma files by skim number
+for SKIM_NUM in "${!SKIM_GROUPS[@]}"; do
+    MERGE_LIST=(${SKIM_GROUPS["$SKIM_NUM"]})  # Convert space-separated string to array
+    
+    if [[ ${#MERGE_LIST[@]} -gt 0 ]]; then
+        MERGED_FILE="${DATASET_NAME}_skim${SKIM_NUM}.root"
+        echo "Merging skim $SKIM_NUM into: $MERGED_FILE"
+        hadd -f "$MERGED_FILE" "${MERGE_LIST[@]}"
+
+        # Remove original files after merging
+        echo "Deleting merged files..."
+        rm -f "${MERGE_LIST[@]}"
+    fi
+done
+
 echo "-------------------------------------------"
 echo "Total events processed: $TOTAL_EVENTS"
-echo "Merged into $((MERGED_FILE_COUNT + 1)) files"
+echo "Merged into $((MERGED_FILE_COUNT + ${#SKIM_GROUPS[@]})) files"
 echo "Original files deleted."
 echo "-------------------------------------------"
 
