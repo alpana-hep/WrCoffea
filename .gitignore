@@ -21,3 +21,6 @@ scripts/skims/Run3/
 scripts/skims/RunII
 scripts/skims/old
 data/skims
+data/filepaths
+data/jsons
+data/miniaod
