@@ -9,7 +9,7 @@ Welcome to the WR analyzer! This repository contains tools for analyzing and pro
 - [Code Structure](README.md#-code-structure) – Explanation of the repository organization.
 - [Getting Started](README.md#getting-started) – Instructions for installing and setting up the analyzer.
 ---
-## 📂 Repo Structure
+## 📂 Repository Structure
 This repository is structured to separate executable scripts, core analysis logic, and documentation.
 
 ```
