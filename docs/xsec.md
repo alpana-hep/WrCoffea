@@ -1,15 +1,14 @@
 ## Cross-section Computation
 ### Find MINIAOD files
-* Create a `.txt` file with MINIAOD DAS dataset names in the directory `data/miniaod`. For example, see [data/miniaod/Run3Summer23BPix_datasets.txt](https://github.com/UMN-CMS/WrCoffea/blob/add_skims/data/miniaod/Run3Summer23BPix_datasets.txt)
-* Run the script [scripts/miniaod_files_for_xsec.py](https://github.com/UMN-CMS/WrCoffea/blob/add_skims/scripts/miniaod_files_for_xsec.py). This takes in these dataset names, quieries DAS, and makes `.txt` files containing individual file paths for each dataset.
+* Create a `.txt` file with MINIAOD DAS dataset names in the directory `data/miniaod`.
+* Execute the script `miniaod_files.py`. This takes in these dataset names, quieries DAS, and makes `.txt` files containing individual file paths for each dataset.
 ```
-cd scripts
-python3 miniaod_files_for_xsec.py Run3Summer23BPix
+cd scripts/setup
+python3 miniaod_files.py Run3Summer23BPix
 ```
-* The output `.txt` files are saved in `data/miniaod/Run3Summer23BPix`. For example, see [data/miniaod/Run3Summer23BPix/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_MINIAOD_files.txt](https://github.com/UMN-CMS/WrCoffea/blob/add_skims/data/miniaod/Run3Summer23BPix/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_MINIAOD_files.txt).
 
 ### Compute the cross-section
-*To compute the cross section go a `cmssw` environment,
+* To compute the cross section go a `cmssw` environment,
 ```
 cd /uscms/home/bjackson/nobackup/x_sections/CMSSW_14_1_3/src
 cmsenv
@@ -48,5 +47,4 @@ After filter: final equivalent lumi for 1M events (1/fb) = 3.155e+00 +- 3.691e-0
 
 #### Save the cross-section log file 
 
-* Save the above output to a `.log` file in `data/x-secs/Run3Summer23BPix`. For example, see [data/x-secs/Run3Summer23BPix
-/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8.log](https://github.com/UMN-CMS/WrCoffea/blob/add_skims/data/x-secs/Run3Summer23BPix/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8.log).
+* Save the above output to a `.log` file in `data/x-secs/`.
