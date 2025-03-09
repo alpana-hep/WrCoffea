@@ -23,8 +23,12 @@ scripts/skims/old
 data/skims
 data/filepaths
 data/jsons
-data/miniaod/RunII/2018/RunIISummer20UL18/
-data/miniaod/Run3/2022/Run3Summer22/
-data/miniaod/Run3/2022/Run3Summer22EE/
-data/miniaod/Run3/2023/Run3Summer23/
-data/miniaod/Run3/2023/Run3Summer23BPix/
+data/xsec/miniaod/RunII/2016/RunIISummer20UL16
+data/xsec/miniaod/RunII/2017/RunIISummer20UL17
+data/xsec/miniaod/RunII/2018/RunIISummer20UL18
+data/xsec/miniaod/Run3/2022/Run3Summer22
+data/xsec/miniaod/Run3/2022/Run3Summer22EE
+data/xsec/miniaod/Run3/2023/Run3Summer23
+data/xsec/miniaod/Run3/2023/Run3Summer23BPix
+data/xsec/RunII
+data/xsec/Run3

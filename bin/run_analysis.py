@@ -23,7 +23,7 @@ from dask.diagnostics import ProgressBar
 import dask
 import uproot
 import warnings
-import python
+from python.save_hists import save_histograms
 
 # Set up logging configuration
 logging.basicConfig(level=logging.INFO)
@@ -143,7 +143,7 @@ def run_analysis(args, preprocessed_fileset):
         logging.info("Computing histograms...")
         with ProgressBar():
             (histograms,) = dask.compute(to_compute)
-        python.save_hists.save_histograms(histograms, args)
+        save_histograms(histograms, args)
 
     exec_time = time.monotonic() - t0
     logging.info(f"Execution took {exec_time/60:.2f} minutes")
