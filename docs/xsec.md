@@ -1,23 +1,32 @@
 ## Cross-section Computation
-### Find MINIAOD files
-* Create a `.txt` file with MINIAOD DAS dataset names in the directory `data/miniaod`.
-* Execute the script `miniaod_files.py`. This takes in these dataset names, quieries DAS, and makes `.txt` files containing individual file paths for each dataset.
+The scripts to compute the cross-sections are found in
 ```
-cd scripts/setup
-python3 miniaod_files.py Run3Summer23BPix
+WrCoffea/scripts/setup/xsec
+```
+
+### Find MINIAOD files
+* First, the user should create a `txt` file with MINIAOD DAS dataset names in the directory `data/xsec/miniaod`.
+* Execute the script `miniaod_files.py`. This takes in this `txt` file, quieries DAS, and makes more `txt` files containing individual file paths for each dataset.
+```
+cd scripts/setup/xsec
+python3 miniaod_files.py RunIISummer20UL17
 ```
 
 ### Compute the cross-section
-* To compute the cross section go a `cmssw` environment,
+* The cross-section is computed with GenXSecAnalyzer: https://twiki.cern.ch/twiki/bin/viewauth/CMS/HowToGenXSecAnalyzer
+
+* The following script computes the cross-section of each dataset with GenXSecAnalyzer, and saves the output to log files.
 ```
-cd /uscms/home/bjackson/nobackup/x_sections/CMSSW_14_1_3/src
-cmsenv
+./compute_xsecs.sh
 ```
-* Input the filelist as an argument to `ana.py`,
+* This bash script changes directories to a CMS environment, runs `ana.py` to compute the cross-section, and then `save_xsec.py` to save the output to log files.
+
+
+* For each dataset the `txt` file generated earlier is used as input for `ana.py`,
 ```
 cmsRun ana.py inputFiles=/uscms/home/bjackson/nobackup/WrCoffea/data/miniaod/Run3Summer23BPix/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8_MINIAOD_files.txt maxEvents=10000000
 ```
-* After the computing, a table will be outputted in the format
+* The contents of each log file has the following form:
 ```
 ------------------------------------
 GenXsecAnalyzer:
@@ -44,7 +53,3 @@ After filter: final fraction of events with negative weights = 0.000e+00 +- 0.00
 After filter: final equivalent lumi for 1M events (1/fb) = 3.155e+00 +- 3.691e-03
 ```
 * The cross section to be used is `After filter: final cross section = 3.170e+02 +- 1.926e-01 pb`
-
-#### Save the cross-section log file 
-
-* Save the above output to a `.log` file in `data/x-secs/`.
