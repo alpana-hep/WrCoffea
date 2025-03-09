@@ -1,39 +1,43 @@
 # WrCoffea Documentation
 
-Welcome to the WR analyzer! This repository contains tools for analyzing and processing WR background, data and signal events. Below, you’ll find instructions on setting up the environment, running the analysis, and extending the framework.
+Welcome to the WR analyzer! This repository provides tools for analyzing and processing WR background, data, and signal events. Below, you’ll find instructions on setting up the environment, running the analysis, and extending the framework.
 
 ## Table of Contents
 - [Running the Analyzer](docs/run_analysis.md) – How to execute `run_analysis.py` to perform the analysis.
 - [Workflow Overview](docs/workflow.md) – A detailed guide on the full data processing pipeline.
-- [Plotting](docs/plotting.md) – Instructions for generating plots from the histogram ROOT files.
-- [Code Structure](README.md#-code-structure) – Explanation of the repository organization.
-- [Getting Started](README.md#getting-started) – Instructions for installing and setting up the analyzer.
+- [Plotting](docs/plotting.md) – Instructions for generating plots from histogram ROOT files.
+- [Repository Structure](READme.md#repository-structure) – Overview of how the repository is organized.
+- [Getting Started](READme.md#getting-started) – Instructions for installing and setting up the analyzer.
+
 ---
+
 ## 📂 Repository Structure
 This repository is structured to separate executable scripts, core analysis logic, and documentation.
 
 ```
-bin/       # Contains the run_analysis.py script to execute the analysis.
-docs/      # Documentation files
-src/       # Contains main analyzer code
-scripts/   # Helper scripts for pre- and post-processing
-data/      # Input/output datasets
-python/    # Reusable Python modules
-test/      # Test and developmental scripts
+bin/       # Holds the main script for running the analysis.
+docs/      # Contains documentation files.
+src/       # Includes the core analysis code.
+scripts/   # Contains helper scripts for pre- and post-processing.
+data/      # Stores input and output datasets.
+python/    # Includes reusable Python modules.
+test/      # Holds test and development scripts.
 ```
+
 ---
+
 ## Getting Started
-Begin by cloning the repository,
+Begin by cloning the repository:
 ```bash
 git clone git@github.com:UMN-CMS/WrCoffea.git
 cd WrCoffea
 ```
-Create and source a virtual python environment,
+Create and source a virtual Python environment:
 ```bash
 python3 -m venv wr-env
 source wr-env/bin/activate
 ```
-Install the appropriate packages,
+Install the required packages:
 ```bash
 python3 -m pip install -r requirements.txt
 ```
@@ -53,17 +57,20 @@ If using UMN’s setup, use:
 ```bash
 source /cvmfs/sft.cern.ch/lcg/views/LCG_104/x86_64-centos8-gcc11-opt/setup.sh
 ```
+
 ---
+
 ## Extending the Analyzer
-The files [bin/run_analysis.py](https://github.com/UMN-CMS/WrCoffea/blob/main/bin/run_analysis.py) and [src/analyzer.py](https://github.com/UMN-CMS/WrCoffea/blob/main/src/analyzer.py) define a standard event selection and histogramming process.
+The files [bin/run_analysis.py](https://github.com/UMN-CMS/WrCoffea/blob/main/bin/run_analysis.py) and [src/analyzer.py](https://github.com/UMN-CMS/WrCoffea/blob/main/src/analyzer.py) define the standard event selection and histogramming process.
 
 For independent studies with **custom variables, selections, or histograms**, develop your scripts in the [`test/`](https://github.com/UMN-CMS/WrCoffea/tree/main/test) folder.
 
 ### Adding a New Study
-1. Copy an existing script from `test/`:
+1. Copy an existing script from `src/`:
    ```bash
    cp src/analyzer.py test/dev_analyzer.py
    ```
 2. Modify the script to include your custom selections and histograms.
 3. Once finalized, integrate your study into the main pipeline via `bin/`, `python/`, or `src/`.
+
 ---
