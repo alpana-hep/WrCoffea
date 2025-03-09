@@ -6,8 +6,8 @@ Welcome to the WR analyzer! This repository provides tools for analyzing and pro
 - [Running the Analyzer](docs/run_analysis.md) – How to execute `run_analysis.py` to perform the analysis.
 - [Workflow Overview](docs/workflow.md) – A detailed guide on the full data processing pipeline.
 - [Plotting](docs/plotting.md) – Instructions for generating plots from histogram ROOT files.
-- [Repository Structure](READme.md#repository-structure) – Overview of how the repository is organized.
-- [Getting Started](READme.md#getting-started) – Instructions for installing and setting up the analyzer.
+- [Repository Structure](README.md#repository-structure) – Overview of how the repository is organized.
+- [Getting Started](README.md#getting-started) – Instructions for installing and setting up the analyzer.
 
 ---
 
