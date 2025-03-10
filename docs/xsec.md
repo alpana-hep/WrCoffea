@@ -11,6 +11,7 @@ WrCoffea/scripts/setup/xsec
 cd scripts/setup/xsec
 python3 miniaod_files.py RunIISummer20UL17
 ```
+The output `txt` files are saved in the same directory
 
 ### Compute the cross-section
 * The cross-section is computed with GenXSecAnalyzer: https://twiki.cern.ch/twiki/bin/viewauth/CMS/HowToGenXSecAnalyzer
@@ -19,8 +20,7 @@ python3 miniaod_files.py RunIISummer20UL17
 ```
 ./compute_xsecs.sh
 ```
-* This bash script changes directories to a CMS environment, runs `ana.py` to compute the cross-section, and then `save_xsec.py` to save the output to log files.
-
+* This bash script changes directories to a CMS environment, runs `ana.py` to compute the cross-section, and then `save_xsec.py` to save the output to log files to `data/xsec/`..
 
 * For each dataset the `txt` file generated earlier is used as input for `ana.py`,
 ```
