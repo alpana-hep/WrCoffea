@@ -10,6 +10,7 @@ data/xsec/Run3
 data/jsons
 data/skims
 data/filepaths
+scripts/setup/signal
 *~
 __pycache__
 *.pyc
