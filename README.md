@@ -16,11 +16,11 @@ This repository is structured to separate executable scripts, core analysis logi
 
 ```
 bin/       # Holds the main script for running the analysis.
-docs/      # Contains documentation files.
-src/       # Includes the core analysis code.
-scripts/   # Contains helper scripts for pre- and post-processing.
-data/      # Stores input and output datasets.
+data/      # Configuration files, preprocessed json files, cross-section logs, and skimming logs are stored here.
+docs/      # Contains documentation markdown.
 python/    # Includes reusable Python modules.
+scripts/   # Contains helper scripts for setup and post-processing.
+src/       # Includes the core analysis code.
 test/      # Holds test and development scripts.
 ```
 
