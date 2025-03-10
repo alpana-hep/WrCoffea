@@ -15,13 +15,14 @@ Welcome to the WR analyzer! This repository provides tools for analyzing and pro
 This repository is structured to separate executable scripts, core analysis logic, and documentation.
 
 ```
-bin/       # Holds the main script for running the analysis.
-data/      # Configuration files, preprocessed json files, cross-section logs, and skimming logs are stored here.
-docs/      # Contains documentation markdown.
-python/    # Includes reusable Python modules.
-scripts/   # Contains helper scripts for setup and post-processing.
-src/       # Includes the core analysis code.
-test/      # Holds test and development scripts.
+bin/        # Holds the main script for running the analysis.
+data/       # Configuration files, preprocessed json files, cross-section logs, and skimming logs are stored here.
+docs/       # Contains documentation markdown.
+python/     # Includes reusable Python modules.
+scripts/    # Contains helper scripts for setup and post-processing.
+src/        # Includes the core analysis code.
+test/       # Holds test and development scripts.
+WR_Plotter/ # Submodule where ROOT histograms are saved and plotted.
 ```
 
 ---
