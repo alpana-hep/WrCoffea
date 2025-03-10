@@ -12,20 +12,41 @@ import os
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-def replace_files_in_json(data, run, umn):
+def filter_by_process(data, process_name):
+    return {key: value for key, value in data.items() if value.get("process") == process_name}
+
+def replace_files_in_json(data, run, year, era, umn):
     """
     Clears 'files' and 'form' entries from the provided JSON data and fetches new file paths.
     """
+
+    # Keys to move into "metadata"
+#    metadata_keys = ["das_name", "run", "year", "era", "dataset", "physics_group", "xsec", "datatype"]
+
+    metadata_keys = ["das_name", "run", "year", "era", "dataset", "physics_group", "datatype"]
+    # Transform JSON while keeping "metadata" below "files"
+    for key in data:
+        entry = data[key]
+        metadata = {k: entry.pop(k) for k in metadata_keys if k in entry}
+    
+        # Ensure "files" exists
+        files = entry.pop("files", {})
+
+        # Reconstruct the dictionary with "files" first and "metadata" after
+        data[key] = {
+            "files": files,
+            "metadata": metadata
+        }
+
     for dataset_name, dataset_info in data.items():
-        dataset_info["files"] = {}
 
         # Get the dataset name from metadata
-        dataset = dataset_info["metadata"].get("dataset", "")
+        dataset = dataset_info["metadata"]["dataset"]
 
         if umn:
-            root_files = get_root_files_from_umn(dataset, run)
+            root_files = get_root_files_from_umn(dataset, era)
         else:
-            root_files = get_root_files_from_eos(dataset, run)
+            root_files = get_root_files_from_eos(dataset, run, year, era)
 
         if root_files:
             for file_path in root_files:
@@ -52,11 +73,11 @@ def get_root_files_from_umn(dataset, mc_campaign):
 
     return root_files
 
-def get_root_files_from_eos(dataset, mc_campaign):
+def get_root_files_from_eos(dataset, run, year, era):
     """
     Use xrdfs to get the list of ROOT files from EOS for a given dataset.
     """
-    base_path = f"/store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/{mc_campaign}/{dataset}/"
+    base_path = f"/store/user/wijackso/WRAnalyzer/skims/2025/{run}/{year}/{era}/{dataset}/"
     cmd = ["xrdfs", "root://cmseos.fnal.gov", "ls", base_path]
 
     try:
@@ -129,8 +150,7 @@ def save_json(output_file, data, data_all):
 if __name__ == "__main__":
     # Set up argument parsing
     parser = argparse.ArgumentParser(description="Process the JSON configuration file.")
-    parser.add_argument("run", type=str, choices=["Run2Autumn18", "Run2Summer20UL18", "Run3Summer22"], help="Run (e.g., Run2UltraLegacy)")
-    parser.add_argument("sample", type=str, choices=["bkg", "sig"], help="Sample type (bkg, sig, data)")
+    parser.add_argument("era", type=str, choices=["Run2Autumn18", "RunIISummer20UL18", "Run3Summer22", "Run3Summer22EE", "Run3Summer23", "Run3Summer23BPix",], help="Run (e.g., Run2UltraLegacy)")
     parser.add_argument("--umn", action="store_true", help="Enable UMN mode (default: False)")
     parser.add_argument("--chunks", type=int, default=100_000, help="Chunk size for processing")
     parser.add_argument("--timeout", type=int, default=3600, help="Timeout for uproot file handling")
@@ -138,8 +158,18 @@ if __name__ == "__main__":
     # Parse the arguments
     args = parser.parse_args()
 
-    input_file = f"data/configs/{args.run}/{args.run}_{args.sample}_cfg.json"
-    output_file = f"data/jsons/{args.run}/{args.run}_{args.sample}_preprocessed_skims.json"
+    era_mapping = {
+        "RunIISummer20UL18": {"run": "RunII", "year": "2018"},
+        "Run3Summer22": {"run": "Run3", "year": "2022"},
+    }
+    mapping = era_mapping.get(args.era)
+    if mapping is None:
+        raise ValueError(f"Unsupported era: {args.era}")
+    run, year = mapping["run"], mapping["year"]
+
+
+    input_file = f"data/configs/{run}/{year}/{args.era}_data.json"
+    output_file = f"data/jsons/{run}/{year}/{args.era}/{args.era}_data_preprocessed_skims.json"
 
     # Load the input JSON file
     try:
@@ -150,8 +180,10 @@ if __name__ == "__main__":
         logging.error(f"Input file {input_file} not found!")
         exit(1)
 
+#    fileset = filter_by_process(fileset, args.sample)
+
     # Clear the "files" content and update with new ROOT files
-    fileset = replace_files_in_json(fileset, args.run, args.umn)
+    fileset = replace_files_in_json(fileset, run, year, args.era, args.umn)
 
     # Preprocess the updated fileset
     dataset_runnable, dataset_updated = preprocess_json(fileset, chunks=args.chunks, timeout=args.timeout)
