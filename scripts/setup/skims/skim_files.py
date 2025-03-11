@@ -120,42 +120,7 @@ def make_skimmed_events(events):
     # Apply event selection
     skimmed = events[event_filters]
 
-#    drop = [
-#            "L1", "SV", "TrigObj", "Tau", "PuppiMET", "Photon", "LowPtElectron", 
-#            "IsoTrack", "GenVisTau", "boostedTau", "HTXS"
-#            ]
-    # Keep only the selected branches
-#    skimmed_dropped = skimmed[list(set(x for x in skimmed.fields if x not in drop))]
-
-    # List of branches to keep
-#    keep = [
-#            "LHEScaleWeight", "LHEWeight", "run", "GenJet", "GenDressedLepton", "LHE",
-#            "HLT", "LHEPdfWeight", "Muon", "GenJetAK8", "PV", "Generator",
-#            "SubGenJetAK8", "luminosityBlock", "event", "FatJet", "genWeight",
-#            "SubJet", "Jet", "Flag", "LHEPart", "LHEReweightingWeight", "Electron", "Rho"
-#    ]
-
-#    skimmed_dropped = skimmed[list(set(x for x in skimmed.fields if x in keep))]
-#    return skimmed_dropped
     return skimmed
-#
-def extract_data(dataset_dict, dataset, run):
-    """Extract data for the given dataset and year from the JSON config."""
-    config_path=f"data/configs/{run[:4]}/{run}/{run}_bkg_cfg.json"
-
-    with open(config_path, 'r') as f:
-        dataset_mapping = json.load(f)
-
-    found_dataset = None
-    for key, details in dataset_mapping.items():
-        if details['dataset'] == dataset:
-            found_dataset = key
-            break
-
-    if found_dataset is None:
-        raise ValueError(f"Dataset {dataset} not found in the config file")
-
-    return {found_dataset: dataset_dict[found_dataset]}
 
 def filter_json_by_primary_ds_name(json_data, primary_ds_name):
     filtered_data = {
@@ -188,8 +153,6 @@ def process_file(sliced_dataset, dataset_key, dataset, file_index, era, run):
         sliced_dataset,
         schemaclass=NanoAODSchema,
         uproot_options={"handler": uproot.MultithreadedXRootDSource, "timeout": 3600}
-#        uproot_options={"handler": uproot.XRootDSource, "timeout": 3600}
-#        uproot_options={"handler": uproot.MultithreadedXRootDSource, "timeout": 3600}
     )
 
     for dataset_name, skimmed in skimmed_dict.items():
@@ -203,9 +166,7 @@ def process_file(sliced_dataset, dataset_key, dataset, file_index, era, run):
         print(f"**Skim efficiency:** {efficiency:.2f}%")
         if datatype == "mc":
             print(f"**genEventSumw:** {genEventSumw}")
-#        batch_size = 100000 #50000
-#        print(f"**Batch size:** {batch_size}")
-        rows = 20000 #20000
+        rows = 50000 #20000
         print(f"**Rows per partition:** {rows}")
 
         conv = uproot_writeable(skimmed)
@@ -215,29 +176,12 @@ def process_file(sliced_dataset, dataset_key, dataset, file_index, era, run):
         uproot.dask_write(
             conv.repartition(rows_per_partition=rows),
             compute=True,
-            destination=f"scripts/skims/{run}/{era}/{dataset}",
+            destination=f"scripts/setup/skims/tmp/{run}/{era}/{dataset}",
             prefix=f"{dataset}_{era}_skim{file_index-1}",
             tree_name="Events"
         )
         del conv
         gc.collect()
-
-#        for start in range(0, total_events, batch_size):
-#            batch = skimmed[start: start + batch_size]
-#            conv = uproot_writeable(batch)
-    #        conv = uproot_writeable(skimmed)
-#            if datatype == "mc":
-#                conv = ak.with_field(conv, genEventSumw, 'genEventSumw')
-
-#            uproot.dask_write(
-#                conv.repartition(rows_per_partition=rows),
-#                compute=True, 
-#                destination=f"scripts/skims/{run}/{era}/{dataset}", 
-#                prefix=f"{dataset}_{era}_skim{file_index-1}_batch{start//batch_size}", 
-#                tree_name="Events"
-#            )
-#            del batch, conv
-#            gc.collect()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process dataset and run.')
@@ -260,7 +204,6 @@ if __name__ == "__main__":
         fileset = json.load(file)
 
     full_dataset = filter_json_by_primary_ds_name(fileset, args.dataset)
-#    full_dataset = extract_data(fileset, args.dataset, args.era)
     dataset_key = list(full_dataset.keys())[0]
     num_files = len(full_dataset[dataset_key]['files'])
 

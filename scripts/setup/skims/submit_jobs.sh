@@ -13,18 +13,18 @@ DATASET_FILTER=${3:-""}  # Optional third argument
 # Determine RUN based on CAMPAIGN content
 if [[ "$CAMPAIGN" == *"RunII"* ]] || [[ "$CAMPAIGN" == "Run2018A" ]] || [[ "$CAMPAIGN" == "Run2018B" ]] || [[ "$CAMPAIGN" == "Run2018C" ]] || [[ "$CAMPAIGN" == "Run2018D" ]]; then
     RUN="RunII"
+    YEAR="2018"
 elif [[ "$CAMPAIGN" == *"Run3"* ]]; then
     RUN="Run3"
+    YEAR="2022"
 else
     echo "Error: Could not determine RUN from CAMPAIGN ($CAMPAIGN)"
     exit 1
 fi
 
-echo "Using RUN: $RUN"
-
 # Define base directory paths
-BASE_PATH="/uscms_data/d1/bjackson/WrCoffea/scripts/skims/${RUN}/$CAMPAIGN"
-JSON_DIR="/uscms_data/d1/bjackson/WrCoffea/data/jsons/${RUN}/2022/$CAMPAIGN"
+BASE_PATH="/uscms_data/d1/bjackson/WrCoffea/scripts/setup/skims/tmp/${RUN}/${YEAR}/$CAMPAIGN"
+JSON_DIR="/uscms_data/d1/bjackson/WrCoffea/data/jsons/${RUN}/${YEAR}/$CAMPAIGN"
 JSON_FILE="${JSON_DIR}/${CAMPAIGN}_${PROCESS}_preprocessed.json"
 
 # Check if JSON file exists
@@ -57,18 +57,18 @@ mkdir -p $BASE_PATH
 # Copy the tarball
 cd /uscms/home/bjackson/nobackup
 echo "Creating tarball of working directory. Wait approx 30 seconds..."
-tar  --exclude=WrCoffea/.git --exclude=WrCoffea/.env --exclude=WrCoffea/WR_Plotter --exclude=WrCoffea/scripts/skims/Run3 --exclude=WrCoffea/test -czf WrCoffea.tar.gz WrCoffea
+tar  --exclude=WrCoffea/.git --exclude=WrCoffea/.env --exclude=WrCoffea/WR_Plotter --exclude=WrCoffea/scripts/setup/skims/tmp --exclude=WrCoffea/test -czf WrCoffea.tar.gz WrCoffea
 echo "Tarball created. Submitting scripts."
 
 for DATASET in "${DATASETS[@]}"
 do
-    mkdir -p WrCoffea/scripts/skims/$RUN/$CAMPAIGN/$DATASET
-    cp WrCoffea.tar.gz WrCoffea/scripts/skims/$RUN/$CAMPAIGN/$DATASET
+    mkdir -p WrCoffea/scripts/setup/skims/tmp/$RUN/$YEAR/$CAMPAIGN/$DATASET
+    cp WrCoffea.tar.gz WrCoffea/scripts/setup/skims/tmp/$RUN/$YEAR/$CAMPAIGN/$DATASET
 done
 rm WrCoffea.tar.gz
 
 # Create JDL files and job directories
-cd WrCoffea/scripts/skims
+cd WrCoffea/scripts/setup/skims
 for DATASET in "${DATASETS[@]}"
 do
     python3 create_job.py $CAMPAIGN $PROCESS $DATASET

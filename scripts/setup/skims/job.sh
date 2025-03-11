@@ -32,7 +32,7 @@ echo "-------------------------------------------"
 
 export PATH="/srv/WrCoffea/venv/bin:$PATH"
 export PYTHONPATH="/srv/WrCoffea/venv/lib/python3.9/site-packages:$PYTHONPATH"
-python3 scripts/skims/skim_files.py $CAMPAIGN $PROCESS $DATASET --start $FILE_NUM
+python3 scripts/setup/skims/skim_files.py $CAMPAIGN $PROCESS $DATASET --start $FILE_NUM
 
 cd scripts/skims/$RUN/$CAMPAIGN
 cd $DATASET

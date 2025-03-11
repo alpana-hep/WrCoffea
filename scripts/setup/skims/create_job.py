@@ -10,9 +10,9 @@ executable = ./{PROCESS}.sh
 should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
 request_memory = 8000
-output = ../../../../../data/skims/{RUN}/{CAMPAIGN}/{PROCESS}/{PROCESS}_out/{PROCESS}_$(ProcId).out
-error = ../../../../../data/skims/{RUN}/{CAMPAIGN}/{PROCESS}/{PROCESS}_err/{PROCESS}_$(ProcId).err
-log = ../../../../../data/skims/{RUN}/{CAMPAIGN}/{PROCESS}/{PROCESS}_log/{PROCESS}_$(ProcId).log
+output = ../../../../../data/skims/{RUN}/{YEAR}/{CAMPAIGN}/{PROCESS}/{PROCESS}_out/{PROCESS}_$(ProcId).out
+error = ../../../../../data/skims/{RUN}/{YEAR}/{CAMPAIGN}/{PROCESS}/{PROCESS}_err/{PROCESS}_$(ProcId).err
+log = ../../../../../data/skims/{RUN}/{YEAR}/{CAMPAIGN}/{PROCESS}/{PROCESS}_log/{PROCESS}_$(ProcId).log
 transfer_input_files = WrCoffea.tar.gz
 transfer_output_files = {PROCESS}_skim$(ProcId).tar.gz
 queue arguments from arguments.txt\
@@ -29,7 +29,7 @@ def main(campaign, process, dataset):
     if campaign == "Run3Summer22" or campaign == "Run3Summer22EE":
         run = "Run3"
         year = "2022"
-    jobdir = f"/uscms_data/d1/bjackson/WrCoffea/scripts/skims/{run}/{campaign}"
+    jobdir = f"/uscms_data/d1/bjackson/WrCoffea/scripts/setup/skims/tmp/{run}/{year}/{campaign}"
     # Define base directory
     base_path = Path(f"/uscms_data/d1/bjackson/WrCoffea/data/filepaths/{run}/{year}/{campaign}")
 
@@ -63,7 +63,7 @@ def main(campaign, process, dataset):
     jobdir = Path(jobdir) / dataset
     print(f"Jobdir: {jobdir}")
 
-    outdir = f"/uscms_data/d1/bjackson/WrCoffea/data/skims/{run}/{campaign}" 
+    outdir = f"/uscms_data/d1/bjackson/WrCoffea/data/skims/{run}/{year}/{campaign}" 
     outdir = Path(outdir)/ dataset
     for subdir in ["", f"{dataset}_out", f"{dataset}_log", f"{dataset}_err"]:
         (outdir / subdir).mkdir(parents=True, exist_ok=True)
@@ -73,7 +73,7 @@ def main(campaign, process, dataset):
     # Write jdl file
     jdl_path = jobdir / "job.jdl"
     with jdl_path.open("w") as out:
-        out.write(jdl.format(RUN=run, CAMPAIGN=campaign, PROCESS=dataset))
+        out.write(jdl.format(RUN=run, YEAR=year, CAMPAIGN=campaign, PROCESS=dataset))
 
     # Write argument list
     arglist_path = jobdir / "arguments.txt"
