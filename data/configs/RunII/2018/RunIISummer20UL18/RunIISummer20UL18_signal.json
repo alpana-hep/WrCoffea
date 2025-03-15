@@ -1,0 +1,302 @@
+{
+    "WRtoNLtoLLJJ_WR1200_N200": {
+        "das_name": "WRtoNLtoLLJJ_WR1200_N200",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR1200_N200",
+        "physics_group": "Signal",
+        "xsec": 2.867,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR1200_N400": {
+        "das_name": "WRtoNLtoLLJJ_WR1200_N400",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR1200_N400",
+        "physics_group": "Signal",
+        "xsec": 2.511,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR1200_N600": {
+        "das_name": "WRtoNLtoLLJJ_WR1200_N600",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR1200_N600",
+        "physics_group": "Signal",
+        "xsec": 1.947,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR1200_N800": {
+        "das_name": "WRtoNLtoLLJJ_WR1200_N800",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR1200_N800",
+        "physics_group": "Signal",
+        "xsec": 1.207,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR1200_N1100": {
+        "das_name": "WRtoNLtoLLJJ_WR1200_N1100",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR1200_N1100",
+        "physics_group": "Signal",
+        "xsec": 0.1406,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR1600_N400": {
+        "das_name": "WRtoNLtoLLJJ_WR1600_N400",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR1600_N400",
+        "physics_group": "Signal",
+        "xsec": 0.7256,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR1600_N600": {
+        "das_name": "WRtoNLtoLLJJ_WR1600_N600",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR1600_N600",
+        "physics_group": "Signal",
+        "xsec": 0.6375,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR1600_N800": {
+        "das_name": "WRtoNLtoLLJJ_WR1600_N800",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR1600_N800",
+        "physics_group": "Signal",
+        "xsec": 0.5188,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR1600_N1200": {
+        "das_name": "WRtoNLtoLLJJ_WR1600_N1200",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR1600_N1200",
+        "physics_group": "Signal",
+        "xsec": 0.2129,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR1600_N1500": {
+        "das_name": "WRtoNLtoLLJJ_WR1600_N1500",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR1600_N1500",
+        "physics_group": "Signal",
+        "xsec": 0.02318,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR2000_N400": {
+        "das_name": "WRtoNLtoLLJJ_WR2000_N400",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR2000_N400",
+        "physics_group": "Signal",
+        "xsec": 0.2415,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR2000_N800": {
+        "das_name": "WRtoNLtoLLJJ_WR2000_N800",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR2000_N800",
+        "physics_group": "Signal",
+        "xsec": 0.1962,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR2000_N1000": {
+        "das_name": "WRtoNLtoLLJJ_WR2000_N1000",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR2000_N1000",
+        "physics_group": "Signal",
+        "xsec": 0.1649,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR2000_N1400": {
+        "das_name": "WRtoNLtoLLJJ_WR2000_N1400",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR2000_N1400",
+        "physics_group": "Signal",
+        "xsec": 0.08748,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR2000_N1900": {
+        "das_name": "WRtoNLtoLLJJ_WR2000_N1900",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR2000_N1900",
+        "physics_group": "Signal",
+        "xsec": 0.005147,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR2400_N600": {
+        "das_name": "WRtoNLtoLLJJ_WR2400_N600",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR2400_N600",
+        "physics_group": "Signal",
+        "xsec": 0.08234,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR2400_N800": {
+        "das_name": "WRtoNLtoLLJJ_WR2400_N800",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR2400_N800",
+        "physics_group": "Signal",
+        "xsec": 0.07538,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR2400_N1200": {
+        "das_name": "WRtoNLtoLLJJ_WR2400_N1200",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR2400_N1200",
+        "physics_group": "Signal",
+        "xsec": 0.05781,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR2400_N1800": {
+        "das_name": "WRtoNLtoLLJJ_WR2400_N1800",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR2400_N1800",
+        "physics_group": "Signal",
+        "xsec": 0.02333,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR2400_N2300": {
+        "das_name": "WRtoNLtoLLJJ_WR2400_N2300",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR2400_N2300",
+        "physics_group": "Signal",
+        "xsec": 0.001352,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR2800_N600": {
+        "das_name": "WRtoNLtoLLJJ_WR2800_N600",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N600",
+        "physics_group": "Signal",
+        "xsec": 0.03214,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR2800_N1000": {
+        "das_name": "WRtoNLtoLLJJ_WR2800_N1000",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N1000",
+        "physics_group": "Signal",
+        "xsec": 0.02748,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR2800_N1400": {
+        "das_name": "WRtoNLtoLLJJ_WR2800_N1400",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N1400",
+        "physics_group": "Signal",
+        "xsec": 0.02155,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR2800_N2000": {
+        "das_name": "WRtoNLtoLLJJ_WR2800_N2000",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N2000",
+        "physics_group": "Signal",
+        "xsec": 0.01053,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR2800_N2700": {
+        "das_name": "WRtoNLtoLLJJ_WR2800_N2700",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR2800_N2700",
+        "physics_group": "Signal",
+        "xsec": 0.0003928,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR3200_N800": {
+        "das_name": "WRtoNLtoLLJJ_WR3200_N800",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N800",
+        "physics_group": "Signal",
+        "xsec": 0.01223,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR3200_N1200": {
+        "das_name": "WRtoNLtoLLJJ_WR3200_N1200",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N1200",
+        "physics_group": "Signal",
+        "xsec": 0.01044,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR3200_N1600": {
+        "das_name": "WRtoNLtoLLJJ_WR3200_N1600",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N1600",
+        "physics_group": "Signal",
+        "xsec": 0.008364,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR3200_N2400": {
+        "das_name": "WRtoNLtoLLJJ_WR3200_N2400",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N2400",
+        "physics_group": "Signal",
+        "xsec": 0.003303,
+        "datatype": "mc"
+    },
+    "WRtoNLtoLLJJ_WR3200_N3000": {
+        "das_name": "WRtoNLtoLLJJ_WR3200_N3000",
+        "run": "RunII",
+        "year": "2018",
+        "era": "RunIISummer20UL18",
+        "dataset": "WRtoNLtoLLJJ_WR3200_N3000",
+        "physics_group": "Signal",
+        "xsec": 0.0003262,
+        "datatype": "mc"
+    }
+}

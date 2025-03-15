@@ -11,8 +11,10 @@ DATASET=$4
 # Determine RUN based on CAMPAIGN content
 if [[ "$CAMPAIGN" == *"RunII"* || "$CAMPAIGN" == *"2018"* ]]; then
     RUN="RunII"
+    YEAR="2018"
 elif [[ "$CAMPAIGN" == *"Run3"* ]]; then
     RUN="Run3"
+    YEAR="2022"
 else
     echo "Error: Could not determine RUN from CAMPAIGN ($CAMPAIGN)"
     exit 1
@@ -34,7 +36,9 @@ export PATH="/srv/WrCoffea/venv/bin:$PATH"
 export PYTHONPATH="/srv/WrCoffea/venv/lib/python3.9/site-packages:$PYTHONPATH"
 python3 scripts/setup/skims/skim_files.py $CAMPAIGN $PROCESS $DATASET --start $FILE_NUM
 
-cd scripts/skims/$RUN/$CAMPAIGN
+echo "In directory $(pwd)"
+echo "$(ls -lrth)"
+cd scripts/setup/skims/tmp/$RUN/$YEAR/$CAMPAIGN
 cd $DATASET
 echo "### **Output Files Generated**"
 echo "-------------------------------------------"

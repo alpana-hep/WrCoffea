@@ -155,6 +155,17 @@ def process_file(sliced_dataset, dataset_key, dataset, file_index, era, run):
         uproot_options={"handler": uproot.MultithreadedXRootDSource, "timeout": 3600}
     )
 
+    if era == "Run3Summer22" or era == "Run3Summer22EE":
+        year = "2022"
+    elif era == "Run3Summer23" or era == "Run3Summer23BPix":
+        year = "2023"
+    elif era == "RunIISummer20UL18":
+        year = "2018"
+    elif era == "RunIISummer20UL17":
+        year = "2017"
+    elif era == "RunIISummer20UL16":
+        year = "2016"
+
     for dataset_name, skimmed in skimmed_dict.items():
         total_events = dak.num(skimmed, axis=0).compute()
 
@@ -176,7 +187,7 @@ def process_file(sliced_dataset, dataset_key, dataset, file_index, era, run):
         uproot.dask_write(
             conv.repartition(rows_per_partition=rows),
             compute=True,
-            destination=f"scripts/setup/skims/tmp/{run}/{era}/{dataset}",
+            destination=f"scripts/setup/skims/tmp/{run}/{year}/{era}/{dataset}",
             prefix=f"{dataset}_{era}_skim{file_index-1}",
             tree_name="Events"
         )
@@ -209,7 +220,6 @@ if __name__ == "__main__":
 
     sliced_dataset = slice_files(full_dataset, slice(args.start - 1, args.start))
 
-    print('sliced_dataset', sliced_dataset)
     print(f"\n### **Processing Information**")
     print(f"-------------------------------------------")
     print(f"**File:** {args.start} of {num_files}")

@@ -72,7 +72,7 @@ def load_json(args):
     run, year = mapping["run"], mapping["year"]
 
     """Load the appropriate JSON file based on sample, run, and year."""
-    if "EGamma" in sample or "SingleMuon" in sample:
+    if "EGamma" in sample or "SingleMuon" in sample or "Muon" in sample:
         filepath = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{year}/{era}/{era}_data_preprocessed_skims.json"
     elif "Signal" in sample:
         filepath = f"data/jsons/{run}/{run}_sig_preprocessed_skims.json"
@@ -160,7 +160,9 @@ if __name__ == "__main__":
     parser.add_argument("run", type=str, choices=["Run2Autumn18", "RunIISummer20UL18", "Run3Summer22", "Run3Summer22EE", "Run3Summer23", "Run3Summer23BPix"], help="Campaign to analyze.")
     parser.add_argument("sample", type=str, choices=["DYJets", "TTbar", "tW", "WJets", "SingleTop", "TTbarSemileptonic", "TTX", "Diboson", "Triboson", 
         "Run2018A_EGamma", "Run2018B_EGamma", "Run2018C_EGamma", "Run2018D_EGamma", 
-        "Run2018A_SingleMuon", "Run2018B_SingleMuon", "Run2018C_SingleMuon", "Run2018D_SingleMuon","Signal"],
+        "Run2018A_SingleMuon", "Run2018B_SingleMuon", "Run2018C_SingleMuon", "Run2018D_SingleMuon",
+        "Run2022C_EGamma", "Run2022D_EGamma", "Run2022C_Muon", "Run2022D_Muon",
+        "Signal"],
                         help="MC sample to analyze (e.g., Signal, DYJets).")
 
     # Optional arguments
