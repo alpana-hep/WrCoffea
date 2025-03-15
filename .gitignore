@@ -10,6 +10,7 @@ data/xsec/Run3
 data/jsons
 data/skims
 data/filepaths
+data/filepaths/Run3/2022/*
 scripts/setup/signal
 scripts/setup/skims/tmp/
 *~
