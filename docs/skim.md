@@ -20,9 +20,9 @@ The output is a `ROOT` file, `DYto2L-4Jets_MLL-50to120_HT-40to70_skims1to197.roo
 
 Lastly, upload the skimmed dataset to the LPC EOS using
 ```
-xrdcp -r DYto2L-4Jets_MLL-50to120_HT-40to70 root://cmseos.fnal.gov//store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer23BPix
+xrdcp -r TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8 root://cmseos.fnal.gov//store/user/wijackso/WRAnalyzer/skims/2025/Run3/2022/Run3Summer22
 ```
 Repeat this process for each dataset. To view the EOS storage system, use
 ```
-eosls -lh store/user/wijackso/WRAnalyzer/Skim_Tree_Lepton_Pt45/Run3Summer23BPix
+eosls -lh store/user/wijackso/WRAnalyzer/skims/2025/Run3/2022/Run3Summer22
 ```
