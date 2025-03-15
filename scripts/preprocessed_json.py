@@ -25,6 +25,16 @@ from rich.table import Table
 from dask.diagnostics import ProgressBar
 from dask.distributed import Client, progress
 import os
+
+# ------------------------------------------------------------------------------
+# Add the repo root to sys.path so "from python.era_utils import get_era_details" works
+# ------------------------------------------------------------------------------
+current_dir = os.path.dirname(os.path.abspath(__file__))
+repo_root = os.path.abspath(os.path.join(current_dir, "../"))
+sys.path.insert(0, repo_root)
+
+from python.era_utils import get_era_details
+
 NanoAODSchema.warn_missing_crossrefs = False
 NanoAODSchema.error_missing_event_ids = False
 
@@ -32,6 +42,7 @@ warnings.filterwarnings("ignore", category=FutureWarning, module="coffea.*")
 warnings.filterwarnings("ignore", category=RuntimeWarning, module="coffea.*")
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 
 def load_json(file_path):
     """Load JSON data from a file if it exists."""
@@ -138,7 +149,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process the JSON configuration file.")
     parser.add_argument("era", type=str, choices=[
         "Run2Autumn18", 
-        "RunIISummer20UL18NanoAODv9", 
+        "RunIISummer20UL18", 
         "Run2018A",
         "Run2018B",
         "Run2018C",
@@ -151,19 +162,16 @@ if __name__ == "__main__":
     parser.add_argument("dataset", type=str, help="Dataset process to filter (e.g. DYJets, TTbar)")
     args = parser.parse_args()
 
-    era_mapping = {
-        "RunIISummer20UL18": {"run": "RunII", "year": "2018"},
-        "Run3Summer22": {"run": "Run3", "year": "2022"},
-        "Run3Summer22EE": {"run": "Run3", "year": "2022"},
-    }
-    mapping = era_mapping.get(args.era)
-    if mapping is None:
-        raise ValueError(f"Unsupported era: {args.era}")
-    run, year = mapping["run"], mapping["year"]
+    # Get era details (assuming get_era_details returns (run, year, era))
+    run, year, era = get_era_details(args.era)
 
-    input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{run}/{year}/{args.era}.json"
-    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{year}/{args.era}_{args.dataset}_preprocessed.json"
-    output_txt_dir = f"/uscms/home/bjackson/nobackup/WrCoffea/data/filepaths/{run}/{year}/"
+    if "Muon" in args.dataset or "EGamma" in args.dataset:
+        input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{run}/{year}/{args.era}/{args.era}_data.json"
+    else:
+        input_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/configs/{run}/{year}/{args.era}/{args.era}_mc.json"
+
+    output_file = f"/uscms/home/bjackson/nobackup/WrCoffea/data/jsons/{run}/{year}/{args.era}/{args.era}_{args.dataset}_preprocessed.json"
+    output_txt_dir = f"/uscms/home/bjackson/nobackup/WrCoffea/data/filepaths/{run}/{year}/{args.era}"
 
     logging.info(f"Loading input file {input_file}.")
     config = load_json(input_file)
