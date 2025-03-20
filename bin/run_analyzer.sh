@@ -9,23 +9,9 @@ ERA_OPTIONS=(
 )
 
 # Data options for Run3Summer22
-DATA22_OPTIONS=(
-  Run2022C_Muon
-  Run2022D_Muon
-  Run2022C_EGamma
-  Run2022D_EGamma
-)
-
-# Data options for RunIISummer20UL18
-DATA18_OPTIONS=(
-  Run2018A_SingleMuon
-  Run2018B_SingleMuon
-  Run2018C_SingleMuon
-  Run2018D_SingleMuon
-  Run2018A_EGamma
-  Run2018B_EGamma
-  Run2018C_EGamma
-  Run2018D_EGamma
+DATA_OPTIONS=(
+  EGamma
+  Muon
 )
 
 # MC options (for all eras)
@@ -68,7 +54,6 @@ if [ "$#" -ge 2 ]; then
     echo "Error: Unknown era '${SELECTED_ERA}'. Valid options: ${ERA_OPTIONS[*]}"
     exit 1
   fi
-  echo "Selected era: ${SELECTED_ERA}"
 fi
 
 # Function to run the analysis for a given era and process
@@ -76,7 +61,7 @@ run_analysis() {
   local era="$1"
   local process="$2"
   echo "Running analysis for era ${era} and --process ${process}"
-  python3 bin/run_analysis.py "${era}" "${process}" --hists --skimmed || {
+  python3 bin/run_analysis.py "${era}" "${process}" || {
     echo "Error running analysis for process ${process} with era ${era}. Skipping..."
     return 1
   }
@@ -89,18 +74,10 @@ for era in "${ERA_OPTIONS[@]}"; do
     continue
   fi
 
-  echo "Starting analyses for era: ${era}"
-  
   if [ "${MODE}" == "data" ]; then
-    if [ "${era}" == "Run3Summer22" ]; then
-      for process in "${DATA22_OPTIONS[@]}"; do
-        run_analysis "${era}" "${process}"
-      done
-    elif [ "${era}" == "RunIISummer20UL18" ]; then
-      for process in "${DATA18_OPTIONS[@]}"; do
-        run_analysis "${era}" "${process}"
-      done
-    fi
+    for process in "${DATA_OPTIONS[@]}"; do
+      run_analysis "${era}" "${process}"
+    done
   elif [ "${MODE}" == "bkg" ]; then
     for process in "${MC_OPTIONS[@]}"; do
       run_analysis "${era}" "${process}"

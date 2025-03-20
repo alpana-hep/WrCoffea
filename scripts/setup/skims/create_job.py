@@ -15,7 +15,6 @@ error = ../../../../../../../../data/skims/{RUN}/{YEAR}/{CAMPAIGN}/{PROCESS}/{PR
 log = ../../../../../../../../data/skims/{RUN}/{YEAR}/{CAMPAIGN}/{PROCESS}/{PROCESS}_log/{PROCESS}_$(ProcId).log
 transfer_input_files = WrCoffea.tar.gz
 transfer_output_files = {PROCESS}_skim$(ProcId).tar.gz
-+JobPrio = 10
 queue arguments from arguments.txt\
 """
 #transfer_output_files = {PROCESS}_skim$(ProcId).tar.gz

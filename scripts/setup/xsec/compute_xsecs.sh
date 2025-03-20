@@ -94,7 +94,7 @@ for file in "$DATA_DIR"/*.txt; do
         echo "Attempt $attempt of $max_retries for $file"
         
         # Run the cmsRun command
-        cmsRun "ana.py" inputFiles="$file" maxEvents=10000 > "$log_file" 2>&1
+        cmsRun "ana.py" inputFiles="$file" maxEvents=10000000 > "$log_file" 2>&1
         cmsRun_exit_code=$?
 
         if [ $cmsRun_exit_code -eq 0 ]; then

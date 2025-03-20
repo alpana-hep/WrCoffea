@@ -143,13 +143,15 @@ class WrAnalysis(processor.ProcessorABC):
         isRealData = not hasattr(events, "genWeight")
         isMC = hasattr(events, "genWeight")
 
+        logger.info(f"Analyzing {len(events)} {dataset} events.")
+
         if isRealData:
             if mc_campaign == "RunIISummer20UL18":
                 lumi_mask = LumiMask("data/lumis/RunII/2018/RunIISummer20UL18/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt")
             elif mc_campaign == "Run3Summer22":
                 lumi_mask = LumiMask("data/lumis/Run3/2022/Run3Summer22/Cert_Collisions2022_355100_362760_Golden.txt")
             events = events[lumi_mask(events.run, events.luminosityBlock)]
-            num_events_after_mask = len(events["run"].compute())  # Compute using a lightweight branch
+#            num_events_after_mask = len(events["run"].compute())  # Compute using a lightweight branch
 #            lumi_list = LumiList(events.run, events.luminosityBlock)
 #            lumi_data = LumiData(f"lumi2018.csv", is_inst_lumi=False)
 #            lumi = lumi_data.get_lumi(lumi_list)
@@ -161,8 +163,6 @@ class WrAnalysis(processor.ProcessorABC):
         if not isRealData:
             output['x_sec'] = events.metadata["xsec"] 
 
-#        logger.info(f"Analyzing {len(events)} {dataset} events.")
-   
         # Process signal samples
         if process == "Signal": self.check_mass_point_resolved()
 
@@ -190,11 +190,9 @@ class WrAnalysis(processor.ProcessorABC):
 
         # Event selections
         selections = PackedSelection()
-
         self.add_resolved_selections(selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2)
 
         # Trigger selections
-
         if mc_campaign == "RunIISummer20UL18" or mc_campaign == "Run2Autumn18":
             eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
             muTrig = events.HLT.Mu50 | events.HLT.OldMu100 | events.HLT.TkMu100
@@ -208,15 +206,14 @@ class WrAnalysis(processor.ProcessorABC):
             selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
             selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
 
+        # Event Weights
+        weights = Weights(size=None, storeIndividual=True)
         if isMC:
             eventWeight = events.genWeight
             unqiue_gensumws = np.unique(events.genEventSumw.compute())
             output['sumw'] = ak.sum(eventWeight) if process == "Signal" else np.sum(unqiue_gensumws)
         elif isRealData:
-            eventWeight = abs(np.sign(events.event)) # Find a better way to do this
-
-        # Weights
-        weights = Weights(size=None, storeIndividual=True)
+            eventWeight = abs(np.sign(events.event))
         weights.add("event_weight", weight=eventWeight)
 
         # Channel selections
@@ -229,18 +226,12 @@ class WrAnalysis(processor.ProcessorABC):
         selections.add("400mll", (mll > 400))
         selections.add("150mll", (mll > 150))
 
-        # Cutflow Tables
-#        selections.add("leadJetPt500", (ak.any(AK4Jets.pt > 500, axis=1)))
-#        electron_cutflow = selections.cutflow("leadJetPt500", "eejj", "eeTrigger", "minTwoAK4Jets", 'dr>0.4', 'mlljj>800', '400mll')
-#        muon_cutflow = selections.cutflow("leadJetPt500", "mumujj", "mumuTrigger", "minTwoAK4Jets", 'dr>0.4', 'mlljj>800', '400mll')
-#        print(electron_cutflow.print())
-#        print(muon_cutflow.print())
-
         # Define analysis regions
         regions = {
             'WR_EE_Resolved_DYCR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'eejj'],
             'WR_MuMu_Resolved_DYCR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'mumujj'],
-            'WR_EMu_Resolved_CR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'emujj'],
+            'WR_EMu_Resolved_CR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'emujj'],
+            'WR_EMu_Resolved_Sideband': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'emujj'],
             'WR_EE_Resolved_SR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'eejj'],
             'WR_MuMu_Resolved_SR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'mumujj'],
         }

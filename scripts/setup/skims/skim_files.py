@@ -196,8 +196,8 @@ def process_file(sliced_dataset, dataset_key, dataset, file_index, era, run):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process dataset and run.')
-    parser.add_argument("era", type=str, choices=["Run2Autumn18", "RunIISummer20UL18NanoAODv9", "Run2018A", "Run2018B", "Run2018C", "Run2018D", "Run3Summer22", "Run3Summer22EE", "Run3Summer23", "Run3Summer23BPix"], help="Era (e.g. RunIISummer20UL18NanoAODv9)")
-    parser.add_argument('process', type=str, choices=["DYJets", "TTbar", "tW", "WJets", "TTbarSemileptonic", "SingleTop", "TTX", "Diboson", "Triboson", "SingleMuon", "EGamma", "Run2022C_SingleMuon", "Run2022C_EGamma", "Run2022D_Muon", "Run2022D_EGamma"],  help='Physics group to process (e.g. DYJets)')
+    parser.add_argument("era", type=str, choices=["RunIISummer20UL1y", "RunIISummer20UL18", "Run3Summer22", "Run3Summer22EE", "Run3Summer23", "Run3Summer23BPix"], help="Era (e.g. RunIISummer20UL18NanoAODv9)")
+    parser.add_argument('process', type=str, choices=["DYJets","TTbar", "tW", "WJets", "TTbarSemileptonic", "SingleTop", "TTX", "Diboson", "Triboson", "SingleMuon", "EGamma", "Muon"],  help='Physics group to process (e.g. DYJets)')
     parser.add_argument('dataset', type=str, help='Dataset to process (e.g. TTTo2L2Nu')
     parser.add_argument('--start', type=int, default=1, help='File number at which to start')
     args = parser.parse_args()

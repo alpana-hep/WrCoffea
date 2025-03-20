@@ -57,7 +57,7 @@ mkdir -p $BASE_PATH
 # Copy the tarball
 cd /uscms/home/bjackson/nobackup
 echo "Creating tarball of working directory. Wait approx 30 seconds..."
-tar  --exclude=WrCoffea/.git --exclude=WrCoffea/.env --exclude=WrCoffea/WR_Plotter --exclude=WrCoffea/scripts/setup/skims/tmp --exclude=WrCoffea/test -czf WrCoffea.tar.gz WrCoffea
+tar -v  --exclude=WrCoffea/.git --exclude=WrCoffea/.env --exclude=WrCoffea/WR_Plotter --exclude=WrCoffea/scripts/setup/skims/tmp --exclude=WrCoffea/test -czf WrCoffea.tar.gz WrCoffea
 echo "Tarball created. Submitting scripts."
 
 for DATASET in "${DATASETS[@]}"

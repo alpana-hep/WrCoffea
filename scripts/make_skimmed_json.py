@@ -96,7 +96,6 @@ def main():
     input_file = Path("data/configs") / run / year / era / f"{era}_{args.sample}.json"
     output_file = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_{args.sample}_preprocessed_skims.json"
     
-    print()
     fileset = load_json(str(input_file))
     print()
     fileset = replace_files_in_json(fileset, run, year, era, args.umn, args.sample)

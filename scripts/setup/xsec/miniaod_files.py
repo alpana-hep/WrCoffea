@@ -20,7 +20,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 repo_root = os.path.abspath(os.path.join(current_dir, "../../../"))
 sys.path.insert(0, repo_root)
 
-from python.era_utils import get_era_details
+from python.preprocess_utils import get_era_details
 
 # ------------------------------------------------------------------------------
 # Configure logging

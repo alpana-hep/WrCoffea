@@ -5,10 +5,15 @@ from dask.diagnostics import ProgressBar
 from dask.distributed import progress
 import hist
 from hist import Hist
+import logging
+
+# Set up logging configuration
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 def save_histograms(my_histograms, args):
 
-    era = args.run
+    era = args.era
     sample = args.sample
     hnwr_mass= args.mass
 
@@ -47,8 +52,8 @@ def save_histograms(my_histograms, args):
             region, hist_name = key
             path = f'/{region}/{hist_name}_{region}'
             root_file[path] = hist
-
-    print(f"Histograms saved to {output_file}.")
+    logging.info(f"Histograms saved to {output_file}.")
+#    print(f"Histograms saved to {output_file}.")
 
 def scale_hists(data):
     for dataset_key, dataset_info in data.items():

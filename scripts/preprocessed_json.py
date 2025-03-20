@@ -54,7 +54,7 @@ def preprocess_json(fileset):
             fileset=max_files(fileset),
             step_size=chunks,
             skip_bad_files=False,
-            uproot_options={"handler": uproot.MultithreadedXRootDSource, "timeout": 3600} # or uproot.XRootDSource
+            uproot_options={"handler": uproot.XRootDSource, "timeout": 3600} # or uproot.MultithreadedXRootDSource
         )
     logging.info("Preprocessing completed.")
     return dataset_runnable, dataset_updated
@@ -105,8 +105,8 @@ def main():
         logging.error("No valid input file found.")
         sys.exit(1)
 
-    client = Client(n_workers=4, threads_per_worker=1, memory_limit='2GB', nanny=False)
-    logging.info("Dask client started.")
+#    client = Client(n_workers=1, threads_per_worker=1, memory_limit='2GB', nanny=False)
+#    logging.info("Dask client started.")
 
     filtered_config = filter_by_process(config, args.dataset)
     dataset = query_datasets(filtered_config)
