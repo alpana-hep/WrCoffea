@@ -17,6 +17,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../pyth
 # Add the parent directory (project_root) to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+from analyzer_3j import WrAnalysis as WrAnalysis_3j
 from analyzer import WrAnalysis
 from dask.distributed import Client
 from dask.diagnostics import ProgressBar
@@ -118,7 +119,7 @@ def run_analysis(args, preprocessed_fileset):
     t0 = time.monotonic()
     filtered_fileset = filter_by_process(preprocessed_fileset, args.sample, args.mass)
     to_compute = apply_to_fileset(
-        data_manipulation=WrAnalysis(mass_point=args.mass),
+        data_manipulation= WrAnalysis(mass_point=args.mass,exc=args.exc) if args.dnr!="3jets" else WrAnalysis_3j(mass_point=args.mass,exc=args.exc),
         fileset=max_files(max_chunks(filtered_fileset)),
         schemaclass=NanoAODSchema,
     )
@@ -152,6 +153,8 @@ if __name__ == "__main__":
     optional.add_argument("--hists", action='store_true', help="Output histograms.")
     optional.add_argument("--umn", action="store_true", help="Enable UMN mode (default: False)")
     optional.add_argument("--mass", type=str, default=None, choices=MASS_CHOICES, help="Signal mass point to analyze.")
+    optional.add_argument("--dnr", type=str, default=None, help="Folder name suffix for saving histograms.")
+    optional.add_argument("--exc", action="store_true", help="Exclusively 2 & 3 jets")
 
     args = parser.parse_args()
 

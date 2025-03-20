@@ -30,6 +30,11 @@ class WrAnalysis(processor.ProcessorABC):
             'Jet_1_Pt': self.create_hist('pt_subleadjet', 'process', 'region', (200, 0, 2000), r'p_{T} of the subleading jet [GeV]'),
             'Jet_1_Eta': self.create_hist('eta_subleadjet', 'process', 'region', (60, -3, 3), r'#eta of the subleading jet [GeV]'),
             'Jet_1_Phi': self.create_hist('phi_subleadjet', 'process', 'region', (80, -4, 4), r'#phi of the subleading jet'),
+            'Jet_2_Pt': self.create_hist('pt_thirdjet', 'process', 'region', (200, 0, 2000), r'p_{T} of the third jet [GeV]'),
+            'Jet_2_Eta': self.create_hist('eta_thirdjet', 'process', 'region', (60, -3, 3), r'#eta of the third jet [GeV]'),
+            'Jet_2_Phi': self.create_hist('phi_thirdjet', 'process', 'region', (80, -4, 4), r'#phi of the third jet'),
+            'Delta_r20': self.create_hist('del_r20', 'process', 'region', (80, 0, 6), 'Delta R Third Jet and Lead Jet'),
+            'Delta_r21': self.create_hist('del_r21', 'process', 'region', (80, 0, 6), 'Delta R Third Jet and SubLead Jet'),
             'ZCand_Mass': self.create_hist('mass_dileptons', 'process', 'region', (5000, 0, 5000), r'm_{ll} [GeV]'),
             'ZCand_Pt': self.create_hist('pt_dileptons', 'process', 'region', (200, 0, 2000), r'p^{T}_{ll} [GeV]'),
             'Dijet_Mass': self.create_hist('mass_dijet', 'process', 'region', (500, 0, 5000), r'm_{jj} [GeV]'),
@@ -40,6 +45,20 @@ class WrAnalysis(processor.ProcessorABC):
             'NCand_Lepton_1_Pt': self.create_hist('pt_threeobject_subleadlep', 'process', 'region', (800, 0, 8000), r'p^{T}_{ljj} [GeV]'),
             'WRCand_Mass': self.create_hist('mass_fourobject', 'process', 'region', (800, 0, 8000), r'm_{lljj} [GeV]'),
             'WRCand_Pt': self.create_hist('pt_fourobject', 'process', 'region', (800, 0, 8000), r'p^{T}_{lljj} [GeV]'),
+            'WRMass4_DeltaR':dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(100, 0, 8000, name='mass_fourobject', label=r'm_{lljj} [GeV]'),
+                hist.axis.Regular(20, 0, 6, name='del_r', label=r'\Delta R_{min}'),
+                hist.storage.Weight(),
+            ),
+            'WRMass5_DeltaR':dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(100, 0, 8000, name='mass_fiveobject', label=r'm_{lljjj} [GeV]'),
+                hist.axis.Regular(20, 0, 6, name='del_r', label=r'\Delta R_{min}'),
+                hist.storage.Weight(),
+            ),
         }
 
     def create_hist(self, name, process, region, bins, label):
@@ -87,15 +106,15 @@ class WrAnalysis(processor.ProcessorABC):
         else:
             raise ValueError(f"Invalid mass point format: {self._signal_sample}")
 
-    def add_resolved_selections(self, selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2):
+    def add_resolved_selections(self, selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2, dr_j1j3, dr_j2j3):
         selections.add("twoTightLeptons", (ak.num(tightElectrons) + ak.num(tightMuons)) == 2)
         if self.exc:
-            selections.add("minTwoAK4Jets", ak.num(AK4Jets) == 2)
+            selections.add("minThreeAK4Jets", ak.num(AK4Jets) == 3)
         else:
-            selections.add("minTwoAK4Jets", ak.num(AK4Jets) >= 2)
+            selections.add("minThreeAK4Jets", ak.num(AK4Jets) >= 3)
         selections.add("leadTightLeptonPt60", (ak.any(tightElectrons.pt > 60, axis=1) | ak.any(tightMuons.pt > 60, axis=1)))
         selections.add("mlljj>800", mlljj > 800)
-        selections.add("dr>0.4", (dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4))
+        selections.add("dr>0.4", (dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4) & (dr_j1j3 > 0.4) & (dr_j2j3 > 0.4))
 
     def fill_basic_histograms(self, output, region, cut,  process, jets, leptons, weights):
         """Helper function to fill histograms dynamically."""
@@ -113,16 +132,21 @@ class WrAnalysis(processor.ProcessorABC):
             ('Jet_1_Pt', jets[:, 1].pt, 'pt_subleadjet'),
             ('Jet_1_Eta', jets[:, 1].eta, 'eta_subleadjet'),
             ('Jet_1_Phi', jets[:, 1].phi, 'phi_subleadjet'),
+            ('Jet_2_Pt', jets[:, 2].pt, 'pt_thirdjet'),
+            ('Jet_2_Eta', jets[:, 2].eta, 'eta_thirdjet'),
+            ('Jet_2_Phi', jets[:, 2].phi, 'phi_thirdjet'),
+            ('Delta_r20',jets[:,2].delta_r(jets[:,0]),'del_r20'),
+            ('Delta_r21',jets[:,2].delta_r(jets[:,1]),'del_r21'),
             ('ZCand_Mass', (leptons[:, 0] + leptons[:, 1]).mass, 'mass_dileptons'),
             ('ZCand_Pt', (leptons[:, 0] + leptons[:, 1]).pt, 'pt_dileptons'),
-            ('Dijet_Mass', (jets[:, 0] + jets[:, 1]).mass, 'mass_dijet'),
+            ('Dijet_Mass', (jets[:, 0] + jets[:, 1] + jets[:, 2]).mass, 'mass_dijet'),
             ('Dijet_Pt', (jets[:, 0] + jets[:, 1]).pt, 'pt_dijet'),
-            ('NCand_Lepton_0_Mass', (leptons[:, 0] + jets[:, 0] + jets[:, 1]).mass, 'mass_threeobject_leadlep'),
-            ('NCand_Lepton_0_Pt', (leptons[:, 0] + jets[:, 0] + jets[:, 1]).pt, 'pt_threeobject_leadlep'),
-            ('NCand_Lepton_1_Mass', (leptons[:, 1] + jets[:, 0] + jets[:, 1]).mass, 'mass_threeobject_subleadlep'),
-            ('NCand_Lepton_1_Pt', (leptons[:, 1] + jets[:, 0] + jets[:, 1]).pt, 'pt_threeobject_subleadlep'),
-            ('WRCand_Mass', (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1]).mass, 'mass_fourobject'),
-            ('WRCand_Pt', (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1]).pt, 'pt_fourobject'),
+            ('NCand_Lepton_0_Mass', (leptons[:, 0] + jets[:, 0] + jets[:, 1] + jets[:, 2]).mass, 'mass_threeobject_leadlep'),
+            ('NCand_Lepton_0_Pt', (leptons[:, 0] + jets[:, 0] + jets[:, 1] + jets[:, 2]).pt, 'pt_threeobject_leadlep'),
+            ('NCand_Lepton_1_Mass', (leptons[:, 1] + jets[:, 0] + jets[:, 1] + jets[:, 2]).mass, 'mass_threeobject_subleadlep'),
+            ('NCand_Lepton_1_Pt', (leptons[:, 1] + jets[:, 0] + jets[:, 1] + jets[:, 2]).pt, 'pt_threeobject_subleadlep'),
+            ('WRCand_Mass', (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1] + jets[:, 2]).mass, 'mass_fourobject'),
+            ('WRCand_Pt', (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1] + jets[:, 2]).pt, 'pt_fourobject'),
         ]
 
         # Loop over variables and fill corresponding histograms
@@ -168,19 +192,21 @@ class WrAnalysis(processor.ProcessorABC):
         # Event variables
         tightLeptons = ak.with_name(ak.concatenate((tightElectrons, tightMuons), axis=1), 'PtEtaPhiMCandidate')
         tightLeptons = ak.pad_none(tightLeptons[ak.argsort(tightLeptons.pt, axis=1, ascending=False)], 2, axis=1)
-        AK4Jets = ak.pad_none(AK4Jets, 2, axis=1)
+        AK4Jets = ak.pad_none(AK4Jets, 3, axis=1)
 
         mll = ak.fill_none((tightLeptons[:, 0] + tightLeptons[:, 1]).mass, False)
-        mlljj = ak.fill_none((tightLeptons[:, 0] + tightLeptons[:, 1] + AK4Jets[:, 0] + AK4Jets[:, 1]).mass, False)
+        mlljj = ak.fill_none((tightLeptons[:, 0] + tightLeptons[:, 1] + AK4Jets[:, 0] + AK4Jets[:, 1] + AK4Jets[:, 2]).mass, False)
 
-        dr_jl_min = ak.fill_none(ak.min(AK4Jets[:,:2].nearest(tightLeptons).delta_r(AK4Jets[:,:2]), axis=1), False)
+        dr_jl_min = ak.fill_none(ak.min(AK4Jets[:,:3].nearest(tightLeptons).delta_r(AK4Jets[:,:3]), axis=1), False)
         dr_j1j2 = ak.fill_none(AK4Jets[:,0].delta_r(AK4Jets[:,1]), False)
+        dr_j1j3 = ak.fill_none(AK4Jets[:,0].delta_r(AK4Jets[:,2]), False)
+        dr_j2j3 = ak.fill_none(AK4Jets[:,1].delta_r(AK4Jets[:,2]), False)
         dr_l1l2 = ak.fill_none(tightLeptons[:,0].delta_r(tightLeptons[:,1]), False)
-
+        
         # Event selections
         selections = PackedSelection()
 
-        self.add_resolved_selections(selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2)
+        self.add_resolved_selections(selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2, dr_j2j3, dr_j1j3)
 
         # Trigger selections
         if isMC:
@@ -221,23 +247,23 @@ class WrAnalysis(processor.ProcessorABC):
 
         # Cutflow Tables
         selections.add("leadJetPt500", (ak.any(AK4Jets.pt > 500, axis=1)))
-        electron_cutflow = selections.cutflow("leadJetPt500", "eejj", "eeTrigger", "minTwoAK4Jets", 'dr>0.4', 'mlljj>800', '400mll')
-        muon_cutflow = selections.cutflow("leadJetPt500", "mumujj", "mumuTrigger", "minTwoAK4Jets", 'dr>0.4', 'mlljj>800', '400mll')
+        electron_cutflow = selections.cutflow("leadJetPt500", "eejj", "eeTrigger", "minThreeAK4Jets", 'dr>0.4', 'mlljj>800', '400mll')
+        muon_cutflow = selections.cutflow("leadJetPt500", "mumujj", "mumuTrigger", "minThreeAK4Jets", 'dr>0.4', 'mlljj>800', '400mll')
 #        print(electron_cutflow.print())
 #        print(muon_cutflow.print())
 
         # Define analysis regions
         regions = {
-            'WR_EE_Resolved_DYCR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'eejj'],
-            'WR_MuMu_Resolved_DYCR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'mumujj'],
-            'WR_EMu_Resolved_CR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'emujj'],
-            'WR_EE_Resolved_SR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'eejj'],
-            'WR_MuMu_Resolved_SR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'mumujj'],
+            'WR_EE_Resolved_DYCR': ['twoTightLeptons', 'minThreeAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'eejj'],
+            'WR_MuMu_Resolved_DYCR': ['twoTightLeptons', 'minThreeAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'mumujj'],
+            'WR_EMu_Resolved_CR': ['twoTightLeptons', 'minThreeAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'emujj'],
+            'WR_EE_Resolved_SR': ['twoTightLeptons', 'minThreeAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'eejj'],
+            'WR_MuMu_Resolved_SR': ['twoTightLeptons', 'minThreeAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'mumujj'],
         }
 
         # Blind signal region and remove triggers
         if isRealData:
-            # Remove specific regions
+            # Remove specific regionsInformation
             for region in ['WR_EE_Resolved_DYSR', 'WR_MuMu_Resolved_DYSR']:
                 regions.pop(region, None)  # Use pop with a default to avoid KeyError
 
@@ -249,6 +275,11 @@ class WrAnalysis(processor.ProcessorABC):
         for region, cuts in regions.items():
             cut = selections.all(*cuts)
             self.fill_basic_histograms(output, region, cut, process, AK4Jets, tightLeptons, weights)
+            mlljj1= (tightLeptons[cut][:, 0] + tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
+            mlljjj= (tightLeptons[cut][:, 0] + tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1] + AK4Jets[cut][:, 2]).mass
+            dr_j3_min = ak.min(AK4Jets[cut][:,2].delta_r(AK4Jets[cut][:,:2]),axis=1)
+            output['WRMass4_DeltaR'].fill(process=process,region=region,mass_fourobject=mlljj1,del_r=dr_j3_min,weight=weights.weight()[cut])
+            output['WRMass5_DeltaR'].fill(process=process,region=region,mass_fiveobject=mlljjj,del_r=dr_j3_min,weight=weights.weight()[cut])
 
         output["weightStats"] = weights.weightStatistics
         return output

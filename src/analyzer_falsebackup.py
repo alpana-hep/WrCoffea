@@ -14,9 +14,9 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class WrAnalysis(processor.ProcessorABC):
-    def __init__(self, mass_point=None,exc=False):
+    def __init__(self, mass_point=None):
         self._signal_sample = mass_point
-        self.exc=exc
+
         self.make_output = lambda: {
             'Lepton_0_Pt': self.create_hist('pt_leadlep', 'process', 'region', (200, 0, 2000), r'p_{T} of the leading lepton [GeV]'),
             'Lepton_0_Eta': self.create_hist('eta_leadlep', 'process', 'region', (60, -3, 3), r'#eta of the leading lepton'),
@@ -30,6 +30,9 @@ class WrAnalysis(processor.ProcessorABC):
             'Jet_1_Pt': self.create_hist('pt_subleadjet', 'process', 'region', (200, 0, 2000), r'p_{T} of the subleading jet [GeV]'),
             'Jet_1_Eta': self.create_hist('eta_subleadjet', 'process', 'region', (60, -3, 3), r'#eta of the subleading jet [GeV]'),
             'Jet_1_Phi': self.create_hist('phi_subleadjet', 'process', 'region', (80, -4, 4), r'#phi of the subleading jet'),
+            'Jet_2_Pt': self.create_hist('pt_thirdjet', 'process', 'region', (200, 0, 2000), r'p_{T} of the third jet [GeV]'),
+            'Jet_2_Eta': self.create_hist('eta_thirdjet', 'process', 'region', (60, -3, 3), r'#eta of the third jet [GeV]'),
+            'Jet_2_Phi': self.create_hist('phi_thirdjet', 'process', 'region', (80, -4, 4), r'#phi of the third jet'),
             'ZCand_Mass': self.create_hist('mass_dileptons', 'process', 'region', (5000, 0, 5000), r'm_{ll} [GeV]'),
             'ZCand_Pt': self.create_hist('pt_dileptons', 'process', 'region', (200, 0, 2000), r'p^{T}_{ll} [GeV]'),
             'Dijet_Mass': self.create_hist('mass_dijet', 'process', 'region', (500, 0, 5000), r'm_{jj} [GeV]'),
@@ -89,10 +92,7 @@ class WrAnalysis(processor.ProcessorABC):
 
     def add_resolved_selections(self, selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2):
         selections.add("twoTightLeptons", (ak.num(tightElectrons) + ak.num(tightMuons)) == 2)
-        if self.exc:
-            selections.add("minTwoAK4Jets", ak.num(AK4Jets) == 2)
-        else:
-            selections.add("minTwoAK4Jets", ak.num(AK4Jets) >= 2)
+        selections.add("minTwoAK4Jets", ak.num(AK4Jets) >= 3)
         selections.add("leadTightLeptonPt60", (ak.any(tightElectrons.pt > 60, axis=1) | ak.any(tightMuons.pt > 60, axis=1)))
         selections.add("mlljj>800", mlljj > 800)
         selections.add("dr>0.4", (dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4))
@@ -113,16 +113,19 @@ class WrAnalysis(processor.ProcessorABC):
             ('Jet_1_Pt', jets[:, 1].pt, 'pt_subleadjet'),
             ('Jet_1_Eta', jets[:, 1].eta, 'eta_subleadjet'),
             ('Jet_1_Phi', jets[:, 1].phi, 'phi_subleadjet'),
+            ('Jet_2_Pt', jets[:, 2].pt, 'pt_thirdjet'),
+            ('Jet_2_Eta', jets[:, 2].eta, 'eta_thirdjet'),
+            ('Jet_2_Phi', jets[:, 2].phi, 'phi_thirdjet'),
             ('ZCand_Mass', (leptons[:, 0] + leptons[:, 1]).mass, 'mass_dileptons'),
             ('ZCand_Pt', (leptons[:, 0] + leptons[:, 1]).pt, 'pt_dileptons'),
-            ('Dijet_Mass', (jets[:, 0] + jets[:, 1]).mass, 'mass_dijet'),
-            ('Dijet_Pt', (jets[:, 0] + jets[:, 1]).pt, 'pt_dijet'),
-            ('NCand_Lepton_0_Mass', (leptons[:, 0] + jets[:, 0] + jets[:, 1]).mass, 'mass_threeobject_leadlep'),
-            ('NCand_Lepton_0_Pt', (leptons[:, 0] + jets[:, 0] + jets[:, 1]).pt, 'pt_threeobject_leadlep'),
-            ('NCand_Lepton_1_Mass', (leptons[:, 1] + jets[:, 0] + jets[:, 1]).mass, 'mass_threeobject_subleadlep'),
-            ('NCand_Lepton_1_Pt', (leptons[:, 1] + jets[:, 0] + jets[:, 1]).pt, 'pt_threeobject_subleadlep'),
-            ('WRCand_Mass', (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1]).mass, 'mass_fourobject'),
-            ('WRCand_Pt', (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1]).pt, 'pt_fourobject'),
+            ('Dijet_Mass', (jets[:, 0] + jets[:, 1]+jets[:,2]).mass, 'mass_dijet'),
+            ('Dijet_Pt', (jets[:, 0] + jets[:, 1]+jets[:,2]).pt, 'pt_dijet'),
+            ('NCand_Lepton_0_Mass', (leptons[:, 0] + jets[:, 0] + jets[:, 1] + jets[:,2]).mass, 'mass_threeobject_leadlep'),
+            ('NCand_Lepton_0_Pt', (leptons[:, 0] + jets[:, 0] + jets[:, 1] + jets[:,2]).pt, 'pt_threeobject_leadlep'),
+            ('NCand_Lepton_1_Mass', (leptons[:, 1] + jets[:, 0] + jets[:, 1] + jets[:,2]).mass, 'mass_threeobject_subleadlep'),
+            ('NCand_Lepton_1_Pt', (leptons[:, 1] + jets[:, 0] + jets[:, 1] + jets[:,2]).pt, 'pt_threeobject_subleadlep'),
+            ('WRCand_Mass', (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1] + jets[:,2]).mass, 'mass_fourobject'),
+            ('WRCand_Pt', (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1] + jets[:,2]).pt, 'pt_fourobject'),
         ]
 
         # Loop over variables and fill corresponding histograms
@@ -168,7 +171,7 @@ class WrAnalysis(processor.ProcessorABC):
         # Event variables
         tightLeptons = ak.with_name(ak.concatenate((tightElectrons, tightMuons), axis=1), 'PtEtaPhiMCandidate')
         tightLeptons = ak.pad_none(tightLeptons[ak.argsort(tightLeptons.pt, axis=1, ascending=False)], 2, axis=1)
-        AK4Jets = ak.pad_none(AK4Jets, 2, axis=1)
+        AK4Jets = ak.pad_none(AK4Jets, 3, axis=1)
 
         mll = ak.fill_none((tightLeptons[:, 0] + tightLeptons[:, 1]).mass, False)
         mlljj = ak.fill_none((tightLeptons[:, 0] + tightLeptons[:, 1] + AK4Jets[:, 0] + AK4Jets[:, 1]).mass, False)

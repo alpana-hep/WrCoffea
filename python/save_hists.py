@@ -12,6 +12,7 @@ def save_histograms(my_histograms, args):
     run = args.run
     sample = args.sample
     hnwr_mass= args.mass
+    dnr=args.dnr
 
     working_dir = "WR_Plotter"
     
@@ -25,6 +26,16 @@ def save_histograms(my_histograms, args):
         dataset = "Run2Legacy"
         year = "2018"
     output_dir = working_dir+'/rootfiles/'+dataset+'/Regions/'+year
+    
+    if dnr is not None:
+        output_dir=output_dir+'_'+dnr
+    
+    if args.exc:
+        output_dir=output_dir+'_exclusive'
+    
+    direx=os.path.isdir(output_dir)
+    print("Saving in: "+output_dir)
+		
 
     Filename_prefix = "WRAnalyzer"
     Filename_suffix = ""
