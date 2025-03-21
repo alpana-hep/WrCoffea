@@ -33,7 +33,7 @@ def load_json(filepath):
     try:
         with open(filepath, 'r', encoding='utf-8') as file:
             data = json.load(file)
-            logging.info(f"Successfully loaded JSON file: {filepath}")
+#            logging.info(f"Successfully loaded JSON file: {filepath}")
             return data
     except Exception as e:
         logging.error(f"Failed to read JSON file {filepath}: {e}")

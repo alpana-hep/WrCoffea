@@ -210,7 +210,8 @@ class WrAnalysis(processor.ProcessorABC):
         weights = Weights(size=None, storeIndividual=True)
         if isMC:
             eventWeight = events.genWeight
-            unqiue_gensumws = np.unique(events.genEventSumw.compute())
+            if not process == "Signal":
+                unqiue_gensumws = np.unique(events.genEventSumw.compute())
             output['sumw'] = ak.sum(eventWeight) if process == "Signal" else np.sum(unqiue_gensumws)
         elif isRealData:
             eventWeight = abs(np.sign(events.event))

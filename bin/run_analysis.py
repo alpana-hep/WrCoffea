@@ -45,7 +45,7 @@ def load_masses_from_csv(file_path):
                     n_mass = row[1].strip()
                     mass_choice = f"WR{wr_mass}_N{n_mass}"
                     mass_choices.append(mass_choice)
-        logging.info(f"Loaded {len(mass_choices)} mass points from {file_path}")
+#        logging.info(f"Loaded {len(mass_choices)} mass points from {file_path}")
     except FileNotFoundError:
         logging.error(f"Mass CSV file not found at: {file_path}")
         raise
@@ -67,12 +67,12 @@ def validate_arguments(args):
     if args.sample != "Signal" and args.mass:
         logging.error("The --mass option is only valid for 'Signal' samples.")
         raise ValueError("Mass argument provided for non-signal sample.")
-    logging.info("Arguments validated successfully.")
+#    logging.info("Arguments validated successfully.")
 
 def run_analysis(args, filtered_fileset):
     to_compute = apply_to_fileset(
         data_manipulation=WrAnalysis(mass_point=args.mass),
-        fileset=max_files(max_chunks(filtered_fileset),),
+        fileset=max_files(max_chunks(filtered_fileset, 1), 1),
         schemaclass=NanoAODSchema,
     )
     return to_compute
@@ -84,7 +84,6 @@ def save_hists(to_compute):
     save_histograms(histograms, args)
 
 if __name__ == "__main__":
-    print()
     file_path = Path('data/RunIISummer20UL18_mass_points.csv')
     MASS_CHOICES = load_masses_from_csv(file_path)
 
@@ -92,10 +91,13 @@ if __name__ == "__main__":
     parser.add_argument("era", type=str, choices=["RunIISummer20UL16", "RunIISummer20UL17", "RunIISummer20UL18", "Run3Summer22", "Run3Summer22EE", "Run3Summer23", "Run3Summer23BPix"], help="Campaign to analyze.")
     parser.add_argument("sample", type=str, choices=["DYJets", "TTbar", "tW", "WJets", "SingleTop", "TTbarSemileptonic", "TTX", "Diboson", "Triboson", "EGamma", "Muon", "Signal"], help="MC sample to analyze (e.g., Signal, DYJets).")
     optional = parser.add_argument_group("Optional arguments")
-    optional.add_argument("--debug", action='store_true', help="Debug mode (don't compute histograms)")
     optional.add_argument("--mass", type=str, default=None, choices=MASS_CHOICES, help="Signal mass point to analyze.")
+    optional.add_argument("--dir", type=str, default=None, help="Create a new output directory.")
+    optional.add_argument("--name", type=str, default=None, help="Append the filenames of the output ROOT files.")
+    optional.add_argument("--debug", action='store_true', help="Debug mode (don't compute histograms)")
     args = parser.parse_args()
 
+    print()
     logging.info(f"Analyzing {args.era} - {args.sample} events")
     
     validate_arguments(args)
@@ -109,9 +111,8 @@ if __name__ == "__main__":
         filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_mc_preprocessed_skims.json"
 
     preprocessed_fileset = load_json(str(filepath))
-
     filtered_fileset = filter_by_process(preprocessed_fileset, args.sample, args.mass)
-    print()
+
     t0 = time.monotonic()
     to_compute = run_analysis(args, filtered_fileset)
 
