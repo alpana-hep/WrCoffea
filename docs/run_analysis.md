@@ -1,20 +1,42 @@
-## Running the analyzer
-
-### Analyzing background
-To run a basic analysis, 
+# Running the analyzer
+## Basic Analysis
+### Analyzing background samples
+To run a basic analysis on background sample, specify the era (either `RunIISummer20UL18` or `Run3Summer22`) and the sample. For example,
 ```
 python3 bin/run_analysis.py RunIISummer20UL18 DYJets
 ```
+other backgrounds that can be ran on are `TTbar`, `tW`, `WJets`, `SingleTop`, `TTbarSemileptonic`, `TTX`, `Diboson`, and `Triboson`.
+
 By default, the output histograms will be saved to
 ```
 WR_Plotter/rootfiles/RunII/2018/RunIISummer20UL18/WRAnalyzer_DYJets.root.
 ```
-### Analyzing signal
+
+To analyzer all backgrounds in one command, execute the script
+```
+./bin/run_analyzer.sh bkg RunIISummer20UL18
+```
+
+### Analyzing signal samples
 To analyze signal files, use the `--mass` flag with the desired signal point. For example,
 ```
 python3 bin/run_analysis.py RunIISummer20UL18 Signal --mass WR3200_N3000
 ```
-### Optional Arguments
+Note that signal files currently exist for `RunIISummer20UL18`
+
+### Analyzing signal samples
+To analyze data,
+```
+python3 bin/run_analysis.py RunIISummer20UL18 EGamma
+```
+where `EGamma` can also be replaced with `Muon`.
+
+To analyze both `EGamma` and `Muon` in one command,
+```
+./bin/run_analyzer.sh data RunIISummer20UL18
+```
+
+## Optional Arguments
 
 #### `--dir`
 One can further specify a directory to save to with the  `--dir` flag. For example, 
@@ -52,7 +74,7 @@ python3 bin/run_analysis.py RunIISummer20UL18 DYJets --debug
 
 More information can be found in the `README.md` file in other folders.
 
-### Preprocess
+## Preprocessing
 To preprocess the background datasets (needs to be done if a file in `configs/` is updated),
 ```
 python3 scripts/make_skimmed_json.py Run2Summer20UL18 bkg --umn
@@ -64,21 +86,3 @@ Signal samples can be preprocessed with,
 python3 scripts/make_skimmed_json.py Run2Autumn18 sig --umn
 ```
 
-### Basic analysis
-To run a basic analysis at UMN, 
-```
-python3 bin/run_analysis.py Run2Summer20UL18 DYJets --skimmed --umn --hists
-```
-where the run is given by `Run2Summer20UL18` or `Run3Summer22`, and the process `DYJets` or `tt`.
-
-To run over signal samples,
-```
-python3 bin/run_analysis.py Run2Autumn18 Signal --mass WR3200_N800 --umn --hists
-```
-where the possible signal points are given by [Run2Autumn18_mass_points.csv](https://github.com/UMN-CMS/WrCoffea/blob/main/data/Run2Autumn18_mass_points.csv)
-
-To make histograms for all signal samples, use the script
-```
-./bin/analyze_signals.sh
-```
-which executes  `run_analysis.py` in a loop with all of the signal points.
