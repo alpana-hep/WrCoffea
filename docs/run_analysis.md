@@ -1,11 +1,57 @@
-### Basic analysis
+## Running the analyzer
+
+### Analyzing background
 To run a basic analysis, 
 ```
-python3 bin/run_analysis.py Run3Summer22 DYJets --hists --skimmed
+python3 bin/run_analysis.py RunIISummer20UL18 DYJets
 ```
+By default, the output histograms will be saved to
+```
+WR_Plotter/rootfiles/RunII/2018/RunIISummer20UL18/WRAnalyzer_DYJets.root.
+```
+### Analyzing signal
+To analyze signal files, use the `--mass` flag with the desired signal point. For example,
+```
+python3 bin/run_analysis.py RunIISummer20UL18 Signal --mass WR3200_N3000
+```
+### Optional Arguments
+
+#### `--dir`
+One can further specify a directory to save to with the  `--dir` flag. For example, 
+```
+python3 bin/run_analysis.py RunIISummer20UL18 DYJets --dir 3jets
+```
+this will save the files to 
+```
+WR_Plotter/rootfiles/RunII/2018/RunIISummer20UL18/3jets/WRAnalyzer_DYJets.root.
+```
+
+#### `--name`
+The filenames can be modified with the `--name` flag. For instance,
+```
+python3 bin/run_analysis.py RunIISummer20UL18 DYJets --name dr1p5
+```
+this will save the files to 
+```
+WR_Plotter/rootfiles/RunII/2018/RunIISummer20UL18/WRAnalyzer_dr1p5_DYJets.root.
+```
+Or both flags can be used,
+```
+python3 bin/run_analysis.py RunIISummer20UL18 DYJets --dir 3jets --name dr1p5
+```
+This will save the file
+```
+WR_Plotter/rootfiles/RunII/2018/RunIISummer20UL18/3jets/WRAnalyzer_dr1p5_DYJets.root.
+```
+
+#### `--debug`
+When making changes to the analyzer, one may want to run the analyzer without saving histograms. This can be done with,
+```
+python3 bin/run_analysis.py RunIISummer20UL18 DYJets --debug
+```
+
 More information can be found in the `README.md` file in other folders.
 
-## Running at UMN
 ### Preprocess
 To preprocess the background datasets (needs to be done if a file in `configs/` is updated),
 ```
