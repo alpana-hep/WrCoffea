@@ -9,7 +9,7 @@ universe = vanilla
 executable = ./{PROCESS}.sh
 should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
-request_memory = 8000
+request_memory = 20000
 output = ../../../../../../../../data/skims/{RUN}/{YEAR}/{CAMPAIGN}/{PROCESS}/{PROCESS}_out/{PROCESS}_$(ProcId).out
 error = ../../../../../../../../data/skims/{RUN}/{YEAR}/{CAMPAIGN}/{PROCESS}/{PROCESS}_err/{PROCESS}_$(ProcId).err
 log = ../../../../../../../../data/skims/{RUN}/{YEAR}/{CAMPAIGN}/{PROCESS}/{PROCESS}_log/{PROCESS}_$(ProcId).log
@@ -17,7 +17,7 @@ transfer_input_files = WrCoffea.tar.gz
 transfer_output_files = {PROCESS}_skim$(ProcId).tar.gz
 queue arguments from arguments.txt\
 """
-#transfer_output_files = {PROCESS}_skim$(ProcId).tar.gz
+#20000
 
 def mkdir(path):
     if not os.path.exists(path):

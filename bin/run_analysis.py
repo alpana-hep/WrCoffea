@@ -72,7 +72,7 @@ def validate_arguments(args):
 def run_analysis(args, filtered_fileset):
     to_compute = apply_to_fileset(
         data_manipulation=WrAnalysis(mass_point=args.mass),
-        fileset=max_files(max_chunks(filtered_fileset, 1), 1),
+        fileset=max_files(max_chunks(filtered_fileset)),
         schemaclass=NanoAODSchema,
     )
     return to_compute

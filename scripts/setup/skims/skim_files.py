@@ -105,15 +105,17 @@ def make_skimmed_events(events):
     leading_lepton = leptons_padded[:, 0]
     subleading_lepton = leptons_padded[:, 1]
 
+    lead_pt_cut = 30 #52
+    sublead_pt_cut = 30 #45
     event_filters = (
-        (ak.fill_none(leading_lepton.pt, 0) > 52) &
-        (ak.fill_none(subleading_lepton.pt, 0) > 45)
+        (ak.fill_none(leading_lepton.pt, 0) > lead_pt_cut) &
+        (ak.fill_none(subleading_lepton.pt, 0) > sublead_pt_cut)
     ) #52 and 45
 
     print(f"\n### **Skim Details**")
     print(f"-------------------------------------------")
-    print("**Leading lepton pT:** 52 GeV")
-    print("**SubLeading lepton pT:** 45 GeV")
+    print(f"**Leading lepton pT:** {lead_pt_cut} GeV")
+    print(f"**SubLeading lepton pT:** {sublead_pt_cut} GeV")
     print("**Branches:** All")
     print(f"-------------------------------------------")
 
@@ -218,8 +220,12 @@ if __name__ == "__main__":
     dataset_key = list(full_dataset.keys())[0]
     num_files = len(full_dataset[dataset_key]['files'])
 
+    print("full_dataset", full_dataset)
+    print()
     sliced_dataset = slice_files(full_dataset, slice(args.start - 1, args.start))
 
+    print(f"sliced_dataset", sliced_dataset)
+    print()
     print(f"\n### **Processing Information**")
     print(f"-------------------------------------------")
     print(f"**File:** {args.start} of {num_files}")

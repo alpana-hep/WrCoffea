@@ -35,6 +35,13 @@ NanoAODSchema.error_missing_event_ids = False
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
+def filter_json_by_primary_ds_name(json_data, primary_ds_name):
+    filtered_data = {
+        key: value for key, value in json_data.items()
+        if value.get("dataset") == primary_ds_name
+    }
+    return filtered_data
+
 def filter_by_process(data, process_name):
     return {key: value for key, value in data.items() if value.get("physics_group") == process_name}
 
@@ -51,10 +58,10 @@ def preprocess_json(fileset):
     logging.info("Preprocessing files")
     with ProgressBar():
         dataset_runnable, dataset_updated = preprocess(
-            fileset=max_files(fileset),
+            fileset=max_files(fileset, 2500), #2000 works
             step_size=chunks,
             skip_bad_files=False,
-            uproot_options={"handler": uproot.XRootDSource, "timeout": 3600} # or uproot.MultithreadedXRootDSource
+            uproot_options={"handler": uproot.MultithreadedXRootDSource, "timeout": 3600} # or uproot.XRootDSource
         )
     logging.info("Preprocessing completed.")
     return dataset_runnable, dataset_updated
@@ -84,17 +91,18 @@ def main():
                         choices=["RunIISummer20UL16", "RunIISummer20UL17", "RunIISummer20UL18",
                                  "Run3Summer22", "Run3Summer22EE", "Run3Summer23", "Run3Summer23BPix"],
                         help="Run era (e.g., RunIISummer20UL18)")
-    parser.add_argument("dataset", type=str, help="Dataset process to filter (e.g. DYJets, TTbar)")
+    parser.add_argument("process", type=str, help="Dataset process to filter (e.g. DYJets, TTbar)")
+    parser.add_argument('--dataset', type=str, help='Dataset to process (e.g. TTTo2L2Nu')
     args = parser.parse_args()
 
     run, year, era = get_era_details(args.era)
 
-    if "Muon" in args.dataset or "EGamma" in args.dataset:
+    if "Muon" in args.process or "EGamma" in args.process:
         input_file = Path("/uscms/home/bjackson/nobackup/WrCoffea/data/configs") / run / year / args.era / f"{args.era}_data.json"
     else:
         input_file = Path("/uscms/home/bjackson/nobackup/WrCoffea/data/configs") / run / year / args.era / f"{args.era}_mc.json"
 
-    output_file = Path("/uscms/home/bjackson/nobackup/WrCoffea/data/jsons") / run / year / args.era / f"{args.era}_{args.dataset}_preprocessed.json"
+    output_file = Path("/uscms/home/bjackson/nobackup/WrCoffea/data/jsons") / run / year / args.era / f"{args.era}_{args.process}_preprocessed.json"
     output_txt_dir = Path("/uscms/home/bjackson/nobackup/WrCoffea/data/filepaths") / run / year / args.era
 
     print()
@@ -105,10 +113,14 @@ def main():
         logging.error("No valid input file found.")
         sys.exit(1)
 
+    client = Client(n_workers=4, threads_per_worker=1, processes=True, memory_limit='2GB', nanny=False)
 #    client = Client(n_workers=1, threads_per_worker=1, memory_limit='2GB', nanny=False)
-#    logging.info("Dask client started.")
+    logging.info("Dask client started.")
 
-    filtered_config = filter_by_process(config, args.dataset)
+    filtered_config = filter_by_process(config, args.process)
+    if args.dataset:
+        filtered_config = filter_json_by_primary_ds_name(filtered_config, args.dataset)
+
     dataset = query_datasets(filtered_config)
     print()
     save_dataset_txt(dataset, output_txt_dir)
