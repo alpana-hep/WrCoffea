@@ -17,6 +17,9 @@ BASE_COMMAND="python3 bin/run_analysis.py Run2Autumn18 Signal --hists --umn"
 for MASS in "${MASS_OPTIONS[@]}"; do
   echo "Running analysis for --mass $MASS"
   $BASE_COMMAND --mass "$MASS"
+  $BASE_COMMAND --mass "$MASS" --dnr 3jets
+  $BASE_COMMAND --mass "$MASS" --exc
+  $BASE_COMMAND --mass "$MASS" --dnr 3jets --exc
   if [ $? -ne 0 ]; then
     echo "Error running analysis for --mass $MASS. Skipping..."
     continue
