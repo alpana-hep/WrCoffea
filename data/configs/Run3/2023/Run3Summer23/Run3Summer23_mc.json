@@ -5,7 +5,7 @@
         "year": "2022",
         "era": "Run3Summer23",
         "dataset": "DYto2L-4Jets_MLL-50to120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8",
-        "physics_group": "",
+        "physics_group": "DYJets",
         "xsec": 316.8,
         "datatype": "mc"
     },
@@ -15,7 +15,7 @@
         "year": "2022",
         "era": "Run3Summer23",
         "dataset": "DYto2L-4Jets_MLL-50to120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8",
-        "physics_group": "",
+        "physics_group": "DYJets",
         "xsec": 140.2,
         "datatype": "mc"
     },
@@ -25,7 +25,7 @@
         "year": "2022",
         "era": "Run3Summer23",
         "dataset": "DYto2L-4Jets_MLL-50to120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8",
-        "physics_group": "",
+        "physics_group": "DYJets",
         "xsec": 179.7,
         "datatype": "mc"
     },
@@ -35,7 +35,7 @@
         "year": "2022",
         "era": "Run3Summer23",
         "dataset": "DYto2L-4Jets_MLL-50to120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8",
-        "physics_group": "",
+        "physics_group": "DYJets",
         "xsec": 6.737,
         "datatype": "mc"
     },
@@ -45,7 +45,7 @@
         "year": "2022",
         "era": "Run3Summer23",
         "dataset": "DYto2L-4Jets_MLL-50to120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8",
-        "physics_group": "",
+        "physics_group": "DYJets",
         "xsec": 0.7007,
         "datatype": "mc"
     },
@@ -55,7 +55,7 @@
         "year": "2022",
         "era": "Run3Summer23",
         "dataset": "DYto2L-4Jets_MLL-50to120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8",
-        "physics_group": "",
+        "physics_group": "DYJets",
         "xsec": 0.05059,
         "datatype": "mc"
     },
@@ -65,7 +65,7 @@
         "year": "2022",
         "era": "Run3Summer23",
         "dataset": "DYto2L-4Jets_MLL-50to120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8",
-        "physics_group": "",
+        "physics_group": "DYJets",
         "xsec": 0.003458,
         "datatype": "mc"
     },
@@ -75,7 +75,7 @@
         "year": "2022",
         "era": "Run3Summer23",
         "dataset": "DYto2L-4Jets_MLL-120_HT-40to70_TuneCP5_13p6TeV_madgraphMLM-pythia8",
-        "physics_group": "",
+        "physics_group": "DYJets",
         "xsec": 4.569,
         "datatype": "mc"
     },
@@ -85,7 +85,7 @@
         "year": "2022",
         "era": "Run3Summer23",
         "dataset": "DYto2L-4Jets_MLL-120_HT-70to100_TuneCP5_13p6TeV_madgraphMLM-pythia8",
-        "physics_group": "",
+        "physics_group": "DYJets",
         "xsec": 2.196,
         "datatype": "mc"
     },
@@ -95,7 +95,7 @@
         "year": "2022",
         "era": "Run3Summer23",
         "dataset": "DYto2L-4Jets_MLL-120_HT-100to400_TuneCP5_13p6TeV_madgraphMLM-pythia8",
-        "physics_group": "",
+        "physics_group": "DYJets",
         "xsec": 3.364,
         "datatype": "mc"
     },
@@ -105,7 +105,7 @@
         "year": "2022",
         "era": "Run3Summer23",
         "dataset": "DYto2L-4Jets_MLL-120_HT-400to800_TuneCP5_13p6TeV_madgraphMLM-pythia8",
-        "physics_group": "",
+        "physics_group": "DYJets",
         "xsec": 0.1757,
         "datatype": "mc"
     },
@@ -115,7 +115,7 @@
         "year": "2022",
         "era": "Run3Summer23",
         "dataset": "DYto2L-4Jets_MLL-120_HT-800to1500_TuneCP5_13p6TeV_madgraphMLM-pythia8",
-        "physics_group": "",
+        "physics_group": "DYJets",
         "xsec": 0.021,
         "datatype": "mc"
     },
@@ -125,7 +125,7 @@
         "year": "2022",
         "era": "Run3Summer23",
         "dataset": "DYto2L-4Jets_MLL-120_HT-1500to2500_TuneCP5_13p6TeV_madgraphMLM-pythia8",
-        "physics_group": "",
+        "physics_group": "DYJets",
         "xsec": 0.001685,
         "datatype": "mc"
     },
@@ -135,7 +135,7 @@
         "year": "2022",
         "era": "Run3Summer23",
         "dataset": "DYto2L-4Jets_MLL-120_HT-2500_TuneCP5_13p6TeV_madgraphMLM-pythia8",
-        "physics_group": "",
+        "physics_group": "DYJets",
         "xsec": 0.0001245,
         "datatype": "mc"
     },
@@ -145,7 +145,7 @@
         "year": "2022",
         "era": "Run3Summer23",
         "dataset": "TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8",
-        "physics_group": "",
+        "physics_group": "TTbar",
         "xsec": 97.93,
         "datatype": "mc"
     },

@@ -29,6 +29,10 @@ def main(campaign, process, dataset):
     if campaign == "Run3Summer22" or campaign == "Run3Summer22EE":
         run = "Run3"
         year = "2022"
+    elif campaign == "Run3Summer23" or campaign == "Run3Summer23BPix":
+        run = "Run3"
+        year = "2023"
+
     jobdir = f"/uscms_data/d1/bjackson/WrCoffea/scripts/setup/skims/tmp/{run}/{year}/{campaign}"
     # Define base directory
     base_path = Path(f"/uscms_data/d1/bjackson/WrCoffea/data/filepaths/{run}/{year}/{campaign}")

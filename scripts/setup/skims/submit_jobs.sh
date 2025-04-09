@@ -14,9 +14,18 @@ DATASET_FILTER=${3:-""}  # Optional third argument
 if [[ "$CAMPAIGN" == *"RunII"* ]] || [[ "$CAMPAIGN" == "Run2018A" ]] || [[ "$CAMPAIGN" == "Run2018B" ]] || [[ "$CAMPAIGN" == "Run2018C" ]] || [[ "$CAMPAIGN" == "Run2018D" ]]; then
     RUN="RunII"
     YEAR="2018"
-elif [[ "$CAMPAIGN" == *"Run3"* ]]; then
+elif [[ "$CAMPAIGN" == "Run3Summer22" ]]; then
     RUN="Run3"
     YEAR="2022"
+elif [[ "$CAMPAIGN" == "Run3Summer22EE" ]]; then
+    RUN="Run3"
+    YEAR="2022"
+elif [[ "$CAMPAIGN" == "Run3Summer23" ]]; then
+    RUN="Run3"
+    YEAR="2023"
+elif [[ "$CAMPAIGN" == "Run3Summer23BPix" ]]; then
+    RUN="Run3"
+    YEAR="2023"
 else
     echo "Error: Could not determine RUN from CAMPAIGN ($CAMPAIGN)"
     exit 1
@@ -57,7 +66,7 @@ mkdir -p $BASE_PATH
 # Copy the tarball
 cd /uscms/home/bjackson/nobackup
 echo "Creating tarball of working directory. Wait approx 30 seconds..."
-tar -v  --exclude=WrCoffea/.git --exclude=WrCoffea/.env --exclude=WrCoffea/WR_Plotter --exclude=WrCoffea/scripts/setup/skims/tmp --exclude=WrCoffea/test -czf WrCoffea.tar.gz WrCoffea
+tar -v  --exclude=WrCoffea/.git --exclude=WrCoffea/.env --exclude=WrCoffea/WR_Plotter --exclude=WrCoffea/data/skims --exclude=WrCoffea/data/xsec --exclude=WrCoffea/scripts/setup/skims/tmp --exclude=WrCoffea/test -czf WrCoffea.tar.gz WrCoffea
 echo "Tarball created. Submitting scripts."
 
 for DATASET in "${DATASETS[@]}"

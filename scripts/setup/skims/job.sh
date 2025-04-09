@@ -12,9 +12,12 @@ DATASET=$4
 if [[ "$CAMPAIGN" == *"RunII"* || "$CAMPAIGN" == *"2018"* ]]; then
     RUN="RunII"
     YEAR="2018"
-elif [[ "$CAMPAIGN" == *"Run3"* ]]; then
+elif [[ "$CAMPAIGN" == *"Run3Summer22"* ]]; then
     RUN="Run3"
     YEAR="2022"
+elif [[ "$CAMPAIGN" == *"Run3Summer23"* ]]; then
+    RUN="Run3"
+    YEAR="2023"
 else
     echo "Error: Could not determine RUN from CAMPAIGN ($CAMPAIGN)"
     exit 1

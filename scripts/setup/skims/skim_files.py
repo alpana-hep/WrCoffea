@@ -105,8 +105,8 @@ def make_skimmed_events(events):
     leading_lepton = leptons_padded[:, 0]
     subleading_lepton = leptons_padded[:, 1]
 
-    lead_pt_cut = 30 #52
-    sublead_pt_cut = 30 #45
+    lead_pt_cut = 5 #30
+    sublead_pt_cut = 5 #30
     event_filters = (
         (ak.fill_none(leading_lepton.pt, 0) > lead_pt_cut) &
         (ak.fill_none(subleading_lepton.pt, 0) > sublead_pt_cut)
@@ -208,9 +208,12 @@ if __name__ == "__main__":
 
     if "18" in args.era:
         run = "RunII"
-    elif "Run3" in args.era:
+    elif "Run3Summer22" in args.era:
         run = "Run3"
         year = "2022"
+    elif "Run3Summer23" in args.era:
+        run = "Run3"
+        year = "2023"
 
     json_file_path = f'data/jsons/{run}/{year}/{args.era}/{args.era}_{args.process}_preprocessed.json'
     with open(json_file_path, 'r') as file:
