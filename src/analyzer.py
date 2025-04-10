@@ -1,5 +1,6 @@
 from coffea import processor
 from coffea.analysis_tools import Weights, PackedSelection
+from coffea.lumi_tools import LumiData, LumiMask, LumiList
 import awkward as ak
 import hist.dask as dah
 import hist
@@ -8,6 +9,7 @@ import re
 import time
 import logging
 import warnings
+import dask_awkward as dak
 warnings.filterwarnings("ignore",module="coffea.*")
 
 logging.basicConfig(level=logging.INFO)
@@ -65,8 +67,10 @@ class WrAnalysis(processor.ProcessorABC):
 
     def selectJets(self, events):
         """Select AK4 and AK8 jets."""
-        ak4_jets = (events.Jet.pt > 40) & (np.abs(events.Jet.eta) < 2.4) & (events.Jet.isTightLeptonVeto)
-#        ak8_jets = (events.FatJet.pt > 200) & (np.abs(events.FatJet.eta) < 2.4) & (events.FatJet.jetId == 2) & (events.FatJet.msoftdrop > 40)
+        ak4_jets = (np.abs(events.Jet.eta) < 2.4) & (events.Jet.isTightLeptonVeto)
+
+        # Usual Requirement
+#        ak4_jets = (events.Jet.pt > 40) & (np.abs(events.Jet.eta) < 2.4) & (events.Jet.isTightLeptonVeto)
         return events.Jet[ak4_jets]
 
     def check_mass_point_resolved(self):
@@ -135,20 +139,32 @@ class WrAnalysis(processor.ProcessorABC):
         output = self.make_output()
         
         metadata = events.metadata
-        mc_campaign = metadata["mc_campaign"]
-        process = metadata["process"]
+        mc_campaign = metadata["era"]
+        process = metadata["physics_group"]
         dataset = metadata["dataset"]
         isRealData = not hasattr(events, "genWeight")
         isMC = hasattr(events, "genWeight")
-        
+
+        logger.info(f"Analyzing {len(events)} {dataset} events.")
+
+        if isRealData:
+            if mc_campaign == "RunIISummer20UL18":
+                lumi_mask = LumiMask("data/lumis/RunII/2018/RunIISummer20UL18/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt")
+            elif mc_campaign == "Run3Summer22":
+                lumi_mask = LumiMask("data/lumis/Run3/2022/Run3Summer22/Cert_Collisions2022_355100_362760_Golden.txt")
+            events = events[lumi_mask(events.run, events.luminosityBlock)]
+#            num_events_after_mask = len(events["run"].compute())  # Compute using a lightweight branch
+#            lumi_list = LumiList(events.run, events.luminosityBlock)
+#            lumi_data = LumiData(f"lumi2018.csv", is_inst_lumi=False)
+#            lumi = lumi_data.get_lumi(lumi_list)
+#            print(lumi.compute())
+
         output['mc_campaign'] = mc_campaign
         output['process'] = process
         output['dataset'] = dataset
         if not isRealData:
             output['x_sec'] = events.metadata["xsec"] 
 
-        logger.info(f"Analyzing {len(events)} {dataset} events.")
-   
         # Process signal samples
         if process == "Signal": self.check_mass_point_resolved()
 
@@ -176,34 +192,31 @@ class WrAnalysis(processor.ProcessorABC):
 
         # Event selections
         selections = PackedSelection()
-
         self.add_resolved_selections(selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2)
 
         # Trigger selections
-        if isMC:
-            # Apply triggers for MC
-            if mc_campaign == "Run2Summer20UL18" or mc_campaign == "Run2Autumn18":
-                eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
-                muTrig = events.HLT.Mu50 | events.HLT.OldMu100 | events.HLT.TkMu100
-                selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
-                selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
-                selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
-            elif mc_campaign == "Run3Summer22":
-                eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
-                muTrig = events.HLT.Mu50 | events.HLT.HighPtTkMu100
-                selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
-                selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
-                selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
+        if mc_campaign == "RunIISummer20UL18" or mc_campaign == "Run2Autumn18":
+            eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
+            muTrig = events.HLT.Mu50 | events.HLT.OldMu100 | events.HLT.TkMu100
+            selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
+            selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
+            selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
+        elif mc_campaign == "Run3Summer22" or mc_campaign == "Run3Summer23BPix" or mc_campaign == "Run3Summer22EE" or mc_campaign == "Run3Summer23":
+            eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
+            muTrig = events.HLT.Mu50 | events.HLT.HighPtTkMu100
+            selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
+            selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
+            selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
 
-            # Use genWeight for MC
-            eventWeight = events.genWeight
-            output['sumw'] = ak.sum(eventWeight) if process == "Signal" else events.metadata["genEventSumw"]
-        elif isRealData:
-            # Fill the data weights with one
-            eventWeight = abs(np.sign(events.event)) # Find a better way to do this
-
-        # Weights
+        # Event Weights
         weights = Weights(size=None, storeIndividual=True)
+        if isMC:
+            eventWeight = events.genWeight
+            if not process == "Signal":
+                unqiue_gensumws = np.unique(events.genEventSumw.compute())
+            output['sumw'] = ak.sum(eventWeight) if process == "Signal" else np.sum(unqiue_gensumws)
+        elif isRealData:
+            eventWeight = abs(np.sign(events.event))
         weights.add("event_weight", weight=eventWeight)
 
         # Channel selections
@@ -216,31 +229,15 @@ class WrAnalysis(processor.ProcessorABC):
         selections.add("400mll", (mll > 400))
         selections.add("150mll", (mll > 150))
 
-        # Cutflow Tables
-        selections.add("leadJetPt500", (ak.any(AK4Jets.pt > 500, axis=1)))
-        electron_cutflow = selections.cutflow("leadJetPt500", "eejj", "eeTrigger", "minTwoAK4Jets", 'dr>0.4', 'mlljj>800', '400mll')
-        muon_cutflow = selections.cutflow("leadJetPt500", "mumujj", "mumuTrigger", "minTwoAK4Jets", 'dr>0.4', 'mlljj>800', '400mll')
-#        print(electron_cutflow.print())
-#        print(muon_cutflow.print())
-
         # Define analysis regions
         regions = {
             'WR_EE_Resolved_DYCR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'eejj'],
             'WR_MuMu_Resolved_DYCR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'mumujj'],
-            'WR_EMu_Resolved_CR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'emujj'],
+            'WR_EMu_Resolved_CR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'emujj'],
+            'WR_EMu_Resolved_Sideband': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'emujj'],
             'WR_EE_Resolved_SR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'eejj'],
             'WR_MuMu_Resolved_SR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'mumujj'],
         }
-
-        # Blind signal region and remove triggers
-        if isRealData:
-            # Remove specific regions
-            for region in ['WR_EE_Resolved_DYSR', 'WR_MuMu_Resolved_DYSR']:
-                regions.pop(region, None)  # Use pop with a default to avoid KeyError
-
-            # Remove triggers from all remaining regions
-            elements_to_remove = {'mumuTrigger', 'eeTrigger', 'emuTrigger'}  # Use a set for faster lookups
-            regions = {key: [item for item in cuts if item not in elements_to_remove] for key, cuts in regions.items()}
 
         # Fill histogram
         for region, cuts in regions.items():
