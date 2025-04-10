@@ -59,13 +59,6 @@ If using UMN’s setup, use:
 source /cvmfs/sft.cern.ch/lcg/views/LCG_104/x86_64-centos8-gcc11-opt/setup.sh
 ```
 
----
-
-## Extending the Analyzer
-The files [bin/run_analysis.py](https://github.com/UMN-CMS/WrCoffea/blob/main/bin/run_analysis.py) and [src/analyzer.py](https://github.com/UMN-CMS/WrCoffea/blob/main/src/analyzer.py) define the standard event selection and histogramming process.
-
-For independent studies with **custom variables, selections, or histograms**, develop your scripts in the [`test/`](https://github.com/UMN-CMS/WrCoffea/tree/main/test) folder.
-
 ### Adding a New Study
 1. Copy an existing script from `src/`:
    ```bash
