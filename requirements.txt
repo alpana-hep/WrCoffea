@@ -1,4 +1,3 @@
 coffea
 distributed
-XRootD
 numpy<2
