@@ -47,7 +47,8 @@ def replace_files_in_json(data: dict, run: str, year: str, era: str, umn: bool, 
     return data
 
 def get_root_files_from_umn(dataset: str, mc_campaign: str) -> list[str]:
-    base_path = Path(f"/local/cms/user/jack1851/skims/{mc_campaign}/{dataset}/")
+    run, year, era = get_era_details(mc_campaign)
+    base_path = Path(f"/local/cms/user/jack1851/skims/2025/{run}/{year}/{mc_campaign}/{dataset}/")
     root_files = []
     if base_path.exists():
         for path in base_path.rglob("*.root"):
