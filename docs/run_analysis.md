@@ -85,9 +85,9 @@ Similar to above, one can also specifcy `--dir` and `--name` to save files to sp
 ## Preprocessing
 To preprocess the background datasets (needs to be done if a file in `configs/` is updated),
 ```
-python3 scripts/make_skimmed_json.py Run2Summer20UL18 bkg --umn
+python3 scripts/make_skimmed_json.py RunIISummer20UL18 bkg --umn
 ```
-where `Run2Summer20UL18` can be replaced with `Run3Summer22` to preprocess Run3 datasets.
+where `RunIISummer20UL18` can be replaced with `Run3Summer22` to preprocess Run3 datasets.
 
 Signal samples can be preprocessed with,
 ```
