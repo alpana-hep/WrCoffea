@@ -91,6 +91,10 @@ run_signal_analysis() {
     echo "Error running signal analysis for mass ${mass} with era ${era}. Skipping..."
     return 1
   }
+  python3 bin/run_analysis.py "${era}" "Signal" --mass "${mass}" --dir 3jets "${EXTRA_ARGS[@]}" || {
+    echo "Error running signal analysis for mass ${mass} with era ${era} and 3jets. Skipping..."
+    return 1
+  }
 }
 
 # Run analysis based on mode

@@ -87,7 +87,7 @@ To preprocess the background datasets (needs to be done if a file in `configs/` 
 ```
 python3 scripts/make_skimmed_json.py RunIISummer20UL18 mc --umn
 ```
-where `RunIISummer20UL18` can be replaced with `Run3Summer22` to preprocess Run3 datasets.
+where `RunIISummer20UL18` can be replaced with `Run3Summer22` to preprocess Run3 datasets and `mc` can be replaced with `signal` or `data`.
 
 Signal samples can be preprocessed with,
 ```

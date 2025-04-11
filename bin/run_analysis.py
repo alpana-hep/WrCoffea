@@ -17,6 +17,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../data
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../python`')))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+from analyzer_3j import WrAnalysis as WrAnalysis_3j
 from analyzer import WrAnalysis
 from dask.distributed import Client
 from dask.diagnostics import ProgressBar
@@ -71,8 +72,8 @@ def validate_arguments(args):
 
 def run_analysis(args, filtered_fileset):
     to_compute = apply_to_fileset(
-        data_manipulation=WrAnalysis(mass_point=args.mass),
-        fileset=max_files(max_chunks(filtered_fileset)),
+        data_manipulation=WrAnalysis(mass_point=args.mass) if args.dir!="3jets" else WrAnalysis_3j(mass_point=args.mass),
+        fileset=max_files(max_chunks(filtered_fileset,)),
         schemaclass=NanoAODSchema,
     )
     return to_compute
