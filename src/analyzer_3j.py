@@ -61,6 +61,20 @@ class WrAnalysis(processor.ProcessorABC):
                 hist.axis.Regular(20, 0, 6, name='del_r', label=r'\Delta R_{min}'),
                 hist.storage.Weight(),
             ),
+            'WRMass4_pT':dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(100, 0, 8000, name='mass_fourobject', label=r'm_{lljj} [GeV]'),
+                hist.axis.Regular(50, 0, 600, name='pT', label=r'p_{T,min} [GeV]'),
+                hist.storage.Weight(),
+            ),
+            'WRMass5_pT':dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(100, 0, 8000, name='mass_fiveobject', label=r'm_{lljjj} [GeV]'),
+                hist.axis.Regular(50, 0, 600, name='pT', label=r'p_{T,min} [GeV]'),
+                hist.storage.Weight(),
+            ),
         }
 
     def create_hist(self, name, process, region, bins, label):
@@ -276,8 +290,18 @@ class WrAnalysis(processor.ProcessorABC):
             mlljj1= (tightLeptons[cut][:, 0] + tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
             mlljjj= (tightLeptons[cut][:, 0] + tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1] + AK4Jets[cut][:, 2]).mass
             dr_j3_min = ak.min(AK4Jets[cut][:,2].delta_r(AK4Jets[cut][:,:2]),axis=1)
+            x0,y0,z0=np.cos(AK4Jets[cut][:,0].phi),np.sin(AK4Jets[cut][:,0].phi),np.sinh(AK4Jets[cut][:,0].eta)
+            x1,y1,z1=np.cos(AK4Jets[cut][:,1].phi),np.sin(AK4Jets[cut][:,1].phi),np.sinh(AK4Jets[cut][:,1].eta)
+            x2,y2,z2=np.cos(AK4Jets[cut][:,2].phi),np.sin(AK4Jets[cut][:,2].phi),np.sinh(AK4Jets[cut][:,2].eta)
+            cosine20=(x0*x2+y0*y2+z0*z2)/np.sqrt((1+z0*z0)*(1+z2*z2))
+            cosine21=(x1*x2+y1*y2+z1*z2)/np.sqrt((1+z1*z1)*(1+z2*z2))
+            tan20=np.sqrt(-1+1/cosine20**2)
+            tan21=np.sqrt(-1+1/cosine21**2)
+            pt_min=ak.from_numpy(np.min(np.array([[tan20.to_numpy],[tan21.to_numpy]]),axis=1))
             output['WRMass4_DeltaR'].fill(process=process,region=region,mass_fourobject=mlljj1,del_r=dr_j3_min,weight=weights.weight()[cut])
             output['WRMass5_DeltaR'].fill(process=process,region=region,mass_fiveobject=mlljjj,del_r=dr_j3_min,weight=weights.weight()[cut])
+            output['WRMass4_pT'].fill(process=process,region=region,mass_fourobject=mlljj1,pT=pt_min,weight=weights.weight()[cut])
+            output['WRMass5_pT'].fill(process=process,region=region,mass_fiveobject=mlljjj,pT=pt_min,weight=weights.weight()[cut])
 
         output["weightStats"] = weights.weightStatistics
         return output
