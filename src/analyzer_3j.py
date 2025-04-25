@@ -290,14 +290,19 @@ class WrAnalysis(processor.ProcessorABC):
             mlljj1= (tightLeptons[cut][:, 0] + tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
             mlljjj= (tightLeptons[cut][:, 0] + tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1] + AK4Jets[cut][:, 2]).mass
             dr_j3_min = ak.min(AK4Jets[cut][:,2].delta_r(AK4Jets[cut][:,:2]),axis=1)
-            x0,y0,z0=np.cos(AK4Jets[cut][:,0].phi),np.sin(AK4Jets[cut][:,0].phi),np.sinh(AK4Jets[cut][:,0].eta)
-            x1,y1,z1=np.cos(AK4Jets[cut][:,1].phi),np.sin(AK4Jets[cut][:,1].phi),np.sinh(AK4Jets[cut][:,1].eta)
-            x2,y2,z2=np.cos(AK4Jets[cut][:,2].phi),np.sin(AK4Jets[cut][:,2].phi),np.sinh(AK4Jets[cut][:,2].eta)
-            cosine20=(x0*x2+y0*y2+z0*z2)/np.sqrt((1+z0*z0)*(1+z2*z2))
-            cosine21=(x1*x2+y1*y2+z1*z2)/np.sqrt((1+z1*z1)*(1+z2*z2))
-            tan20=np.sqrt(-1+1/cosine20**2)
-            tan21=np.sqrt(-1+1/cosine21**2)
-            pt_min=ak.from_numpy(np.min(np.array([[tan20.to_numpy],[tan21.to_numpy]]),axis=1))
+            
+            x0,y0,z0=AK4Jets[cut][:,0].x,AK4Jets[cut][:,0].y,AK4Jets[cut][:,0].z
+            x1,y1,z1=AK4Jets[cut][:,1].x,AK4Jets[cut][:,1].y,AK4Jets[cut][:,1].z
+            x2,y2,z2=AK4Jets[cut][:,2].x,AK4Jets[cut][:,2].y,AK4Jets[cut][:,2].z
+            
+            jet3mag=np.sqrt(x2*x2+y2*y2+z2*z2)
+            cosine20=(x0*x2+y0*y2+z0*z2)/np.sqrt((x0*x0+y0*y0+z0*z0))/jet3mag
+            cosine21=(x1*x2+y1*y2+z1*z2)/np.sqrt((x1*x1+y1*y1+z1*z1))/jet3mag
+            sine20=np.sqrt(1-cosine20**2)
+            sine21=np.sqrt(1-cosine21**2)
+            
+            pt_min=jet3mag*ak.min(ak.concatenate([sine20[:,np.newaxis],sine21[:,np.newaxis]],axis=1),axis=1)
+            
             output['WRMass4_DeltaR'].fill(process=process,region=region,mass_fourobject=mlljj1,del_r=dr_j3_min,weight=weights.weight()[cut])
             output['WRMass5_DeltaR'].fill(process=process,region=region,mass_fiveobject=mlljjj,del_r=dr_j3_min,weight=weights.weight()[cut])
             output['WRMass4_pT'].fill(process=process,region=region,mass_fourobject=mlljj1,pT=pt_min,weight=weights.weight()[cut])
