@@ -20,28 +20,36 @@ class WrAnalysis(processor.ProcessorABC):
         self._signal_sample = mass_point
 
         self.make_output = lambda: {
-            'Lepton_0_Pt': self.create_hist('pt_leadlep', 'process', 'region', (200, 0, 2000), r'p_{T} of the leading lepton [GeV]'),
-            'Lepton_0_Eta': self.create_hist('eta_leadlep', 'process', 'region', (60, -3, 3), r'#eta of the leading lepton'),
-            'Lepton_0_Phi': self.create_hist('phi_leadlep', 'process', 'region', (80, -4, 4), r'#phi of the leading lepton'),
-            'Lepton_1_Pt': self.create_hist('pt_subleadlep', 'process', 'region', (200, 0, 2000), r'p_{T} of the subleading lepton [GeV]'),
-            'Lepton_1_Eta': self.create_hist('eta_subleadlep', 'process', 'region', (60, -3, 3), r'#eta of the subleading lepton'),
-            'Lepton_1_Phi': self.create_hist('phi_subleadlep', 'process', 'region', (80, -4, 4), r'#phi of the subleading lepton'),
-            'Jet_0_Pt': self.create_hist('pt_leadjet', 'process', 'region', (200, 0, 2000), r'p_{T} of the leading jet [GeV]'),
-            'Jet_0_Eta': self.create_hist('eta_leadjet', 'process', 'region', (60, -3, 3), r'#eta of the leading jet [GeV]'),
-            'Jet_0_Phi': self.create_hist('phi_leadjet', 'process', 'region', (80, -4, 4), r'#phi of the leading jet'),
-            'Jet_1_Pt': self.create_hist('pt_subleadjet', 'process', 'region', (200, 0, 2000), r'p_{T} of the subleading jet [GeV]'),
-            'Jet_1_Eta': self.create_hist('eta_subleadjet', 'process', 'region', (60, -3, 3), r'#eta of the subleading jet [GeV]'),
-            'Jet_1_Phi': self.create_hist('phi_subleadjet', 'process', 'region', (80, -4, 4), r'#phi of the subleading jet'),
-            'ZCand_Mass': self.create_hist('mass_dileptons', 'process', 'region', (5000, 0, 5000), r'm_{ll} [GeV]'),
-            'ZCand_Pt': self.create_hist('pt_dileptons', 'process', 'region', (200, 0, 2000), r'p^{T}_{ll} [GeV]'),
-            'Dijet_Mass': self.create_hist('mass_dijet', 'process', 'region', (500, 0, 5000), r'm_{jj} [GeV]'),
-            'Dijet_Pt': self.create_hist('pt_dijet', 'process', 'region', (500, 0, 5000), r'p^{T}_{jj} [GeV]'),
-            'NCand_Lepton_0_Mass': self.create_hist('mass_threeobject_leadlep', 'process', 'region', (800, 0, 8000), r'm_{ljj} [GeV]'),
-            'NCand_Lepton_0_Pt': self.create_hist('pt_threeobject_leadlep', 'process', 'region', (800, 0, 8000), r'p^{T}_{ljj} [GeV]'),
-            'NCand_Lepton_1_Mass': self.create_hist('mass_threeobject_subleadlep', 'process', 'region', (800, 0, 8000), r'm_{ljj} [GeV]'),
-            'NCand_Lepton_1_Pt': self.create_hist('pt_threeobject_subleadlep', 'process', 'region', (800, 0, 8000), r'p^{T}_{ljj} [GeV]'),
-            'WRCand_Mass': self.create_hist('mass_fourobject', 'process', 'region', (800, 0, 8000), r'm_{lljj} [GeV]'),
-            'WRCand_Pt': self.create_hist('pt_fourobject', 'process', 'region', (800, 0, 8000), r'p^{T}_{lljj} [GeV]'),
+            'pt_leading_lepton':        self.create_hist('pt_leadlep',        'process', 'region', (200,   0, 2000), r'$p_{T}$ of the leading lepton [GeV]'),
+            'eta_leading_lepton':       self.create_hist('eta_leadlep',       'process', 'region', (60,   -3,    3), r'$\eta$ of the leading lepton'),
+            'phi_leading_lepton':       self.create_hist('phi_leadlep',       'process', 'region', (80,   -4,    4), r'$\phi$ of the leading lepton'),
+
+            'pt_subleading_lepton':     self.create_hist('pt_subleadlep',     'process', 'region', (200,   0, 2000), r'$p_{T}$ of the subleading lepton [GeV]'),
+            'eta_subleading_lepton':    self.create_hist('eta_subleadlep',    'process', 'region', (60,   -3,    3), r'$\eta$ of the subleading lepton'),
+            'phi_subleading_lepton':    self.create_hist('phi_subleadlep',    'process', 'region', (80,   -4,    4), r'$\phi$ of the subleading lepton'),
+
+            'pt_leading_jet':           self.create_hist('pt_leadjet',           'process', 'region', (200,   0, 2000), r'$p_{T}$ of the leading jet [GeV]'),
+            'eta_leading_jet':          self.create_hist('eta_leadjet',          'process', 'region', (60,   -3,    3), r'$\eta$ of the leading jet'),
+            'phi_leading_jet':          self.create_hist('phi_leadjet',          'process', 'region', (80,   -4,    4), r'$\phi$ of the leading jet'),
+
+            'pt_subleading_jet':        self.create_hist('pt_subleadjet',        'process', 'region', (200,   0, 2000), r'$p_{T}$ of the subleading jet [GeV]'),
+            'eta_subleading_jet':       self.create_hist('eta_subleadjet',       'process', 'region', (60,   -3,    3), r'$\eta$ of the subleading jet'),
+            'phi_subleading_jet':       self.create_hist('phi_subleadjet',       'process', 'region', (80,   -4,    4), r'$\phi$ of the subleading jet'),
+
+            'mass_dilepton':            self.create_hist('mass_dilepton',            'process', 'region', (5000,  0, 5000), r'$m_{\ell\ell}$ [GeV]'),
+            'pt_dilepton':              self.create_hist('pt_dilepton',              'process', 'region', (200,   0, 2000), r'$p_{T,\ell\ell}$ [GeV]'),
+
+            'mass_dijet':               self.create_hist('mass_dijet',               'process', 'region', (500,   0, 5000), r'$m_{jj}$ [GeV]'),
+            'pt_dijet':                 self.create_hist('pt_dijet',                 'process', 'region', (500,   0, 5000), r'$p_{T,jj}$ [GeV]'),
+
+            'mass_threeobject_leadlep':  self.create_hist('mass_threeobject_leadlep',  'process', 'region', (800,   0, 8000), r'$m_{\ell jj}$ [GeV]'),
+            'pt_threeobject_leadlep':    self.create_hist('pt_threeobject_leadlep',    'process', 'region', (800,   0, 8000), r'$p_{T,\ell jj}$ [GeV]'),
+
+            'mass_threeobject_subleadlep': self.create_hist('mass_threeobject_subleadlep', 'process', 'region', (800,   0, 8000), r'$m_{\ell jj}$ [GeV]'),
+            'pt_threeobject_subleadlep':   self.create_hist('pt_threeobject_subleadlep',   'process', 'region', (800,   0, 8000), r'$p_{T,\ell jj}$ [GeV]'),
+
+            'mass_fourobject':        self.create_hist('mass_fourobject',        'process', 'region', (800,   0, 8000), r'$m_{\ell\ell jj}$ [GeV]'),
+            'pt_fourobject':          self.create_hist('pt_fourobject',          'process', 'region', (800,   0, 8000), r'$p_{T,\ell\ell jj}$ [GeV]'),
         }
 
     def create_hist(self, name, process, region, bins, label):
@@ -101,28 +109,28 @@ class WrAnalysis(processor.ProcessorABC):
         """Helper function to fill histograms dynamically."""
         # Define a list of variables and their corresponding histograms
         variables = [
-            ('Lepton_0_Pt', leptons[:, 0].pt, 'pt_leadlep'),
-            ('Lepton_0_Eta', leptons[:, 0].eta, 'eta_leadlep'),
-            ('Lepton_0_Phi', leptons[:, 0].phi, 'phi_leadlep'),
-            ('Lepton_1_Pt', leptons[:, 1].pt, 'pt_subleadlep'),
-            ('Lepton_1_Eta', leptons[:, 1].eta, 'eta_subleadlep'),
-            ('Lepton_1_Phi', leptons[:, 1].phi, 'phi_subleadlep'),
-            ('Jet_0_Pt', jets[:, 0].pt, 'pt_leadjet'),
-            ('Jet_0_Eta', jets[:, 0].eta, 'eta_leadjet'),
-            ('Jet_0_Phi', jets[:, 0].phi, 'phi_leadjet'),
-            ('Jet_1_Pt', jets[:, 1].pt, 'pt_subleadjet'),
-            ('Jet_1_Eta', jets[:, 1].eta, 'eta_subleadjet'),
-            ('Jet_1_Phi', jets[:, 1].phi, 'phi_subleadjet'),
-            ('ZCand_Mass', (leptons[:, 0] + leptons[:, 1]).mass, 'mass_dileptons'),
-            ('ZCand_Pt', (leptons[:, 0] + leptons[:, 1]).pt, 'pt_dileptons'),
-            ('Dijet_Mass', (jets[:, 0] + jets[:, 1]).mass, 'mass_dijet'),
-            ('Dijet_Pt', (jets[:, 0] + jets[:, 1]).pt, 'pt_dijet'),
-            ('NCand_Lepton_0_Mass', (leptons[:, 0] + jets[:, 0] + jets[:, 1]).mass, 'mass_threeobject_leadlep'),
-            ('NCand_Lepton_0_Pt', (leptons[:, 0] + jets[:, 0] + jets[:, 1]).pt, 'pt_threeobject_leadlep'),
-            ('NCand_Lepton_1_Mass', (leptons[:, 1] + jets[:, 0] + jets[:, 1]).mass, 'mass_threeobject_subleadlep'),
-            ('NCand_Lepton_1_Pt', (leptons[:, 1] + jets[:, 0] + jets[:, 1]).pt, 'pt_threeobject_subleadlep'),
-            ('WRCand_Mass', (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1]).mass, 'mass_fourobject'),
-            ('WRCand_Pt', (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1]).pt, 'pt_fourobject'),
+            ('pt_leading_lepton',         leptons[:,0].pt,    'pt_leadlep'),
+            ('eta_leading_lepton',        leptons[:,0].eta,   'eta_leadlep'),
+            ('phi_leading_lepton',        leptons[:,0].phi,   'phi_leadlep'),
+            ('pt_subleading_lepton',      leptons[:,1].pt,    'pt_subleadlep'),
+            ('eta_subleading_lepton',     leptons[:,1].eta,   'eta_subleadlep'),
+            ('phi_subleading_lepton',     leptons[:,1].phi,   'phi_subleadlep'),
+            ('pt_leading_jet',            jets[:,0].pt,       'pt_leadjet'),
+            ('eta_leading_jet',           jets[:,0].eta,      'eta_leadjet'),
+            ('phi_leading_jet',           jets[:,0].phi,      'phi_leadjet'),
+            ('pt_subleading_jet',         jets[:,1].pt,       'pt_subleadjet'),
+            ('eta_subleading_jet',        jets[:,1].eta,      'eta_subleadjet'),
+            ('phi_subleading_jet',        jets[:,1].phi,      'phi_subleadjet'),
+            ('mass_dilepton',             (leptons[:,0] + leptons[:,1]).mass, 'mass_dilepton'),
+            ('pt_dilepton',               (leptons[:,0] + leptons[:,1]).pt,   'pt_dilepton'),
+            ('mass_dijet',                (jets[:,0] + jets[:,1]).mass,       'mass_dijet'),
+            ('pt_dijet',                  (jets[:,0] + jets[:,1]).pt,         'pt_dijet'),
+            ('mass_threeobject_leadlep',   (leptons[:,0] + jets[:,0] + jets[:,1]).mass, 'mass_threeobject_leadlep'),
+            ('pt_threeobject_leadlep',     (leptons[:,0] + jets[:,0] + jets[:,1]).pt,   'pt_threeobject_leadlep'),
+            ('mass_threeobject_subleadlep',(leptons[:,1] + jets[:,0] + jets[:,1]).mass, 'mass_threeobject_subleadlep'),
+            ('pt_threeobject_subleadlep',  (leptons[:,1] + jets[:,0] + jets[:,1]).pt,   'pt_threeobject_subleadlep'),
+            ('mass_fourobject',         (leptons[:,0] + leptons[:,1] + jets[:,0] + jets[:,1]).mass, 'mass_fourobject'),
+            ('pt_fourobject',           (leptons[:,0] + leptons[:,1] + jets[:,0] + jets[:,1]).pt,   'pt_fourobject'),
         ]
 
         # Loop over variables and fill corresponding histograms
@@ -232,7 +240,7 @@ class WrAnalysis(processor.ProcessorABC):
         regions = {
             'WR_EE_Resolved_DYCR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'eejj'],
             'WR_MuMu_Resolved_DYCR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'mumujj'],
-            'WR_EMu_Resolved_Sideband': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'emujj'],
+            'WR_Resolved_FlavorCR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'emujj'],
             'WR_EE_Resolved_SR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'eejj'],
             'WR_MuMu_Resolved_SR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'mumujj'],
         }

@@ -100,7 +100,7 @@ def main():
     if "Muon" in args.process or "EGamma" in args.process:
         input_file = Path("/uscms/home/bjackson/nobackup/WrCoffea/data/configs") / run / year / args.era / f"{args.era}_data.json"
     else:
-        input_file = Path("/uscms/home/bjackson/nobackup/WrCoffea/data/configs") / run / year / args.era / f"{args.era}_mc.json"
+        input_file = Path("/uscms/home/bjackson/nobackup/WrCoffea/data/configs") / run / year / args.era / f"{args.era}_mc_inclusive.json" #f"{args.era}_mc.json"
 
     output_file = Path("/uscms/home/bjackson/nobackup/WrCoffea/data/jsons") / run / year / args.era / f"{args.era}_{args.process}_preprocessed.json"
     output_txt_dir = Path("/uscms/home/bjackson/nobackup/WrCoffea/data/filepaths") / run / year / args.era

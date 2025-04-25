@@ -25,13 +25,16 @@ def mkdir(path):
 
 def main(campaign, process, dataset):
     print(f"Starting job creation for dataset: {dataset}")
-    run = campaign[:4]
+#    run = campaign[:4]
     if campaign == "Run3Summer22" or campaign == "Run3Summer22EE":
         run = "Run3"
         year = "2022"
     elif campaign == "Run3Summer23" or campaign == "Run3Summer23BPix":
         run = "Run3"
         year = "2023"
+    elif campaign == "RunIISummer20UL18":
+        run = "RunII"
+        year = "2018"
 
     jobdir = f"/uscms_data/d1/bjackson/WrCoffea/scripts/setup/skims/tmp/{run}/{year}/{campaign}"
     # Define base directory

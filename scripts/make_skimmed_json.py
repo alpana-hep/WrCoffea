@@ -59,7 +59,8 @@ def get_root_files_from_umn(dataset: str, mc_campaign: str) -> list[str]:
     return root_files
 
 def get_root_files_from_eos(dataset: str, run: str, year: str, era: str) -> list[str]:
-    base_path = f"/store/user/wijackso/WRAnalyzer/skims/2025/{run}/{year}/{era}/{dataset}/"
+#    base_path = f"/store/user/wijackso/WRAnalyzer/skims/2025/{run}/{year}/{era}/{dataset}/"
+    base_path = f"/store/user/wijackso/WRAnalyzer/skims/2025/{run}/{year}/{era}_5gev/{dataset}/"
     cmd = ["xrdfs", "root://cmseos.fnal.gov", "ls", base_path]
     try:
         output = subprocess.check_output(cmd, text=True)
@@ -95,7 +96,7 @@ def main():
 
     run, year, era = get_era_details(args.era)
     input_file = Path("data/configs") / run / year / era / f"{era}_{args.sample}.json"
-    output_file = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_{args.sample}_preprocessed_skims.json"
+    output_file = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_{args.sample}_preprocessed_skims_run3.json"
     
     fileset = load_json(str(input_file))
     print()

@@ -208,6 +208,7 @@ if __name__ == "__main__":
 
     if "18" in args.era:
         run = "RunII"
+        year = "2018"
     elif "Run3Summer22" in args.era:
         run = "Run3"
         year = "2022"
