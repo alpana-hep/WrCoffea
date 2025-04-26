@@ -69,6 +69,14 @@ def validate_arguments(args):
         raise ValueError("Mass argument provided for non-signal sample.")
 #    logging.info("Arguments validated successfully.")
 
+def run_analysis(args, filtered_fileset):
+    to_compute = apply_to_fileset(
+        data_manipulation=WrAnalysis(mass_point=args.mass),
+        fileset=max_files(max_chunks(filtered_fileset)),
+        schemaclass=NanoAODSchema,
+    )
+    return to_compute
+
 def save_hists(to_compute):
     logging.info("Computing histograms...")
     with ProgressBar():
@@ -81,18 +89,11 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Processing script for WR analysis.")
     parser.add_argument("era", type=str, choices=["RunIISummer20UL16", "RunIISummer20UL17", "RunIISummer20UL18", "Run3Summer22", "Run3Summer22EE", "Run3Summer23", "Run3Summer23BPix"], help="Campaign to analyze.")
-    parser.add_argument("--sample", type=str, choices=["DYJets", "TTbar", "tW", "WJets", "SingleTop", "TTbarSemileptonic", "TTX", "Diboson", "Triboson", "EGamma", "Muon", "Signal"], help="MC sample to analyze (e.g., Signal, DYJets).")
-
+    parser.add_argument("sample", type=str, choices=["DYJets", "TTbar", "tW", "WJets", "SingleTop", "TTbarSemileptonic", "TTX", "Diboson", "Triboson", "EGamma", "Muon", "Signal"], help="MC sample to analyze (e.g., Signal, DYJets).")
     optional = parser.add_argument_group("Optional arguments")
-    optional.add_argument("--extract_reweights", type=str, help="Derive an MC/Data bin-by-bin correction for DYJets and Data based on a histogram variable (e.g. dijet mass). The output is a JSON file with the extracted weights", default=None)
-    optional.add_argument("--sf-file", help="path to JSON file of precomputed dijet SFs; if omitted, --derive-sf mode will write this file.", default=None)
-
     optional.add_argument("--mass", type=str, default=None, choices=MASS_CHOICES, help="Signal mass point to analyze.")
-
     optional.add_argument("--dir", type=str, default=None, help="Create a new output directory.")
     optional.add_argument("--name", type=str, default=None, help="Append the filenames of the output ROOT files.")
-
-
     optional.add_argument("--debug", action='store_true', help="Debug mode (don't compute histograms)")
     args = parser.parse_args()
 
@@ -102,75 +103,20 @@ if __name__ == "__main__":
     validate_arguments(args)
     run, year, era = get_era_details(args.era)
 
-   # 1) load & merge JSONs
-    if args.extract_reweights:
-        data_fp = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_data_preprocessed_skims.json"
-        mc_fp   = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_mc_preprocessed_skims.json"
-        data_fs = load_json(str(data_fp))
-        mc_fs   = load_json(str(mc_fp))
-        preprocessed_fileset = {**data_fs, **mc_fs}
-
-        # 2) pick only the three samples we need
-        samples_to_keep = {"DYJets", "EGamma", "Muon"}
-        filtered_fileset = {
-            dskey: dsinfo
-            for dskey, dsinfo in preprocessed_fileset.items()
-            if dsinfo["metadata"]["physics_group"] in samples_to_keep
-        }
-
-        # 3) set up WrAnalysis to only fill the two DY‐control regions
-        proc = WrAnalysis(
-            mass_point=args.mass,
-            extract_wghts = args.extract_reweights,
-        )
-
+    if "EGamma" in args.sample or "Muon" in args.sample:
+        filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_data_preprocessed_skims.json"
+    elif "Signal" in args.sample:
+        filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_signal_preprocessed_skims.json"
     else:
-        # your original single‐JSON logic
-        if args.sample in ("EGamma", "Muon"):
-            json_name = f"{era}_data_preprocessed_skims.json"
-        elif args.sample == "Signal":
-            json_name = f"{era}_signal_preprocessed_skims.json"
-        else:
-            json_name = f"{era}_mc_preprocessed_skims.json"
+        filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_mc_preprocessed_skims.json"
 
-        filepath = Path("data/jsons") / run / year / era / "skimmed" / json_name
-        preprocessed_fileset = load_json(str(filepath))
-        filtered_fileset = filter_by_process(preprocessed_fileset, args.sample, args.mass)
-
-        proc = WrAnalysis(
-            mass_point=args.mass,
-        )
-
-    # 4) build the dask/Coffea pipeline
-    to_compute = apply_to_fileset(
-        data_manipulation=proc,
-        fileset=max_files(max_chunks(filtered_fileset, 1), 1),
-        schemaclass=NanoAODSchema,
-    )
+    preprocessed_fileset = load_json(str(filepath))
+    filtered_fileset = filter_by_process(preprocessed_fileset, args.sample, args.mass)
 
     t0 = time.monotonic()
+    to_compute = run_analysis(args, filtered_fileset)
 
-    if args.extract_reweights:
-        # compute only the two DYCR histograms
-        with ProgressBar():
-            (out_cr,) = dask.compute(to_compute)
-
-        # find the DYJets entry
-        for dsname, hdict in out_cr.items():
-            if "DYJets" in dsname:
-                hist_mass = hdict["mass_dijet"]
-                break
-        else:
-            raise RuntimeError("No DYJets sample found in CR output")
-
-        # derive & write your SF JSON
-        sf_file = f'{args.extract_reweights}_sf.json'
-        sf_data = proc.derive_and_export_sf(hist_mass, sf_file)
-        logging.info(f"Wrote SFs to {sf_file}")
-
-    else:
-        if not args.debug:
-            save_hists(to_compute)
-
-    elapsed = (time.monotonic() - t0) / 60
-    logging.info(f"Execution took {elapsed:.2f} minutes")
+    if not args.debug:
+        save_hists(to_compute)
+    exec_time = time.monotonic() - t0
+    logging.info(f"Execution took {exec_time/60:.2f} minutes")

@@ -16,9 +16,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class WrAnalysis(processor.ProcessorABC):
-    def __init__(self, mass_point, extract_wghts = None):
+    def __init__(self, mass_point):
         self._signal_sample = mass_point
-        self.extract_weights = extract_wghts
 
         self.make_output = lambda: {
             'pt_leading_lepton':        self.create_hist('pt_leadlep',        'process', 'region', (200,   0, 2000), r'$p_{T}$ of the leading lepton [GeV]'),
@@ -40,7 +39,7 @@ class WrAnalysis(processor.ProcessorABC):
             'mass_dilepton':            self.create_hist('mass_dilepton',            'process', 'region', (5000,  0, 5000), r'$m_{\ell\ell}$ [GeV]'),
             'pt_dilepton':              self.create_hist('pt_dilepton',              'process', 'region', (200,   0, 2000), r'$p_{T,\ell\ell}$ [GeV]'),
 
-            'mass_dijet':               self.create_hist('mass_dijet',               'process', 'region', (50,   0, 5000), r'$m_{jj}$ [GeV]'),
+            'mass_dijet':               self.create_hist('mass_dijet',               'process', 'region', (500,   0, 5000), r'$m_{jj}$ [GeV]'),
             'pt_dijet':                 self.create_hist('pt_dijet',                 'process', 'region', (500,   0, 5000), r'$p_{T,jj}$ [GeV]'),
 
             'mass_threeobject_leadlep':  self.create_hist('mass_threeobject_leadlep',  'process', 'region', (800,   0, 8000), r'$m_{\ell jj}$ [GeV]'),
@@ -136,84 +135,12 @@ class WrAnalysis(processor.ProcessorABC):
 
         # Loop over variables and fill corresponding histograms
         for hist_name, values, axis_name in variables:
-            vals = values[cut]
-            w    = weights.weight()[cut]
-       
-            if self.extract_weights is not None:
-                if hist_name != self.extract_weights:
-                    continue
-                else:
-                    if 'EE' in region and process == "Muon":
-                        continue
-                    elif 'MuMu' in region and process == "EGamma":
-                        continue
-
-
-                    mjj = (jets[:,0] + jets[:,1]).mass
-                    print("region", region)
-                    print("process", process)
-                    print("hist_name", hist_name)
-                    if process == "DYJets":
-                        if region.startswith("WR_EE"):
-                            corr = self.lookup_EE(mjj[cut])
-                        elif region.startswith("WR_MuMu"):
-                            corr = self.lookup_MM(mjj[cut])
-                        else:
-                            corr = 1.0
-                        w = w * corr
-
             output[hist_name].fill(
                 process=process,
                 region=region,
-                **{axis_name: vals},
-                weight=w
+                **{axis_name: values[cut]},
+                weight=weights.weight()[cut]
             )
-
-    def derive_and_export_sf(self, hist_mass, outfile):
-        """
-        Given a Hist with axes [process,region,mass_dijet],
-        pull out the two CRs, build SF arrays, save JSON.
-        """
-
-        print("hist_mass", hist_mass)
-        print()
-
-        # collapse any extra axes (e.g. no region-integrated)
-        edges = hist_mass.axes["mass_dijet"].edges
-
-        # EE CR → project to mass only for each process
-        h_EE = hist_mass.integrate("region", "WR_EE_Resolved_DYCR")
-        cnt_DY_EE = h_EE[{"process": "DYJets"}].values()
-        cnt_EG    = h_EE[{"process": "EGamma"}].values()
-
-        sf_EE = np.where(
-            (cnt_DY_EE>0)&(cnt_EG>0),
-            (cnt_EG/cnt_DY_EE)*(cnt_DY_EE.sum()/cnt_EG.sum()),
-            1.0
-        )
-
-        # MuMu CR → same trick
-        h_MM = hist_mass.integrate("region", "WR_MuMu_Resolved_DYCR")
-        cnt_DY_MM = h_MM[{"process": "DYJets"}].values()
-        cnt_MU    = h_MM[{"process": "Muon"}].values()
-    
-        sf_MM = np.where(
-            (cnt_DY_MM>0)&(cnt_MU>0),
-            (cnt_MU/cnt_DY_MM)*(cnt_DY_MM.sum()/cnt_MU.sum()),
-            1.0
-        )
-
-        # write out a JSON
-        import json
-        data = {
-            "mass_edges": edges.tolist(),
-            "sf_EE":       sf_EE.tolist(),
-            "sf_MM":       sf_MM.tolist(),
-        }
-        with open(outfile, "w") as f:
-            json.dump(data, f, indent=2)
-
-        return data
 
     def process(self, events): 
         output = self.make_output()
@@ -324,8 +251,6 @@ class WrAnalysis(processor.ProcessorABC):
 
         # Fill histogram
         for region, cuts in regions.items():
-            if self.extract_weights and region not in ['WR_EE_Resolved_DYCR', 'WR_MuMu_Resolved_DYCR']:
-                continue
             cut = selections.all(*cuts)
             self.fill_basic_histograms(
                     output, region, cut, 
