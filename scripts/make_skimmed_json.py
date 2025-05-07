@@ -95,7 +95,7 @@ def main():
     args = parser.parse_args()
 
     run, year, era = get_era_details(args.era)
-    input_file = Path("data/configs") / run / year / era / f"{era}_{args.sample}.json"
+    input_file = Path("data/configs") / run / year / era / f"{era}_{args.sample}_inclusive.json"
     output_file = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_{args.sample}_preprocessed_skims_run3.json"
     
     fileset = load_json(str(input_file))
