@@ -1,6 +1,7 @@
 from coffea import processor
 from coffea.analysis_tools import Weights, PackedSelection
 from coffea.lumi_tools import LumiData, LumiMask, LumiList
+from coffea.lookup_tools.dense_lookup import dense_lookup
 import awkward as ak
 import hist.dask as dah
 import hist
@@ -9,6 +10,7 @@ import re
 import time
 import logging
 import warnings
+import json
 import dask_awkward as dak
 warnings.filterwarnings("ignore",module="coffea.*")
 
@@ -16,7 +18,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class WrAnalysis(processor.ProcessorABC):
-    def __init__(self, mass_point):
+    def __init__(self, mass_point, sf_file=None):
         self._signal_sample = mass_point
 
         self.make_output = lambda: {
@@ -51,6 +53,23 @@ class WrAnalysis(processor.ProcessorABC):
             'mass_fourobject':        self.create_hist('mass_fourobject',        'process', 'region', (800,   0, 8000), r'$m_{\ell\ell jj}$ [GeV]'),
             'pt_fourobject':          self.create_hist('pt_fourobject',          'process', 'region', (800,   0, 8000), r'$p_{T,\ell\ell jj}$ [GeV]'),
         }
+
+        # ——— Load SF lookup if provided ———
+        if sf_file:
+            with open(sf_file) as jf:
+                data = json.load(jf)
+            # convert lists → numpy arrays
+            edges = np.array(data["mass_edges"], dtype=float)
+            sf_EE  = np.array(data["sf_EE"],      dtype=float)
+            sf_MM  = np.array(data["sf_MM"],      dtype=float)
+
+            # Wrap in Coffea lookups
+            self.lookup_EE = dense_lookup(sf_EE, [edges])
+            self.lookup_MM = dense_lookup(sf_MM, [edges])
+            logger.info(f"Loaded mass_dijet SF lookup from {sf_file}")
+        else:
+            self.lookup_EE = None
+            self.lookup_MM = None
 
     def create_hist(self, name, process, region, bins, label):
         """Helper function to create histograms."""
@@ -133,14 +152,30 @@ class WrAnalysis(processor.ProcessorABC):
             ('pt_fourobject',           (leptons[:,0] + leptons[:,1] + jets[:,0] + jets[:,1]).pt,   'pt_fourobject'),
         ]
 
-        # Loop over variables and fill corresponding histograms
+        # precompute mjj for entire event array
+        mjj_all = (jets[:,0] + jets[:,1]).mass
+
         for hist_name, values, axis_name in variables:
+            vals = values[cut]
+            w    = weights.weight()[cut]
+
+        # If we're filling mass_dijet for DYJets, apply the lookup:
+#            if (hist_name == "mass_dijet" and process == "DYJets" and self.lookup_EE is not None):
+            if (process == "DYJets" and self.lookup_EE is not None):
+                if region.startswith("WR_EE_Resolved_DYCR"):
+                    corr = self.lookup_EE(mjj_all[cut])
+                elif region.startswith("WR_MuMu_Resolved_DYCR"):
+                    corr = self.lookup_MM(mjj_all[cut])
+                else:
+                    corr = 1.0
+                w = w * corr
+
             output[hist_name].fill(
-                process=process,
-                region=region,
-                **{axis_name: values[cut]},
-                weight=weights.weight()[cut]
-            )
+                 process=process,
+                 region=region,
+                 **{axis_name: vals},
+                 weight=w
+             )
 
     def process(self, events): 
         output = self.make_output()
