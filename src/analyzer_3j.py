@@ -16,8 +16,9 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class WrAnalysis(processor.ProcessorABC):
-    def __init__(self, mass_point=None):
+    def __init__(self, mass_point=None,exclusive=False):
         self._signal_sample = mass_point
+        self.exc=exclusive
 
         self.make_output = lambda: {
             'Lepton_0_Pt': self.create_hist('pt_leadlep', 'process', 'region', (200, 0, 2000), r'p_{T} of the leading lepton [GeV]'),
@@ -75,6 +76,20 @@ class WrAnalysis(processor.ProcessorABC):
                 hist.axis.Regular(50, 0, 600, name='pT', label=r'p_{T,min} [GeV]'),
                 hist.storage.Weight(),
             ),
+            'WRMass4_sin':dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(100, 0, 8000, name='mass_fourobject', label=r'm_{lljj} [GeV]'),
+                hist.axis.Regular(20, 0, 1, name='sin', label=r'sin(\theta)_{min}'),
+                hist.storage.Weight(),
+            ),
+            'WRMass5_sin':dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(100, 0, 8000, name='mass_fiveobject', label=r'm_{lljjj} [GeV]'),
+                hist.axis.Regular(20, 0, 1, name='sin', label=r'sin(\theta)_{min}'),
+                hist.storage.Weight(),
+            ),
         }
 
     def create_hist(self, name, process, region, bins, label):
@@ -126,7 +141,12 @@ class WrAnalysis(processor.ProcessorABC):
 
     def add_resolved_selections(self, selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2):
         selections.add("twoTightLeptons", (ak.num(tightElectrons) + ak.num(tightMuons)) == 2)
-        selections.add("minTwoAK4Jets", ak.num(AK4Jets) >= 3)
+        
+        if self.exc:
+            selections.add("minTwoAK4Jets", ak.num(AK4Jets) == 3)
+        else:
+            selections.add("minTwoAK4Jets", ak.num(AK4Jets) >= 3)
+        
         selections.add("leadTightLeptonPt60", (ak.any(tightElectrons.pt > 60, axis=1) | ak.any(tightMuons.pt > 60, axis=1)))
         selections.add("mlljj>800", mlljj > 800)
         selections.add("dr>0.4", (dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4))
@@ -301,12 +321,15 @@ class WrAnalysis(processor.ProcessorABC):
             sine20=np.sqrt(1-cosine20**2)
             sine21=np.sqrt(1-cosine21**2)
             
-            pt_min=jet3mag*ak.min(ak.concatenate([sine20[:,np.newaxis],sine21[:,np.newaxis]],axis=1),axis=1)
+            sine_min=ak.min(ak.concatenate([sine20[:,np.newaxis],sine21[:,np.newaxis]],axis=1),axis=1)
+            pt_min=jet3mag*sine_min
             
             output['WRMass4_DeltaR'].fill(process=process,region=region,mass_fourobject=mlljj1,del_r=dr_j3_min,weight=weights.weight()[cut])
             output['WRMass5_DeltaR'].fill(process=process,region=region,mass_fiveobject=mlljjj,del_r=dr_j3_min,weight=weights.weight()[cut])
             output['WRMass4_pT'].fill(process=process,region=region,mass_fourobject=mlljj1,pT=pt_min,weight=weights.weight()[cut])
             output['WRMass5_pT'].fill(process=process,region=region,mass_fiveobject=mlljjj,pT=pt_min,weight=weights.weight()[cut])
+            output['WRMass4_sin'].fill(process=process,region=region,mass_fourobject=mlljj1,sin=sine_min,weight=weights.weight()[cut])
+            output['WRMass5_sin'].fill(process=process,region=region,mass_fiveobject=mlljjj,sin=sine_min,weight=weights.weight()[cut])
 
         output["weightStats"] = weights.weightStatistics
         return output

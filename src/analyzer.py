@@ -16,9 +16,10 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class WrAnalysis(processor.ProcessorABC):
-    def __init__(self, mass_point=None):
+    def __init__(self, mass_point=None,exclusive=False):
         self._signal_sample = mass_point
-
+        self.exc=exclusive
+        
         self.make_output = lambda: {
             'Lepton_0_Pt': self.create_hist('pt_leadlep', 'process', 'region', (200, 0, 2000), r'p_{T} of the leading lepton [GeV]'),
             'Lepton_0_Eta': self.create_hist('eta_leadlep', 'process', 'region', (60, -3, 3), r'#eta of the leading lepton'),
@@ -93,7 +94,10 @@ class WrAnalysis(processor.ProcessorABC):
 
     def add_resolved_selections(self, selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2):
         selections.add("twoTightLeptons", (ak.num(tightElectrons) + ak.num(tightMuons)) == 2)
-        selections.add("minTwoAK4Jets", ak.num(AK4Jets) >= 2)
+        if self.exc:
+            selections.add("minTwoAK4Jets", ak.num(AK4Jets) == 2)
+        else:
+            selections.add("minTwoAK4Jets", ak.num(AK4Jets) >= 2)
         selections.add("leadTightLeptonPt60", (ak.any(tightElectrons.pt > 60, axis=1) | ak.any(tightMuons.pt > 60, axis=1)))
         selections.add("mlljj>800", mlljj > 800)
         selections.add("dr>0.4", (dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4))

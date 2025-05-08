@@ -72,7 +72,7 @@ def validate_arguments(args):
 
 def run_analysis(args, filtered_fileset):
     to_compute = apply_to_fileset(
-        data_manipulation=WrAnalysis(mass_point=args.mass) if args.dir!="3jets" else WrAnalysis_3j(mass_point=args.mass),
+        data_manipulation=WrAnalysis(mass_point=args.mass,exclusive=args.exc) if args.dir!="3jets" else WrAnalysis_3j(mass_point=args.mass,exclusive=args.exc),
         fileset=max_files(max_chunks(filtered_fileset,)),
         schemaclass=NanoAODSchema,
     )
@@ -96,6 +96,7 @@ if __name__ == "__main__":
     optional.add_argument("--dir", type=str, default=None, help="Create a new output directory.")
     optional.add_argument("--name", type=str, default=None, help="Append the filenames of the output ROOT files.")
     optional.add_argument("--debug", action='store_true', help="Debug mode (don't compute histograms)")
+    optional.add_argument("--exc",default=False, action='store_true', help="Exclusively 2 or 3 Jets")
     args = parser.parse_args()
 
     print()

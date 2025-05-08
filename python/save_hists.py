@@ -27,7 +27,10 @@ def save_histograms(histograms, args):
         output_dir = working_dir / 'rootfiles' / run / year / era / args.dir
     else:
         output_dir = working_dir / 'rootfiles' / run / year / era
-
+    
+    if args.exc:
+        output_dir = output_dir / 'exclusive'
+    
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Build filename based on sample
