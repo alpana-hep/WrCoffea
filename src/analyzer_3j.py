@@ -48,6 +48,7 @@ class WrAnalysis(processor.ProcessorABC):
             'NCand_Lepton_1_Pt': self.create_hist('pt_threeobject_subleadlep', 'process', 'region', (800, 0, 8000), r'p^{T}_{ljj} [GeV]'),
             'WRCand_Mass': self.create_hist('mass_fiveobject', 'process', 'region', (800, 0, 8000), r'm_{lljjj} [GeV]'),
             'WRCand_Pt': self.create_hist('pt_fiveobject', 'process', 'region', (800, 0, 8000), r'p^{T}_{lljjj} [GeV]'),
+            'n_counter': self.create_hist('count', 'process', 'region', (2, 0, 2), 'counter'),
             'WRMass4_DeltaR':dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
@@ -66,14 +67,14 @@ class WrAnalysis(processor.ProcessorABC):
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
                 hist.axis.Regular(100, 0, 8000, name='mass_fourobject', label=r'm_{lljj} [GeV]'),
-                hist.axis.Regular(50, 0, 600, name='pT', label=r'p_{T,min} [GeV]'),
+                hist.axis.Regular(50, 0, 600, name='pTrel', label=r'pT_{min}^{rel} [GeV]'),
                 hist.storage.Weight(),
             ),
             'WRMass5_pT':dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
                 hist.axis.Regular(100, 0, 8000, name='mass_fiveobject', label=r'm_{lljjj} [GeV]'),
-                hist.axis.Regular(50, 0, 600, name='pT', label=r'p_{T,min} [GeV]'),
+                hist.axis.Regular(50, 0, 600, name='pTrel', label=r'pT_{min}^{rel} [GeV]'),
                 hist.storage.Weight(),
             ),
             'WRMass4_sin':dah.hist.Hist(
@@ -88,6 +89,20 @@ class WrAnalysis(processor.ProcessorABC):
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
                 hist.axis.Regular(100, 0, 8000, name='mass_fiveobject', label=r'm_{lljjj} [GeV]'),
                 hist.axis.Regular(20, 0, 1, name='sin', label=r'sin(\theta)_{min}'),
+                hist.storage.Weight(),
+            ),
+            'WRMass4_pTnorm':dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(100, 0, 8000, name='mass_fourobject', label=r'm_{lljj} [GeV]'),
+                hist.axis.Regular(30, 0, 5, name='pTnorm', label=r'pT_rel/pT'),
+                hist.storage.Weight(),
+            ),
+            'WRMass5_pTnorm':dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(100, 0, 8000, name='mass_fiveobject', label=r'm_{lljjj} [GeV]'),
+                hist.axis.Regular(30, 0, 5, name='pTnorm', label=r'pT_rel/pT'),
                 hist.storage.Weight(),
             ),
         }
@@ -323,13 +338,23 @@ class WrAnalysis(processor.ProcessorABC):
             
             sine_min=ak.min(ak.concatenate([sine20[:,np.newaxis],sine21[:,np.newaxis]],axis=1),axis=1)
             pt_min=jet3mag*sine_min
+            pt_norm=pt_min/AK4Jets[cut][:, 0].pt
+            
+            counts = ak.copy(mlljjj)
+            counts[0] = 0.5
+            counts[1:] = 1.5
+            #for i in range(1,ak.count(counts,axis=None)):
+            #    counts[i]=1.5
             
             output['WRMass4_DeltaR'].fill(process=process,region=region,mass_fourobject=mlljj1,del_r=dr_j3_min,weight=weights.weight()[cut])
             output['WRMass5_DeltaR'].fill(process=process,region=region,mass_fiveobject=mlljjj,del_r=dr_j3_min,weight=weights.weight()[cut])
-            output['WRMass4_pT'].fill(process=process,region=region,mass_fourobject=mlljj1,pT=pt_min,weight=weights.weight()[cut])
-            output['WRMass5_pT'].fill(process=process,region=region,mass_fiveobject=mlljjj,pT=pt_min,weight=weights.weight()[cut])
+            output['WRMass4_pT'].fill(process=process,region=region,mass_fourobject=mlljj1,pTrel=pt_min,weight=weights.weight()[cut])
+            output['WRMass5_pT'].fill(process=process,region=region,mass_fiveobject=mlljjj,pTrel=pt_min,weight=weights.weight()[cut])
             output['WRMass4_sin'].fill(process=process,region=region,mass_fourobject=mlljj1,sin=sine_min,weight=weights.weight()[cut])
             output['WRMass5_sin'].fill(process=process,region=region,mass_fiveobject=mlljjj,sin=sine_min,weight=weights.weight()[cut])
+            output['WRMass4_pTnorm'].fill(process=process,region=region,mass_fourobject=mlljj1,pTnorm=pt_norm,weight=weights.weight()[cut])
+            output['WRMass5_pTnorm'].fill(process=process,region=region,mass_fiveobject=mlljjj,pTnorm=pt_norm,weight=weights.weight()[cut])
+            output['n_counter'].fill(process=process,region=region,count=counts,weight=weights.weight()[cut])
 
         output["weightStats"] = weights.weightStatistics
         return output
