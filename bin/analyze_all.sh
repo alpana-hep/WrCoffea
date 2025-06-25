@@ -76,7 +76,7 @@ run_analysis() {
   local era="$1"
   local process="$2"
 #  echo "Running analysis for era ${era} and --process ${process}"
-  python3 bin/run_analysis.py "${era}" "${process}" "${EXTRA_ARGS[@]}" || {
+  python3.11 bin/run_analysis.py "${era}" "${process}" "${EXTRA_ARGS[@]}" || {
     echo "Error running analysis for process ${process} with era ${era}. Skipping..."
     return 1
   }
@@ -87,7 +87,7 @@ run_signal_analysis() {
   local era="$1"
   local mass="$2"
 #  echo "Running analysis for era ${era} and signal with --mass ${mass}"
-  python3 bin/run_analysis.py "${era}" "Signal" --mass "${mass}" "${EXTRA_ARGS[@]}" || {
+  python3.11 bin/run_analysis.py "${era}" "Signal" --mass "${mass}" "${EXTRA_ARGS[@]}" || {
     echo "Error running signal analysis for mass ${mass} with era ${era}. Skipping..."
     return 1
   }

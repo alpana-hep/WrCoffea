@@ -48,7 +48,6 @@ class WrAnalysis(processor.ProcessorABC):
             'NCand_Lepton_1_Pt': self.create_hist('pt_threeobject_subleadlep', 'process', 'region', (800, 0, 8000), r'p^{T}_{ljj} [GeV]'),
             'WRCand_Mass': self.create_hist('mass_fiveobject', 'process', 'region', (800, 0, 8000), r'm_{lljjj} [GeV]'),
             'WRCand_Pt': self.create_hist('pt_fiveobject', 'process', 'region', (800, 0, 8000), r'p^{T}_{lljjj} [GeV]'),
-            'n_counter': self.create_hist('count', 'process', 'region', (2, 0, 2), 'counter'),
             'WRMass4_DeltaR':dah.hist.Hist(
                 hist.axis.StrCategory([], name="process", label="Process", growth=True),
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
@@ -154,7 +153,7 @@ class WrAnalysis(processor.ProcessorABC):
         else:
             raise ValueError(f"Invalid mass point format: {self._signal_sample}")
 
-    def add_resolved_selections(self, selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2):
+    def add_resolved_selections(self, selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_j1j3, dr_j2j3, dr_l1l2):
         selections.add("twoTightLeptons", (ak.num(tightElectrons) + ak.num(tightMuons)) == 2)
         
         if self.exc:
@@ -164,7 +163,7 @@ class WrAnalysis(processor.ProcessorABC):
         
         selections.add("leadTightLeptonPt60", (ak.any(tightElectrons.pt > 60, axis=1) | ak.any(tightMuons.pt > 60, axis=1)))
         selections.add("mlljj>800", mlljj > 800)
-        selections.add("dr>0.4", (dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4))
+        selections.add("dr>0.4", (dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_j1j3 > 0.4) & (dr_j2j3 > 0.4) & (dr_l1l2 > 0.4))
 
     def fill_basic_histograms(self, output, region, cut,  process, jets, leptons, weights):
         """Helper function to fill histograms dynamically."""
@@ -267,7 +266,7 @@ class WrAnalysis(processor.ProcessorABC):
 
         # Event selections
         selections = PackedSelection()
-        self.add_resolved_selections(selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2)
+        self.add_resolved_selections(selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_j1j3,dr_j2j3, dr_l1l2)
 
         # Trigger selections
         if mc_campaign == "RunIISummer20UL18" or mc_campaign == "Run2Autumn18":
@@ -333,18 +332,13 @@ class WrAnalysis(processor.ProcessorABC):
             jet3mag=np.sqrt(x2*x2+y2*y2+z2*z2)
             cosine20=(x0*x2+y0*y2+z0*z2)/np.sqrt((x0*x0+y0*y0+z0*z0))/jet3mag
             cosine21=(x1*x2+y1*y2+z1*z2)/np.sqrt((x1*x1+y1*y1+z1*z1))/jet3mag
-            sine20=np.sqrt(1-cosine20**2)
-            sine21=np.sqrt(1-cosine21**2)
+            sine20=ak.where(cosine20>0,np.sqrt(1-cosine20**2),1)
+            sine21=ak.where(cosine21>0,np.sqrt(1-cosine21**2),1)
             
             sine_min=ak.min(ak.concatenate([sine20[:,np.newaxis],sine21[:,np.newaxis]],axis=1),axis=1)
             pt_min=jet3mag*sine_min
             pt_norm=pt_min/AK4Jets[cut][:, 0].pt
             
-            counts = ak.copy(mlljjj)
-            counts[0] = 0.5
-            counts[1:] = 1.5
-            #for i in range(1,ak.count(counts,axis=None)):
-            #    counts[i]=1.5
             
             output['WRMass4_DeltaR'].fill(process=process,region=region,mass_fourobject=mlljj1,del_r=dr_j3_min,weight=weights.weight()[cut])
             output['WRMass5_DeltaR'].fill(process=process,region=region,mass_fiveobject=mlljjj,del_r=dr_j3_min,weight=weights.weight()[cut])
@@ -354,7 +348,6 @@ class WrAnalysis(processor.ProcessorABC):
             output['WRMass5_sin'].fill(process=process,region=region,mass_fiveobject=mlljjj,sin=sine_min,weight=weights.weight()[cut])
             output['WRMass4_pTnorm'].fill(process=process,region=region,mass_fourobject=mlljj1,pTnorm=pt_norm,weight=weights.weight()[cut])
             output['WRMass5_pTnorm'].fill(process=process,region=region,mass_fiveobject=mlljjj,pTnorm=pt_norm,weight=weights.weight()[cut])
-            output['n_counter'].fill(process=process,region=region,count=counts,weight=weights.weight()[cut])
 
         output["weightStats"] = weights.weightStatistics
         return output
