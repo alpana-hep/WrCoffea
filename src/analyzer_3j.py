@@ -10,6 +10,7 @@ import time
 import logging
 import warnings
 import dask_awkward as dak
+import csv
 warnings.filterwarnings("ignore",module="coffea.*")
 
 logging.basicConfig(level=logging.INFO)
@@ -317,7 +318,8 @@ class WrAnalysis(processor.ProcessorABC):
         for region, cuts in regions.items():
             cut = selections.all(*cuts)
             self.fill_basic_histograms(output, region, cut, process, AK4Jets, tightLeptons, weights)
-            
+
+        writestring=[]
         for region, cuts in regions.items():
             cut = selections.all(*cuts)
             self.fill_basic_histograms(output, region, cut, process, AK4Jets, tightLeptons, weights)
@@ -339,7 +341,19 @@ class WrAnalysis(processor.ProcessorABC):
             pt_min=jet3mag*sine_min
             pt_norm=pt_min/AK4Jets[cut][:, 0].pt
             
+            """ count= ak.num(mlljj1, axis=0).compute()
+            j1tb=ak.where(AK4Jets[cut][:, 0].partonFlavour==5,1,0)
+            j2tb=ak.where(AK4Jets[cut][:, 1].partonFlavour==5,1,0)
+            j3tb=ak.where(AK4Jets[cut][:, 2].partonFlavour==5,1,0)
+            tbcount = ak.sum(ak.where((j1tb + j2tb + j3tb)>0,1,0)).compute()
             
+            if region.endswith("SR"):
+                if region.startswith("WR_EE"):
+                    writestring.append(self._signal_sample)
+                writestring.append(tbcount)
+                writestring.append(count) """
+
+
             output['WRMass4_DeltaR'].fill(process=process,region=region,mass_fourobject=mlljj1,del_r=dr_j3_min,weight=weights.weight()[cut])
             output['WRMass5_DeltaR'].fill(process=process,region=region,mass_fiveobject=mlljjj,del_r=dr_j3_min,weight=weights.weight()[cut])
             output['WRMass4_pT'].fill(process=process,region=region,mass_fourobject=mlljj1,pTrel=pt_min,weight=weights.weight()[cut])
@@ -348,6 +362,10 @@ class WrAnalysis(processor.ProcessorABC):
             output['WRMass5_sin'].fill(process=process,region=region,mass_fiveobject=mlljjj,sin=sine_min,weight=weights.weight()[cut])
             output['WRMass4_pTnorm'].fill(process=process,region=region,mass_fourobject=mlljj1,pTnorm=pt_norm,weight=weights.weight()[cut])
             output['WRMass5_pTnorm'].fill(process=process,region=region,mass_fiveobject=mlljjj,pTnorm=pt_norm,weight=weights.weight()[cut])
+
+        """ with open('output.csv', 'a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(writestring) """
 
         output["weightStats"] = weights.weightStatistics
         return output
