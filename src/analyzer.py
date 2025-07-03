@@ -246,8 +246,8 @@ class WrAnalysis(processor.ProcessorABC):
         # Fill histogram
         for region, cuts in regions.items():
             cut = selections.all(*cuts)
-            count = ak.num(tightLeptons[cut][:, 1].mass,axis=0).compute()
-            print(count)
+            """ count = ak.num(tightLeptons[cut][:, 1].mass,axis=0).compute()
+            print(count) """
             self.fill_basic_histograms(output, region, cut, process, AK4Jets, tightLeptons, weights)
 
         output["weightStats"] = weights.weightStatistics

@@ -10,7 +10,7 @@ import time
 import logging
 import warnings
 import dask_awkward as dak
-import csv
+# import csv
 warnings.filterwarnings("ignore",module="coffea.*")
 
 logging.basicConfig(level=logging.INFO)
@@ -103,6 +103,20 @@ class WrAnalysis(processor.ProcessorABC):
                 hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
                 hist.axis.Regular(100, 0, 8000, name='mass_fiveobject', label=r'm_{lljjj} [GeV]'),
                 hist.axis.Regular(30, 0, 5, name='pTnorm', label=r'pT_rel/pT'),
+                hist.storage.Weight(),
+            ),
+            'WRMass4_magic':dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(100, 0, 8000, name='mass_fourobject', label=r'm_{lljj} [GeV]'),
+                hist.axis.Regular(50, 0, 1, name='magic', label=r'pT_rel/m_{jjj}'),
+                hist.storage.Weight(),
+            ),
+            'WRMass5_magic':dah.hist.Hist(
+                hist.axis.StrCategory([], name="process", label="Process", growth=True),
+                hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
+                hist.axis.Regular(100, 0, 8000, name='mass_fiveobject', label=r'm_{lljjj} [GeV]'),
+                hist.axis.Regular(50, 0, 1, name='magic', label=r'pT_rel/m_{jjj}'),
                 hist.storage.Weight(),
             ),
         }
@@ -325,6 +339,7 @@ class WrAnalysis(processor.ProcessorABC):
             self.fill_basic_histograms(output, region, cut, process, AK4Jets, tightLeptons, weights)
             mlljj1= (tightLeptons[cut][:, 0] + tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1]).mass
             mlljjj= (tightLeptons[cut][:, 0] + tightLeptons[cut][:, 1] + AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1] + AK4Jets[cut][:, 2]).mass
+            mjjj= (AK4Jets[cut][:, 0] + AK4Jets[cut][:, 1] + AK4Jets[cut][:, 2]).mass
             dr_j3_min = ak.min(AK4Jets[cut][:,2].delta_r(AK4Jets[cut][:,:2]),axis=1)
             
             x0,y0,z0=AK4Jets[cut][:,0].x,AK4Jets[cut][:,0].y,AK4Jets[cut][:,0].z
@@ -340,6 +355,7 @@ class WrAnalysis(processor.ProcessorABC):
             sine_min=ak.min(ak.concatenate([sine20[:,np.newaxis],sine21[:,np.newaxis]],axis=1),axis=1)
             pt_min=jet3mag*sine_min
             pt_norm=pt_min/AK4Jets[cut][:, 0].pt
+            magicparameter=pt_min/mjjj
             
             """ count= ak.num(mlljj1, axis=0).compute()
             j1tb=ak.where(AK4Jets[cut][:, 0].partonFlavour==5,1,0)
@@ -362,6 +378,8 @@ class WrAnalysis(processor.ProcessorABC):
             output['WRMass5_sin'].fill(process=process,region=region,mass_fiveobject=mlljjj,sin=sine_min,weight=weights.weight()[cut])
             output['WRMass4_pTnorm'].fill(process=process,region=region,mass_fourobject=mlljj1,pTnorm=pt_norm,weight=weights.weight()[cut])
             output['WRMass5_pTnorm'].fill(process=process,region=region,mass_fiveobject=mlljjj,pTnorm=pt_norm,weight=weights.weight()[cut])
+            output['WRMass4_magic'].fill(process=process,region=region,mass_fourobject=mlljj1,magic=magicparameter,weight=weights.weight()[cut])
+            output['WRMass5_magic'].fill(process=process,region=region,mass_fiveobject=mlljjj,magic=magicparameter,weight=weights.weight()[cut])
 
         """ with open('output.csv', 'a', newline='') as file:
             writer = csv.writer(file)
