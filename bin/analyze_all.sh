@@ -6,23 +6,24 @@ set -o pipefail
 ERA_OPTIONS=(
   RunIISummer20UL18
   Run3Summer22
+  Run3Summer22EE
 )
 
 # Data options for Run3Summer22
 DATA_OPTIONS=(
-  EGamma
   Muon
+  EGamma
 )
 
 # MC options (for all eras)
 MC_OPTIONS=(
   DYJets
   TTbar
-  tW
+  TW
   WJets
   TTbarSemileptonic
   SingleTop
-  TTX
+  TTV
   Diboson
   Triboson
 )

@@ -72,8 +72,9 @@ def validate_arguments(args):
 def run_analysis(args, filtered_fileset):
     to_compute = apply_to_fileset(
         data_manipulation=WrAnalysis(mass_point=args.mass, sf_file=args.sf_file),
-        fileset=max_files(max_chunks(filtered_fileset)),
+        fileset=max_files(max_chunks(filtered_fileset,),),
         schemaclass=NanoAODSchema,
+#        uproot_options={"handler": uproot.MultiThreadedXRootDSource, "timeout": 60}
     )
     return to_compute
 
@@ -89,7 +90,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Processing script for WR analysis.")
     parser.add_argument("era", type=str, choices=["RunIISummer20UL16", "RunIISummer20UL17", "RunIISummer20UL18", "Run3Summer22", "Run3Summer22EE", "Run3Summer23", "Run3Summer23BPix"], help="Campaign to analyze.")
-    parser.add_argument("sample", type=str, choices=["DYJets", "TTbar", "tW", "WJets", "SingleTop", "TTbarSemileptonic", "TTX", "Diboson", "Triboson", "EGamma", "Muon", "Signal"], help="MC sample to analyze (e.g., Signal, DYJets).")
+    parser.add_argument("sample", type=str, choices=["DYJets", "TTbar", "TW", "WJets", "SingleTop", "TTbarSemileptonic", "TTV", "Diboson", "Triboson", "EGamma", "Muon", "Signal"], help="MC sample to analyze (e.g., Signal, DYJets).")
     optional = parser.add_argument_group("Optional arguments")
     optional.add_argument("--mass", type=str, default=None, choices=MASS_CHOICES, help="Signal mass point to analyze.")
     optional.add_argument("--dir", type=str, default=None, help="Create a new output directory.")
@@ -111,6 +112,7 @@ if __name__ == "__main__":
     else:
         filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_mc_preprocessed_skims.json"
 
+    print(filepath)
     preprocessed_fileset = load_json(str(filepath))
     filtered_fileset = filter_by_process(preprocessed_fileset, args.sample, args.mass)
 

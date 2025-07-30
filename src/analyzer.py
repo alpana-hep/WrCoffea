@@ -52,6 +52,8 @@ class WrAnalysis(processor.ProcessorABC):
 
             'mass_fourobject':        self.create_hist('mass_fourobject',        'process', 'region', (800,   0, 8000), r'$m_{\ell\ell jj}$ [GeV]'),
             'pt_fourobject':          self.create_hist('pt_fourobject',          'process', 'region', (800,   0, 8000), r'$p_{T,\ell\ell jj}$ [GeV]'),
+
+            'mass_WR': self.create_hist('mass_WR', 'process', 'region', (100,    0, 6000), r'$m_{W_R}$ [GeV]'),
         }
 
         # ——— Load SF lookup if provided ———
@@ -155,16 +157,17 @@ class WrAnalysis(processor.ProcessorABC):
         # precompute mjj for entire event array
         mjj_all = (jets[:,0] + jets[:,1]).mass
 
+#        pt_leadjet = jets[:,0].pt
         for hist_name, values, axis_name in variables:
             vals = values[cut]
             w    = weights.weight()[cut]
-
         # If we're filling mass_dijet for DYJets, apply the lookup:
 #            if (hist_name == "mass_dijet" and process == "DYJets" and self.lookup_EE is not None):
             if (process == "DYJets" and self.lookup_EE is not None):
-                if region.startswith("WR_EE_Resolved_DYCR"):
+                print(region)
+                if region.startswith("wr_ee_resolved_dy_cr") or region.startswith("wr_ee_resolved_sr"):
                     corr = self.lookup_EE(mjj_all[cut])
-                elif region.startswith("WR_MuMu_Resolved_DYCR"):
+                elif region.startswith("wr_mumu_resolved_dy_cr") or region.startswith("wr_mumu_resolved_sr"):
                     corr = self.lookup_MM(mjj_all[cut])
                 else:
                     corr = 1.0
@@ -177,9 +180,20 @@ class WrAnalysis(processor.ProcessorABC):
                  weight=w
              )
 
+
+    def compute_efficiency(self, weights, cut_mask, orig_sumw):
+        """
+        Compute weighted acceptance = (sum of event-weights passing `cut_mask`)
+        divided by `orig_sumw` (pre-skim sum of genEventSumw or sum(genWeight) for Signal).
+        """
+        w      = weights.weight()
+        passed = ak.sum(w[cut_mask]).compute()
+        if orig_sumw <= 0:
+            return 0.0
+        return float(passed) / float(orig_sumw)
+
     def process(self, events): 
         output = self.make_output()
-        
         metadata = events.metadata
         mc_campaign = metadata["era"]
         process = metadata["physics_group"]
@@ -194,7 +208,7 @@ class WrAnalysis(processor.ProcessorABC):
         if isRealData:
             if mc_campaign == "RunIISummer20UL18":
                 lumi_mask = LumiMask("data/lumis/RunII/2018/RunIISummer20UL18/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt")
-            elif mc_campaign == "Run3Summer22":
+            elif mc_campaign == "Run3Summer22" or mc_campaign == "Run3Summer22EE":
                 lumi_mask = LumiMask("data/lumis/Run3/2022/Run3Summer22/Cert_Collisions2022_355100_362760_Golden.txt")
             events = events[lumi_mask(events.run, events.luminosityBlock)]
 #            num_events_after_mask = len(events["run"].compute())  # Compute using a lightweight branch
@@ -252,17 +266,34 @@ class WrAnalysis(processor.ProcessorABC):
             muTrig = events.HLT.Mu50 | events.HLT.HighPtTkMu100
             selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
             selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
-            selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
+            selections.add("emuTrigger", ((eTrig | muTrig) & (nTightElectrons == 1) & (nTightMuons == 1))) #Delete etrig
 
         # Event Weights
         weights = Weights(size=None, storeIndividual=True)
-        if isMC:
+        if not isRealData:
+            # per-event weight
             eventWeight = events.genWeight
-            if not process == "Signal":
-                unqiue_gensumws = np.unique(events.genEventSumw.compute())
-            output['sumw'] = ak.sum(eventWeight) if process == "Signal" else np.sum(unqiue_gensumws)
-        elif isRealData:
+
+            # apply your k-factor for 2018 DYJets
+            if mc_campaign == "RunIISummer20UL18" and process == "DYJets":
+                eventWeight = eventWeight * 1.35
+
+            # ── Here is your original sumw logic, unchanged except we also
+            #     save orig_sumw for efficiency later ──
+            if process != "Signal":
+                unique_sumws = np.unique(events.genEventSumw.compute())
+                orig_sumw    = float(np.sum(unique_sumws))
+                output['sumw'] = orig_sumw
+            else:
+                # for Signal we defined sumw = sum(genWeight)
+                orig_sumw     = float(ak.sum(eventWeight).compute())
+                output['sumw'] = orig_sumw
+
+        else:
+            # data: dummy weight and no efficiency calculation
             eventWeight = abs(np.sign(events.event))
+            orig_sumw   = None
+
         weights.add("event_weight", weight=eventWeight)
 
         # Channel selections
@@ -273,24 +304,51 @@ class WrAnalysis(processor.ProcessorABC):
         # mll selections
         selections.add("60mll150", ((mll > 60) & (mll < 150)))
         selections.add("400mll", (mll > 400))
-        selections.add("150mll", (mll > 150))
 
         # Define analysis regions
         regions = {
-            'WR_EE_Resolved_DYCR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'eejj'],
-            'WR_MuMu_Resolved_DYCR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'mumujj'],
-            'WR_Resolved_FlavorCR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'emujj'],
-            'WR_EE_Resolved_SR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'eejj'],
-            'WR_MuMu_Resolved_SR': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'mumujj'],
+            # Drell-Yan Control Regions
+            'wr_ee_resolved_dy_cr': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'eejj'],
+            'wr_mumu_resolved_dy_cr': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'mumujj'],
+            #EMu Sideband Control Region
+            'wr_resolved_flavor_cr': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'emujj'],
+            # Signal Regions
+            'wr_ee_resolved_sr': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'eejj'],
+            'wr_mumu_resolved_sr': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'mumujj'],
         }
+
+        # --- fill WR mass from GenPart ---
+        if process == "Signal":
+            wr_pdg_id = 34
+            gen = events.GenPart
+
+            # boolean jagged mask: [nEvents][nGenPart] 
+            is_wr = abs(gen.pdgId) == wr_pdg_id
+
+            # 1) broadcast your 1D event-weights to the same shape as gen.mass
+            weights_arr       = weights.weight()                               # [nEvents]
+            weights_per_part, _ = ak.broadcast_arrays(weights_arr, gen.mass)   # both now [nEvents][nGenPart]
+
+            # 2) mask & flatten masses and weights
+            wr_masses  = ak.flatten(gen.mass[is_wr])         
+            wr_weights = ak.flatten(weights_per_part[is_wr])
+
+            output['mass_WR'].fill(
+                process = process,
+                region  = "gen",         # or whatever label you like
+                mass_WR = wr_masses,
+                weight  = wr_weights
+            )
 
         # Fill histogram
         for region, cuts in regions.items():
             cut = selections.all(*cuts)
-            self.fill_basic_histograms(
-                    output, region, cut, 
-                    process, AK4Jets, tightLeptons, weights,
-            )
+            self.fill_basic_histograms(output, region, cut, process, AK4Jets, tightLeptons, weights,)
+
+            # only log efficiency for MC
+#            if not isRealData:
+#                eff = self.compute_efficiency(weights, cut, orig_sumw)
+#                logger.info(f"[{dataset}] weighted acceptance in {region}: {eff:.4e}")
 
         output["weightStats"] = weights.weightStatistics
         return output
