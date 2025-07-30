@@ -45,7 +45,6 @@ def load_masses_from_csv(file_path):
                     n_mass = row[1].strip()
                     mass_choice = f"WR{wr_mass}_N{n_mass}"
                     mass_choices.append(mass_choice)
-#        logging.info(f"Loaded {len(mass_choices)} mass points from {file_path}")
     except FileNotFoundError:
         logging.error(f"Mass CSV file not found at: {file_path}")
         raise
@@ -60,14 +59,16 @@ def filter_by_process(fileset, desired_process, mass=None):
     else:
         return {ds: data for ds, data in fileset.items() if data['metadata']['physics_group'] == desired_process}
 
-def validate_arguments(args):
+def validate_arguments(args, sig_points):
     if args.sample == "Signal" and not args.mass:
-        logging.error("For 'Signal', you must provide a --mass argument (e.g. --mass MWR3000_MN1600).")
+        logging.error("For 'Signal', you must provide a --mass argument (e.g. --mass WR2000_N1900).")
         raise ValueError("Missing mass argument for Signal sample.")
+    if args.sample == "Signal" and args.mass not in sig_points:
+        logging.error(f"The provided signal point {args.mass} is not valid. Choose from {sig_points}.")
+        raise ValueError("Invalid mass argument for Signal sample.")
     if args.sample != "Signal" and args.mass:
         logging.error("The --mass option is only valid for 'Signal' samples.")
         raise ValueError("Mass argument provided for non-signal sample.")
-#    logging.info("Arguments validated successfully.")
 
 def run_analysis(args, filtered_fileset):
     to_compute = apply_to_fileset(
@@ -85,24 +86,24 @@ def save_hists(to_compute):
     save_histograms(histograms, args)
 
 if __name__ == "__main__":
-    file_path = Path('data/RunIISummer20UL18_mass_points.csv')
-    MASS_CHOICES = load_masses_from_csv(file_path)
-
     parser = argparse.ArgumentParser(description="Processing script for WR analysis.")
-    parser.add_argument("era", type=str, choices=["RunIISummer20UL16", "RunIISummer20UL17", "RunIISummer20UL18", "Run3Summer22", "Run3Summer22EE", "Run3Summer23", "Run3Summer23BPix"], help="Campaign to analyze.")
+    parser.add_argument("era", type=str, choices=["RunIISummer20UL18", "Run3Summer22", "Run3Summer22EE"], help="Campaign to analyze.")
     parser.add_argument("sample", type=str, choices=["DYJets", "TTbar", "TW", "WJets", "SingleTop", "TTbarSemileptonic", "TTV", "Diboson", "Triboson", "EGamma", "Muon", "Signal"], help="MC sample to analyze (e.g., Signal, DYJets).")
     optional = parser.add_argument_group("Optional arguments")
-    optional.add_argument("--mass", type=str, default=None, choices=MASS_CHOICES, help="Signal mass point to analyze.")
+    optional.add_argument("--mass", type=str, default=None, help="Signal mass point to analyze.")
     optional.add_argument("--dir", type=str, default=None, help="Create a new output directory.")
     optional.add_argument("--name", type=str, default=None, help="Append the filenames of the output ROOT files.")
     optional.add_argument("--debug", action='store_true', help="Debug mode (don't compute histograms)")
     optional.add_argument("--sf-file", type=str, default=None, help="Path to mass_dijet_sf.json for DY reweights")
     args = parser.parse_args()
 
+    signal_points = Path(f'data/{args.era}_mass_points.csv')
+    MASS_CHOICES = load_masses_from_csv(signal_points)
+
     print()
     logging.info(f"Analyzing {args.era} - {args.sample} events")
     
-    validate_arguments(args)
+    validate_arguments(args, MASS_CHOICES)
     run, year, era = get_era_details(args.era)
 
     if "EGamma" in args.sample or "Muon" in args.sample:
@@ -112,7 +113,6 @@ if __name__ == "__main__":
     else:
         filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_mc_preprocessed_skims.json"
 
-    print(filepath)
     preprocessed_fileset = load_json(str(filepath))
     filtered_fileset = filter_by_process(preprocessed_fileset, args.sample, args.mass)
 
