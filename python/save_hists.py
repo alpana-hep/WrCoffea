@@ -37,9 +37,7 @@ def save_histograms(histograms, args):
     else:
         filename_prefix = f"WRAnalyzer"
 
-    if "EGamma" in sample or "SingleMuon" in sample:
-        output_file = output_dir / f"{filename_prefix}_{sample}.root"
-    elif sample == "Signal":
+    if sample == "Signal":
         output_file = output_dir / f"{filename_prefix}_signal_{hnwr_mass}.root"
     else:
         output_file= output_dir / f"{filename_prefix}_{sample}.root"
@@ -62,6 +60,7 @@ def scale_hists(data):
     Scale histograms by x_sec/sumw.
     """
     for dataset_key, dataset_info in data.items():
+#        if 'x_sec' in dataset_info and 'sumw' in dataset_info and dataset_info['process'] != 'Signal':
         if 'x_sec' in dataset_info and 'sumw' in dataset_info:
             sf = dataset_info['x_sec']/dataset_info['sumw']
             for key, value in dataset_info.items():
