@@ -34,3 +34,6 @@ WR_Plotter/
 venv/
 wr-env/
 coffea_env
+scripts/copy_skims.sh
+scripts/download_and_patch_datasets.py
+scripts/merge_das_datasets.py
