@@ -58,13 +58,3 @@ If using UMN’s setup, use:
 ```bash
 source /cvmfs/sft.cern.ch/lcg/views/LCG_104/x86_64-centos8-gcc11-opt/setup.sh
 ```
-
-### Adding a New Study
-1. Copy an existing script from `src/`:
-   ```bash
-   cp src/analyzer.py test/dev_analyzer.py
-   ```
-2. Modify the script to include your custom selections and histograms.
-3. Once finalized, integrate your study into the main pipeline via `bin/`, `python/`, or `src/`.
-
----
