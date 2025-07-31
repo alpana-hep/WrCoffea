@@ -1,7 +1,7 @@
 # Running the analyzer
 ## Basic Analysis
 ### Analyzing background samples
-To run a basic analysis on a background sample, specify the era (either `RunIISummer20UL18` or `Run3Summer22`) and the sample. For example,
+To run a basic analysis on a background sample, specify the era (either `RunIISummer20UL18`, `Run3Summer22`, or `Run3Summer22EE') and the sample. For example,
 ```
 python3 bin/run_analysis.py RunIISummer20UL18 DYJets
 ```
