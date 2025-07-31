@@ -8,7 +8,6 @@ Welcome to the WR analyzer! This repository provides tools for analyzing and pro
 - [Plotting](docs/plotting.md) – Instructions for generating plots from histogram ROOT files.
 - [Repository Structure](README.md#repository-structure) – Overview of how the repository is organized.
 - [Getting Started](README.md#getting-started) – Instructions for installing and setting up the analyzer.
-- [Extending the analyzer](README.md#extending-the-analyzer) – Guidelines for contributing to the analyzer
 ---
 
 ## 📂 Repository Structure
