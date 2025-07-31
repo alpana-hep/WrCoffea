@@ -7,7 +7,7 @@ python3 scripts/make_skimmed_json.py --config data/configs/RunII/2018/RunIISumme
 python3 scripts/make_skimmed_json.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_data.json
 python3 scripts/make_skimmed_json.py --config data/configs/Run3/2022/Run3Summer22EE/Run3Summer22_signal.json
 ```
-Each `json' file stores detailed dataset information (DAS names, cross-sections etc).
+The outputted `json` file locates the skimmed nanoAOD files from Billy's EOS LPC area, preprocesses them and provides their filepaths.
 
 For running at UMN, preprocessing can be done with the `--umn' flag,
 ```
@@ -36,7 +36,7 @@ To analyze signal files, use the `--mass` flag with the desired signal point. Fo
 python3 bin/run_analysis.py RunIISummer20UL18 Signal --mass WR3200_N3000
 python3 bin/run_analysis.py Run2Summer22 Signal --mass WR8000_N7900
 ```
-Possible signal points can be found in the `data/' folder.
+Possible signal points can be found in the `data/` folder.
 
 ### Analyzing data samples
 To analyze data, use a similar format
@@ -62,19 +62,19 @@ WR_Plotter/rootfiles/RunII/2018/RunIISummer20UL18/3jets/WRAnalyzer_DYJets.root.
 #### `--name`
 Filenames can be modified with the `--name` flag. For instance,
 ```
-python3 bin/run_analysis.py RunIISummer20UL18 DYJets --name dr1p5
+python3 bin/run_analysis.py Run3Summer22 DYJets --name dr1p5
 ```
 This will save the file 
 ```
-WR_Plotter/rootfiles/RunII/2018/RunIISummer20UL18/WRAnalyzer_dr1p5_DYJets.root.
+WR_Plotter/rootfiles/Run3/2022/Run3Summer22/WRAnalyzer_dr1p5_DYJets.root.
 ```
 Of course, both flags can be used,
 ```
-python3 bin/run_analysis.py Run3Summer22 DYJets --dir 3jets --name dr1p5
+python3 bin/run_analysis.py Run3Summer22EE DYJets --dir 3jets --name dr1p5
 ```
 This will save the file
 ```
-WR_Plotter/rootfiles/Run3/2022/Run3Summer22/3jets/WRAnalyzer_dr1p5_DYJets.root.
+WR_Plotter/rootfiles/Run3/2022/Run3Summer22EE/3jets/WRAnalyzer_dr1p5_DYJets.root.
 ```
 
 #### `--debug`
