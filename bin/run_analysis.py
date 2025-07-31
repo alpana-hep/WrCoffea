@@ -69,10 +69,13 @@ def validate_arguments(args, sig_points):
     if args.sample != "Signal" and args.mass:
         logging.error("The --mass option is only valid for 'Signal' samples.")
         raise ValueError("Mass argument provided for non-signal sample.")
+    if args.reweight and args.sample != "DYJets":
+        logging.error("Reweighting can only be applied to DY")
+        raise ValueError("Invalid sample for reweighting.")
 
 def run_analysis(args, filtered_fileset):
     to_compute = apply_to_fileset(
-        data_manipulation=WrAnalysis(mass_point=args.mass, sf_file=args.sf_file),
+        data_manipulation=WrAnalysis(mass_point=args.mass, sf_file=args.reweight),
         fileset=max_files(max_chunks(filtered_fileset,),),
         schemaclass=NanoAODSchema,
 #        uproot_options={"handler": uproot.MultiThreadedXRootDSource, "timeout": 60}
@@ -94,7 +97,7 @@ if __name__ == "__main__":
     optional.add_argument("--dir", type=str, default=None, help="Create a new output directory.")
     optional.add_argument("--name", type=str, default=None, help="Append the filenames of the output ROOT files.")
     optional.add_argument("--debug", action='store_true', help="Debug mode (don't compute histograms)")
-    optional.add_argument("--sf-file", type=str, default=None, help="Path to mass_dijet_sf.json for DY reweights")
+    optional.add_argument("--reweight", type=str, default=None, help="Path to json file of DY reweights")
     args = parser.parse_args()
 
     signal_points = Path(f'data/{args.era}_mass_points.csv')

@@ -6,6 +6,7 @@ import awkward as ak
 import hist.dask as dah
 import hist
 import numpy as np
+import os
 import re
 import time
 import logging
@@ -52,24 +53,23 @@ class WrAnalysis(processor.ProcessorABC):
 
             'mass_fourobject':        self.create_hist('mass_fourobject',        'process', 'region', (800,   0, 8000), r'$m_{\ell\ell jj}$ [GeV]'),
             'pt_fourobject':          self.create_hist('pt_fourobject',          'process', 'region', (800,   0, 8000), r'$p_{T,\ell\ell jj}$ [GeV]'),
-
-            'mass_WR': self.create_hist('mass_WR', 'process', 'region', (100,    0, 6000), r'$m_{W_R}$ [GeV]'),
         }
 
         # ——— Load SF lookup if provided ———
         if sf_file:
+            fname    = os.path.basename(sf_file)
+            self.variable = fname.replace("_sf.json", "")
             with open(sf_file) as jf:
                 data = json.load(jf)
-            # convert lists → numpy arrays
-            edges = np.array(data["mass_edges"], dtype=float)
-            sf_EE  = np.array(data["sf_EE"],      dtype=float)
-            sf_MM  = np.array(data["sf_MM"],      dtype=float)
+            edges = np.array(data["edges"], dtype=float)
+            sf_EE  = np.array(data["sf_ee_resolved_dy_cr"], dtype=float)
+            sf_MM  = np.array(data["sf_mumu_resolved_dy_cr"], dtype=float)
 
-            # Wrap in Coffea lookups
             self.lookup_EE = dense_lookup(sf_EE, [edges])
             self.lookup_MM = dense_lookup(sf_MM, [edges])
-            logger.info(f"Loaded mass_dijet SF lookup from {sf_file}")
+            logger.info(f"Loaded {self.variable} SF lookup from {sf_file}")
         else:
+            self.variable = None
             self.lookup_EE = None
             self.lookup_MM = None
 
@@ -96,8 +96,6 @@ class WrAnalysis(processor.ProcessorABC):
 
     def selectJets(self, events):
         """Select AK4 and AK8 jets."""
-#        ak4_jets = (np.abs(events.Jet.eta) < 2.4) & (events.Jet.isTightLeptonVeto)
-        # Usual Requirement
         ak4_jets = (events.Jet.pt > 40) & (np.abs(events.Jet.eta) < 2.4) & (events.Jet.isTightLeptonVeto)
         return events.Jet[ak4_jets]
 
@@ -128,7 +126,6 @@ class WrAnalysis(processor.ProcessorABC):
 
     def fill_basic_histograms(self, output, region, cut,  process, jets, leptons, weights):
         """Helper function to fill histograms dynamically."""
-        # Define a list of variables and their corresponding histograms
         variables = [
             ('pt_leading_lepton',         leptons[:,0].pt,    'pt_leadlep'),
             ('eta_leading_lepton',        leptons[:,0].eta,   'eta_leadlep'),
@@ -154,21 +151,21 @@ class WrAnalysis(processor.ProcessorABC):
             ('pt_fourobject',           (leptons[:,0] + leptons[:,1] + jets[:,0] + jets[:,1]).pt,   'pt_fourobject'),
         ]
 
-        # precompute mjj for entire event array
-        mjj_all = (jets[:,0] + jets[:,1]).mass
+        if self.variable is not None:
+            for _, vals_array, axis_name in variables:
+                if axis_name == self.variable:
+                    vals_all = vals_array
+                    break
 
-#        pt_leadjet = jets[:,0].pt
         for hist_name, values, axis_name in variables:
             vals = values[cut]
             w    = weights.weight()[cut]
-        # If we're filling mass_dijet for DYJets, apply the lookup:
-#            if (hist_name == "mass_dijet" and process == "DYJets" and self.lookup_EE is not None):
-            if (process == "DYJets" and self.lookup_EE is not None):
-                print(region)
+
+            if process == "DYJets" and self.lookup_EE is not None:
                 if region.startswith("wr_ee_resolved_dy_cr") or region.startswith("wr_ee_resolved_sr"):
-                    corr = self.lookup_EE(mjj_all[cut])
+                    corr = self.lookup_EE(vals_all[cut])
                 elif region.startswith("wr_mumu_resolved_dy_cr") or region.startswith("wr_mumu_resolved_sr"):
-                    corr = self.lookup_MM(mjj_all[cut])
+                    corr = self.lookup_MM(vals_all[cut])
                 else:
                     corr = 1.0
                 w = w * corr
@@ -179,18 +176,6 @@ class WrAnalysis(processor.ProcessorABC):
                  **{axis_name: vals},
                  weight=w
              )
-
-
-    def compute_efficiency(self, weights, cut_mask, orig_sumw):
-        """
-        Compute weighted acceptance = (sum of event-weights passing `cut_mask`)
-        divided by `orig_sumw` (pre-skim sum of genEventSumw or sum(genWeight) for Signal).
-        """
-        w      = weights.weight()
-        passed = ak.sum(w[cut_mask]).compute()
-        if orig_sumw <= 0:
-            return 0.0
-        return float(passed) / float(orig_sumw)
 
     def process(self, events): 
         output = self.make_output()
@@ -211,11 +196,6 @@ class WrAnalysis(processor.ProcessorABC):
             elif mc_campaign == "Run3Summer22" or mc_campaign == "Run3Summer22EE":
                 lumi_mask = LumiMask("data/lumis/Run3/2022/Run3Summer22/Cert_Collisions2022_355100_362760_Golden.txt")
             events = events[lumi_mask(events.run, events.luminosityBlock)]
-#            num_events_after_mask = len(events["run"].compute())  # Compute using a lightweight branch
-#            lumi_list = LumiList(events.run, events.luminosityBlock)
-#            lumi_data = LumiData(f"lumi2018.csv", is_inst_lumi=False)
-#            lumi = lumi_data.get_lumi(lumi_list)
-#            print(lumi.compute())
 
         output['mc_campaign'] = mc_campaign
         output['process'] = process
@@ -223,7 +203,6 @@ class WrAnalysis(processor.ProcessorABC):
         if not isRealData:
             output['x_sec'] = events.metadata["xsec"] 
 
-        # Process signal samples
         if process == "Signal": self.check_mass_point_resolved()
 
         # Object selection
@@ -274,21 +253,16 @@ class WrAnalysis(processor.ProcessorABC):
             # per-event weight
             eventWeight = events.genWeight
 
-            # apply your k-factor for 2018 DYJets
             if mc_campaign == "RunIISummer20UL18" and process == "DYJets":
                 eventWeight = eventWeight * 1.35
 
-            # ── Here is your original sumw logic, unchanged except we also
-            #     save orig_sumw for efficiency later ──
             if process != "Signal":
                 unique_sumws = np.unique(events.genEventSumw.compute())
                 orig_sumw    = float(np.sum(unique_sumws))
                 output['sumw'] = orig_sumw
             else:
-                # for Signal we defined sumw = sum(genWeight)
                 orig_sumw     = float(ak.sum(eventWeight).compute())
                 output['sumw'] = orig_sumw
-
         else:
             # data: dummy weight and no efficiency calculation
             eventWeight = abs(np.sign(events.event))
@@ -317,38 +291,10 @@ class WrAnalysis(processor.ProcessorABC):
             'wr_mumu_resolved_sr': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'mumujj'],
         }
 
-        # --- fill WR mass from GenPart ---
-        if process == "Signal":
-            wr_pdg_id = 34
-            gen = events.GenPart
-
-            # boolean jagged mask: [nEvents][nGenPart] 
-            is_wr = abs(gen.pdgId) == wr_pdg_id
-
-            # 1) broadcast your 1D event-weights to the same shape as gen.mass
-            weights_arr       = weights.weight()                               # [nEvents]
-            weights_per_part, _ = ak.broadcast_arrays(weights_arr, gen.mass)   # both now [nEvents][nGenPart]
-
-            # 2) mask & flatten masses and weights
-            wr_masses  = ak.flatten(gen.mass[is_wr])         
-            wr_weights = ak.flatten(weights_per_part[is_wr])
-
-            output['mass_WR'].fill(
-                process = process,
-                region  = "gen",         # or whatever label you like
-                mass_WR = wr_masses,
-                weight  = wr_weights
-            )
-
         # Fill histogram
         for region, cuts in regions.items():
             cut = selections.all(*cuts)
             self.fill_basic_histograms(output, region, cut, process, AK4Jets, tightLeptons, weights,)
-
-            # only log efficiency for MC
-#            if not isRealData:
-#                eff = self.compute_efficiency(weights, cut, orig_sumw)
-#                logger.info(f"[{dataset}] weighted acceptance in {region}: {eff:.4e}")
 
         output["weightStats"] = weights.weightStatistics
         return output

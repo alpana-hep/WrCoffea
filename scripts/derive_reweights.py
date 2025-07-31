@@ -96,9 +96,9 @@ def main():
 
     # output
     out = {
-        "mass_edges": edges.tolist(),
-        "sf_EE":      sf_EE.tolist(),
-        "sf_MM":      sf_MM.tolist(),
+        "edges": edges.tolist(),
+        "sf_ee_resolved_dy_cr":   sf_EE.tolist(),
+        "sf_mumu_resolved_dy_cr": sf_MM.tolist(),
     }
     out_dir = os.path.join("data", "reweights", RUN, YEAR, ERA)
     os.makedirs(out_dir, exist_ok=True)
