@@ -11,6 +11,11 @@ from coffea.dataset_tools import apply_to_fileset, max_chunks, max_files
 import sys
 import os
 
+from dask.distributed import Client, LocalCluster
+from coffea.processor import Runner, DaskExecutor
+from coffea.nanoevents import NanoEventsFactory, NanoAODSchema
+from coffea.processor import ProcessorABC
+
 # Add the src/, data/, and python/ directories to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../data')))
@@ -18,9 +23,9 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../pyth
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from analyzer import WrAnalysis
-from dask.distributed import Client
-from dask.diagnostics import ProgressBar
-import dask
+#from dask.distributed import Client
+#from dask.diagnostics import ProgressBar
+#import dask
 import uproot
 from python.save_hists import save_histograms
 from python.preprocess_utils import get_era_details, load_json
@@ -74,19 +79,40 @@ def validate_arguments(args, sig_points):
         raise ValueError("Invalid sample for reweighting.")
 
 def run_analysis(args, filtered_fileset):
-    to_compute = apply_to_fileset(
-        data_manipulation=WrAnalysis(mass_point=args.mass, sf_file=args.reweight),
-        fileset=max_files(max_chunks(filtered_fileset,),),
-        schemaclass=NanoAODSchema,
-#        uproot_options={"handler": uproot.MultiThreadedXRootDSource, "timeout": 60}
+
+    cluster = LocalCluster(n_workers=1, threads_per_worker=1)
+    client = Client(cluster)
+
+    run = Runner(
+        executor = DaskExecutor(client=client, compression=None),
+        chunksize=50_000,
+        maxchunks = 1,
+        skipbadfiles=True,
+        xrootdtimeout = 60,
+        align_clusters = False,
+        savemetrics=True,
+        schema=NanoAODSchema,
     )
+
+    preproc_for_run = run.preprocess(fileset=filtered_fileset, treename="Events")
+
+    to_compute, metrics = run(
+        preproc_for_run, 
+        processor_instance=WrAnalysis(mass_point=None),
+    )
+
+#    to_compute = apply_to_fileset(
+#        data_manipulation=WrAnalysis(mass_point=args.mass, sf_file=args.reweight),
+#        fileset=max_files(max_chunks(filtered_fileset,1),1),
+#        schemaclass=NanoAODSchema,
+#        uproot_options={"handler": uproot.MultiThreadedXRootDSource, "timeout": 60}
     return to_compute
 
 def save_hists(to_compute):
     logging.info("Computing histograms...")
-    with ProgressBar():
-        (histograms,) = dask.compute(to_compute)
-    save_histograms(histograms, args)
+#    with ProgressBar():
+#        (histograms,) = dask.compute(to_compute)
+    save_histograms(to_compute, args)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Processing script for WR analysis.")
@@ -110,18 +136,20 @@ if __name__ == "__main__":
     run, year, era = get_era_details(args.era)
 
     if "EGamma" in args.sample or "Muon" in args.sample:
-        filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_data_preprocessed_skims.json"
+        filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_data_skimmed_fileset.json"
     elif "Signal" in args.sample:
-        filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_signal_preprocessed_skims.json"
+        filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_signal_skimmed_fileset.json"
     else:
-        filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_mc_preprocessed_skims.json"
+        filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_mc_lo_dy_skimmed_fileset.json"
 
     preprocessed_fileset = load_json(str(filepath))
     filtered_fileset = filter_by_process(preprocessed_fileset, args.sample, args.mass)
 
+    print(filtered_fileset)
     t0 = time.monotonic()
     to_compute = run_analysis(args, filtered_fileset)
 
+    print(to_compute)
     if not args.debug:
         save_hists(to_compute)
     exec_time = time.monotonic() - t0

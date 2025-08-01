@@ -35,5 +35,6 @@ __pycache__
 *.nfs*
 WR_Plotter/
 venv/
+.venv/
 wr-env/
 coffea_env

@@ -3,7 +3,7 @@ from coffea.analysis_tools import Weights, PackedSelection
 from coffea.lumi_tools import LumiData, LumiMask, LumiList
 from coffea.lookup_tools.dense_lookup import dense_lookup
 import awkward as ak
-import hist.dask as dah
+#import hist.dask as dah
 import hist
 import numpy as np
 import os
@@ -12,7 +12,7 @@ import time
 import logging
 import warnings
 import json
-import dask_awkward as dak
+#import dask_awkward as dak
 warnings.filterwarnings("ignore",module="coffea.*")
 
 logging.basicConfig(level=logging.INFO)
@@ -75,12 +75,8 @@ class WrAnalysis(processor.ProcessorABC):
 
     def create_hist(self, name, process, region, bins, label):
         """Helper function to create histograms."""
-        return dah.hist.Hist(
-            hist.axis.StrCategory([], name="process", label="Process", growth=True),
-            hist.axis.StrCategory([], name="region", label="Analysis Region", growth=True),
-            hist.axis.Regular(*bins, name=name, label=label),
-            hist.storage.Weight(),
-        )
+        return hist.Hist.new.StrCat([], name="process", label="Process", growth=True).StrCat([], name="region", label="Analysis Region", growth=True).Reg(*bins, name=name, label=label).Weight()
+        
 
     def selectElectrons(self, events):
         """Select tight and loose electrons."""
@@ -182,7 +178,7 @@ class WrAnalysis(processor.ProcessorABC):
         metadata = events.metadata
         mc_campaign = metadata["era"]
         process = metadata["physics_group"]
-        dataset = metadata["dataset"]
+        dataset = metadata["sample"]
         isRealData = not hasattr(events, "genWeight")
 
         proc_name = events.metadata["physics_group"]
@@ -248,7 +244,8 @@ class WrAnalysis(processor.ProcessorABC):
             selections.add("emuTrigger", ((eTrig | muTrig) & (nTightElectrons == 1) & (nTightMuons == 1))) #Delete etrig
 
         # Event Weights
-        weights = Weights(size=None, storeIndividual=True)
+#        weights = Weights(size=None, storeIndividual=True)
+        weights = Weights(len(events))
         if not isRealData:
             # per-event weight
             eventWeight = events.genWeight
@@ -257,11 +254,11 @@ class WrAnalysis(processor.ProcessorABC):
                 eventWeight = eventWeight * 1.35
 
             if process != "Signal":
-                unique_sumws = np.unique(events.genEventSumw.compute())
+                unique_sumws = np.unique(events.genEventSumw)
                 orig_sumw    = float(np.sum(unique_sumws))
                 output['sumw'] = orig_sumw
             else:
-                orig_sumw     = float(ak.sum(eventWeight).compute())
+                orig_sumw     = float(ak.sum(eventWeight))
                 output['sumw'] = orig_sumw
         else:
             # data: dummy weight and no efficiency calculation
@@ -296,7 +293,7 @@ class WrAnalysis(processor.ProcessorABC):
             cut = selections.all(*cuts)
             self.fill_basic_histograms(output, region, cut, process, AK4Jets, tightLeptons, weights,)
 
-        output["weightStats"] = weights.weightStatistics
+#        output["weightStats"] = weights.weightStatistics
         return output
 
     def postprocess(self, accumulator):
