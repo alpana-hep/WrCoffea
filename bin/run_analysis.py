@@ -94,6 +94,7 @@ def run_analysis(args, filtered_fileset):
         schema=NanoAODSchema,
     )
 
+    print("filtered_fileset",filtered_fileset)
     preproc_for_run = run.preprocess(fileset=filtered_fileset, treename="Events")
 
     to_compute, metrics = run(
