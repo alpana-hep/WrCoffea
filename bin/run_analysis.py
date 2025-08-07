@@ -60,7 +60,7 @@ def load_masses_from_csv(file_path):
 
 def filter_by_process(fileset, desired_process, mass=None):
     if desired_process == "Signal":
-        return {ds: data for ds, data in fileset.items() if mass in data['metadata']['dataset']}
+        return {ds: data for ds, data in fileset.items() if mass in data['metadata']['sample']}
     else:
         return {ds: data for ds, data in fileset.items() if data['metadata']['physics_group'] == desired_process}
 
@@ -94,13 +94,23 @@ def run_analysis(args, filtered_fileset):
         schema=NanoAODSchema,
     )
 
-    print("filtered_fileset",filtered_fileset)
-    preproc_for_run = run.preprocess(fileset=filtered_fileset, treename="Events")
+    print(f"\n***FILTERED FILESET***\n\n{filtered_fileset}")
 
+    print(f"\n***PREPROCESSING***\n")
+
+    preproc_debug = run.preprocess(filtered_fileset, treename="Events")
+    preproc_list = list(preproc_debug)
+    print(preproc_list)
+    print()
+
+    preproc_for_run = run.preprocess(fileset=filtered_fileset, treename="Events")
     to_compute, metrics = run(
         preproc_for_run, 
         processor_instance=WrAnalysis(mass_point=None),
     )
+    print(f"\n***ANALYZER OUTPUT***\n{to_compute}")
+
+    print(f"\n***METRICS***\n{metrics}\n")
 
 #    to_compute = apply_to_fileset(
 #        data_manipulation=WrAnalysis(mass_point=args.mass, sf_file=args.reweight),
@@ -113,6 +123,8 @@ def save_hists(to_compute):
     logging.info("Computing histograms...")
 #    with ProgressBar():
 #        (histograms,) = dask.compute(to_compute)
+    print()
+    print(to_compute)
     save_histograms(to_compute, args)
 
 if __name__ == "__main__":
@@ -146,7 +158,6 @@ if __name__ == "__main__":
     preprocessed_fileset = load_json(str(filepath))
     filtered_fileset = filter_by_process(preprocessed_fileset, args.sample, args.mass)
 
-    print(filtered_fileset)
     t0 = time.monotonic()
     to_compute = run_analysis(args, filtered_fileset)
 
