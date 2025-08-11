@@ -41,7 +41,19 @@ def replace_files_in_json(data: dict, run: str, year: str, era: str, umn: bool, 
 
     for key, entry in data.items():
         metadata = {k: entry.pop(k) for k in metadata_keys if k in entry}
-        files = entry.pop("files", {})
+
+        if "dataset" in entry:
+            metadata["sample"] = entry.pop("dataset")
+
+        raw_files = entry.pop("files", {})
+
+        if isinstance(raw_files, dict):
+            files = list(raw_files.keys())
+        elif isinstance(raw_files, list):
+            files = raw_files.copy()
+        else:
+            files = []
+
         data[key] = {"files": files, "metadata": metadata}
 
     for ds_name, ds_info in data.items():
@@ -53,11 +65,14 @@ def replace_files_in_json(data: dict, run: str, year: str, era: str, umn: bool, 
         root_files = (get_root_files_from_umn(dataset, era) if umn
                       else get_root_files_from_eos(dataset, run, year, era))
 
+
         if root_files:
             for fp in root_files:
-                ds_info["files"][fp] = "Events"
+                if fp not in ds_info["files"]:
+                    ds_info["files"].append(fp)
         else:
             logging.warning(f"No ROOT files found for dataset {ds_name}")
+
     return data
 
 
@@ -102,6 +117,12 @@ def preprocess_json(fileset: dict, chunks: int = 100_000, timeout: int = 3600):
     logging.info("Preprocessing done.")
     return runnable, updated
 
+def rename_dataset_key_to_sample(data: dict) -> dict:
+    for entry in data.values():
+        md = entry.get("metadata", {})
+        if "dataset" in md:
+            md["sample"] = md.pop("dataset")
+    return data
 
 def main():
     parser = argparse.ArgumentParser(
@@ -156,15 +177,19 @@ def main():
     # load, replace file lists, preprocess, and save
     fileset = load_json(str(input_path))
     fileset = replace_files_in_json(fileset, run, year, era, args.umn, sample)
-    runnable, updated = preprocess_json(fileset, chunks=args.chunks, timeout=args.timeout)
+#    runnable, updated = preprocess_json(fileset, chunks=args.chunks, timeout=args.timeout)
+
+    fileset = rename_dataset_key_to_sample(fileset)
 
     # construct & create output directory
     out_dir = data_root / "jsons" / run / year / era / "skimmed"
     out_dir.mkdir(parents=True, exist_ok=True)
 
     # save the final JSON
-    out_file = out_dir / f"{era}_{sample}_preprocessed_skims.json"
-    save_json(str(out_file), runnable, updated)
+    out_file = out_dir / f"{era}_{sample}_skimmed_fileset.json"
+    with out_file.open("w") as f:
+        json.dump(fileset, f, indent=2, sort_keys=True)
+#    save_json(str(out_file), out_file, out_file)
     logging.info(f"Saved preprocessed skims JSON to {out_file}")
 
 

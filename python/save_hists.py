@@ -43,8 +43,8 @@ def save_histograms(histograms, args):
         output_file= output_dir / f"{filename_prefix}_{sample}.root"
 
     # Process histograms
-    scaled_hists = scale_hists(histograms)
-    summed_hist = sum_hists(scaled_hists)
+#    scaled_hists = scale_hists(histograms)
+    summed_hist = sum_hists(histograms)
     split_histograms_dict = split_hists(summed_hist)
 
     with uproot.recreate(output_file) as root_file:
@@ -62,7 +62,7 @@ def scale_hists(data):
     for dataset_key, dataset_info in data.items():
 #        if 'x_sec' in dataset_info and 'sumw' in dataset_info and dataset_info['process'] != 'Signal':
         if 'x_sec' in dataset_info and 'sumw' in dataset_info:
-            sf = dataset_info['x_sec']/dataset_info['sumw']
+            sf = dataset_info['x_sec']/dataset_info['nevts']
             for key, value in dataset_info.items():
                 if isinstance(value, Hist):
                     value *= sf
