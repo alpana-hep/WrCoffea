@@ -85,32 +85,27 @@ def run_analysis(args, filtered_fileset):
 
     run = Runner(
         executor = DaskExecutor(client=client, compression=None),
-        chunksize=50_000,
-        maxchunks = 1,
-        skipbadfiles=True,
+        chunksize=250_000,
+        maxchunks = None,
+        skipbadfiles=False,
         xrootdtimeout = 60,
         align_clusters = False,
         savemetrics=True,
         schema=NanoAODSchema,
     )
 
-    print(f"\n***FILTERED FILESET***\n\n{filtered_fileset}")
-
-    print(f"\n***PREPROCESSING***\n")
-
-    preproc_debug = run.preprocess(filtered_fileset, treename="Events")
-    preproc_list = list(preproc_debug)
-    print(preproc_list)
-    print()
-
-    preproc_for_run = run.preprocess(fileset=filtered_fileset, treename="Events")
+    print(f"***PREPROCESSING***")
+    preproc= run.preprocess(fileset=filtered_fileset, treename="Events")
+    print("Preprocessing completed")
+    
+    print(f"\n***PROCESSING***")
     to_compute, metrics = run(
-        preproc_for_run, 
+        preproc, #filtered_fileset
+        treename="Events",
         processor_instance=WrAnalysis(mass_point=None),
     )
-    print(f"\n***ANALYZER OUTPUT***\n{to_compute}")
-
-    print(f"\n***METRICS***\n{metrics}\n")
+    print("Processing completed")
+#    print(f"\n***METRICS***\n{metrics}\n")
 
 #    to_compute = apply_to_fileset(
 #        data_manipulation=WrAnalysis(mass_point=args.mass, sf_file=args.reweight),
@@ -120,11 +115,7 @@ def run_analysis(args, filtered_fileset):
     return to_compute
 
 def save_hists(to_compute):
-    logging.info("Computing histograms...")
-#    with ProgressBar():
-#        (histograms,) = dask.compute(to_compute)
-    print()
-    print(to_compute)
+    logging.info("Saving histograms...")
     save_histograms(to_compute, args)
 
 if __name__ == "__main__":
@@ -142,7 +133,7 @@ if __name__ == "__main__":
     signal_points = Path(f'data/{args.era}_mass_points.csv')
     MASS_CHOICES = load_masses_from_csv(signal_points)
 
-    print()
+#    print()
     logging.info(f"Analyzing {args.era} - {args.sample} events")
     
     validate_arguments(args, MASS_CHOICES)
@@ -161,7 +152,6 @@ if __name__ == "__main__":
     t0 = time.monotonic()
     to_compute = run_analysis(args, filtered_fileset)
 
-    print(to_compute)
     if not args.debug:
         save_hists(to_compute)
     exec_time = time.monotonic() - t0

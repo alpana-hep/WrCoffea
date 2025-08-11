@@ -185,22 +185,12 @@ class WrAnalysis(processor.ProcessorABC):
         output = self.make_output()
         metadata = events.metadata
 
-        # scalarize naive metadata (we'll collapse later in postprocess)
-        def collapse(val):
-            try:
-                unique = ak.to_list(ak.unique(val))
-            except Exception:
-                unique = val
-            if isinstance(unique, list):
-                return unique[0] if unique else None
-            return unique
-
-        mc_campaign = collapse(metadata.get("era", ""))
-        process_name = collapse(metadata.get("physics_group", ""))
-        dataset = collapse(metadata.get("sample", ""))
+        mc_campaign = metadata.get("era", "")
+        process_name = metadata.get("physics_group", "")
+        dataset = metadata.get("sample", "")
         isRealData = not hasattr(events, "genWeight")
 
-        logger.info(f"\nAnalyzing {len(events)} {dataset} events.\n")
+#        logger.info(f"\n\nAnalyzing {len(events)} {dataset} events.\n\n")
 
         if isRealData:
             if mc_campaign == "RunIISummer20UL18":
@@ -257,20 +247,18 @@ class WrAnalysis(processor.ProcessorABC):
         # Event Weights
         weights = Weights(len(events))
         if not (not hasattr(events, "genWeight")):  # is MC
-            eventWeight = events.genWeight
+            eventWeight = abs(np.sign(events.event))
             if mc_campaign == "RunIISummer20UL18" and process_name == "DYJets":
                 eventWeight = eventWeight * 1.35
 
             if process_name != "Signal":
-                unique_sumws = np.unique(events.genEventSumw)
-                orig_sumw = float(np.sum(unique_sumws))
-                output['sumw'] = orig_sumw
+                sf = metadata['xsec'] / metadata['nevts']
+                eventWeight = eventWeight * sf
             else:
-                orig_sumw = float(ak.sum(eventWeight))
-                output['sumw'] = orig_sumw
+                sf = metadata['xsec'] / metadata['nevts']
+                eventWeight = eventWeight * sf
         else:
             eventWeight = abs(np.sign(events.event))
-            orig_sumw = None
 
         weights.add("event_weight", weight=eventWeight)
 
@@ -295,7 +283,13 @@ class WrAnalysis(processor.ProcessorABC):
             cut = selections.all(*cuts)
             self.fill_basic_histograms(output, region, cut, process_name, AK4Jets, tightLeptons, weights)
 
-        return output
+        nested_output = {
+            dataset: {
+                **output,
+            }
+        }
+        
+        return nested_output
 
     def postprocess(self, accumulator):
         return accumulator
