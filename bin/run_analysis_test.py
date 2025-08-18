@@ -22,7 +22,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../data
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../python`')))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from analyzer_met import WrAnalysis
+from analyzer_test_lhe import WrAnalysis
 #from dask.distributed import Client
 #from dask.diagnostics import ProgressBar
 #import dask
@@ -144,16 +144,16 @@ if __name__ == "__main__":
     elif "Signal" in args.sample:
         filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_signal_skimmed_fileset.json"
     else:
-        filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_mc_lo_dy_skimmed_fileset.json"
+        #Path("data/jsons") / run / year / era / "skimmed" / f"{era}_mc_lo_dy_inc_skimmed_fileset.json"
+        filepath = Path("data/jsons") / run / year / era / "unskimmed" / f"Run3Summer22_mc_lo_dy_inc_unskimmed_fileset.json"
+        print("filepath", filepath)
 
-    print(filepath)
     preprocessed_fileset = load_json(str(filepath))
     filtered_fileset = filter_by_process(preprocessed_fileset, args.sample, args.mass)
 
     t0 = time.monotonic()
     to_compute = run_analysis(args, filtered_fileset)
 
-    if not args.debug:
-        save_hists(to_compute)
+    print("Final stats", to_compute)
     exec_time = time.monotonic() - t0
     logging.info(f"Execution took {exec_time/60:.2f} minutes")
