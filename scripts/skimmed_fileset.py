@@ -2,13 +2,11 @@
 #
 # -----------------------------------------------------------------------------
 # Example usage:
-#   # Replace files & preprocess skims for a given config JSON:
+#   # Takes in config JSON, and populates it with a list of skimmed ROOT files from EOS:
 #   python3 scripts/skimmed_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_mc_lo_dy.json
-#       
-#
 #
 # This will produce:
-#   TBD
+#   data/jsons/Run3/2022/Run3Summer22/skimmed/Run3Summer22_mc_lo_dy_skimmed_fileset.json
 # -----------------------------------------------------------------------------
 
 import warnings

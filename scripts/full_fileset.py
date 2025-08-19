@@ -2,13 +2,11 @@
 #
 # -----------------------------------------------------------------------------
 # Example usage:
-#   # Replace files & preprocess skims for a given config JSON:
+#   # Takes in config JSON, uses rucio to query DAS and populate with ROOT filepaths:
 #    python3 scripts/full_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_mc_lo_dy.json --dataset TTbar
 #       
-#
-#
 # This will produce:
-#   data/jsons/Run3/2022/Run3Summer22/skimmed/Run3Summer22_mc_preprocessed_skims.json
+#   data/jsons/Run3/2022/Run3Summer22/unskimmed/Run3Summer22_TTbar_fileset.json
 # -----------------------------------------------------------------------------
 
 import warnings
@@ -122,7 +120,7 @@ def main():
     out_dir.mkdir(parents=True, exist_ok=True)
 
     # save the final JSON
-    out_file = out_dir / f"{era}_{sample}_unskimmed_fileset.json"
+    out_file = out_dir / f"{era}_{args.dataset}_fileset.json"
     out_path = Path(out_file)               # out_file can already be a Path
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
