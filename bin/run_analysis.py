@@ -22,7 +22,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../data
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../python`')))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from analyzer_met import WrAnalysis
+from analyzer import WrAnalysis
 import uproot
 from python.save_hists import save_histograms
 from python.preprocess_utils import get_era_details, load_json
@@ -95,20 +95,20 @@ def run_analysis(args, filtered_fileset):
     preproc= run.preprocess(fileset=filtered_fileset, treename="Events")
     logging.info("Preprocessing completed")
     
-    logging.info(f"\n***PROCESSING***")
+    logging.info(f"***PROCESSING***")
     histograms, metrics = run(
         preproc, #filtered_fileset
         treename="Events",
         processor_instance=WrAnalysis(mass_point=None),
     )
     logging.info("Processing completed")
-    logging.info(f"\n***METRICS***\n{metrics}\n")
+#    logging.info(f"\n***METRICS***\n{metrics}\n")
 
     return histograms
 
-def save_hists(to_compute):
-    logging.info("Saving histograms...")
-    save_histograms(to_compute, args)
+#def save_hists(to_compute):
+#    logging.info("Saving histograms...")
+#    save_histograms(to_compute, args)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Processing script for WR analysis.")
@@ -120,12 +120,13 @@ if __name__ == "__main__":
     optional.add_argument("--name", type=str, default=None, help="Append the filenames of the output ROOT files.")
     optional.add_argument("--debug", action='store_true', help="Debug mode (don't compute histograms)")
     optional.add_argument("--reweight", type=str, default=None, help="Path to json file of DY reweights")
-    optional.add_argument("--unskimmed", type=bool, default=False, help="Run on unskimmed files.")
+    optional.add_argument("--unskimmed", action='store_true', help="Run on unskimmed files.")
     args = parser.parse_args()
 
     signal_points = Path(f'data/{args.era}_mass_points.csv')
     MASS_CHOICES = load_masses_from_csv(signal_points)
 
+    print()
     logging.info(f"Analyzing {args.era} - {args.sample} events")
     
     validate_arguments(args, MASS_CHOICES)
@@ -138,7 +139,7 @@ if __name__ == "__main__":
     elif args.sample == "Signal":
         filename = f"{era}_{args.sample}_fileset.json" if args.unskimmed else f"{era}_signal_skimmed_fileset.json"
     else:
-        filename = f"{era}_{args.sample}_fileset.json" if args.unskimmed else f"{era}_mc_lo_dy_skimmed_fileset.json"
+        filename = f"{era}_{args.sample}_fileset.json" if args.unskimmed else f"{era}_mc_lo_dy_skimmed_fileset.json" 
 
     filepath = Path("data/jsons") / run / year / era / subdir / filename
 
@@ -151,6 +152,7 @@ if __name__ == "__main__":
     hists_dict = run_analysis(args, filtered_fileset)
 
     if not args.debug:
-        save_hists(hists_dict)
+        save_histograms(hists_dict, args)
+#        save_hists(hists_dict)
     exec_time = time.monotonic() - t0
     logging.info(f"Execution took {exec_time/60:.2f} minutes")
