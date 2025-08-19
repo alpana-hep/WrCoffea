@@ -23,9 +23,6 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../pyth
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from analyzer_met import WrAnalysis
-#from dask.distributed import Client
-#from dask.diagnostics import ProgressBar
-#import dask
 import uproot
 from python.save_hists import save_histograms
 from python.preprocess_utils import get_era_details, load_json
@@ -94,25 +91,20 @@ def run_analysis(args, filtered_fileset):
         schema=NanoAODSchema,
     )
 
-    print(f"***PREPROCESSING***")
+    logging.info(f"***PREPROCESSING***")
     preproc= run.preprocess(fileset=filtered_fileset, treename="Events")
-    print("Preprocessing completed")
+    logging.info("Preprocessing completed")
     
-    print(f"\n***PROCESSING***")
-    to_compute, metrics = run(
+    logging.info(f"\n***PROCESSING***")
+    histograms, metrics = run(
         preproc, #filtered_fileset
         treename="Events",
         processor_instance=WrAnalysis(mass_point=None),
     )
-    print("Processing completed")
-#    print(f"\n***METRICS***\n{metrics}\n")
+    logging.info("Processing completed")
+    logging.info(f"\n***METRICS***\n{metrics}\n")
 
-#    to_compute = apply_to_fileset(
-#        data_manipulation=WrAnalysis(mass_point=args.mass, sf_file=args.reweight),
-#        fileset=max_files(max_chunks(filtered_fileset,1),1),
-#        schemaclass=NanoAODSchema,
-#        uproot_options={"handler": uproot.MultiThreadedXRootDSource, "timeout": 60}
-    return to_compute
+    return histograms
 
 def save_hists(to_compute):
     logging.info("Saving histograms...")
@@ -128,32 +120,37 @@ if __name__ == "__main__":
     optional.add_argument("--name", type=str, default=None, help="Append the filenames of the output ROOT files.")
     optional.add_argument("--debug", action='store_true', help="Debug mode (don't compute histograms)")
     optional.add_argument("--reweight", type=str, default=None, help="Path to json file of DY reweights")
+    optional.add_argument("--unskimmed", type=bool, default=False, help="Run on unskimmed files.")
     args = parser.parse_args()
 
     signal_points = Path(f'data/{args.era}_mass_points.csv')
     MASS_CHOICES = load_masses_from_csv(signal_points)
 
-#    print()
     logging.info(f"Analyzing {args.era} - {args.sample} events")
     
     validate_arguments(args, MASS_CHOICES)
     run, year, era = get_era_details(args.era)
 
-    if "EGamma" in args.sample or "Muon" in args.sample:
-        filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_data_skimmed_fileset.json"
-    elif "Signal" in args.sample:
-        filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_signal_skimmed_fileset.json"
-    else:
-        filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_mc_lo_dy_skimmed_fileset.json"
+    subdir = "unskimmed" if args.unskimmed else "skimmed"
 
-    print(filepath)
+    if args.sample in ["EGamma", "Muon"]:
+        filename = f"{era}_{args.sample}_fileset.json" if args.unskimmed else f"{era}_data_skimmed_fileset.json"
+    elif args.sample == "Signal":
+        filename = f"{era}_{args.sample}_fileset.json" if args.unskimmed else f"{era}_signal_skimmed_fileset.json"
+    else:
+        filename = f"{era}_{args.sample}_fileset.json" if args.unskimmed else f"{era}_mc_lo_dy_skimmed_fileset.json"
+
+    filepath = Path("data/jsons") / run / year / era / subdir / filename
+
+    logging.info(f"Reading files from {filepath}")
+
     preprocessed_fileset = load_json(str(filepath))
     filtered_fileset = filter_by_process(preprocessed_fileset, args.sample, args.mass)
 
     t0 = time.monotonic()
-    to_compute = run_analysis(args, filtered_fileset)
+    hists_dict = run_analysis(args, filtered_fileset)
 
     if not args.debug:
-        save_hists(to_compute)
+        save_hists(hists_dict)
     exec_time = time.monotonic() - t0
     logging.info(f"Execution took {exec_time/60:.2f} minutes")

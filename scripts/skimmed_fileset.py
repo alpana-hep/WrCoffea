@@ -4,9 +4,13 @@
 # Example usage:
 #   # Takes in config JSON, and populates it with a list of skimmed ROOT files from EOS:
 #   python3 scripts/skimmed_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_mc_lo_dy.json
+#   python3 scripts/skimmed_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_data.json
+#   python3 scripts/skimmed_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_signal.json 
 #
-# This will produce:
+# These commands will produce:
 #   data/jsons/Run3/2022/Run3Summer22/skimmed/Run3Summer22_mc_lo_dy_skimmed_fileset.json
+#   data/jsons/Run3/2022/Run3Summer22/skimmed/Run3Summer22_data_skimmed_fileset.json
+#   data/jsons/Run3/2022/Run3Summer22/skimmed/Run3Summer22_signal_skimmed_fileset.json
 # -----------------------------------------------------------------------------
 
 import warnings
@@ -16,8 +20,6 @@ import json
 import argparse
 import subprocess
 import logging
-from coffea.dataset_tools import preprocess
-from dask.diagnostics import ProgressBar
 from pathlib import Path
 import os
 import sys
@@ -26,7 +28,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 repo_root = os.path.abspath(os.path.join(current_dir, "../"))
 sys.path.insert(0, repo_root)
 
-from python.preprocess_utils import get_era_details, load_json, save_json
+from python.preprocess_utils import get_era_details, load_json
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
@@ -145,22 +147,16 @@ def main():
         logging.warning(f"Filename '{stem}' doesn't start with '{prefix}'")
     sample = stem[len(prefix):]
 
-    # load, replace file lists, preprocess, and save
     fileset = load_json(str(input_path))
-
     fileset = replace_files_in_json(fileset, run, year, era, args.umn, sample)
-
     fileset = rename_dataset_key_to_sample(fileset)
 
-    # construct & create output directory
     out_dir = data_root / "jsons" / run / year / era / "skimmed"
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    # save the final JSON
     out_file = out_dir / f"{era}_{sample}_skimmed_fileset.json"
     with out_file.open("w") as f:
         json.dump(fileset, f, indent=2, sort_keys=True)
-#    save_json(str(out_file), out_file, out_file)
     logging.info(f"Saved JSON to {out_file}")
 
 

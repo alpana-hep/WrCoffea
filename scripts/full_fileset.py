@@ -1,38 +1,35 @@
 #!/usr/bin/env python3
 #
-# -----------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------------------------------------
 # Example usage:
 #   # Takes in config JSON, uses rucio to query DAS and populate with ROOT filepaths:
 #    python3 scripts/full_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_mc_lo_dy.json --dataset TTbar
-#       
+#    python3 scripts/full_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_data.json --dataset Muon
+#    python3 scripts/full_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_signal.json --dataset Signal
+
 # This will produce:
 #   data/jsons/Run3/2022/Run3Summer22/unskimmed/Run3Summer22_TTbar_fileset.json
-# -----------------------------------------------------------------------------
+#
+# Options for --dataset: DYJets, TTbar, TW, WJets, TTbarSemileptonic, SingleTop, Diboson, Triboson, TTV, EGamma (data), Muon (data), Signal (signal)
+# ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning, module="coffea.*")
 
 import json
 import argparse
-import subprocess
 import logging
-from coffea.dataset_tools import preprocess
-from dask.diagnostics import ProgressBar
 from pathlib import Path
 import os
 import sys
 
-from coffea.nanoevents import NanoEventsFactory, NanoAODSchema
-from coffea.dataset_tools import rucio_utils, preprocess, max_files, max_chunks
-from coffea.dataset_tools.dataset_query import print_dataset_query, DataDiscoveryCLI
-from rich.console import Console
-from rich.table import Table
+from coffea.dataset_tools.dataset_query import DataDiscoveryCLI
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 repo_root = os.path.abspath(os.path.join(current_dir, "../"))
 sys.path.insert(0, repo_root)
 
-from python.preprocess_utils import get_era_details, load_json, save_json
+from python.preprocess_utils import load_json
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
@@ -44,15 +41,16 @@ def filter_json_by_primary_ds_name(json_data, primary_ds_name):
         if value.get("physics_group") == primary_ds_name
     }
 
-def query_datasets(data):
-    print(f"\nQuerying replica sites")
+def query_datasets(data, sample):
+    strat = "first" if sample == "Signal" else "choose"
+
     logging.info("Querying replica sites")
     ddc = DataDiscoveryCLI()
     ddc.do_blocklist_sites(["T2_US_MIT"])
     return ddc.load_dataset_definition(
         dataset_definition=data,
         query_results_strategy="all",
-        replicas_strategy="choose"
+        replicas_strategy=strat
     )
 
 def rename_dataset_key_to_sample(data: dict) -> dict:
@@ -77,11 +75,6 @@ def main():
         type=str,
         required=True,
         help="Primary dataset name to filter the config (e.g. TTTo2L2Nu)"
-    )
-    parser.add_argument(
-        "--umn",
-        action="store_true",
-        help="Fetch ROOT files from UMN skims instead of EOS"
     )
     args = parser.parse_args()
 
@@ -111,7 +104,7 @@ def main():
 
     config = filter_json_by_primary_ds_name(config_file, args.dataset)
     
-    dataset = query_datasets(config)
+    dataset = query_datasets(config, args.dataset)
 
     fileset = rename_dataset_key_to_sample(dataset)
 
