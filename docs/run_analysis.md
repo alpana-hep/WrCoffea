@@ -107,11 +107,6 @@ python3 bin/run_analysis.py Run3Summer22EE DYJets --unskimmed
 ```
 This will tell the analyzer to find the unskimmed filesets instead.
 
-#### `--condor`
-If one wishes to run on condor on the LPC, use
-```
-python3 bin/run_analysis.py Run3Summer22EE DYJets --condor
-```
 More information can be found in the `README.md` file in other folders.
 
 ## Analyzing all
@@ -130,4 +125,21 @@ Or to analyze both `EGamma` and `Muon`,
 Similar to above, one can also specifcy `--dir` and `--name` to save files to specific directories and filenames. For example,
 ```
 ./bin/analyze_all.sh bkg RunIISummer20UL18 --dir 3jets --name dr1p5
+```
+
+## Running on Condor on the LPC
+From the working directory of your project, download and run the boostrap script:
+```
+curl -OL https://raw.githubusercontent.com/CoffeaTeam/lpcjobqueue/main/bootstrap.sh
+bash bootstrap.sh
+```
+Note this only needs to be done once.
+
+This creates two new files in this directory: `shell` and `.bashrc`. The `./shell` executable can then be used to start an apptainer shell with a coffea environment. The current image I use is
+```
+./shell coffeateam/coffea-base-almalinux9:0.7.29-py3.10
+```
+Then, run the analyzer with the `--condor` option,
+```
+python3 bin/run_analysis.py Run3Summer22EE DYJets --condor
 ```
