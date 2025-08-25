@@ -10,10 +10,11 @@ python3 scripts/full_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run
 ```
 where `--dataset` can be `DYJets`, `TTbar`, `TW`, `WJets`, `SingleTop`, `TTbarSemileptonic`, `TTV`, `Diboson`, `Triboson` (for backgrounds), `Signal` (for signal files), or `EGamma` or `Muon` (for data). Note that this does not work if running at UMN, use the script below instead.
 
-The output file will look something like
+The output file will be of the form
+```
+data/jsons/Run3/2022/Run3Summer22/unskimmed/Run3Summer22_TTbar_fileset.json
 ```
 
-```
 ## Skimmed filesets
 Creating a fileset from skims is very similar, except one does not need the `dataset` argument. For example,
 ```
@@ -26,4 +27,8 @@ The outputted `json` file locates the skimmed nanoAOD files from Billy's EOS LPC
 For running at UMN, add the `--umn` flag to create the fileset from the skims at UMN,
 ```
 python3 scripts/skimmed_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_data.json --umn
+```
+The output file will be of the form
+```
+data/jsons/Run3/2022/Run3Summer22/skimmed/Run3Summer22_mc_lo_dy_skimmed_fileset.json
 ```
