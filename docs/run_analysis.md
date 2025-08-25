@@ -1,5 +1,5 @@
 ## Basic Analysis
-First, create the filesets first (see the `[filesets.md](test)` README).
+First, create the filesets (see the `filesets.md` README).
 
 ### Analyzing background samples
 To run a basic analysis on a background sample, specify the era (either `RunIISummer20UL18`, `Run3Summer22`, or `Run3Summer22EE`) and the sample. For example,
