@@ -1,4 +1,4 @@
-# Create filesets
+# Create Filesets
 The first step is to find the files that will be fed into the analyzer. This can either be skimmed files that are located at UMN and Billy's EOS LPC area, or unskimmed files that we will query with rucio and DAS. 
 
 ## Unskimmed filesets
