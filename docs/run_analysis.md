@@ -34,7 +34,7 @@ python3 bin/run_analysis.py Run3Summer22EE DYJets
 ```
 other backgrounds that can be analyzed are `TTbar`, `tW`, `WJets`, `SingleTop`, `TTbarSemileptonic`, `TTX`, `Diboson`, and `Triboson`.
 
-By default, the output histograms will be saved to
+By default the analyzer looks for the skimmed filesets, and the output histograms will be saved to
 ```
 WR_Plotter/rootfiles/RunII/2018/RunIISummer20UL18/WRAnalyzer_DYJets.root.
 WR_Plotter/rootfiles/Run3/2022/Run3Summer22/WRAnalyzer_DYJets.root.
@@ -93,6 +93,25 @@ When making changes to the analyzer, one may want to run the analyzer without sa
 python3 bin/run_analysis.py Run3Summer22EE DYJets --debug
 ```
 
+#### `--reweight`
+If one wishes to reweight a particular sample, use 
+```
+python3 bin/run_analysis.py Run3Summer22EE DYJets --reweight reweight_file.json
+```
+where `reweight_file.json` is the output file of scripts/derive_reweights.py
+
+#### `--unskimmed`
+If one wishes to run over the entire unskimmed files, use  
+```
+python3 bin/run_analysis.py Run3Summer22EE DYJets --unskimmed
+```
+This will tell the analyzer to find the unskimmed filesets instead.
+
+#### `--condor`
+If one wishes to run on condor on the LPC, use
+```
+python3 bin/run_analysis.py Run3Summer22EE DYJets --condor
+```
 More information can be found in the `README.md` file in other folders.
 
 ## Analyzing all
