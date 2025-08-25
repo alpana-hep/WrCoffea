@@ -4,7 +4,7 @@ Welcome to the WR analyzer! This repository provides tools for analyzing and pro
 
 ## Table of Contents
 - [Creating filesets](docs/filesets.md) – Instructions for creating both skimmed and unskimmed filesets.
-- [Running the Analyzer](docs/run_analysis.md) – How to execute `run_analysis.py` to perform the analysis.
+- [Running the Analyzer](docs/run_analysis.md) – How to execute `run_analysis.py` to perform a basic analysis.
 - [Condor](docs/condor.md) – How to run the analyzer on Condor at the LPC.
 - [Plotting](docs/plotting.md) – Instructions for generating plots from histogram ROOT files.
 - [Repository Structure](README.md#repository-structure) – Overview of how the repository is organized.
