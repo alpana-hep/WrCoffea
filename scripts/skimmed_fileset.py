@@ -2,13 +2,15 @@
 #
 # -----------------------------------------------------------------------------
 # Example usage:
-#   # Replace files & preprocess skims for a given config JSON:
-#    python3 scripts/make_skimmed_json.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_mc_lo_dy.json
-#       
+#   # Takes in config JSON, and populates it with a list of skimmed ROOT files from EOS:
+#   python3 scripts/skimmed_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_mc_lo_dy.json
+#   python3 scripts/skimmed_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_data.json
+#   python3 scripts/skimmed_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_signal.json 
 #
-#
-# This will produce:
-#   data/jsons/Run3/2022/Run3Summer22/skimmed/Run3Summer22_mc_preprocessed_skims.json
+# These commands will produce:
+#   data/jsons/Run3/2022/Run3Summer22/skimmed/Run3Summer22_mc_lo_dy_skimmed_fileset.json
+#   data/jsons/Run3/2022/Run3Summer22/skimmed/Run3Summer22_data_skimmed_fileset.json
+#   data/jsons/Run3/2022/Run3Summer22/skimmed/Run3Summer22_signal_skimmed_fileset.json
 # -----------------------------------------------------------------------------
 
 import warnings
@@ -18,8 +20,6 @@ import json
 import argparse
 import subprocess
 import logging
-from coffea.dataset_tools import preprocess
-from dask.diagnostics import ProgressBar
 from pathlib import Path
 import os
 import sys
@@ -28,7 +28,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 repo_root = os.path.abspath(os.path.join(current_dir, "../"))
 sys.path.insert(0, repo_root)
 
-from python.preprocess_utils import get_era_details, load_json, save_json
+from python.preprocess_utils import get_era_details, load_json
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
@@ -41,20 +41,19 @@ def replace_files_in_json(data: dict, run: str, year: str, era: str, umn: bool, 
 
     for key, entry in data.items():
         metadata = {k: entry.pop(k) for k in metadata_keys if k in entry}
-
         if "dataset" in entry:
             metadata["sample"] = entry.pop("dataset")
 
         raw_files = entry.pop("files", {})
 
         if isinstance(raw_files, dict):
-            files = list(raw_files.keys())
+            files_dict = raw_files.copy()
         elif isinstance(raw_files, list):
-            files = raw_files.copy()
+            files_dict = {fp: "Events" for fp in raw_files}
         else:
-            files = []
+            files_dict = {}
 
-        data[key] = {"files": files, "metadata": metadata}
+        data[key] = {"files": files_dict, "metadata": metadata}
 
     for ds_name, ds_info in data.items():
         dataset = ds_info["metadata"].get("dataset")
@@ -65,11 +64,9 @@ def replace_files_in_json(data: dict, run: str, year: str, era: str, umn: bool, 
         root_files = (get_root_files_from_umn(dataset, era) if umn
                       else get_root_files_from_eos(dataset, run, year, era))
 
-
         if root_files:
             for fp in root_files:
-                if fp not in ds_info["files"]:
-                    ds_info["files"].append(fp)
+                ds_info["files"].setdefault(fp, "Events")
         else:
             logging.warning(f"No ROOT files found for dataset {ds_name}")
 
@@ -105,18 +102,6 @@ def get_root_files_from_eos(dataset: str, run: str, year: str, era: str) -> list
         logging.error(f"EOS listing failed for {dataset}: {e}")
         return []
 
-
-def preprocess_json(fileset: dict, chunks: int = 100_000, timeout: int = 3600):
-    logging.info(f"Starting preprocessing ({chunks=} , timeout={timeout}s)")
-    with ProgressBar():
-        runnable, updated = preprocess(
-            fileset=fileset,
-            step_size=chunks,
-            skip_bad_files=True
-        )
-    logging.info("Preprocessing done.")
-    return runnable, updated
-
 def rename_dataset_key_to_sample(data: dict) -> dict:
     for entry in data.values():
         md = entry.get("metadata", {})
@@ -138,18 +123,6 @@ def main():
         "--umn",
         action="store_true",
         help="Fetch ROOT files from UMN skims instead of EOS"
-    )
-    parser.add_argument(
-        "--chunks",
-        type=int,
-        default=100_000,
-        help="Chunk size for Coffea preprocessing"
-    )
-    parser.add_argument(
-        "--timeout",
-        type=int,
-        default=3600,
-        help="Timeout (s) for file I/O operations"
     )
     args = parser.parse_args()
 
@@ -174,23 +147,17 @@ def main():
         logging.warning(f"Filename '{stem}' doesn't start with '{prefix}'")
     sample = stem[len(prefix):]
 
-    # load, replace file lists, preprocess, and save
     fileset = load_json(str(input_path))
     fileset = replace_files_in_json(fileset, run, year, era, args.umn, sample)
-#    runnable, updated = preprocess_json(fileset, chunks=args.chunks, timeout=args.timeout)
-
     fileset = rename_dataset_key_to_sample(fileset)
 
-    # construct & create output directory
     out_dir = data_root / "jsons" / run / year / era / "skimmed"
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    # save the final JSON
     out_file = out_dir / f"{era}_{sample}_skimmed_fileset.json"
     with out_file.open("w") as f:
         json.dump(fileset, f, indent=2, sort_keys=True)
-#    save_json(str(out_file), out_file, out_file)
-    logging.info(f"Saved preprocessed skims JSON to {out_file}")
+    logging.info(f"Saved JSON to {out_file}")
 
 
 if __name__ == "__main__":

@@ -62,6 +62,7 @@ def get_genevents_from_coffea(rootFile):
     try:
         events = NanoEventsFactory.from_root(
                 {filepath: "Runs"},
+                mode="dask",
                 schemaclass=NanoAODSchema
         ).events()
 
@@ -105,8 +106,8 @@ def make_skimmed_events(events):
     leading_lepton = leptons_padded[:, 0]
     subleading_lepton = leptons_padded[:, 1]
 
-    lead_pt_cut = 52 #5
-    sublead_pt_cut = 45 #5
+    lead_pt_cut = 19 #5
+    sublead_pt_cut = 19 #5
     event_filters = (
         (ak.fill_none(leading_lepton.pt, 0) > lead_pt_cut) &
         (ak.fill_none(subleading_lepton.pt, 0) > sublead_pt_cut)

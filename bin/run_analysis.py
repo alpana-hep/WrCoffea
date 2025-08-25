@@ -1,5 +1,6 @@
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning, module="coffea.*")
+warnings.filterwarnings("ignore", category=FutureWarning, module="htcondor.*")
 import argparse
 import time
 import json
@@ -7,7 +8,6 @@ import logging
 import csv
 from pathlib import Path
 from coffea.nanoevents import NanoAODSchema
-from coffea.dataset_tools import apply_to_fileset, max_chunks, max_files
 import sys
 import os
 
@@ -16,25 +16,18 @@ from coffea.processor import Runner, DaskExecutor
 from coffea.nanoevents import NanoEventsFactory, NanoAODSchema
 from coffea.processor import ProcessorABC
 
-# Add the src/, data/, and python/ directories to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../data')))
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../python`')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../python')))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from analyzer import WrAnalysis
-#from dask.distributed import Client
-#from dask.diagnostics import ProgressBar
-#import dask
 import uproot
 from python.save_hists import save_histograms
 from python.preprocess_utils import get_era_details, load_json
 
-# Set up logging configuration
-logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# Suppress specific warnings
 NanoAODSchema.warn_missing_crossrefs = False
 NanoAODSchema.error_missing_event_ids = False
 
@@ -78,10 +71,46 @@ def validate_arguments(args, sig_points):
         logging.error("Reweighting can only be applied to DY")
         raise ValueError("Invalid sample for reweighting.")
 
-def run_analysis(args, filtered_fileset):
+def run_analysis(args, filtered_fileset, run_on_condor):
 
-    cluster = LocalCluster(n_workers=1, threads_per_worker=1)
-    client = Client(cluster)
+    if run_on_condor:
+        from lpcjobqueue import LPCCondorCluster
+
+        repo_root = Path(__file__).resolve().parent.parent
+        log_dir = f"/uscmst1b_scratch/lpc1/3DayLifetime/{os.environ['USER']}/dask-logs"
+
+        cluster = LPCCondorCluster(
+            ship_env=False,
+            transfer_input_files=[
+                str(repo_root / "src"),
+                str(repo_root / "python"),
+                str(repo_root / "bin"),
+                str(repo_root / "data" / "lumis"),
+            ],
+            log_directory=log_dir,
+        )
+
+        NWORKERS = 20  # set what you want (1-4 is a good start)
+        cluster.scale(NWORKERS)
+
+        client = Client(cluster)
+        client.wait_for_workers(NWORKERS, timeout="180s")
+
+    #    cluster.adapt(minimum=1, maximum=200)
+
+        def _add_paths():
+            import sys, os
+            for p in ("src", "python"):
+                if os.path.isdir(p) and p not in sys.path:
+                    sys.path.insert(0, p)
+            return sys.path
+
+        client.run(_add_paths)
+
+    else:
+        cluster = LocalCluster(n_workers=1, threads_per_worker=1)
+        cluster.adapt(minimum=1, maximum=10)
+        client = Client(cluster)
 
     run = Runner(
         executor = DaskExecutor(client=client, compression=None),
@@ -94,29 +123,24 @@ def run_analysis(args, filtered_fileset):
         schema=NanoAODSchema,
     )
 
-    print(f"***PREPROCESSING***")
-    preproc= run.preprocess(fileset=filtered_fileset, treename="Events")
-    print("Preprocessing completed")
-    
-    print(f"\n***PROCESSING***")
-    to_compute, metrics = run(
-        preproc, #filtered_fileset
-        treename="Events",
-        processor_instance=WrAnalysis(mass_point=None),
-    )
-    print("Processing completed")
-#    print(f"\n***METRICS***\n{metrics}\n")
+    try:
+        logging.info("***PREPROCESSING***")
+        preproc = run.preprocess(fileset=filtered_fileset, treename="Events")
+        logging.info("Preprocessing completed")
 
-#    to_compute = apply_to_fileset(
-#        data_manipulation=WrAnalysis(mass_point=args.mass, sf_file=args.reweight),
-#        fileset=max_files(max_chunks(filtered_fileset,1),1),
-#        schemaclass=NanoAODSchema,
-#        uproot_options={"handler": uproot.MultiThreadedXRootDSource, "timeout": 60}
-    return to_compute
-
-def save_hists(to_compute):
-    logging.info("Saving histograms...")
-    save_histograms(to_compute, args)
+        logging.info("***PROCESSING***")
+        histograms, metrics = run(
+            preproc,
+            treename="Events",
+            processor_instance=WrAnalysis(mass_point=None),
+        )
+        logging.info("Processing completed")
+        return histograms
+    finally:
+        try:
+            client.close()
+        finally:
+            cluster.close()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Processing script for WR analysis.")
@@ -128,31 +152,39 @@ if __name__ == "__main__":
     optional.add_argument("--name", type=str, default=None, help="Append the filenames of the output ROOT files.")
     optional.add_argument("--debug", action='store_true', help="Debug mode (don't compute histograms)")
     optional.add_argument("--reweight", type=str, default=None, help="Path to json file of DY reweights")
+    optional.add_argument("--unskimmed", action='store_true', help="Run on unskimmed files.")
+    optional.add_argument("--condor", action='store_true', help="Run on condor.")
     args = parser.parse_args()
 
     signal_points = Path(f'data/{args.era}_mass_points.csv')
     MASS_CHOICES = load_masses_from_csv(signal_points)
 
-#    print()
+    print()
     logging.info(f"Analyzing {args.era} - {args.sample} events")
     
     validate_arguments(args, MASS_CHOICES)
     run, year, era = get_era_details(args.era)
 
-    if "EGamma" in args.sample or "Muon" in args.sample:
-        filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_data_skimmed_fileset.json"
-    elif "Signal" in args.sample:
-        filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_signal_skimmed_fileset.json"
+    subdir = "unskimmed" if args.unskimmed else "skimmed"
+
+    if args.sample in ["EGamma", "Muon"]:
+        filename = f"{era}_{args.sample}_fileset.json" if args.unskimmed else f"{era}_data_skimmed_fileset.json"
+    elif args.sample == "Signal":
+        filename = f"{era}_{args.sample}_fileset.json" if args.unskimmed else f"{era}_signal_skimmed_fileset.json"
     else:
-        filepath = Path("data/jsons") / run / year / era / "skimmed" / f"{era}_mc_lo_dy_skimmed_fileset.json"
+        filename = f"{era}_{args.sample}_fileset.json" if args.unskimmed else f"{era}_mc_lo_dy_skimmed_fileset.json" 
+
+    filepath = Path("data/jsons") / run / year / era / subdir / filename
+
+    logging.info(f"Reading files from {filepath}")
 
     preprocessed_fileset = load_json(str(filepath))
     filtered_fileset = filter_by_process(preprocessed_fileset, args.sample, args.mass)
 
     t0 = time.monotonic()
-    to_compute = run_analysis(args, filtered_fileset)
+    hists_dict = run_analysis(args, filtered_fileset, args.condor)
 
     if not args.debug:
-        save_hists(to_compute)
+        save_histograms(hists_dict, args)
     exec_time = time.monotonic() - t0
     logging.info(f"Execution took {exec_time/60:.2f} minutes")

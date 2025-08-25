@@ -26,7 +26,7 @@ fi
 echo "-------------------------------------------"
 tar -xzf WrCoffea.tar.gz
 cd WrCoffea
-source venv/bin/activate
+source .venv/bin/activate
 
 echo "-------------------------------------------"
 echo "### **Start of Job**"
@@ -35,7 +35,7 @@ echo "**Process:** $PROCESS"
 echo "**Dataset:** $DATASET"
 echo "-------------------------------------------"
 
-export PATH="/srv/WrCoffea/venv/bin:$PATH"
+export PATH="/srv/WrCoffea/.venv/bin:$PATH"
 export PYTHONPATH="/srv/WrCoffea/venv/lib/python3.9/site-packages:$PYTHONPATH"
 python3 scripts/setup/skims/skim_files.py $CAMPAIGN $PROCESS $DATASET --start $FILE_NUM
 
