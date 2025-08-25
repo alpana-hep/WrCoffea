@@ -1,20 +1,6 @@
-# Running the analyzer
-
-## Preprocessing
-Preprocessing is the first step, and only needs to be done once, or if a file in `configs/` is updated. The command is of the form 
-```
-python3 scripts/make_skimmed_json.py --config data/configs/RunII/2018/RunIISummer20UL18/RunIISummer20UL18_mc.json
-python3 scripts/make_skimmed_json.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_data.json
-python3 scripts/make_skimmed_json.py --config data/configs/Run3/2022/Run3Summer22EE/Run3Summer22_signal.json
-```
-The outputted `json` file locates the skimmed nanoAOD files from Billy's EOS LPC area, preprocesses them and provides their filepaths.
-
-For running at UMN, preprocessing can be done with the `--umn' flag,
-```
-python3 scripts/make_skimmed_json.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_data.json --umn
-```
-
 ## Basic Analysis
+First, create the filesets (see the `filesets.md` README).
+
 ### Analyzing background samples
 To run a basic analysis on a background sample, specify the era (either `RunIISummer20UL18`, `Run3Summer22`, or `Run3Summer22EE`) and the sample. For example,
 ```
@@ -24,7 +10,7 @@ python3 bin/run_analysis.py Run3Summer22EE DYJets
 ```
 other backgrounds that can be analyzed are `TTbar`, `tW`, `WJets`, `SingleTop`, `TTbarSemileptonic`, `TTX`, `Diboson`, and `Triboson`.
 
-By default, the output histograms will be saved to
+By default the analyzer looks for the skimmed filesets, and the output histograms will be saved to
 ```
 WR_Plotter/rootfiles/RunII/2018/RunIISummer20UL18/WRAnalyzer_DYJets.root.
 WR_Plotter/rootfiles/Run3/2022/Run3Summer22/WRAnalyzer_DYJets.root.
@@ -82,6 +68,20 @@ When making changes to the analyzer, one may want to run the analyzer without sa
 ```
 python3 bin/run_analysis.py Run3Summer22EE DYJets --debug
 ```
+
+#### `--reweight`
+If one wishes to reweight a particular sample, use 
+```
+python3 bin/run_analysis.py Run3Summer22EE DYJets --reweight reweight_file.json
+```
+where `reweight_file.json` is the output file of scripts/derive_reweights.py
+
+#### `--unskimmed`
+If one wishes to run over the entire unskimmed files, use  
+```
+python3 bin/run_analysis.py Run3Summer22EE DYJets --unskimmed
+```
+This will tell the analyzer to find the unskimmed filesets instead.
 
 More information can be found in the `README.md` file in other folders.
 
