@@ -132,7 +132,7 @@ def run_analysis(args, filtered_fileset, run_on_condor):
         histograms, metrics = run(
             preproc,
             treename="Events",
-            processor_instance=WrAnalysis(mass_point=None),
+            processor_instance=WrAnalysis(mass_point=args.mass),
         )
         logging.info("Processing completed")
         return histograms
