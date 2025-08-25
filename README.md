@@ -3,7 +3,7 @@
 Welcome to the WR analyzer! This repository provides tools for analyzing and processing WR background, data, and signal events. Below, you’ll find instructions on setting up the environment, running the analysis, and extending the framework.
 
 ## Table of Contents
-- [Creating filesets](docs/filesets.md) – Instructions for creating both skimmed and unskimmed filesets.
+- [Creating Filesets](docs/filesets.md) – Instructions for creating both skimmed and unskimmed filesets.
 - [Running the Analyzer](docs/run_analysis.md) – How to execute `run_analysis.py` to perform a basic analysis.
 - [Condor](docs/condor.md) – How to run the analyzer on Condor at the LPC.
 - [Plotting](docs/plotting.md) – Instructions for generating plots from histogram ROOT files.
