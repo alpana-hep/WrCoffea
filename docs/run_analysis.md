@@ -1,17 +1,27 @@
 # Running the analyzer
 
-## Preprocessing
-Preprocessing is the first step, and only needs to be done once, or if a file in `configs/` is updated. The command is of the form 
-```
-python3 scripts/make_skimmed_json.py --config data/configs/RunII/2018/RunIISummer20UL18/RunIISummer20UL18_mc.json
-python3 scripts/make_skimmed_json.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_data.json
-python3 scripts/make_skimmed_json.py --config data/configs/Run3/2022/Run3Summer22EE/Run3Summer22_signal.json
-```
-The outputted `json` file locates the skimmed nanoAOD files from Billy's EOS LPC area, preprocesses them and provides their filepaths.
+## Create filesets
+The first step is to find the files that will be fed into the analyzer. This can either be skimmed files that are located at UMN and Billy's EOS LPC area, or unskimmed files that we will query with rucio and DAS. 
 
-For running at UMN, preprocessing can be done with the `--umn' flag,
+To create a fileset of unskimmed files, use a command of the form 
 ```
-python3 scripts/make_skimmed_json.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_data.json --umn
+python3 scripts/full_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_mc_lo_dy.json --dataset TTbar
+python3 scripts/full_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_signal.json --dataset Signal
+python3 scripts/full_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_data.json --dataset EGamma
+```
+where `--dataset` can be `DYJets`, `TTbar`, `TW`, `WJets`, `SingleTop`, `TTbarSemileptonic`, `TTV`, `Diboson`, `Triboson` (for backgrounds), `Signal` (for signal files), or `EGamma` or `Muon` (for data). Note that this does not work if running at UMN, use the script below instead.
+
+Creating a fileset from skims is very similar, except one does not need the `dataset` argument. For example,
+```
+python3 scripts/skimmed_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_mc_lo_dy.json 
+python3 scripts/skimmed_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_data.json
+python3 scripts/skimmed_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_signal.json 
+```
+The outputted `json` file locates the skimmed nanoAOD files from Billy's EOS LPC area, and creates filesets from each dataset.
+
+For running at UMN, add the `--umn` flag to create the fileset from the skims at UMN,
+```
+python3 scripts/skimmed_fileset.py --config data/configs/Run3/2022/Run3Summer22/Run3Summer22_data.json --umn
 ```
 
 ## Basic Analysis
