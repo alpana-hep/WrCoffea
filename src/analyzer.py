@@ -123,7 +123,7 @@ class WrAnalysis(processor.ProcessorABC):
         return events.Jet[ak4_jets]
 
     def selectAK8Jets(self,events):
-        ak8_jets = (events.FatJet.pt>200) & (np.abs(events.FatJet.eta) < 2.4) & (events.FatJet.msoftdrop > 40) & (events.FatJet.isTight) # (events.FatJet.lsf3 >0.75)  ## what about LSF selection and correct way to put JetID?
+        ak8_jets = (events.FatJet.pt > 200) & (np.abs(events.FatJet.eta) < 2.4) & (events.FatJet.msoftdrop > 40) & (events.FatJet.isTight) 
         return events.FatJet[ak8_jets]
     
     def check_mass_point_resolved(self):
@@ -145,13 +145,12 @@ class WrAnalysis(processor.ProcessorABC):
         selections.add("mlljj>800", mlljj > 800)
         selections.add("dr>0.4", (dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4))
 
-    def add_boosted_selections(self, selections, tightElectrons, tightMuons, AK4Jets, AK8Jets, looseElectrons, looseMuons):
-        selections.add("nottwoTightLeptons", ~((ak.num(tightElectrons) + ak.num(tightMuons)) == 2))
-                       #& (ak.num(tightElectrons) + ak.num(tightMuons)) != 0)
-        selections.add("notminTwoAK4Jets", ak.num(AK4Jets) <=1)#(AK4Jets[:,0].pt ==0) | (AK4Jets[:,1].pt ==0))
+    def add_boosted_selections(self, selections, tightElectrons, tightMuons, AK4Jets, AK8Jets, looseElectrons, looseMuons,dr_jl_min, dr_j1j2, dr_l1l2):
+        selections.add("nottwoTightLeptons", (ak.num(tightElectrons) + ak.num(tightMuons)) == 1)
+        selections.add("notminTwoAK4Jets", ak.num(AK4Jets) <=1)
         selections.add("atleast1AK8Jets", (ak.num(AK8Jets) >=1) & (AK8Jets[:,0].pt!=0))
         selections.add("atleast1LooseLepton",(ak.num(looseElectrons) + ak.num(looseMuons))>=1)
-        #selections.add("notdr>0.4", ~((dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4)))
+        selections.add("notdr>0.4", ~((dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4)))
 
     def fill_basic_histograms(self, output, region, cut, process_name, jets, leptons, ak8jets, looseleptons, weights):
         variables =[
@@ -252,7 +251,7 @@ class WrAnalysis(processor.ProcessorABC):
         #     self.check_mass_point_resolved()
 
         # Object selection
-        tightElectrons, looseElectrons = self.selectElectrons(events) ## Alpana - update this line to get loose Electrons as well
+        tightElectrons, looseElectrons = self.selectElectrons(events) 
         nTightElectrons = ak.num(tightElectrons)
         nLooseElectrons = ak.num(looseElectrons)
         
@@ -262,14 +261,14 @@ class WrAnalysis(processor.ProcessorABC):
         AK4Jets = self.selectJets(events)
         nAK4Jets = ak.num(AK4Jets)
         
-        AK8Jets = self.selectAK8Jets(events) ## Alpana - boosted
+        AK8Jets = self.selectAK8Jets(events) 
         nAK8Jets = ak.num(AK8Jets)
         
         # Event variables
         tightLeptons_all = ak.with_name(ak.concatenate((tightElectrons, tightMuons), axis=1), 'PtEtaPhiMCandidate')
         tightLeptons_all = tightLeptons_all[ak.argsort(tightLeptons_all.pt, axis=1, ascending=False)] #,1 , axis=1)
         tightLeptons = ak.pad_none(tightLeptons_all, 2, axis=1)
-        AK4Jets_notpadded = AK4Jets #3 quick fix
+        AK4Jets_notpadded = AK4Jets # quick fix
         AK4Jets = ak.pad_none(AK4Jets, 2, axis=1)
         
         
@@ -283,20 +282,23 @@ class WrAnalysis(processor.ProcessorABC):
         dr_j1j2 = ak.fill_none(AK4Jets[:, 0].delta_r(AK4Jets[:, 1]), False)
         dr_l1l2 = ak.fill_none(tightLeptons[:, 0].delta_r(tightLeptons[:, 1]), False)
         
-        AK8Jets = ak.pad_none(AK8Jets, 1, axis=1) ## Alpana keeping same structure for fatjets
-        
-        # ## adding for loose leptons                                                                                                           
+        AK8Jets = ak.pad_none(AK8Jets, 1, axis=1) 
+
+        dPhi_lj = ak.fill_none(ak.min(AK8Jets[:, 0:1].nearest(tightLeptons_all).delta_phi(AK8Jets[:, 0:1]), axis=1), False)
+
+        # ## adding for loose leptons                                                                                                          
         looseLeptons_all = ak.with_name(ak.concatenate((looseElectrons, looseMuons), axis=1), 'PtEtaPhiMCandidate')
         looseLeptons_all = looseLeptons_all[ak.argsort(looseLeptons_all.pt, axis=1, ascending=False)] #, 1, axis=1)
         looseLeptons = ak.pad_none(looseLeptons_all, 1, axis=1)
         mll_boosted =ak.fill_none((tightLeptons[:, 0] + looseLeptons[:, 0]).mass, 0.0)
         mlj_boosted =ak.fill_none((tightLeptons[:, 0] +AK8Jets[:,0]).mass, 0.0)
+        dR_ak8j_looselepton = ak.fill_none(ak.min(AK8Jets[:, 0:1].nearest(looseLeptons).delta_r(AK8Jets[:, 0:1]), axis=1), False)
 
 
         # Event selections
         selections = PackedSelection()
         self.add_resolved_selections(selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2)
-        self.add_boosted_selections(selections, tightElectrons, tightMuons, AK4Jets_notpadded,AK8Jets, looseElectrons, looseMuons)
+        self.add_boosted_selections(selections, tightElectrons, tightMuons, AK4Jets_notpadded,AK8Jets, looseElectrons, looseMuons,dr_jl_min, dr_j1j2, dr_l1l2)
         # Trigger selections
         if mc_campaign in ("RunIISummer20UL18", "Run2Autumn18"):
             eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
@@ -304,12 +306,21 @@ class WrAnalysis(processor.ProcessorABC):
             selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
             selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
             selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
+            selections.add("eeTrigger_boosted",(eTrig & (nTightElectrons == 1 ) & (nTightMuons == 0)))
+            selections.add("mumuTrigger_boosted",(muTrig & (nTightElectrons == 0)  & (nTightMuons == 1 )))
+            selections.add("emuTrigger_boosted",(eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 0) & (nLooseMuons == 1) & (nLooseElectrons == 0 ) & (dR_ak8j_looselepton < 0.8)))## add dR condition between loose and AK8 jets - come back to it again for 0.8 or 0.4 clarification
+            selections.add("mueTrigger_boosted",(eTrig & muTrig & (nTightMuons == 1) & (nTightElectrons == 0) & (nLooseElectrons == 1 ) & (nLooseMuons==0) & (dR_ak8j_looselepton < 0.8)))
+            
         elif mc_campaign in ("Run3Summer22", "Run3Summer23BPix", "Run3Summer22EE", "Run3Summer23"):
             eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
             muTrig = events.HLT.Mu50 | events.HLT.HighPtTkMu100
             selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
             selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
             selections.add("emuTrigger", ((eTrig | muTrig) & (nTightElectrons == 1) & (nTightMuons == 1)))
+            selections.add("eeTrigger_boosted",(eTrig & (nTightElectrons == 1 ) & (nTightMuons == 0)))
+            selections.add("mumuTrigger_boosted",(muTrig & (nTightElectrons == 0)  & (nTightMuons == 1) & (dR_ak8j_looselepton < 0.8)))
+            selections.add("emuTrigger_boosted",(eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 0) & (nLooseMuons == 1) & (nLooseElectrons == 0 ) & (dR_ak8j_looselepton < 0.8) ))                                                      
+            selections.add("mueTrigger_boosted",(eTrig & muTrig & (nTightMuons == 1) & (nTightElectrons == 0) & (nLooseElectrons == 1) & (nLooseMuons==0) & (dR_ak8j_looselepton < 0.8 )))
 
         # Event Weights
         weights = Weights(len(events))
@@ -343,6 +354,7 @@ class WrAnalysis(processor.ProcessorABC):
         selections.add("200mll_boosted",(mll_boosted>200))
         selections.add("mlj>800",(mlj_boosted>800))
         selections.add("AK8Jets_LSF3>0.75",(AK8Jets[:,0].lsf3 > 0.75))
+        selections.add("dPhi_lj>2.0",(dPhi_lj>2.0))
         # Define regions
         regions = {
             'wr_ee_resolved_dy_cr': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger' , 'mlljj>800', 'dr>0.4', '60mll150', 'eejj'],
@@ -351,11 +363,12 @@ class WrAnalysis(processor.ProcessorABC):
             'wr_ee_resolved_sr': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'eejj'],
             'wr_mumu_resolved_sr': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'mumujj'],
 
-            'wr_ee_boosted_sr' : ['nottwoTightLeptons','atleast1AK8Jets','leadTightLeptonPt60', '200mll_boosted','mlj>800','atleast1LooseLepton','notminTwoAK4Jets','AK8Jets_LSF3>0.75'],
-            'wr_ee_boosted_dy_cr' : ['nottwoTightLeptons','atleast1AK8Jets','leadTightLeptonPt60', '60mll_boosted150','mlj>800','atleast1LooseLepton','notminTwoAK4Jets','AK8Jets_LSF3>0.75'],
-            'wr_boosted_flavor_cr' : ['nottwoTightLeptons','atleast1AK8Jets','leadTightLeptonPt60', '200mll_boosted','mlj>800','atleast1LooseLepton','notminTwoAK4Jets','AK8Jets_LSF3>0.75'],
-             'wr_mumu_boosted_sr' : ['nottwoTightLeptons','atleast1AK8Jets','leadTightLeptonPt60', '200mll_boosted','mlj>800','atleast1LooseLepton','notminTwoAK4Jets','AK8Jets_LSF3>0.75'],
-            'wr_mumu_boosted_dy_cr' : ['nottwoTightLeptons','atleast1AK8Jets','leadTightLeptonPt60', '60mll_boosted150','mlj>800','atleast1LooseLepton','notminTwoAK4Jets','AK8Jets_LSF3>0.75'],
+            'wr_ee_boosted_sr' : ['nottwoTightLeptons','atleast1AK8Jets','leadTightLeptonPt60', '200mll_boosted','mlj>800','atleast1LooseLepton','notminTwoAK4Jets','notdr>0.4','eeTrigger_boosted','dPhi_lj>2.0'], #'AK8Jets_LSF3>0.75','dPhi_lj>2.0'],
+            'wr_ee_boosted_dy_cr' : ['nottwoTightLeptons','atleast1AK8Jets','leadTightLeptonPt60', '60mll_boosted150','mlj>800','atleast1LooseLepton','notminTwoAK4Jets','notdr>0.4','eeTrigger_boosted','dPhi_lj>2.0'] , #,'AK8Jets_LSF3>0.75'],
+            'wr_boosted_flavor_emu_cr' : ['nottwoTightLeptons','atleast1AK8Jets','leadTightLeptonPt60', '200mll_boosted','mlj>800','atleast1LooseLepton','notminTwoAK4Jets','notdr>0.4', 'dPhi_lj>2.0','emuTrigger_boosted'], #'AK8Jets_LSF3>0.75', 'dPhi_lj>2.0','emuTrigger_boosted'],
+            'wr_boosted_flavor_mue_cr' : ['nottwoTightLeptons','atleast1AK8Jets','leadTightLeptonPt60', '200mll_boosted','mlj>800','atleast1LooseLepton','notminTwoAK4Jets','notdr>0.4', 'dPhi_lj>2.0','mueTrigger_boosted'],#'AK8Jets_LSF3>0.75', 'dPhi_lj>2.0','mueTrigger_boosted'],
+             'wr_mumu_boosted_sr' : ['nottwoTightLeptons','atleast1AK8Jets','leadTightLeptonPt60', '200mll_boosted','mlj>800','atleast1LooseLepton','notminTwoAK4Jets','notdr>0.4','mumuTrigger_boosted', 'dPhi_lj>2.0'],#'AK8Jets_LSF3>0.75','dPhi_lj>2.0'],
+            'wr_mumu_boosted_dy_cr' : ['nottwoTightLeptons','atleast1AK8Jets','leadTightLeptonPt60', '60mll_boosted150','mlj>800','atleast1LooseLepton','notminTwoAK4Jets','notdr>0.4','mumuTrigger_boosted','dPhi_lj>2.0'],#'AK8Jets_LSF3>0.75'],
 
         }
         print("Defined selections:", selections.names)
@@ -376,10 +389,10 @@ class WrAnalysis(processor.ProcessorABC):
             cut = selections.all(*cuts)
             n_pass = ak.sum(cut)
             print(region, cuts, cut, n_pass, len(cut))
-            if region == 'wr_ee_boosted':
-                self.fill_basic_histograms(output, region, cut, process_name, AK4Jets, tightLeptons, AK8Jets, looseLeptons, weights)
-            else:
-                self.fill_basic_histograms(output, region, cut, process_name, AK4Jets, tightLeptons, AK8Jets, looseLeptons, weights)
+            # if region == 'wr_ee_boosted':
+            #     self.fill_basic_histograms(output, region, cut, process_name, AK4Jets, tightLeptons, AK8Jets, looseLeptons, weights)
+            # else:
+            self.fill_basic_histograms(output, region, cut, process_name, AK4Jets, tightLeptons, AK8Jets, looseLeptons, weights)
 
         nested_output = {
             dataset: {
