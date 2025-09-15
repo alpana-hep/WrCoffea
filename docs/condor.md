@@ -10,6 +10,12 @@ This creates two new files in this directory: `shell` and `.bashrc`. The `./shel
 ```
 ./shell coffeateam/coffea-base-almalinux9:0.7.29-py3.10
 ```
+If you face issues with python mismatch then run the above command after unsetting python path shell variables
+```
+unset PYTHONHOME
+unset PYTHONPATH
+```
+
 Then, run the analyzer with the `--condor` option,
 ```
 python3 bin/run_analysis.py Run3Summer22EE DYJets --condor
