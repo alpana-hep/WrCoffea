@@ -55,7 +55,7 @@ class WrAnalysis(processor.ProcessorABC):
 
             'mass_dilepton':            self.create_hist('mass_dilepton',            'process', 'region', (5000,  0, 5000), r'$m_{\ell\ell}$ [GeV]'),
             'pt_dilepton':              self.create_hist('pt_dilepton',              'process', 'region', (200,   0, 2000), r'$p_{T,\ell\ell}$ [GeV]'),
- 
+
             'mass_dijet':               self.create_hist('mass_dijet',               'process', 'region', (500,   0, 5000), r'$m_{jj}$ [GeV]'),
             'pt_dijet':                 self.create_hist('pt_dijet',                 'process', 'region', (500,   0, 5000), r'$p_{T,jj}$ [GeV]'),
 
@@ -68,49 +68,18 @@ class WrAnalysis(processor.ProcessorABC):
             'mass_fourobject':        self.create_hist('mass_fourobject',        'process', 'region', (800,   0, 8000), r'$m_{\ell\ell jj}$ [GeV]'),
             'pt_fourobject':          self.create_hist('pt_fourobject',          'process', 'region', (800,   0, 8000), r'$p_{T,\ell\ell jj}$ [GeV]'),
 
-            ##adding histograms for boosted region
+            ### Histograms for boosted 
             'pt_leading_loose_lepton':        self.create_hist('pt_leadlooselep',        'process', 'region', (200,   0, 2000), r'$p_{T}$ of the leading loose lepton [GeV]'),
-            'eta_leading_loose_lepton':       self.create_hist('eta_leadlooselep',       'process', 'region', (60,   -3,    3), r'$\eta$ of the leading loose lepton'),
-            'phi_leading_loose_lepton':       self.create_hist('phi_leadlooselep',       'process', 'region', (80,   -4,    4), r'$\phi$ of the leading loose lepton'),
+	    'eta_leading_loose_lepton':       self.create_hist('eta_leadlooselep',       'process', 'region', (60,   -3,    3), r'$\eta$ of the leading loose lepton'),
+	    'phi_leading_loose_lepton':       self.create_hist('phi_leadlooselep',       'process', 'region', (80,   -4,    4), r'$\phi$ of the leading loose lepton'),
              'pt_leading_AK8Jets':        self.create_hist('pt_leadAK8Jets',        'process', 'region', (200,   0, 2000), r'$p_{T}$ of the leading  AK8Jets [GeV]'),
             'eta_leading_AK8Jets':       self.create_hist('eta_leadAK8Jets',       'process', 'region', (60,   -3,    3), r'$\eta$ of theleading  AK8Jets'),
-            'phi_leading_AK8Jets':       self.create_hist('phi_leadAK8Jets',       'process', 'region', (80,   -4,    4), r'$\phi$ of theleading  AK8Jets'),
-            'LSF_leading_AK8Jets':        self.create_hist('LSF_leadingAK8Jets',        'process', 'region', (200,   0, 1.1), r'LSF of leading AK8Jets'),
-            'mass_twoobject':        self.create_hist('mass_twoobject',        'process', 'region', (800,   0, 8000), r'$m_{\ell\ell jj}$ [GeV]'),
+	    'phi_leading_AK8Jets':       self.create_hist('phi_leadAK8Jets',       'process', 'region', (80,   -4,    4), r'$\phi$ of theleading  AK8Jets'),
+	    'LSF_leading_AK8Jets':        self.create_hist('LSF_leadingAK8Jets',        'process', 'region', (200,   0, 1.1), r'LSF of leading AK8Jets'),
+	    'mass_twoobject':        self.create_hist('mass_twoobject',        'process', 'region', (800,   0, 8000), r'$m_{\ell\ell jj}$ [GeV]'),
             'pt_twoobject':          self.create_hist('pt_twoobject',          'process', 'region', (800,   0, 8000), r'$p_{T,\ell\ell jj}$ [GeV]'),
             'count' : self.create_hist('count','process', 'region', (100,0,100), r'count'),
-            'dPhi_leading_tightlepton_AK8Jet':       self.create_hist('dPhi_leadTightlep_AK8Jets',       'process', 'region', (80,   -4,    4), r'$d\phi$ (leading Tight lepton, AK8 Jet)'),
-
-            'nAK8Jets' : self.create_hist('nAK8Jets','process','region',(10,0,10),r'nAK8Jets'),
-            'nAK4Jets' : self.create_hist('nAK4Jets','process','region',(10,0,10),r'nAK4Jets'),
-            'ntightLeptons' : self.create_hist('ntightLeptons','process','region',(10,0,10),r'ntightLeptons'),
-            'nlooseLeptons' : self.create_hist('nlooseLeptons','process','region',(10,0,10),r'nlooseLeptons'),
-            'ntightElectrons' : self.create_hist('ntightElectrons','process','region',(10,0,10),r'ntightElectrons'),
-            'nlooseElectrons' : self.create_hist('nlooseElectrons','process','region',(10,0,10),r'nlooseElectrons'),
-            'ntightMuons' : self.create_hist('ntightMuons','process','region',(10,0,10),r'ntightMuons'),
-            'nlooseMuons' : self.create_hist('nlooseMuons','process','region',(10,0,10),r'nlooseMuons'),
-            
-            ## define 2D histogram to debug ---
-            'nAK8vsnAK4' : self.create_hist2D('nAK8', 'process','region',(10,0,10),r'n AK8 Jets','nAK4',(10,0,10),r'n AK4 Jets'),
-            'nAK8vsntightLeptons' : self.create_hist2D('nAK8', 'process','region',(10,0,10),r'n AK8 Jets','ntightLeptons',(10,0,10),r'ntight Leptons'),
-            'nAK8vsnlooseLeptons' : self.create_hist2D('nAK8', 'process','region',(10,0,10),r'n AK8 Jets','nlooseLeptons',(10,0,10),r'nloose Leptons'),
-            'nAK8vsntightElectrons' : self.create_hist2D('nAK8', 'process','region',(10,0,10),r'n AK8 Jets','ntightElectrons',(10,0,10),r'ntight Electrons'),
-            'nAK8vsnlooseElectrons' : self.create_hist2D('nAK8', 'process','region',(10,0,10),r'n AK8 Jets','nlooseElectrons',(10,0,10),r'nloose Electrons'),
-            'nAK8vsntightMuons' : self.create_hist2D('nAK8', 'process','region',(10,0,10),r'n AK8 Jets','ntightMuons',(10,0,10),r'ntight Muons'),
-            'nAK8vsnlooseMuons' : self.create_hist2D('nAK8', 'process','region',(10,0,10),r'n AK8 Jets','nlooseMuons',(10,0,10),r'nloose Muons'),
-
-            'nAK4vsntightLeptons' : self.create_hist2D('nAK4', 'process','region',(10,0,10),r'n AK4 Jets','ntightLeptons',(10,0,10),r'ntight Leptons'),
-            'nAK4vsnlooseLeptons' : self.create_hist2D('nAK4', 'process','region',(10,0,10),r'n AK4 Jets','nlooseLeptons',(10,0,10),r'nloose Leptons'),
-            'nAK4vsntightElectrons' : self.create_hist2D('nAK4', 'process','region',(10,0,10),r'n AK4 Jets','ntightElectrons',(10,0,10),r'ntight Electrons'),
-            'nAK4vsnlooseElectrons' : self.create_hist2D('nAK4', 'process','region',(10,0,10),r'n AK4 Jets','nlooseElectrons',(10,0,10),r'nloose Electrons'),
-            'nAK4vsntightMuons' : self.create_hist2D('nAK4', 'process','region',(10,0,10),r'n AK4 Jets','ntightMuons',(10,0,10),r'ntight Muons'),
-            'nAK4vsnlooseMuons' : self.create_hist2D('nAK4', 'process','region',(10,0,10),r'n AK4 Jets','nlooseMuons',(10,0,10),r'nloose Muons'),
-
-
-            'nloosevsntightLeptons' : self.create_hist2D('nlooseLeptons', 'process','region',(10,0,10),r'n loose Leptons','ntightLeptons',(10,0,10),r'ntight Leptons'),
-            'nAK8vsmlj' : self.create_hist2D('nAK8', 'process','region',(10,0,10),r'n AK8 Jets','mlj',(800,0,8000),r'mlj'),
-            'nAK8vsmll' : self.create_hist2D('nAK8', 'process','region',(10,0,10),r'n AK8 Jets','mll',(800,0,8000),r'mll'),
-            'mllvsmlj' : self.create_hist2D('mll', 'process','region',(800,0,8000),r'mll','mlj',(800,0,8000),r'mlj'),
+	    'dPhi_leading_tightlepton_AK8Jet':       self.create_hist('dPhi_leadTightlep_AK8Jets',       'process', 'region', (80,   -4,    4), r'$d\phi$ (leading Tight lepton, AK8 Jet)'),
 
         }
 
@@ -140,33 +109,33 @@ class WrAnalysis(processor.ProcessorABC):
             .Reg(*bins, name=name, label=label)
             .Weight()
         )
-    def create_hist2D(self, name_x, process, region, bins_x, label_x, name_y, bins_y, label_y):
-        """Helper function to create 2D histograms with process & region axes."""
-        return (
-            hist.Hist.new.StrCat([], name="process", label="Process", growth=True)
-            .StrCat([], name="region", label="Analysis Region", growth=True)
-            .Reg(*bins_x, name=name_x, label=label_x)
-            .Reg(*bins_y, name=name_y, label=label_y)
-            .Weight()
-        )
 
     def selectElectrons(self, events):
         tight_electrons = (events.Electron.pt > 53) & (np.abs(events.Electron.eta) < 2.4) & (events.Electron.cutBased_HEEP)
-        loose_electrons = (events.Electron.pt > 53) & (np.abs(events.Electron.eta) < 2.4) & (events.Electron.isLoose) & ~(tight_electrons) #cutBased == 2)
+        loose_electrons = (events.Electron.pt > 53) & (np.abs(events.Electron.eta) < 2.4) & (events.Electron.cutBased == 2)
         return events.Electron[tight_electrons], events.Electron[loose_electrons]
 
     def selectMuons(self, events):
         tight_muons = (events.Muon.pt > 53) & (np.abs(events.Muon.eta) < 2.4) & (events.Muon.highPtId == 2) & (events.Muon.tkRelIso < 0.1)
-        loose_muons = (events.Muon.pt > 53) & (np.abs(events.Muon.eta) < 2.4) & (events.Muon.highPtId == 2) & ~(tight_muons)
+        loose_muons = (events.Muon.pt > 53) & (np.abs(events.Muon.eta) < 2.4) & (events.Muon.highPtId == 2)
         return events.Muon[tight_muons], events.Muon[loose_muons]
 
     def selectJets(self, events):
         ak4_jets = (events.Jet.pt > 40) & (np.abs(events.Jet.eta) < 2.4) & (events.Jet.isTightLeptonVeto)
         return events.Jet[ak4_jets]
 
+    ### ----- Boosted Helper functions ----------- ###
+    def selectLooseElectrons(self, events):
+        loose_electrons = (events.Electron.pt > 53) & (np.abs(events.Electron.eta) < 2.4) & (events.Electron.cutBased == 2)
+        return events.Electron[loose_electrons]
+    def selectLooseMuons(self, events):
+        loose_electrons = (events.Muon.pt > 53) & (np.abs(events.Muon.eta) < 2.4) & (events.Muon.highPtId == 2)
+        return events.Muon[loose_electrons]
+
     def selectAK8Jets(self,events):
         ak8_jets = (events.FatJet.pt > 200) & (np.abs(events.FatJet.eta) < 2.4)  & (events.FatJet.msoftdrop > 40) & (events.FatJet.isTight) 
         return events.FatJet[ak8_jets]
+
     
     def check_mass_point_resolved(self):
         match = re.match(r"WR(\d+)_N(\d+)", self._signal_sample)
@@ -180,29 +149,21 @@ class WrAnalysis(processor.ProcessorABC):
         else:
             raise ValueError(f"Invalid mass point format: {self._signal_sample}")
 
-    def add_resolved_selections(self, selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2):        
+    def add_resolved_selections(self, selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2):
         selections.add("twoTightLeptons", (ak.num(tightElectrons) + ak.num(tightMuons)) == 2)
-        selections.add("minTwoAK4Jets", (ak.num(AK4Jets) >= 2) ) #& (AK4Jets[:,0].pt !=0) & (AK4Jets[:,1].pt !=0))
+        selections.add("minTwoAK4Jets", ak.num(AK4Jets) >= 2)
         selections.add("leadTightLeptonPt60", (ak.any(tightElectrons.pt > 60, axis=1) | ak.any(tightMuons.pt > 60, axis=1)))
         selections.add("mlljj>800", mlljj > 800)
         selections.add("dr>0.4", (dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4))
 
-    def add_boosted_selections(self, selections, tightElectrons, tightMuons, AK4Jets, AK8Jets, looseElectrons, looseMuons,dr_jl_min, dr_j1j2, dr_l1l2):
-        selections.add("atleast1AK8Jets", (AK8Jets >=1))
-        selections.add("atleast1LooseLepton",(ak.num(looseElectrons) + ak.num(looseMuons))>=1)
-        resolved = ((ak.num(tightElectrons) + ak.num(tightMuons)) == 2) & ((ak.num(AK4Jets) >= 2)) & ((dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4))
-
-        selections.add("notResolved", ~resolved)
-
-
-    def fill_basic_histograms(self, output, region, cut, process_name, jets, leptons, ak8jets, looseleptons, leptons_all,mll,mlj,nLeptons,nElectrons, nMuons, nLooseLeptons, nLooseElectrons, nLooseMuons, nAK8Jets, nAK4Jets, weights):
+    def fill_basic_histograms(self, output, region, cut, process_name, jets, leptons, ak8jets, looseleptons, weights):
         variables =[
             ('pt_leading_lepton',         leptons[:, 0].pt,    'pt_leadlep'),
             ('eta_leading_lepton',        leptons[:, 0].eta,   'eta_leadlep'),
             ('phi_leading_lepton',        leptons[:, 0].phi,   'phi_leadlep'),
 
             ]
-        if "resolved" in region:            
+        if "resolved" in region:
             variables = [
                 ('pt_leading_lepton',         leptons[:, 0].pt,    'pt_leadlep'),
                 ('eta_leading_lepton',        leptons[:, 0].eta,   'eta_leadlep'),
@@ -227,61 +188,20 @@ class WrAnalysis(processor.ProcessorABC):
                 ('mass_fourobject',           (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1]).mass, 'mass_fourobject'),
                 ('pt_fourobject',             (leptons[:, 0] + leptons[:, 1] + jets[:, 0] + jets[:, 1]).pt,   'pt_fourobject'),
             ]
-        elif "check_region" in region :
-            variables =[
-                ('count',         leptons_all,    'count'),
-                ('nAK8Jets',nAK8Jets,'nAK8Jets'),
-                ('nAK4Jets',nAK4Jets,'nAK4Jets'),
-                ('ntightLeptons',nLeptons,'ntightLeptons'),
-                ('nAK8vsnAK4', nAK8Jets, nAK4Jets,'nAK8vsnAK4'),
-                ]
-            variables_1D = [
-                ('count', leptons_all, 'count'),
-                ('nAK8Jets', nAK8Jets, 'nAK8Jets'),
-                ('nAK4Jets', nAK4Jets, 'nAK4Jets'),
-                ('ntightLeptons', nLeptons, 'ntightLeptons'),
-                ('nlooseLeptons', nLooseLeptons, 'nlooseLeptons'),
-                ('nlooseElectrons', nLooseElectrons, 'nlooseElectrons'),
-                ('nlooseMuons', nLooseMuons, 'nlooseMuons'),
-                ('ntightElectrons', nElectrons, 'ntightElectrons'),
-                ('ntightMuons', nMuons, 'ntightMuons'),
-
-            ]
-
-            # 2D histograms
-            variables_2D = [
-                ('nAK8vsnAK4', (nAK8Jets, nAK4Jets), ('nAK8', 'nAK4')),
-                ('nAK8vsntightLeptons', (nAK8Jets, nLeptons), ('nAK8', 'ntightLeptons')),
-                ('nAK8vsnlooseLeptons', (nAK8Jets, nLooseLeptons), ('nAK8', 'nlooseLeptons')),
-                ('nAK8vsntightElectrons', (nAK8Jets, nElectrons), ('nAK8', 'ntightElectrons')),
-                ('nAK8vsnlooseElectrons', (nAK8Jets, nLooseElectrons), ('nAK8', 'nlooseElectrons')),
-                ('nAK8vsntightMuons', (nAK8Jets, nMuons), ('nAK8', 'ntightMuons')),
-                ('nAK8vsnlooseMuons', (nAK8Jets, nLooseMuons), ('nAK8', 'nlooseMuons')),
-                ('nAK4vsntightLeptons', (nAK4Jets, nLeptons), ('nAK4', 'ntightLeptons')),
-                ('nAK4vsnlooseLeptons', (nAK4Jets, nLooseLeptons), ('nAK4', 'nlooseLeptons')),
-                ('nAK4vsntightElectrons', (nAK4Jets, nElectrons), ('nAK4', 'ntightElectrons')),
-                ('nAK4vsnlooseElectrons', (nAK4Jets, nLooseElectrons), ('nAK4', 'nlooseElectrons')),
-                ('nAK4vsntightMuons', (nAK4Jets, nMuons), ('nAK4', 'ntightMuons')),
-                ('nAK4vsnlooseMuons', (nAK4Jets, nLooseMuons), ('nAK4', 'nlooseMuons')),
-
-                ('nloosevsntightLeptons', (nLooseLeptons, nLeptons), ('nlooseLeptons', 'ntightLeptons')),
-            ]
-            
-            variables = variables_1D + variables_2D
         else:
             variables = [
                 ('pt_leading_lepton',         leptons[:, 0].pt,    'pt_leadlep'),
                 ('eta_leading_lepton',        leptons[:, 0].eta,   'eta_leadlep'),
                 ('phi_leading_lepton',        leptons[:, 0].phi,   'phi_leadlep'),
-                ('pt_leading_loose_lepton',      looseleptons[:, 0].pt,    'pt_leadlooselep'),
-                ('eta_leading_loose_lepton',     looseleptons[:, 0].eta,   'eta_leadlooselep'),
-                ('phi_leading_loose_lepton',     looseleptons[:, 0].phi,   'phi_leadlooselep'),
+                ('pt_leading_loose_lepton',      looseleptons.pt,    'pt_leadlooselep'),
+                ('eta_leading_loose_lepton',     looseleptons.eta,   'eta_leadlooselep'),
+                ('phi_leading_loose_lepton',     looseleptons.phi,   'phi_leadlooselep'),
                 ('pt_leading_AK8Jets',            ak8jets[:, 0].pt,       'pt_leadAK8Jets'),
                 ('eta_leading_AK8Jets',           ak8jets[:, 0].eta,      'eta_leadAK8Jets'),
                 ('phi_leading_AK8Jets',           ak8jets[:, 0].phi,      'phi_leadAK8Jets'),
-                ('mass_dilepton',            mll , 'mass_dilepton'),
-                ('pt_dilepton',               (leptons[:, 0] + looseleptons[:, 0]).pt,   'pt_dilepton'),
-                ('mass_twoobject',           mlj , 'mass_twoobject'),
+                ('mass_dilepton',           (leptons[:, 0] + looseleptons).mass , 'mass_dilepton'),
+                ('pt_dilepton',               (leptons[:, 0] + looseleptons).pt,   'pt_dilepton'),
+                ('mass_twoobject',           (leptons[:, 0] + ak8jets[:, 0]).mass , 'mass_twoobject'),
                 ('pt_twoobject',             (leptons[:, 0] + ak8jets[:, 0]).pt,   'pt_twoobject'),
                 ('LSF_leading_AK8Jets', ak8jets[:,0].lsf3,'LSF_leadingAK8Jets'),
                 ('dPhi_leading_tightlepton_AK8Jet',  ak8jets[:, 0].delta_phi(leptons[:,0]),'dPhi_leadTightlep_AK8Jets')
@@ -293,60 +213,26 @@ class WrAnalysis(processor.ProcessorABC):
                     vals_all = vals_array
                     break
 
-        # for hist_name, values, axis_name in variables:
-        #     vals = values[cut]
-        #     w = weights.weight()[cut]
-
-        #     if process_name == "DYJets" and self.lookup_EE is not None:
-        #         if region.startswith("wr_ee_resolved_dy_cr") or region.startswith("wr_ee_resolved_sr"):
-        #             corr = self.lookup_EE(vals_all[cut])
-        #         elif region.startswith("wr_mumu_resolved_dy_cr") or region.startswith("wr_mumu_resolved_sr"):
-        #             corr = self.lookup_MM(vals_all[cut])
-        #         else:
-        #             corr = 1.0
-        #         w = w * corr
-
-        #     output[hist_name].fill(
-        #         process=process_name,
-        #         region=region,
-        #         **{axis_name: vals},
-        #         weight=w
-        #     )
-        for var in variables:
-            hist_name = var[0]
-            vals = var[1]
-            axis_name = var[2]
-            
+        for hist_name, values, axis_name in variables:
+            vals = values[cut]
             w = weights.weight()[cut]
-            
-            # Apply DY corrections if needed
+
             if process_name == "DYJets" and self.lookup_EE is not None:
                 if region.startswith("wr_ee_resolved_dy_cr") or region.startswith("wr_ee_resolved_sr"):
-                    corr = self.lookup_EE(vals[cut] if isinstance(vals, ak.Array) else vals[0][cut])
+                    corr = self.lookup_EE(vals_all[cut])
                 elif region.startswith("wr_mumu_resolved_dy_cr") or region.startswith("wr_mumu_resolved_sr"):
-                    corr = self.lookup_MM(vals[cut] if isinstance(vals, ak.Array) else vals[0][cut])
+                    corr = self.lookup_MM(vals_all[cut])
                 else:
                     corr = 1.0
                 w = w * corr
-                    
-            # Fill 1D or 2D
-            if isinstance(vals, tuple):  # 2D histogram
-                output[hist_name].fill(
-                    process=process_name,
-                    region=region,
-                    **{axis_name[0]: vals[0][cut], axis_name[1]: vals[1][cut]},
-                    weight=w
-                )
-            else:  # 1D histogram
-                output[hist_name].fill(
-                    process=process_name,
-                    region=region,
-                    **{axis_name: vals[cut]},
-                    weight=w
-                )
 
+            output[hist_name].fill(
+                process=process_name,
+                region=region,
+                **{axis_name: vals},
+                weight=w
+            )
 
-            
     def process(self, events):
         output = self.make_output()
         metadata = events.metadata
@@ -369,117 +255,47 @@ class WrAnalysis(processor.ProcessorABC):
         #     self.check_mass_point_resolved()
 
         # Object selection
-        # tightElectrons, looseElectrons = self.selectElectrons(events) 
-        # nTightElectrons =ak.fill_none(ak.num(tightElectrons),0)
+        tightElectrons, _ = self.selectElectrons(events)
+        nTightElectrons = ak.num(tightElectrons)
 
-        # nLooseElectrons = ak.num(looseElectrons)
-        # tightMuons, looseMuons = self.selectMuons(events)
-        # nTightMuons = ak.fill_none(ak.num(tightMuons),0)
-        # nLooseMuons = ak.num(looseMuons)
-        # nLeptons = nTightElectrons + nTightMuons
-        # nLooseLeptons = nLooseMuons +nLooseElectrons
-        # AK4Jets = self.selectJets(events)
-        # nAK4Jets = ak.fill_none(ak.num(AK4Jets),0)
-        
-        # AK8Jets = self.selectAK8Jets(events) 
-        # nAK8Jets = ak.num(AK8Jets)
-
-        tightElectrons, looseElectrons = self.selectElectrons(events)
-        nTightElectrons = ak.fill_none(ak.num(tightElectrons), 0)
-        nLooseElectrons = ak.fill_none(ak.num(looseElectrons), 0)
-
-        tightMuons, looseMuons = self.selectMuons(events)
-        nTightMuons = ak.fill_none(ak.num(tightMuons), 0)
-        nLooseMuons = ak.fill_none(ak.num(looseMuons), 0)
-
-        nLeptons       = nTightElectrons + nTightMuons
-        nLooseLeptons  = nLooseMuons + nLooseElectrons
+        tightMuons, _ = self.selectMuons(events)
+        nTightMuons = ak.num(tightMuons)
 
         AK4Jets = self.selectJets(events)
-        nAK4Jets = ak.fill_none(ak.num(AK4Jets), 0)
-
-        AK8Jets = self.selectAK8Jets(events)
-        nAK8Jets = ak.fill_none(ak.num(AK8Jets), 0)
+        nAK4Jets = ak.num(AK4Jets)
 
         # Event variables
-        tightLeptons_all = ak.with_name(ak.concatenate((tightElectrons, tightMuons), axis=1), 'PtEtaPhiMCandidate')
-        
-        tightLeptons_all = tightLeptons_all[ak.argsort(tightLeptons_all.pt, axis=1, ascending=False)] #,1 , axis=1)
-        tightLeptons = ak.pad_none(tightLeptons_all, 2, axis=1)
-        AK4Jets = AK4Jets[ak.argsort(AK4Jets.pt, axis=1, ascending=False)]
-        AK4Jets_notpadded = AK4Jets # quick fix
-        AK4Jets = ak.pad_none(AK4Jets, 2, axis=1)
-        
-        
-        mjj = ak.fill_none((AK4Jets[:, 0] + AK4Jets[:, 1]).mass, False)
-        
-        mll = ak.fill_none((tightLeptons[:, 0] + tightLeptons[:, 1]).mass, False)
+        tightLeptons = ak.with_name(ak.concatenate((tightElectrons, tightMuons), axis=1), 'PtEtaPhiMCandidate')
+        tightLeptons = ak.pad_none(tightLeptons[ak.argsort(tightLeptons.pt, axis=1, ascending=False)], 2, axis=1)
 
+        AK4Jets = ak.pad_none(AK4Jets, 2, axis=1)
+        mjj = ak.fill_none((AK4Jets[:, 0] + AK4Jets[:, 1]).mass, False)
+
+        mll = ak.fill_none((tightLeptons[:, 0] + tightLeptons[:, 1]).mass, False)
         mlljj = ak.fill_none((tightLeptons[:, 0] + tightLeptons[:, 1] + AK4Jets[:, 0] + AK4Jets[:, 1]).mass, False)
 
         dr_jl_min = ak.fill_none(ak.min(AK4Jets[:, :2].nearest(tightLeptons).delta_r(AK4Jets[:, :2]), axis=1), False)
         dr_j1j2 = ak.fill_none(AK4Jets[:, 0].delta_r(AK4Jets[:, 1]), False)
         dr_l1l2 = ak.fill_none(tightLeptons[:, 0].delta_r(tightLeptons[:, 1]), False)
 
-        AK8Jets = AK8Jets[ak.argsort(AK8Jets.pt, axis=1, ascending=False)]
-        AK8Jets = ak.pad_none(AK8Jets, 1, axis=1) 
-        dPhi_lj = ak.fill_none(AK8Jets[:, 0].delta_phi(tightLeptons[:,0]),0) 
-        # ## adding for loose leptons                                                                                                          
-        looseLeptons_all = ak.with_name(ak.concatenate((looseElectrons, looseMuons), axis=1), 'PtEtaPhiMCandidate')
-        looseLeptons_all = looseLeptons_all[ak.argsort(looseLeptons_all.pt, axis=1, ascending=False)] #, 1, axis=1)
-        looseLeptons = ak.pad_none(looseLeptons_all, 1, axis=1)
-
-        mll_boosted = ak.fill_none((tightLeptons[:, 0] + looseLeptons[:, 0]).mass, 0.0)
-        mlj_boosted = ak.fill_none((tightLeptons[:, 0] + AK8Jets[:,0]).mass, 0.0)
-        dR_ak8j_looselepton = ak.fill_none(ak.min(AK8Jets[:, 0:1].nearest(looseLeptons).delta_r(AK8Jets[:, 0:1]), axis=1), False) ## define it separately for e/mu
-
-        looseElectrons = looseElectrons[ak.argsort(looseElectrons.pt, axis=1, ascending=False)]
-        looseElectrons = ak.pad_none(looseElectrons, 1, axis=1)
-        looseMuons = looseMuons[ak.argsort(looseMuons.pt, axis=1, ascending=False)]
-        looseMuons = ak.pad_none(looseMuons, 1, axis=1)
-        
-        dR_ak8J_looseElectron = ak.fill_none(AK8Jets[:, 0].delta_r(looseElectrons[:,0]),999)
-        dR_ak8J_looseMuon = ak.fill_none(AK8Jets[:, 0].delta_r(looseMuons[:,0]),999)
-
         # Event selections
         selections = PackedSelection()
         self.add_resolved_selections(selections, tightElectrons, tightMuons, AK4Jets, mlljj, dr_jl_min, dr_j1j2, dr_l1l2)
-        self.add_boosted_selections(selections, tightElectrons, tightMuons, AK4Jets_notpadded, nAK8Jets, looseElectrons, looseMuons, dr_jl_min, dr_j1j2, dr_l1l2)
+
         # Trigger selections
-        if mc_campaign in ("RunIISummer20UL18", "Run2Autumn18"): 
+        if mc_campaign in ("RunIISummer20UL18", "Run2Autumn18"):
             eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
             muTrig = events.HLT.Mu50 | events.HLT.OldMu100 | events.HLT.TkMu100
             selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
             selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
-            selections.add("emuTrigger", ((eTrig | muTrig) & (nTightElectrons == 1) & (nTightMuons == 1)))
-
-            selections.add("eeTrigger_boosted",(eTrig & (nTightElectrons == 1) & (nTightMuons == 0) & ((nLooseElectrons >= 1) & (dR_ak8J_looseElectron < 0.8)))) # & (nLooseMuons == 0)))
-            selections.add("mumuTrigger_boosted",(muTrig & (nTightElectrons == 0) & (nTightMuons == 1) & (nLooseElectrons ==0) & ((nLooseMuons >=1) & (dR_ak8J_looseMuon < 0.8) ) ))
-            selections.add("emuTrigger_boosted",((eTrig | muTrig ) & (nTightElectrons == 1) & (nTightMuons == 0) & ((nLooseMuons >= 1) & (dR_ak8J_looseMuon < 0.8) ))) #  & (nLooseElectrons == 0 )))
-            selections.add("mueTrigger_boosted",((eTrig | muTrig ) & (nTightElectrons == 0) & (nTightMuons == 1) &  ((nLooseElectrons == 1 ) & (dR_ak8J_looseElectron < 0.8)) ))
-            # selections.add("eeTrigger_boosted",(eTrig & (nTightElectrons == 1) & (nTightMuons == 0) & ((nLooseElectrons >= 1) & (dR_ak8J_looseElectron < 0.8) ) & (nLooseMuons==0))) # | ((nLooseMuons>=1) & (dR_ak8J_looseMuon > 0.8)))))
-            # selections.add("mumuTrigger_boosted",(muTrig & (nTightElectrons == 0) & (nTightMuons == 1) & ((nLooseMuons >= 1) & (dR_ak8J_looseMuon < 0.8) ) & (nLooseElectrons==0)))
-
-            # selections.add("emuTrigger_boosted",((eTrig | muTrig ) & (nTightElectrons == 1) & (nTightMuons == 0) & ((nLooseMuons >= 1) & (dR_ak8J_looseMuon < 0.8)) & (nLooseElectrons == 0 )))
-            # selections.add("mueTrigger_boosted",((eTrig | muTrig ) & (nTightMuons == 1) & (nTightElectrons == 0) & ((nLooseElectrons >= 1 ) &(dR_ak8J_looseElectron < 0.8)) & (nLooseMuons==0)))
-            
+            selections.add("emuTrigger", (eTrig & muTrig & (nTightElectrons == 1) & (nTightMuons == 1)))
         elif mc_campaign in ("Run3Summer22", "Run3Summer23BPix", "Run3Summer22EE", "Run3Summer23"):
             eTrig = events.HLT.Ele32_WPTight_Gsf | events.HLT.Photon200 | events.HLT.Ele115_CaloIdVT_GsfTrkIdT
             muTrig = events.HLT.Mu50 | events.HLT.HighPtTkMu100
             selections.add("eeTrigger", (eTrig & (nTightElectrons == 2) & (nTightMuons == 0)))
             selections.add("mumuTrigger", (muTrig & (nTightElectrons == 0) & (nTightMuons == 2)))
             selections.add("emuTrigger", ((eTrig | muTrig) & (nTightElectrons == 1) & (nTightMuons == 1)))
-            selections.add("eeTrigger_boosted",(eTrig & (nTightElectrons == 1) & (nTightMuons == 0) & (nLooseElectrons >= 1) & (nLooseMuons == 0)))
-            selections.add("mumuTrigger_boosted",(muTrig & (nTightElectrons == 0) & (nTightMuons == 1) & (nLooseElectrons ==0) & (nLooseMuons >=1)))
-            selections.add("emuTrigger_boosted",((eTrig | muTrig ) & (nTightElectrons == 1) & (nTightMuons == 0) & (nLooseMuons >= 1)  & (nLooseElectrons == 0 )))
-            selections.add("mueTrigger_boosted",((eTrig | muTrig ) & (nTightElectrons == 0) & (nTightMuons == 1) & (nLooseMuons == 0)  & (nLooseElectrons >= 1 )))
-            
-            # selections.add("eeTrigger_boosted",(eTrig & (nTightElectrons == 1) & (nTightMuons == 0) & ((nLooseElectrons >= 1) & (dR_ak8J_looseElectron < 0.8) ) & (nLooseMuons==0))) # | ((nLooseMuons>=1) & (dR_ak8J_looseMuon > 0.8)))))                                                                                                                                                                              
-            # selections.add("mumuTrigger_boosted",(muTrig & (nTightElectrons == 0) & (nTightMuons == 1) & ((nLooseMuons >= 1) & (dR_ak8J_looseMuon < 0.8) ) & (nLooseElectrons==0)))
-            # selections.add("emuTrigger_boosted",((eTrig | muTrig ) & (nTightElectrons == 1) & (nTightMuons == 0) & ((nLooseMuons >= 1) & (dR_ak8J_looseMuon < 0.8)) & (nLooseElectrons == 0 )))
-            # selections.add("mueTrigger_boosted",((eTrig | muTrig ) & (nTightMuons == 1) & (nTightElectrons == 0) & ((nLooseElectrons >= 1 ) & (dR_ak8J_looseElectron < 0.8)) & (nLooseMuons==0)))
 
-            
         # Event Weights
         weights = Weights(len(events))
         if not (not hasattr(events, "genWeight")):  # is MC
@@ -489,138 +305,221 @@ class WrAnalysis(processor.ProcessorABC):
 
             if process_name != "Signal":
                 sf = metadata['xsec'] / metadata['nevts']
-                eventWeight = eventWeight * sf 
+                eventWeight = eventWeight * sf
             else:
                 sf = metadata['xsec'] / metadata['nevts']
                 eventWeight = eventWeight * sf
         else:
             eventWeight = abs(np.sign(events.event))
 
-        
         weights.add("event_weight", weight=eventWeight)
 
         selections.add("eejj", ((ak.num(tightElectrons) == 2) & (ak.num(tightMuons) == 0)))
         selections.add("mumujj", ((ak.num(tightElectrons) == 0) & (ak.num(tightMuons) == 2)))
         selections.add("emujj", ((ak.num(tightElectrons) == 1) & (ak.num(tightMuons) == 1)))
-        selections.add("ej", (nTightElectrons==1) & (nTightMuons==0) & (nLooseElectrons >= 1))#((ak.num(tightElectrons) == 1) & (ak.num(tightMuons) == 0)))# & (ak.num(looseElectrons) >= 1) & (ak.num(looseMuons) == 0))
-        selections.add("muj", (nTightElectrons==0) & (nTightMuons==1) & (nLooseMuons >= 1))#((ak.num(tightElectrons) == 0) & (ak.num(tightMuons) == 1)) & (ak.num(looseElectrons) == 0) & (ak.num(looseMuons) >= 1))
-        selections.add("emuj", (nTightElectrons == 1) & (nTightMuons == 0) & (nLooseElectrons == 0) & (nLooseMuons >= 1))
-        selections.add("muej", (nTightElectrons == 0) & (nTightMuons == 1) & (nLooseElectrons >= 1) & (nLooseMuons ==0))
-        
-        
+
         # mll selections
         selections.add("60mll150", ((mll > 60) & (mll < 150)))
         selections.add("400mll", (mll > 400))
 
-
-        selections.add("60mll_boosted150",((mll_boosted > 60) & (mll_boosted < 150)))
-        selections.add("200mll_boosted",(mll_boosted > 200))
-        selections.add("mlj>800",(mlj_boosted > 800))
-        selections.add("AK8Jets_LSF3>0.75",(AK8Jets[:,0].lsf3 > 0.75))
-        selections.add("dPhi_lj>2.0",(dPhi_lj>2.0) | (dPhi_lj <-2.0))
-
-        #selections.add("dR_ak8j_looseElectron<0.8",(dR_ak8J_looseElectron < 0.8))
-        selections.add("dR_ak8j_looseElectron>=0.8",(dR_ak8J_looseElectron >= 0.8))
-        #selections.add("dR_ak8j_looseMuon<0.8",(dR_ak8J_looseMuon < 0.8))
-        selections.add("dR_ak8j_looseMuon>=0.8",(dR_ak8J_looseMuon >= 0.8))
-        #(nTighteptonsElectrons==1) & (nTightMuons==0))  | ((nTightElectrons==0) & (nTightMuons==1)))
         # Define regions
         regions = {
-            'wr_ee_resolved_dy_cr': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger' , 'mlljj>800', 'dr>0.4', '60mll150', 'eejj'],
+            'wr_ee_resolved_dy_cr': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'eejj'],
             'wr_mumu_resolved_dy_cr': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '60mll150', 'mumujj'],
             'wr_resolved_flavor_cr': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'emuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'emujj'],
             'wr_ee_resolved_sr': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'eeTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'eejj'],
             'wr_mumu_resolved_sr': ['twoTightLeptons', 'minTwoAK4Jets', 'leadTightLeptonPt60', 'mumuTrigger', 'mlljj>800', 'dr>0.4', '400mll', 'mumujj'],
-
-            'wr_ee_boosted_sr' :['notResolved','leadTightLeptonPt60','atleast1AK8Jets','dPhi_lj>2.0','atleast1LooseLepton','200mll_boosted','mlj>800','eeTrigger_boosted','dR_ak8j_looseMuon>=0.8'], #,'AK8Jets_LSF3>0.75'],
-            'wr_mumu_boosted_sr' :['notResolved','leadTightLeptonPt60','atleast1AK8Jets','dPhi_lj>2.0','atleast1LooseLepton','200mll_boosted','mlj>800','mumuTrigger_boosted','dR_ak8j_looseElectron>=0.8'], #,'AK8Jets_LSF3>0.75'],
-            'wr_ee_boosted_dy_cr' : ['notResolved','leadTightLeptonPt60','atleast1AK8Jets','dPhi_lj>2.0','atleast1LooseLepton','60mll_boosted150','mlj>800','eeTrigger_boosted','dR_ak8j_looseMuon>=0.8'],
-            'wr_mumu_boosted_dy_cr' : ['notResolved','leadTightLeptonPt60','atleast1AK8Jets','dPhi_lj>2.0','atleast1LooseLepton','60mll_boosted150','mlj>800','mumuTrigger_boosted','dR_ak8j_looseElectron>=0.8'],
-            'wr_boosted_flavor_emu_cr' : ['notResolved','leadTightLeptonPt60','atleast1AK8Jets','dPhi_lj>2.0','atleast1LooseLepton','200mll_boosted','mlj>800','emuTrigger_boosted','dR_ak8j_looseElectron>=0.8'], #,'AK8Jets_LSF3>0.75'],
-            'wr_boosted_flavor_mue_cr' : ['notResolved','leadTightLeptonPt60','atleast1AK8Jets','dPhi_lj>2.0','atleast1LooseLepton','200mll_boosted','mlj>800','mueTrigger_boosted','dR_ak8j_looseMuon>=0.8'], #,'AK8Jets_LSF3>0.75'],
-            'wr_ee_boosted_temp' : ['notResolved','leadTightLeptonPt60','atleast1AK8Jets','dPhi_lj>2.0','atleast1LooseLepton','mlj>800'],
-            'wr_cross_check_region': ['atleast1AK8Jets'],            
-            'wr_cross_check_region_v1': ['notResolved'],#atleast1AK8Jets'],
-            'wr_cross_check_region_withSkims' : ['notResolved','leadTightLeptonPt60'],
-            'wr_cross_check_region_withSkims_v1' : ['notResolved','leadTightLeptonPt60'],
-            'wr_cross_check_region_withSkims_v2' : ['notResolved','leadTightLeptonPt60','atleast1AK8Jets'], #,'dPhi_lj>2.0'],
-            'wr_cross_check_region_withSkims_v3' : ['notResolved','leadTightLeptonPt60','atleast1AK8Jets','atleast1LooseLepton'], #,'dR_ak8j_looselepton<0.8','dPhi_lj>2.0'],
-            'wr_cross_check_region_withSkims_v4' : ['notResolved','leadTightLeptonPt60','atleast1AK8Jets','atleast1LooseLepton','200mll_boosted'], #,'dR_ak8j_looselepton<0.8','dPhi_lj>2.0'],
-            'wr_cross_check_region_withSkims_v5' : ['notResolved','leadTightLeptonPt60','atleast1AK8Jets','atleast1LooseLepton','200mll_boosted','mlj>800'], #,'dR_ak8j_looselepton<0.8','dPhi_lj>2.0'],
-            'wr_cross_check_region_withSkims_v6' : ['notResolved','leadTightLeptonPt60','atleast1AK8Jets','atleast1LooseLepton','200mll_boosted','mlj>800','ej'], #,'dR_ak8j_looseElectron<0.8','dR_ak8j_looseMuon>=0.8'], #,'dR_ak8j_looselepton<0.8','dPhi_lj>2.0'],
-            'wr_cross_check_region_withSkims_v7' : ['notResolved','leadTightLeptonPt60','atleast1AK8Jets','atleast1LooseLepton','200mll_boosted','mlj>800','muj'],#,'dR_ak8j_looseMuon<0.8'],#,'dR_ak8j_looseMuon<0.8'], #,'dR_ak8j_looselepton<0.8','dPhi_lj>2.0'],
         }
 
-        # Helper: check if all cuts in regions exist in selections
-        cutflows = {}
-
-        def check_missing_cuts(selections, regions):
-            defined = set(selections.names)
-            for region, cuts in regions.items():
-                missing = [c for c in cuts if c not in defined]
-                if missing:
-                    print(f"Region '{region}' has missing selections: {missing}")
-
-
         for region, cuts in regions.items():
-            check_missing_cuts(selections, regions)
-            # for cut_name in cuts:
-            #     cut = selections.all(cut_name)  # Select events passing only this cut
-            #     hist_name = f"{region}__{cut_name}"  # Unique histogram name
-            #     self.fill_basic_histograms(
-            #         output, hist_name, cut, process_name,
-            #         AK4Jets, tightLeptons, AK8Jets, looseLeptons, weights
-            #     )
             cut = selections.all(*cuts)
+            self.fill_basic_histograms(output, region, cut, process_name, AK4Jets, tightLeptons, AK4Jets, tightLeptons[:,0], weights)
+
+        
+        ####  ---- boosted category of events ----- #####
+        #### ---- object selections ---  ###
+        looseElectrons = self.selectLooseElectrons(events)
+        looseMuons = self.selectLooseMuons(events)
+        AK8Jets = self.selectAK8Jets(events)
+        AK4Jets_inc = self.selectJets(events)
+        # define tight by querying loose
+        tight_mask_e = (looseElectrons.cutBased_HEEP) 
+        tightElectrons_inc = looseElectrons[tight_mask_e]
+        
+        ## -- tight muons --- ##
+
+        tight_mask_mu = (looseMuons.tkRelIso < 0.1)
+        tightMuons_inc = looseMuons[tight_mask_mu]
+
+        flag_check = (ak.num(tightMuons_inc) != ak.num(tightMuons))
+        print('print me ', flag_check[flag_check==True])
+        
+        resolved = ((ak.num(tightElectrons_inc) + ak.num(tightMuons_inc)) == 2) & ((ak.num(AK4Jets_inc) >= 2)) & ((dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4))
+        boosted  = ~resolved
+        selections.add("boostedtag",boosted)
+        looseLeptons = ak.with_name(ak.concatenate((looseElectrons, looseMuons), axis=1), 'PtEtaPhiMCandidate')
+        looseLeptons = looseLeptons[ak.argsort(looseLeptons.pt, axis=1, ascending=False)]
+
+        tightLeptons_inc = ak.with_name(ak.concatenate((tightElectrons_inc, tightMuons_inc), axis=1), 'PtEtaPhiMCandidate')
+        tightLeptons_inc = tightLeptons_inc[ak.argsort(tightLeptons_inc.pt, axis=1, ascending=False)]
+
+        ### ---- boosted case ---- ## for now check only for muons, once verified, update it for LEPTONS to include Electrons too ---- ###
+
+        
+        # require leading lepton tight
+        has_tight_lead = ak.num(tightMuons_inc) > 0 ## for now check only for muons, once verifies, update it for leptons
+        lead_pt = ak.firsts(tightMuons_inc.pt)  # safely picks first or None
+        lead_is_tight_withpT60 = has_tight_lead & (ak.fill_none(lead_pt > 60, False))
+
+        selections.add("leadTightwithPt60",lead_is_tight_withpT60)
+
+        # find subleading loose lepton
+        has_sub_loose = ak.num(looseLeptons) > 1
+        
+        # now check that beyond the first two loose leptons, no extra tight exists                                                                                 
+        extra_tight_electron = ak.sum(looseElectrons[:,2:].cutBased_HEEP, axis=1)   # for electrons 
+        extra_tight_muon = ak.sum(looseMuons[:,2:].tkRelIso < 0.1, axis=1)   # for Muons
+                
+        flag_noextra = (extra_tight_electron == 0) & (extra_tight_muon == 0)
+        valid_events = flag_noextra ### for now keep it simple,  boosted & has_sub_loose & lead_is_tight_withpT60 & flag_noextra
+
+        selections.add("noExtraTight",valid_events)
+        
+        
+        flag_ak8 = (ak.num(AK8Jets) >= 1)
+        selections.add("atleast1AK8Jets",flag_ak8)
+
+        ### padding these as next calulcations will make coffea yell at you!!!!!!
+        AK8Jets = ak.pad_none(AK8Jets, 1, axis=1)
+        tightMuons_inc = ak.pad_none(tightMuons_inc,1,axis=1)
+        looseMuons = ak.pad_none(looseMuons,2,axis=1)
+        tightElectrons_inc = ak.pad_none(tightElectrons_inc,1,axis=1)
+        looseElectrons = ak.pad_none(looseElectrons,2,axis=1)
+        looseLeptons = ak.pad_none(looseLeptons,3,axis=1)
+        
+        # get first jet's lsf3 safely
+        first_lsf = ak.firsts(AK8Jets.lsf3)  # returns None if no jet        
+        # fill None with 0.0 (or False)
+        first_lsf_safe = ak.fill_none(first_lsf, 0.0)
+        # define flag
+        flag_lsf = flag_ak8 & (first_lsf_safe > 0.75)
+        selections.add("AK8JetswithLSF",flag_lsf)
+
+        dphi = ak.fill_none(abs(AK8Jets[:,0].delta_phi(tightMuons_inc[:,0])),0.0)
+        #dphi_ak8TightLep = ak.fill_none(dphi,0.0)
+        flag_dphi = (dphi > 2.0)
+        selections.add("dPhi(J,tightLept)>2",flag_dphi)
+        
+
+        dr_sub = ak.fill_none(AK8Jets[:,0].delta_r(looseMuons[:,1:]),9)
+        #dr_ak8LooseLept = ak.fill_none(dr_sub,9)
+        flag_dr_ak8loose = ak.any(dr_sub < 0.8, axis=1)  # axis=1 over sub_muons
+        flag_dr_ak8loose = ak.fill_none(flag_dr_ak8loose, False)
+        selections.add("dR(J,looseL)<0.8", flag_dr_ak8loose)
+        
+        
+        # dR to all other-flavor loose leptons
+        extraElectrons = looseElectrons[:, 2:]  # shape: [events, #extra_e]
+        extraMuons     = looseMuons[:, 2:]      # shape: [events, #extra_mu]
+        
+        # dR for extra electrons
+        dr_extra_e = ak.min(AK8Jets[:,0].delta_r(extraElectrons), axis=1)
+        dr_extra_m = ak.min(AK8Jets[:,0].delta_r(extraMuons), axis=1)
+        dr_extra_e = ak.fill_none(dr_extra_e, 999.0)
+        dr_extra_m = ak.fill_none(dr_extra_m, 999.0)
+        # -------------------------------
+        # consider all subleading loose leptons
+        sub_loose_muons = looseMuons[:, 1:]       # skip leading
+        sub_loose_elec  = looseElectrons[:, 1:]
+        
+        # dR to leading AK8 jet (padded, safe)
+        dr_sub_muons = AK8Jets[:,0].delta_r(sub_loose_muons)
+        dr_sub_elec  = AK8Jets[:,0].delta_r(sub_loose_elec)        
+        # mask for leptons passing dR < 0.8
+        mask_muons = dr_sub_muons < 0.8
+        mask_elec  = dr_sub_elec  < 0.8
+        
+        # pick **first subleading loose lepton passing dR<0.8 per event
+        sublead_loose_mu = ak.firsts(sub_loose_muons[mask_muons])
+        sublead_loose_e  = ak.firsts(sub_loose_elec[mask_elec])
+
+        # flavor of chosen subleading loose lepton
+        #sublead_pdgid = ak.fill_none(ak.where(ak.num(sublead_loose_mu) > 0, 13, ak.where(ak.num(sublead_loose_e) > 0, 11, 0)), 0)
+        #sublead_pdgid = ak.fill_none(ak.where(sublead_loose_mu != None, 13,ak.where(sublead_loose_e != None, 11, 0)), 0)
+        sublead_pdgid = ak.fill_none(
+            ak.where(~ak.is_none(sublead_loose_mu), 13,
+                     ak.where(~ak.is_none(sublead_loose_e), 11, 0)),
+            0
+        )
+        flag_no_extra_close = ((sublead_pdgid == 11) & (dr_extra_m > 0.8)) | ((sublead_pdgid == 13) & (dr_extra_e > 0.8))                                                            
+        selections.add("noExtraDiffFlavorLoosetoAK8", flag_no_extra_close)
+
+        
+        is_sub_mu = sublead_pdgid == 13
+        is_sub_e  = sublead_pdgid == 11
+
+
+        # flavor of leading tight lepton
+        lead_pdgid = ak.fill_none(abs(tightMuons_inc[:,0].pdgId), 0)
+        is_lead_e  = lead_pdgid == 11
+        is_lead_mu = lead_pdgid == 13
+        
+        # regions based on (lead tight, sub loose) flavor
+        mumu_dy_cr = is_lead_mu & is_sub_mu & flag_no_extra_close
+        emu_cr     = is_lead_e  & is_sub_mu & flag_no_extra_close
+        mue_cr     = is_lead_mu & is_sub_e  & flag_no_extra_close
+        ee_dy_cr   = is_lead_e  & is_sub_e  & flag_no_extra_close  # optional
+        
+        
+        selections.add("mumu-dy_cr", mumu_dy_cr)
+        selections.add("emu-cr",     emu_cr)
+        selections.add("mue-cr",     mue_cr)
+        selections.add("ee-dy_cr",   ee_dy_cr)
+
+
+        ### - calculating invariant mass ----- #####
+        mll_boosted = ak.fill_none((tightMuons_inc[:, 0] + looseMuons[:, 1]).mass, 0.0)
+        mlj_boosted = ak.fill_none((tightMuons_inc[:, 0] + AK8Jets[:,0]).mass, 0.0)
+        selections.add("60mll_boosted150",((mll_boosted > 60) & (mll_boosted < 150)))
+        selections.add("200mll_boosted",(mll_boosted > 200))
+        selections.add("mlj>800",(mlj_boosted > 800))
+
+        #n_pass = ak.sum(all_flags)
+        #print("Total events passing flags:", n_pass)
+        
+        regions = {
+	    'wr_mumu_boosted_dy_cr': ['boostedtag', 'leadTightwithPt60','atleast1AK8Jets','dPhi(J,tightLept)>2','dR(J,looseL)<0.8','noExtraDiffFlavorLoosetoAK8','mumu-dy_cr','60mll_boosted150','mlj>800'],
+            'wr_mumu_boosted_sr': ['boostedtag', 'leadTightwithPt60','atleast1AK8Jets','dPhi(J,tightLept)>2','dR(J,looseL)<0.8','noExtraDiffFlavorLoosetoAK8','mumu-dy_cr','200mll_boosted','mlj>800'],
+	}
+        cutflows = {}
+        for region, cuts in regions.items():
+            cut = selections.all(*cuts)
+            self.fill_basic_histograms(output, region, cut, process_name, AK4Jets, tightLeptons,AK8Jets, sublead_loose_mu, weights)
             mask = np.ones(len(eventWeight), dtype=bool)
-            # n_events = len(tightLeptons)
-            # ones = ak.Array(np.ones(n_events, dtype=np.int32))
-            # ones = ak.fill_none(ones, 0)
-            # ones = ak.Array.to_numpy(ones,allow_missing=True) #awkward_array)
-            # tightLeptons is an awkward array per event
-            n_events = len(tightLeptons)
-            
-            # Make an array of ones for each event
-            ones = ak.Array(np.ones(n_events, dtype=np.float32))
-            
-            # If thereâs any chance of None, fill with 0
-            ones = ak.fill_none(ones, 0)
-            self.fill_basic_histograms(output, region, cut, process_name, AK4Jets, tightLeptons, AK8Jets, looseLeptons,ones, mll_boosted,mlj_boosted,nLeptons,nTightElectrons, nTightMuons, nLooseLeptons, nLooseElectrons, nLooseMuons, nAK8Jets, nAK4Jets, weights)
             cf = {}
-            #mask = np.ones(len(eventWeight), dtype=bool)  # start with all events
             i=0
             for cut_name in cuts:
-                # i+=1
-                # mask = mask & selections.all(cut_name)  # apply one cut at a time
-                # cut_single = selections.all(cut_name)
-                #cf[cut_name] = np.sum(eventWeight[mask])  # weighted sum after this cut
-                # print(cut_name)
-                # hist_name = f"{region}__{cut_name}"    # Unique histogram name
                 mask = mask & selections.all(cut_name)
                 n_evt = np.sum(eventWeight[mask])
-                cf[cut_name] = np.sum(eventWeight[mask]) 
-                #output["cutflow"].fill(cut=f"{region}__{cut_name}", weight=n_evt)
-
-                # if "boosted" in region :
-                #     if i>5 :
-                #         self.fill_basic_histograms(
-                #         output, hist_name, cut_single, process_name,
-                #         AK4Jets, tightLeptons, AK8Jets, looseLeptons, weights
-                #     )
+                cf[cut_name] = np.sum(eventWeight[mask])
             cutflows[region] = cf
+            
 
-        # Pretty print
+
+
+        
+        # Pretty print                                                                                                                                                      
         import pandas as pd
         for region, cf in cutflows.items():
             print(f"\nCutflow for {region}")
             print(pd.DataFrame.from_dict(cf, orient="index", columns=["Weighted Events"]))
-            nested_output = {
-                dataset: {
-                    **output,
-                }
-            }
-        
+
+        nested_output = {
+	    dataset: {
+	        **output,
+	    }
+        }
         return nested_output
-            
+
     def postprocess(self, accumulator):
         return accumulator
