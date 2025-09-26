@@ -370,10 +370,39 @@ class WrAnalysis(processor.ProcessorABC):
         tightMuons_inc = tightMuons_inc[ak.argsort(tightMuons_inc.pt, axis=1, ascending=False)]
         flag_check = (ak.num(tightMuons_inc) != ak.num(tightMuons))
         #print('print me ', flag_check[flag_check==True], tight_mask_mu[tight_mask_mu==False])
-        
-        resolved = ((ak.num(tightElectrons_inc) + ak.num(tightMuons_inc)) == 2) & ((ak.num(AK4Jets_inc) >= 2)) & ((dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4))
+        # For leptons
+        has_two_leptons = ak.num(tightMuons_inc) >= 2
+        # dr_l1l2 = ak.where(has_two_leptons, tightMuons_inc[:,0].delta_r(tightMuons_inc[:,1]), ak.full_like(has_two_leptons, np.nan))
+
+        # pad to 2 muons safely
+        muons_padded = ak.pad_none(tightMuons_inc, 2, axis=1)
+
+        # compute dr only for events with >=2 muons
+        dr_l1l2 = ak.where(
+            ak.num(tightMuons_inc) >= 2,
+            muons_padded[:,0].delta_r(muons_padded[:,1]),
+            ak.full_like(ak.num(tightMuons_inc), np.nan)
+        )
+        # For jets
+        has_two_jets = ak.num(AK4Jets_inc) >= 2
+        ak4jets_padded = ak.pad_none(AK4Jets_inc,2, axis=1)
+        dr_j1j2 = ak.where( has_two_jets, ak4jets_padded[:,0].delta_r(ak4jets_padded[:,1]), ak.full_like(has_two_jets, np.nan))
+
+        # dr_jl_min: compute only if both jets and leptons exist
+        has_j_and_l = (ak.num(AK4Jets_inc) >= 1) & (ak.num(tightMuons_inc) >= 1)
+        dr_jl_min = ak.where( has_j_and_l, ak.min(AK4Jets_inc[:, :2].nearest(tightMuons_inc).delta_r(AK4Jets_inc[:, :2]), axis=1), ak.full_like(has_j_and_l, np.nan))
+        resolved = ((ak.num(tightMuons_inc) == 2) & (ak.num(AK4Jets_inc) >= 2) & (dr_l1l2 > 0.4) & (dr_j1j2 > 0.4) & (dr_jl_min > 0.4))
+        #resolved = ((ak.num(tightElectrons_inc) + ak.num(tightMuons_inc)) == 2) & ((ak.num(AK4Jets_inc) >= 2)) & ((dr_jl_min > 0.4) & (dr_j1j2 > 0.4) & (dr_l1l2 > 0.4))
         boosted  = ~resolved
         selections.add("boostedtag",boosted)
+        n_total = len(events)
+        n_resolved = ak.sum(resolved)
+        n_boosted = ak.sum(boosted)
+        
+        print("Total:", n_total)
+        print("Resolved:", n_resolved)
+        print("Boosted (~resolved):", n_boosted)
+        
         looseLeptons = ak.with_name(ak.concatenate((looseElectrons, looseMuons), axis=1), 'PtEtaPhiMCandidate')
         looseLeptons = looseLeptons[ak.argsort(looseLeptons.pt, axis=1, ascending=False)]
 
